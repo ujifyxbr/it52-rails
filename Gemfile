@@ -36,7 +36,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'unicorn'
 gem 'rollbar'
 
-gem 'figaro', '~> 1.0.0.rc1'
+gem 'figaro', github: 'laserlemon/figaro'
 
 gem 'pry-rails'
 
