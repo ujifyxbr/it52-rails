@@ -12,8 +12,6 @@ gem 'active_link_to'
 gem 'gon'
 gem 'pg'
 gem 'cancancan', '~> 1.7'
-gem 'mini_magick'
-gem 'carrierwave'
 gem 'high_voltage', '~> 2.1.0'
 
 gem 'sass-rails', '~> 4.0.3'
@@ -36,14 +34,23 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'unicorn'
 gem 'rollbar'
 
+# Environment variables management
 gem 'figaro', github: 'laserlemon/figaro'
 
+# Sexy rails console
 gem 'pry-rails'
 
+# Heroku compatibility
 gem 'rails_12factor'
 
+
+# Iamge and AWS S3 management
+gem 'mini_magick'
+gem 'carrierwave'
+gem "carrierwave-aws"
+
 group :development do
-  gem 'spring'
+  # gem 'spring'
   gem 'awesome_print'
   gem 'quiet_assets'
   gem 'capistrano'
@@ -58,7 +65,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'shoulda-matchers', require: false
   gem 'rspec-rails', '~> 2.14'
-  gem 'spring-commands-rspec'
+  # gem 'spring-commands-rspec'
   gem 'guard-rspec'
   gem 'rb-fsevent'
 end

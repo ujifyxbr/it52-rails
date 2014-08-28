@@ -39,6 +39,8 @@ class User < ActiveRecord::Base
     authentications.empty? || name.blank?
   end
 
+  private
+
   def assign_default_role
     self.role = :member
   end

@@ -6,19 +6,19 @@ class UserAvatarUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
-  # storage :fog
+  # storage :file
+  # storage :aws
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    "uploads/#{Rails.env}/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
-  def default_url
-    ActionController::Base.helpers.asset_path("avatars_fallback/" + [version_name, "default.png"].compact.join('_'))
-  end
+  # def default_url
+  #   ActionController::Base.helpers.asset_path("avatars_fallback/" + [version_name, "default.png"].compact.join('_'))
+  # end
 
   # Process files as they are uploaded:
   # process :scale => [200, 300]
@@ -53,8 +53,16 @@ class UserAvatarUploader < CarrierWave::Uploader::Base
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   def filename
-    if original_filename
-      I18n.transliterate(original_filename).downcase
-    end
+    @name ||= "#{filename_transliterated}-#{md5}#{File.extname(super)}" if super
+  end
+
+  def filename_transliterated
+    only_name = original_filename.split('.')[0..-2].join('-')
+    I18n.transliterate(only_name).downcase
+  end
+
+  def md5
+    chunk = model.send(mounted_as)
+    @md5 ||= Digest::MD5.hexdigest(chunk.read.to_s)
   end
 end
