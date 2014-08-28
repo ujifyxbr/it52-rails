@@ -1,0 +1,29 @@
+# Add application configuration variables here, as shown below.
+
+facebook_id: Facebook App ID
+facebook_secret: Facebook App Secret
+facebook_callback_url: http://localhost:8080/oauth/callback?provider=facebook
+
+vk_id: VK App ID
+vk_secret: VK App Secret
+vk_callback_url: http://localhost:8080/oauth/callback?provider=vk
+
+github_id: GitHub App ID
+github_secret: GitHub App Secret
+github_callback_url: http://localhost:8080/oauth/callback?provider=github
+
+google_id: Google App ID
+google_secret: Google App Secret
+google_callback_url: http://localhost:8080/oauth/callback?provider=google
+
+
+# Generate new secret key base with `rake secret`
+secret_key_base: deb6f966cf2ed2125688e0b8242018c4c3acabf3ed8ef2b2ad885153a639e95c9afabc64faef4fb848fc15c3cad7915b29fefe7746c577c2e8de31981e1b5eab
+
+# Override environment specific settings
+#
+# test:
+#   secret_key_base: b07ee5d58822ff53514adabe3c62cb518d407a442f0db0eac5a614567fe83a6cedade318c00f06315d56aabec665c0287c09415b71394ead0a992baf380f9c80
+#
+# production:
+#   secret_key_base: 2815fecfaf8763b9ee8707ac69962c79c788b582a5f66731c738e4cfd6ab4ad6c9459ba33742892083712d137ceb1ce40ed3ce7000e13a4845336290fd31e548
