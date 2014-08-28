@@ -1,23 +1,19 @@
-.page-header
-  h1 = t('.title')
+.page-header: h1 = t('.title')
 
 = render 'shared/oauth_login_block'
 
 hr
 
-h2 = t('.email_pass_login')
-.row: .col-sm-6.col-md-4
-  .panel = form_tag user_session_path, html: { role: 'form' } do
-    .form-group
-      = label_tag 'email', t('.email')
-      = text_field_tag 'email', params[:email], class: 'form-control'
-    .form-group
-      = label_tag 'password', t('.password')
-      = password_field_tag 'password', nil, class: 'form-control'
-    .checkbox
-      label
-        =' check_box_tag 'remember_me', 1, params[:remember_me]
-        = t('.remember_me')
-    = submit_tag t('.submit'), class: 'btn btn-primary'
-    | &nbsp;
-    = link_to t(:cancel), root_path, class: 'btn btn-default'
+row: .col-sm-10.col-md-8.col-lg-6
+
+  ul#sign-up-form.nav.nav-tabs role="tablist"
+    li.active: a href="#log-in" data-toggle="tab" = t('.email_pass_login')
+    li.disabled: a  = t :or
+    li: a href="#sign-up" data-toggle="tab" = t('.email_pass_registration')
+
+  br
+
+  .tab-content
+    #log-in.tab-pane.active = render 'user_sessions/new_session_form'
+    #sign-up.tab-pane = render 'user_sessions/new_registration_form', user: @new_user
+

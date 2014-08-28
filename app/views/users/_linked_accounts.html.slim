@@ -3,5 +3,5 @@ dd
   ul.list-inline
     - [:facebook, :vk, :github, :google].each do |provider|
       - if @user.authentications.where(provider: provider).any?
-        li = link_to t(provider), @user.authentications.find_by(provider: provider).link,
+        li = link_to t(:name, scope: "social.#{provider}"), @user.authentications.find_by(provider: provider).link,
                   target: '_blank', class: "btn btn-default btn-#{provider}"

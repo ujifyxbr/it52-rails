@@ -92,6 +92,9 @@ GEM
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.3)
+    figaro (0.7.0)
+      bundler (~> 1.0)
+      rails (>= 3, < 5)
     forgery (0.6.0)
     formatador (0.2.5)
     fssm (0.2.10)
@@ -153,6 +156,8 @@ GEM
       coderay (~> 1.0)
       method_source (~> 0.8)
       slop (~> 3.4)
+    pry-rails (0.3.2)
+      pry (>= 0.9.10)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
     rack (1.5.2)
@@ -288,6 +293,7 @@ DEPENDENCIES
   compass-rails
   draper
   factory_girl_rails
+  figaro
   forgery
   gon
   guard-rspec
@@ -298,6 +304,7 @@ DEPENDENCIES
   marked-rails
   mini_magick
   pg
+  pry-rails
   quiet_assets
   rails (~> 4.1.1)
   rails-i18n

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # Вход и регистрация
-  resource :user_registration, only: [:new, :create]
+  resource :user_registration, only: [:create]
   resource :user_session, only: [:new, :create, :destroy]
 
   get 'oauth/callback' => 'oauths#callback'
@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
 
   # Список пользователей и публичные профили
-  resources :user_profiles, only: [:index, :show]
+  resources :users, only: [:index, :show]
 
   # События
   resources :events, except: [:destroy] do

@@ -33,3 +33,5 @@ nginx_rewrite.txt
 /public/uploads
 
 /config/deploy.rb
+# Ignore application configuration
+/config/application.yml

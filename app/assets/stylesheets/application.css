@@ -11,17 +11,6 @@
  * file per style scope.
  *
  *= require rails_bootstrap_forms
+ *= require app
  *= require_self
- */
-
-@import "compass";
-
-@import 'theme/variables';
-@import 'theme/bootstrap_and_overrides';
-@import 'theme/common_styles';
-@import 'theme/typography';
-
-@import 'theme/sidebar';
-
-@import 'events';
-@import 'user_profiles';
+*/

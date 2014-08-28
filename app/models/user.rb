@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, if: 'email_required?'
   validates :email, uniqueness: true, if: 'email_required?'
 
-  after_create :assign_default_role
+  before_create :assign_default_role, if: -> { role.nil? }
 
   def login
     name || email.split('@').first
@@ -40,9 +40,6 @@ class User < ActiveRecord::Base
   end
 
   def assign_default_role
-    unless role
-      self.role = :member
-      save!
-    end
+    self.role = :member
   end
 end

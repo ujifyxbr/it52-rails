@@ -34,6 +34,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'unicorn'
 gem 'rollbar'
 
+gem 'figaro'
+
+gem 'pry-rails'
+
 group :development do
   gem 'spring'
   gem 'awesome_print'

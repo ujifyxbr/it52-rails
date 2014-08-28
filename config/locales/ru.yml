@@ -1,5 +1,7 @@
 ru:
-  app_name: Ростовское IT–сообщество
+  app_name: Нижегородское IT–сообщество
+  app_region: 52
+  app_hashtag: it52
 
   time:
     formats:
@@ -10,11 +12,21 @@ ru:
 
   'true': да
   'false': нет
+  or: или
 
-  facebook: Фейсбук
-  vk: Вконтакте
-  github: GitHub
-  google: Google
+  social:
+    facebook:
+      name: Фейсбук
+      link: n/a
+    vk:
+      name: Вконтакте
+      link: n/a
+    github:
+      name: GitHub
+      link: https://github.com/NNRUG
+    google:
+      name: Google
+      link: n/a
 
   event_participation_created: "Заявка на участие в &laquo;%{title}&raquo; принята."
   event_participation_canceled: "Вы отказались от участия в &laquo;%{title}&raquo;."
@@ -48,31 +60,30 @@ ru:
       about: О сайте
       members: Люди
       add_event_button_title: Добавить мероприятие
-      hashtag: "Наш хештег #it61"
+      hashtag: "Наш хештег #%{hashtag}"
     small_screens_footer:
-      hashtag: "Наш хештег #it61"
+      hashtag: "Наш хештег #%{hashtag}"
       social_links: Мы в соц. сетях
     oauth_login_block:
-      social_providers: Вход через соц. сети
-
-  user_registrations:
-    new:
-      title: Регистрация
-      submit_title: Зарегистрироваться
-      email_pass_registration: Регистрация по почтовому адресу
+      social_providers: Войти с помощью соцсети
 
   user_sessions:
     new:
-      title: Войти на сайт
+      title: Добро пожаловать!
+      email_pass_registration: зарегистрироваться
+      email_pass_login: Войти
+    new_session_form:
       email: E-mail
       password: Пароль
       remember_me: Запомнить меня
       submit: Войти
-      email_pass_login: Вход по почте-паролю
+    new_registration_form:
+      title: Регистрация
+      submit_title: Зарегистрироваться
     create:
       login_failed_message: Неверный пароль или пользователь не существует.
 
-  user_profiles:
+  users:
     index:
       title: Люди
     edit:

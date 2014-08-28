@@ -1,0 +1,5 @@
+= bootstrap_form_for user, url: "#{user_registration_path}/#sign-up" do |f|
+  = f.text_field :email, autocomplete: 'off'
+  = f.password_field :password, autocomplete: 'off'
+  = f.password_field :password_confirmation, autocomplete: 'off'
+  = f.submit t('.submit_title'), class: 'btn btn-primary'

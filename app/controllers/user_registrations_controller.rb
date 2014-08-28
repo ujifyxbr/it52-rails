@@ -6,13 +6,14 @@ class UserRegistrationsController < ApplicationController
   end
 
   def create
-    @user = User.create(user_params)
+    @new_user = User.create(user_params)
 
-    if @user.persisted?
-      auto_login(@user)
+    if @new_user.persisted?
+      auto_login(@new_user)
       redirect_back_or_to(root_path)
     else
-      render action: :new
+      @user = User.new
+      render 'user_sessions/new'
     end
   end
 

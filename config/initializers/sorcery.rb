@@ -112,9 +112,9 @@ Rails.application.config.sorcery.configure do |config|
   # config.twitter.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=twitter"
   # config.twitter.user_info_mapping = {:email => "screen_name"}
   #
-  config.facebook.key = Rails.application.secrets.facebook_key
-  config.facebook.secret = Rails.application.secrets.facebook_secret
-  config.facebook.callback_url = Rails.application.secrets.facebook_callback_url
+  config.facebook.key = ENV['facebook_id']
+  config.facebook.secret = ENV['facebook_secret']
+  config.facebook.callback_url = ENV['facebook_callback_url']
   config.facebook.user_info_mapping = {
     remote_avatar_image_url: 'avatar',
     email: "email",
@@ -124,9 +124,9 @@ Rails.application.config.sorcery.configure do |config|
   }
   config.facebook.access_permissions = ["email", "publish_stream"]
   #
-  config.github.key = Rails.application.secrets.github_key
-  config.github.secret = Rails.application.secrets.github_secret
-  config.github.callback_url = Rails.application.secrets.github_callback_url
+  config.github.key = ENV['github_id']
+  config.github.secret = ENV['github_secret']
+  config.github.callback_url = ENV['github_callback_url']
   config.github.user_info_mapping = {
     remote_avatar_image_url: 'avatar_url',
     name: 'login',
@@ -134,18 +134,18 @@ Rails.application.config.sorcery.configure do |config|
   }
 
   #
-  config.google.key = Rails.application.secrets.google_key
-  config.google.secret = Rails.application.secrets.google_secret
-  config.google.callback_url = Rails.application.secrets.google_callback_url
+  config.google.key =  ENV['google_id']
+  config.google.secret = ENV['google_secret']
+  config.google.callback_url = ENV['google_callback_url']
   config.google.user_info_mapping = {
     email: "email",
     name: "name",
     remote_avatar_image_url: 'picture',
   }
   #
-  config.vk.key = Rails.application.secrets.vk_key
-  config.vk.secret = Rails.application.secrets.vk_secret
-  config.vk.callback_url = Rails.application.secrets.vk_callback_url
+  config.vk.key = ENV['vk_id']
+  config.vk.secret = ENV['vk_secret']
+  config.vk.callback_url = ENV['vk_callback_url']
   config.vk.user_info_mapping = {
     remote_avatar_image_url: 'photo_200_orig',
     name: 'domain',

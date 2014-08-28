@@ -1,4 +1,4 @@
-class UserProfilesController < ApplicationController
+class UsersController < ApplicationController
   respond_to :html
   responders :flash
 
