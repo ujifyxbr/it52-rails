@@ -57,7 +57,7 @@ group :development, :test do
   gem 'forgery'
   gem 'factory_girl_rails'
   gem 'shoulda-matchers', require: false
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 2.14'
   gem 'spring-commands-rspec'
   gem 'guard-rspec'
   gem 'rb-fsevent'

@@ -12,12 +12,12 @@ class User < ActiveRecord::Base
   has_many :event_participations
   has_many :member_in_events, class_name: 'Event', through: :event_participations, source: :event
 
-  validates :password, presence: true, if: 'password_required?'
+  validates :password, presence: true, if: :password_required?
   validates :password, length: { minimum: 3 }, if: 'password.present?'
-  validates :password, confirmation: true, if: 'password_required?'
+  validates :password, confirmation: true, if: :password_required?
 
-  validates :email, presence: true, if: 'email_required?'
-  validates :email, uniqueness: true, if: 'email_required?'
+  validates :email, presence: true, if: :email_required?
+  validates :email, uniqueness: true, if: :email_required?
 
   before_create :assign_default_role, if: -> { role.nil? }
 
