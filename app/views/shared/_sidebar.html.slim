@@ -10,7 +10,7 @@
 
   - if current_user
     .user
-      = link_to current_user do
+      = link_to my_profile_path do
         .avatar = image_tag current_user.avatar_image.square_50.url
         .user-name = current_user.full_name
   - else
@@ -45,7 +45,6 @@
       - if can? :create, Event
         li = link_to t('.add_event_button_title'), new_event_path, class: 'plus-btn', title: t('.add_event_button_title')
       = active_link_to t('.members'), users_path, wrap_tag: :li
-      = active_link_to t('.donations'), '#', wrap_tag: :li
       = active_link_to t('.about'), '#', wrap_tag: :li
       - if current_user
         = active_link_to current_user.full_name, current_user, wrap_tag: :li

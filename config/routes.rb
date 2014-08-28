@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   get 'oauth/:provider' => 'oauths#oauth', as: :auth_at_provider
 
   # Редактирование профиля и аккаунта
-  scope :current_user, as: 'current' do
-    resource :profile, controller: 'user_profiles', only: [:edit, :update]
+  scope :my, as: :my do
+    resource :profile, controller: 'users', only: [:show, :edit, :update]
   end
 
   # Список пользователей и публичные профили

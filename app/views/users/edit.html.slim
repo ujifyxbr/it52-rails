@@ -3,7 +3,7 @@
 
 h2 = t('.edit_title')
 
-= bootstrap_form_for @user, url: current_profile_path, html: { autocomplete: 'off', autocorrect: 'off'} do |f|
+= bootstrap_form_for @user, url: my_profile_path, html: { autocomplete: 'off', autocorrect: 'off'} do |f|
   .row
     .col-sm-3
       - if @user.avatar_image.present?

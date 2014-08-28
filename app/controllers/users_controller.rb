@@ -10,7 +10,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find params[:id]
+    @user = current_user
+    @user = User.find params[:id] if params[:id]
     respond_with @user
   end
 
@@ -21,7 +22,7 @@ class UsersController < ApplicationController
   def update
     @user.update_attributes user_profile_params
 
-    respond_with @user, location: edit_current_profile_path
+    respond_with @user, location: edit_my_profile_path
   end
 
   private
