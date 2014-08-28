@@ -25,7 +25,6 @@ nginx_rewrite.txt
 /config/newrelic.yml
 /config/thinking_sphinx.yml
 /config/development.sphinx.conf
-/config/secrets.yml
 
 /public/system
 /public/assets
