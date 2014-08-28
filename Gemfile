@@ -40,6 +40,8 @@ gem 'figaro', '~> 1.0.0.rc1'
 
 gem 'pry-rails'
 
+gem 'rails_12factor'
+
 group :development do
   gem 'spring'
   gem 'awesome_print'
