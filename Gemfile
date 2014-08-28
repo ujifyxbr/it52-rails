@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.1.2'
 
-gem 'rails', '~> 4.1.1'
+gem 'rails', '~> 4.1.5'
 gem 'rails-i18n'
 gem 'unicode'
 gem 'sorcery'
@@ -36,7 +36,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'unicorn'
 gem 'rollbar'
 
-gem 'figaro'
+gem 'figaro', '~> 1.0.0.rc1'
 
 gem 'pry-rails'
 
