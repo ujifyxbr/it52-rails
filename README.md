@@ -16,14 +16,14 @@ Main branch is [it52](https://github.com/NNRUG/it52-rails/tree/it52)
     cp config/secrets.yml.template config/secrets.yml
     cp config/application.yml.template config/application.yml
 
-Установить бандлы, создать и мигрировать БД:
+Установить зависимости, создать и мигрировать БД:
 
-    bundle install --path vendor/bundle
+    bundle install
     bundle exec rake db:setup
 
 Запустить rails-сервер:
 
-    bundle exec rails s
+    unicorn_rails
 
 ## Style guides
 
@@ -36,9 +36,10 @@ Main branch is [it52](https://github.com/NNRUG/it52-rails/tree/it52)
 - [Markdown](http://www.cirosantilli.com/markdown-styleguide)
 
 ## Requirements
-- Ruby 2
+- Ruby 2.1.2
 - PostgreSQL 9.x
 
 ## Спасибо
 
-Спасибо коллегам из Ростова — [оригинальный репозиторий на GitHub](https://github.com/vtambourine/it61-rails)
+* Коллегам из Ростова — [оригинальный репозиторий на GitHub](https://github.com/vtambourine/it61-rails)
+* Всем [разработчикам, внёсшим посильный вклад](https://github.com/NNRUG/it52-rails/graphs/contributors).

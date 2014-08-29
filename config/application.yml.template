@@ -16,6 +16,11 @@ google_id: Google App ID
 google_secret: Google App Secret
 google_callback_url: http://localhost:8080/oauth/callback?provider=google
 
+aws_access_key_id: AWS Access Key ID
+aws_secret_access_key: AWS Secret Access Key
+aws_region: AWS region
+aws_host: AWS host
+aws_bucket: AWS S3 bucket
 
 # Generate new secret key base with `rake secret`
 secret_key_base: deb6f966cf2ed2125688e0b8242018c4c3acabf3ed8ef2b2ad885153a639e95c9afabc64faef4fb848fc15c3cad7915b29fefe7746c577c2e8de31981e1b5eab
