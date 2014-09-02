@@ -28,5 +28,16 @@ module It52Rails
     # Mailing host
     config.action_mailer.default_url_options = { host: Figaro.env.mailing_host }
     config.action_mailer.default_options = { from: "robot@#{Figaro.env.mailing_host}" }
+
+    config.action_mailer.smtp_settings = {
+      port:           '587',
+      address:        Figaro.env.mandrill_host,
+      user_name:      Figaro.env.mandrill_username,
+      password:       Figaro.env.mandrill_apikey,
+      domain:         Figaro.env.mailing_host,
+      authentication: :plain
+    }
+
+    config.action_mailer.delivery_method = :smtp
   end
 end
