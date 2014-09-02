@@ -9,17 +9,17 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   private
 
   def auth_for(kind)
+    session['devise.oauth_data'] = nil
     @user = User.from_omniauth(auth_params, current_user)
     @authentication = @user.authentications.find do |a|
       a.uid == auth_params[:uid] && a.provider == auth_params[:provider]
     end
 
     if @user.persisted?
-      session["devise.oauth_data"] = nil
       set_flash_message(:notice, :success, kind: kind.to_s.capitalize) if is_navigational_format?
       sign_in_and_redirect @user, event: :authentication
     else
-      session["devise.oauth_data"] = auth_params
+      session['devise.oauth_data'] = auth_params
       render 'devise/registrations/new', error: "Authentication with #{kind} failed."
     end
   end

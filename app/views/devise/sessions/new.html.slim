@@ -5,11 +5,7 @@
     .col-xs-12.col-sm-6.col-md-5.col-lg-5
       h2 = t('.social_login')
       ul.list-unstyled
-        - resource_class.omniauth_providers.each do |provider|
-          - icon = t("social.#{provider}.icon")
-          li = link_to omniauth_authorize_path(resource_name, provider), class: %(btn btn-block btn-#{icon}) do
-            i.fa.fa-2x> class="fa-#{icon}"
-              span< = t("social.#{provider}.name")
+        = render partial: 'authentications/unlinked', collection: resource_class.omniauth_providers, as: :provider
 
   .col-xs-12.col-sm-6.col-md-6.col-md-offset-1.col-lg-5.col-lg-offset-2
     h2 = t('.log_in')

@@ -101,6 +101,8 @@ GEM
     ffaker (1.25.0)
     font-awesome-sass (4.2.0)
       sass (~> 3.2)
+    friendly_id (5.0.4)
+      activerecord (>= 4.0.0)
     fssm (0.2.10)
     gon (5.0.4)
       actionpack (>= 2.3.0)
@@ -302,6 +304,7 @@ DEPENDENCIES
   ffaker
   figaro!
   font-awesome-sass
+  friendly_id
   gon
   has_scope
   high_voltage (~> 2.1.0)

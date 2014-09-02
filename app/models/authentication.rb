@@ -18,4 +18,13 @@ class Authentication < ActiveRecord::Base
   validates :provider, presence: true
 
   belongs_to :user
+
+  def set_attributes_from_omniauth(auth)
+    urls = auth['info']['urls']
+    self.link = auth['extra']['raw_info']['link'] || urls['GitHub']
+    self.link ||= urls['Twitter'] || urls['Facebook'] || urls['Vkontakte'] || urls['Google']
+    self.token = auth['credentials']['token']
+    self.token_expires = auth['credentials']['expires_at']
+    self
+  end
 end

@@ -1,17 +1,25 @@
+.row
+  .col-sm-2
+    .avatar.image-container = image_tag @user.avatar_image.square_150.url
+
+  .col-sm-10
+    .page-header
+      h1 = @user
+      = @user.link_to_website
+
+    - if @user.bio?
+       = @user.bio
+       hr
+
+    - if @user.authentications.present?
+      section
+        h5.subheader = t('.linked_accounts')
+        ul.list-inline
+          = render @user.authentications
+
+
+
 .user-profile-page
-  .page-header.clearfix
-    h1 = @user.full_name
-
-  .row
-    .col-sm-3.col-md-2
-      .avatar.image-container = image_tag @user.avatar_image.square_150.url
-    .col-sm-9.col-md-10
-      - if @user.authentications.any?
-        dl = render 'linked_accounts'
-      - if @user.bio?
-        .well
-          .bio = simple_format @user.bio
-
   - if @user.owner_of_events.any?
     .owner-of-events
       h2 = t('.organizer_block_title')

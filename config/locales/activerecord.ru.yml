@@ -89,51 +89,6 @@ ru:
         last_sign_in_ip: Последний IP
         confirmed_at: Подтверждён
         confirmation_sent_at: Подтверждение выслано
-        discussions: Дискуссии
-        ideas:       Идеи
-        created_discussions: Созданные дискуссии
-        moderated_discussions: Модерируемые дискуссии
-      discussion:
-        title:        Название
-        description:  Описание
-        secret:       Секретная
-        public:       Публичная
-        moderator:    Модератор
-        creator:      Создатель
-        status:       Статус
-        created_at:   Создано
-        updated_at:   Обновлено
-        users:        Участники
-        variants:     Варианты
-        ideas:        Идеи
-        winner:       Победивший вариант
-        loosers:      Проигравшие варианты
-        voting_notify_at: Напомнить о голосовании
-        voting_started_at: Голосование начато
-        elaborating_started_at: Уточнение начато
-        closed_at: Дискуссия закрыта
-      idea:
-        title:       Название
-        description: Описание
-        variant:     Вариант
-        discussion:  Дискуссия
-        gist:        Суть
-      variant:
-        title:      Название
-        discussion: Дискуссия
-        ideas:      Идеи
-        comments:   Комментарии
-      comment:
-        description: Комментарий
-        author:      Автор
-        created_at:  Добавлен
-        cached_votes_total: Всего голосов
-        cached_votes_score: Результат
-        cached_votes_up:    За
-        cached_votes_down:  Против
-      acts_as_votable/vote:
-        votable:    Сущность
-        voter:      Проголосовааший
-        vote_flag:  За/Против
-        vote_weight: Вес голоса
-        created_at: Создан
+        website: Сайт
+        bio: О себе
+        nickname: Ник

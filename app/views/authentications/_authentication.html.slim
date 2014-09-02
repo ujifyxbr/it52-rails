@@ -1,0 +1,6 @@
+- icon = t("social.#{authentication.provider}.icon")
+
+li: .btn-group
+  = link_to authentication.link, class: "btn btn-#{icon}", target: :_blank do
+    i.fa> class="fa-#{icon}"
+    span< = t("social.#{authentication.provider}.name")

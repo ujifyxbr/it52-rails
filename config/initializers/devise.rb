@@ -259,7 +259,7 @@ Devise.setup do |config|
 
   config.omniauth :github, Figaro.env.github_id, Figaro.env.github_secret, scope: 'user:email, read:org'
   config.omniauth :google_oauth2, Figaro.env.google_id, Figaro.env.google_secret
-  config.omniauth :facebook, Figaro.env.facebook_id, Figaro.env.facebook_secret, scope: 'email, user_events, user_groups, user_website, rsvp_event', secure_image_url: true
+  config.omniauth :facebook, Figaro.env.facebook_id, Figaro.env.facebook_secret, scope: 'email, user_events, user_groups, user_website, rsvp_event, user_about_me, user_website', secure_image_url: true
   config.omniauth :vkontakte, Figaro.env.vk_id, Figaro.env.vk_secret
   config.omniauth :twitter, Figaro.env.twitter_key, Figaro.env.twitter_secret, { image_size: 'original' }
 

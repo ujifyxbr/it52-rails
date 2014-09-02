@@ -24,6 +24,7 @@ gem 'cancancan', '~> 1.7'
 # Request handling
 gem 'responders'
 gem 'has_scope'
+gem 'friendly_id'
 
 # Decoration
 gem 'draper'

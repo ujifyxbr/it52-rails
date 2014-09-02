@@ -27,4 +27,8 @@ ru:
     placeholders:
       user:
         email: cool@hacker.io
+    hints:
+      user:
+        bio: Можно использовать Markdown
+        nickname: Будет использован в качестве ссылки на профиль
 

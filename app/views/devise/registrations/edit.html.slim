@@ -9,7 +9,4 @@
     = f.input :password, autocomplete: "off"
     = f.input :password_confirmation
     = f.input :current_password
-    = f.button :submit, "Update"
-
-  h3 = t('.cancel')
-  p Unhappy? #{link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
+    = f.button :submit, t('.submit')

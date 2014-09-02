@@ -34,8 +34,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
          :trackable, :validatable, :confirmable, :omniauthable
 
-  mount_uploader :avatar_image, UserAvatarUploader
-
   enum role: [ :member, :admin ]
 
   has_many :authentications, dependent: :destroy
@@ -45,25 +43,31 @@ class User < ActiveRecord::Base
   has_many :event_participations
   has_many :member_in_events, class_name: 'Event', through: :event_participations, source: :event
 
-  # validates :password, presence: true, if: :password_required?
-  # validates :password, length: { minimum: 3 }, if: 'password.present?'
-  # validates :password, confirmation: true, if: :password_required?
-
-  # validates :email, presence: true, if: -> { :email_required? }
-
   before_create :assign_default_role, if: -> { role.nil? }
 
-  def login
-    name || email.split('@').first
-  end
+  extend FriendlyId
+  friendly_id :slug_candidates, use: :slugged
+
+  mount_uploader :avatar_image, UserAvatarUploader
 
   def full_name
-    [first_name, last_name].compact.join(' ').presence || login
+    [first_name, last_name].compact.join(' ').presence || nickname
   end
 
   def to_s
     full_name
   end
+
+  def slug_candidates
+    [
+      :nickname,
+      [:first_name, :last_name],
+    ]
+  end
+
+def should_generate_new_friendly_id?
+  nickname_changed? || super
+end
 
   def self.new_with_session(params, session)
     super.tap do |user|
@@ -74,28 +78,43 @@ class User < ActiveRecord::Base
   end
 
   def self.from_omniauth(auth, current_user = nil)
-    authentication = Authentication.where(provider: auth[:provider], uid: auth[:uid]).first_or_initialize
+    authentication = Authentication.where(provider: auth[:provider], uid: auth[:uid]).
+                                    first_or_initialize.set_attributes_from_omniauth(auth)
+
     user = current_user || authentication.user
     user ||= where(email: auth['info']['email']).first_or_create
-    user.first_name = auth['info']['first_name']    if user.first_name.blank?
-    user.last_name  = auth['info']['last_name']     if user.last_name.blank?
-    user.bio        = auth['info']['description']   if user.bio.blank?
-    user.remote_avatar_image_url = auth['info']['image'] if user.avatar_image.blank?
-    user.name       = auth['info']['name'] || auth['info']['nickname'] if user.name.blank?
 
-    authentication.link = auth['extra']['raw_info']['link'] || auth['info']['urls'].values.first
-    authentication.token = auth['credentials']['token']
-    authentication.token_expires = auth['credentials']['expires_at']
-
+    user.set_attributes_from_omniauth(auth['info'])
     user.authentications << authentication unless user.has_identity? auth[:provider]
-    user.email = "" if user.email.nil?
-    user.skip_confirmation! unless user.email_required?
+
+    user.skip_confirmations! if user.confirmed? || !user.email_required?
+
     user.save
     user
   end
 
+  def skip_confirmations!
+    self.skip_confirmation!
+    self.skip_reconfirmation!
+  end
+
+  def set_attributes_from_omniauth(info)
+    self.email      = info['email'] || ""   if email.blank?
+    self.first_name = info['first_name'] || info['name'].split.first if first_name.blank?
+    self.last_name  = info['last_name'] || info['name'].split.last   if last_name.blank?
+    self.bio        = info['description'] if bio.blank?
+    self.remote_avatar_image_url = info['image'] if avatar_image.blank?
+    self.nickname   = info['nickname'] || info['name'] || full_name   if nickname.blank?
+    self.website    = info['urls']['Blog'] || info['urls']['Website'] if website.blank?
+    self
+  end
+
   def has_identity?(provider)
     provider.in? authentications.map(&:provider)
+  end
+
+  def unlinked_providers
+    self.class.omniauth_providers.map(&:to_s) - authentications.pluck(:provider)
   end
 
   def password_required?

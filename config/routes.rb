@@ -1,15 +1,15 @@
 Rails.application.routes.draw do
 
+  get 'authentications/destroy'
+
   devise_for :user,
-             path: '', path_names: { sign_in: "login", sign_out: "logout", sign_up: "signup" },
+             path: '', path_names: { sign_in: "login", sign_out: "logout", sign_up: "signup", edit: 'my/profile/secret' },
              controllers: { omniauth_callbacks: :omniauth_callbacks}
 
-  # get 'oauth/callback' => 'oauths#callback'
-  # get 'oauth/:provider' => 'oauths#oauth', as: :auth_at_provider
-
   # Редактирование профиля и аккаунта
-  scope :my, as: :my do
-    resource :profile, controller: 'users', only: [:show, :update]
+  namespace :my do
+    resource :profile, controller: 'users', only: [:show, :edit, :update,]
+    resources :authentications, only: [:destroy]
   end
 
   # Список пользователей и публичные профили

@@ -9,17 +9,15 @@ h3, h4, h5, h6, .h3, .h4, .h5, .h6
   font-weight: 600
 
 /* Стили кнопок логина через соц. сети. */
-.btn-facebook, .btn-vk, .btn-github, .btn-google-plus, .btn-twitter
-  margin: 0.3em 1em 0.3em 0
+.btn-facebook, .btn-vk, .btn-github, .btn-google-plus, .btn-twitter, .btn-vkontakte
+  margin: 0.3em 0
   &.btn-block
     margin-bottom: $line-height-computed
-  span
-    font-size: 80%
 
 .btn-facebook
   +button-variant(white, $facebook-brand-color, darken($facebook-brand-color, 8%))
 
-.btn-vk
+.btn-vk, .btn-vkontakte
   +button-variant(white, $vk-brand-color, darken($vk-brand-color, 8%))
 
 .btn-github
