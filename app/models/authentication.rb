@@ -17,7 +17,7 @@ class Authentication < ActiveRecord::Base
   validates :uid, uniqueness: { scope: :provider }, presence: true
   validates :provider, presence: true
 
-  belongs_to :user
+  belongs_to :user, touch: true
 
   def set_attributes_from_omniauth(auth)
     urls = auth['info']['urls']

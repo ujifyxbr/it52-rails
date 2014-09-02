@@ -1,55 +1,47 @@
-#logo-and-name = link_to root_path do
-  #logotype = image_tag "logo-it#{t :app_region}.png"
-  #sitename = t(:app_name)
+= cache ['sidebar', 'v1', current_user] do
 
-#sidebar-menu
-  = link_to '#mobile-menu', id: 'mobile-menu-toggler', class: 'toggle', data: {toggle: 'collapse'} do
-    i.fa.fa-align-justify
+  #logo-and-name = link_to root_path do
+    #logotype = image_tag "logo-it#{t :app_region}.png"
+    #sitename = t(:app_name)
 
-  hr
+  #sidebar-menu
+    = link_to '#mobile-menu', id: 'mobile-menu-toggler', class: 'toggle', data: {toggle: 'collapse'} do
+      i.fa.fa-align-justify
 
-  - if current_user
-    .user
-      = link_to my_profile_path do
-        .avatar = image_tag current_user.avatar_image.square_50.url
-      .user-name
-        = link_to current_user.full_name, my_profile_path, class: 'profile-link'
-        .logout< = link_to destroy_user_session_path, method: :delete, title: t('.logout') do
-          i.fa.fa-power-off
-  - else
-    ul#registration-login-nav.nav
-      = active_link_to t('.login'), new_user_session_path, wrap_tag: :li
+    hr
 
-  ul#mainmenu.nav
-    - if can? :create, Event
-      li.with-plus-btn
-        = active_link_to t('.events'), events_path
-        = link_to '+', new_event_path, class: 'plus-btn', title: t('.add_event_button_title')
+    - if current_user
+      .user
+        = link_to my_profile_path do
+          .avatar = image_tag current_user.avatar_image.square_50.url
+        .user-name
+          = link_to current_user.full_name, my_profile_path, class: 'profile-link'
+          .logout< = link_to destroy_user_session_path, method: :delete, title: t('.logout') do
+            i.fa.fa-power-off
     - else
-      = active_link_to t('.events'), events_path, wrap_tag: :li
-    = active_link_to t('.members'), users_path, wrap_tag: :li
-    = active_link_to t('.about'), page_path(:about), wrap_tag: :li
-
-  hr
-
-  / #social-links
-  /   h4 = t('.hashtag', hashtag: t(:app_hashtag))
-  /   ul.nav.nav-pills
-  /     li = link_to 'https://twitter.com/it_rostov', target: '_blank' do
-  /       i.fa.fa-fw.fa-twitter
-  /     li = link_to 'https://vk.com/it_61', target: '_blank' do
-  /       i.fa.fa-fw.fa-vk
-  /     li = link_to 'https://www.facebook.com/it61.info', target: '_blank' do
-        i.fa.fa-fw.fa-facebook
-
-  #mobile-menu.collapse
-    ul.nav.nav-pills.nav-stacked
-      = active_link_to t('.events'), events_path, wrap_tag: :li
-      - if can? :create, Event
-        li = link_to t('.add_event_button_title'), new_event_path, class: 'plus-btn', title: t('.add_event_button_title')
-      = active_link_to t('.members'), users_path, wrap_tag: :li
-      = active_link_to t('.about'), '#', wrap_tag: :li
-      - if current_user
-        = active_link_to current_user.full_name, current_user, wrap_tag: :li
-      - else
+      ul#registration-login-nav.nav
         = active_link_to t('.login'), new_user_session_path, wrap_tag: :li
+
+    ul#mainmenu.nav
+      - if can? :create, Event
+        li.with-plus-btn
+          = active_link_to t('.events'), events_path
+          = link_to '+', new_event_path, class: 'plus-btn', title: t('.add_event_button_title')
+      - else
+        = active_link_to t('.events'), events_path, wrap_tag: :li
+      = active_link_to t('.members'), users_path, wrap_tag: :li
+      = active_link_to t('.about'), page_path(:about), wrap_tag: :li
+
+    hr
+
+    #mobile-menu.collapse
+      ul.nav.nav-pills.nav-stacked
+        = active_link_to t('.events'), events_path, wrap_tag: :li
+        - if can? :create, Event
+          li = link_to t('.add_event_button_title'), new_event_path, class: 'plus-btn', title: t('.add_event_button_title')
+        = active_link_to t('.members'), users_path, wrap_tag: :li
+        = active_link_to t('.about'), '#', wrap_tag: :li
+        - if current_user
+          = active_link_to current_user.full_name, current_user, wrap_tag: :li
+        - else
+          = active_link_to t('.login'), new_user_session_path, wrap_tag: :li
