@@ -69,10 +69,12 @@ gem 'pry-rails'
 # Heroku compatibility
 gem 'rails_12factor'
 
-# Iamge and AWS S3 management
+# Image and AWS S3 management
+gem "fog", require: "fog/aws/storage"
 gem 'mini_magick'
 gem 'carrierwave'
-gem "carrierwave-aws"
+# gem "carrierwave-aws"
+gem 'asset_sync'
 
 group :development do
   gem 'annotate', require: false

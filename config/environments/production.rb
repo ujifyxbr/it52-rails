@@ -34,6 +34,8 @@ Rails.application.configure do
 
   # `config.assets.precompile` has moved to config/initializers/assets.rb
 
+  config.assets.initialize_on_precompile = true
+
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
@@ -61,7 +63,7 @@ Rails.application.configure do
                       }
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  # config.action_controller.asset_host = "http://assets.example.com"
+  config.action_controller.asset_host = Figaro.env.aws_host
 
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
