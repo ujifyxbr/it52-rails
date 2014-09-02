@@ -8,11 +8,13 @@ h1, .h1, h2, .h2
 h3, h4, h5, h6, .h3, .h4, .h5, .h6
   font-weight: 600
 
-/* Стили кнопок логина через соц. сети.
-.btn-facebook, .btn-vk, .btn-github, .btn-google
+/* Стили кнопок логина через соц. сети. */
+.btn-facebook, .btn-vk, .btn-github, .btn-google-plus, .btn-twitter
   margin: 0.3em 1em 0.3em 0
   &.btn-block
     margin-bottom: $line-height-computed
+  span
+    font-size: 90%
 
 .btn-facebook
   +button-variant(white, $facebook-brand-color, darken($facebook-brand-color, 8%))
@@ -23,5 +25,8 @@ h3, h4, h5, h6, .h3, .h4, .h5, .h6
 .btn-github
   +button-variant($text-color, $github-brand-color, $gray-light)
 
-.btn-google
+.btn-google-plus
   +button-variant(white, $google-brand-color, darken($google-brand-color, 12%))
+
+.btn-twitter
+  +button-variant(white, $twitter-brand-color, darken($twitter-brand-color, 8%))

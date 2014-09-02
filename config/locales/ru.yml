@@ -16,17 +16,20 @@ ru:
 
   social:
     facebook:
-      name: Фейсбук
-      link: n/a
-    vk:
+      name: Facebook
+      icon: facebook
+    vkontakte:
       name: Вконтакте
-      link: n/a
+      icon: vk
     github:
       name: GitHub
-      link: https://github.com/NNRUG
-    google:
+      icon: github
+    google_oauth2:
       name: Google
-      link: n/a
+      icon: google-plus
+    twitter:
+      name: Twitter
+      icon: twitter
 
   event_participation_created: "Заявка на участие в &laquo;%{title}&raquo; принята."
   event_participation_canceled: "Вы отказались от участия в &laquo;%{title}&raquo;."
@@ -50,7 +53,8 @@ ru:
 
   shared:
     sidebar:
-      login: Вход
+      login: Войти
+      logout: Выйти
       register: Регистрация
       my_profile: Мой профиль
       vk: Вконтакте
@@ -67,19 +71,27 @@ ru:
     oauth_login_block:
       social_providers: Войти с помощью соцсети
 
-  user_sessions:
-    new:
-      title: Добро пожаловать!
-      email_pass_registration: зарегистрироваться
-      email_pass_login: Войти
-    new_session_form:
-      email: E-mail
-      password: Пароль
-      remember_me: Запомнить меня
-      submit: Войти
-    new_registration_form:
-      title: Регистрация
-      submit_title: Зарегистрироваться
+  devise:
+    sessions:
+      new:
+        title: Добро пожаловать!
+        log_in: Войти
+        social_login: Войти через соцсеть
+    passwords:
+      new:
+        title: Забыли пароль?
+        send: Восстановить
+      edit:
+        title: Новый пароль
+        submit: Сохранить
+    registrations:
+      new:
+        title: Регистрация
+        sign_up: Зарегистрироваться
+    confirmations:
+      new:
+        title: Активация аккаунта
+        send: Выслать повторно
     create:
       login_failed_message: Неверный пароль или пользователь не существует.
 
@@ -96,7 +108,6 @@ ru:
       organizer_block_title: Организатор мероприятий
       member_block_title: Участник мероприятий
       edit: Редактировать
-      logout: Выйти
     linked_accounts:
       title: Аккаунты соцсетей
     available_accounts:

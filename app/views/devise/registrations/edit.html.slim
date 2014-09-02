@@ -1,0 +1,15 @@
+.page-header: h1 = t('.title')
+
+.row: .col-xs-12.col-sm-6.col-md-6.col-lg-5
+
+  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+    = f.input :email, required: true, autofocus: true
+    - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+      p Ждём подтверждения адреса #{resource.unconfirmed_email}
+    = f.input :password, autocomplete: "off"
+    = f.input :password_confirmation
+    = f.input :current_password
+    = f.button :submit, "Update"
+
+  h3 = t('.cancel')
+  p Unhappy? #{link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}

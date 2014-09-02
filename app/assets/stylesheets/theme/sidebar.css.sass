@@ -71,22 +71,28 @@
     +clearfix
     text-align: left
     word-break: break-word
-    > a
-      display: block
-      .avatar
-        width: 25%
-        margin-right: 5%
-        float: left
-      .user-name
-        width: 70%
-        float: left
-        line-height: 1.2em
-        max-height: 2.4em
+    .avatar
+      width: 25%
+      margin-right: 5%
+      float: left
+    .user-name
+      width: 70%
+      float: left
+      line-height: 45px
+      overflow: hidden
+      white-space: nowrap
+      padding-right: 16px
+      position: relative
+      .profile-link
+        text-overflow: ellipsis
         overflow: hidden
-    .actions
-      text-align: right
-      i.fa
-        margin-left: 1em
+        width: 100%
+        max-width: 115px
+        display: inline-block
+      .logout
+        float: right
+        margin-top: 1px
+
   // Стили главного меню.
   ul#mainmenu
   // Стили кнопки разворачивания главного меню, которая отображается на самых

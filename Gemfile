@@ -12,7 +12,13 @@ gem 'pg'
 gem 'unicode'
 
 # Authentication and authorization
-gem 'sorcery'
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-vkontakte'
+gem 'omniauth-github'
+gem "omniauth-google-oauth2"
+gem "omniauth-twitter"
 gem 'cancancan', '~> 1.7'
 
 # Request handling
@@ -31,6 +37,7 @@ gem 'styx'
 gem 'compass-rails'
 gem 'marked-rails'
 gem 'bootstrap-sass'
+gem 'font-awesome-sass'
 gem 'gon'
 
 # View template compilers and helpers
@@ -40,6 +47,7 @@ gem 'bootstrap_form'
 gem 'redcarpet'
 gem 'active_link_to'
 gem 'high_voltage', '~> 2.1.0'
+gem 'simple_form', '~> 3.1.0.rc2'
 
 # Documentation
 gem 'sdoc', '~> 0.4.0', group: :doc
@@ -65,6 +73,7 @@ gem "carrierwave-aws"
 group :development do
   gem 'annotate', require: false
   gem 'quiet_assets'
+  gem 'letter_opener'
 
   # Deploy with capistrano
   # gem 'capistrano'

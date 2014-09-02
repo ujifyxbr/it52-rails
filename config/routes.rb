@@ -1,14 +1,15 @@
 Rails.application.routes.draw do
-  # Вход и регистрация
-  resource :user_registration, only: [:create]
-  resource :user_session, only: [:new, :create, :destroy]
 
-  get 'oauth/callback' => 'oauths#callback'
-  get 'oauth/:provider' => 'oauths#oauth', as: :auth_at_provider
+  devise_for :user,
+             path: '', path_names: { sign_in: "login", sign_out: "logout", sign_up: "signup" },
+             controllers: { omniauth_callbacks: :omniauth_callbacks}
+
+  # get 'oauth/callback' => 'oauths#callback'
+  # get 'oauth/:provider' => 'oauths#oauth', as: :auth_at_provider
 
   # Редактирование профиля и аккаунта
   scope :my, as: :my do
-    resource :profile, controller: 'users', only: [:show, :edit, :update]
+    resource :profile, controller: 'users', only: [:show, :update]
   end
 
   # Список пользователей и публичные профили

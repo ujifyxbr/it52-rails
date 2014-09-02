@@ -6,7 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module It61Rails
+module It52Rails
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -24,5 +24,9 @@ module It61Rails
     config.i18n.default_locale = :ru
 
     config.responders.flash_keys = [:success, :error]
+
+    # Mailing host
+    config.action_mailer.default_url_options = { host: Figaro.env.mailing_host }
+    config.action_mailer.default_options = { from: "robot@#{Figaro.env.mailing_host}" }
   end
 end

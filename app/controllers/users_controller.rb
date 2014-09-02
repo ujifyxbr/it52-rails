@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   respond_to :html
   responders :flash
 
-  before_filter :prepare_user, except: [:index, :show]
+  before_filter :set_user, except: [:index, :show]
 
   def index
     @users = User.all
@@ -15,10 +15,6 @@ class UsersController < ApplicationController
     respond_with @user
   end
 
-  def edit
-    respond_with @user
-  end
-
   def update
     @user.update_attributes user_profile_params
 
@@ -27,12 +23,12 @@ class UsersController < ApplicationController
 
   private
 
-  def prepare_user
+  def set_user
     @user = current_user
     authorize! :manage, @user
   end
 
   def user_profile_params
-    params.require(:user).permit(:first_name, :last_name, :bio, :password, :password_confirmation, :avatar_image, :avatar_image_cache)
+    params.require(:user).permit(:first_name, :last_name, :name, :bio, :avatar_image, :avatar_image_cache)
   end
 end
