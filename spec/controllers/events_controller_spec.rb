@@ -13,16 +13,14 @@ describe EventsController do
     end
 
     context 'when user is logged in' do
-      before { login_user user }
+      before { sign_in user }
       it { expect { post :create, event: event_attrs }.to change(Event, :count).by 1 }
     end
 
     context 'when admin is logged in' do
       let(:admin) { FactoryGirl.create :admin }
 
-      before { login_user admin }
-
-      after { logout_user }
+      before { sign_in admin }
 
       it 'admin can create event' do
         post :create, event: event_attrs

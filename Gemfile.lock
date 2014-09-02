@@ -98,9 +98,9 @@ GEM
       railties (>= 3.0.0)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
+    ffaker (1.25.0)
     font-awesome-sass (4.2.0)
       sass (~> 3.2)
-    forgery (0.6.0)
     fssm (0.2.10)
     gon (5.0.4)
       actionpack (>= 2.3.0)
@@ -299,9 +299,9 @@ DEPENDENCIES
   devise
   draper
   factory_girl_rails
+  ffaker
   figaro!
   font-awesome-sass
-  forgery
   gon
   has_scope
   high_voltage (~> 2.1.0)

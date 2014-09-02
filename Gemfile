@@ -85,7 +85,7 @@ end
 
 group :development, :test do
   # Data generator
-  gem 'forgery'
+  gem 'ffaker'
 
   # Model factories
   gem 'factory_girl_rails'

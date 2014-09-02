@@ -35,6 +35,5 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 
-  config.include Sorcery::TestHelpers::Rails::Controller, type: :controller
-  config.include Sorcery::TestHelpers::Rails::Integration, type: :feature
+  config.include Devise::TestHelpers, type: :controller
 end
