@@ -10,7 +10,6 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!, if: -> { profile_path? }
 
   def after_sign_in_path_for(resource)
-     session[:previous_url] ||
      request.env['omniauth.origin'] ||
      stored_location_for(resource) ||
      root_path
@@ -20,5 +19,9 @@ class ApplicationController < ActionController::Base
 
   def profile_path?
     controller_namespace == My
+  end
+
+  def controller_namespace
+    self.class.parent
   end
 end
