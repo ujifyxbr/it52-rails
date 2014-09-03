@@ -42,6 +42,6 @@
         = active_link_to t('.members'), users_path, wrap_tag: :li
         = active_link_to t('.about'), '#', wrap_tag: :li
         - if current_user
-          = active_link_to current_user.full_name, current_user, wrap_tag: :li
+          = active_link_to current_user, my_profile_path , wrap_tag: :li
         - else
           = active_link_to t('.login'), new_user_session_path, wrap_tag: :li
