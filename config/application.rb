@@ -25,6 +25,9 @@ module It52Rails
 
     config.responders.flash_keys = [:success, :error]
 
+    # Add concerns to autoload
+    config.autoload_paths += ["#{Rails.root}/app/uploaders/concerns"]
+
     # Mailing host
     config.action_mailer.default_url_options = { host: Figaro.env.mailing_host }
     config.action_mailer.default_options = { from: "robot@#{Figaro.env.mailing_host}" }
