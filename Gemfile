@@ -47,7 +47,6 @@ gem 'heroku_rails_deflate', group: :production
 # View template compilers and helpers
 gem 'jbuilder', '~> 2.0'
 gem 'slim-rails'
-gem 'bootstrap_form'
 gem 'redcarpet'
 gem 'active_link_to'
 gem 'high_voltage', '~> 2.1.0'
@@ -76,20 +75,12 @@ gem 'rails_12factor'
 gem "fog", require: "fog/aws/storage"
 gem 'mini_magick'
 gem 'carrierwave'
-# gem "carrierwave-aws"
 gem 'asset_sync'
 
 group :development do
   gem 'annotate', require: false
   gem 'quiet_assets'
   gem 'letter_opener'
-
-  # Deploy with capistrano
-  # gem 'capistrano'
-  # gem 'capistrano-rails', '~> 1.0.0'
-  # gem "capistrano-rvm"
-  # gem 'capistrano-bundler'
-  # gem 'capistrano3-unicorn'
 end
 
 group :development, :test do
@@ -100,9 +91,6 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'shoulda-matchers', require: false
   gem 'rspec-rails', '~> 2.14'
-  # gem 'spring-commands-rspec'
-
-  # Guards
-  # gem 'guard-rspec'
-  # gem 'rb-fsevent'
 end
+
+gem "codeclimate-test-reporter", group: :test, require: false

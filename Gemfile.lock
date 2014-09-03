@@ -51,7 +51,6 @@ GEM
     bcrypt (3.1.7)
     bootstrap-sass (3.1.1.1)
       sass (~> 3.2)
-    bootstrap_form (2.1.1)
     builder (3.2.2)
     cancancan (1.9.2)
     carrierwave (0.10.0)
@@ -60,6 +59,8 @@ GEM
       json (>= 1.7)
       mime-types (>= 1.16)
     chunky_png (1.3.1)
+    codeclimate-test-reporter (0.4.0)
+      simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -85,6 +86,7 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    docile (1.1.5)
     draper (1.3.1)
       actionpack (>= 3.0)
       activemodel (>= 3.0)
@@ -279,6 +281,11 @@ GEM
     simple_form (3.1.0.rc2)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
+    simplecov (0.9.0)
+      docile (~> 1.1.0)
+      multi_json
+      simplecov-html (~> 0.8.0)
+    simplecov-html (0.8.0)
     slim (2.0.3)
       temple (~> 0.6.6)
       tilt (>= 1.3.3, < 2.1)
@@ -332,9 +339,9 @@ DEPENDENCIES
   autoprefixer-rails
   awesome_print
   bootstrap-sass
-  bootstrap_form
   cancancan (~> 1.7)
   carrierwave
+  codeclimate-test-reporter
   coffee-rails (~> 4.0.0)
   compass-rails
   csso-rails
