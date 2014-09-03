@@ -38,7 +38,6 @@ bindEdit = ->
   $('ul.event-description li.edit').click (e) ->
     it61.editor.focus()
 
-
 setupEditor = ->
   initMarked()
   initAce $('#event_description')

@@ -26,7 +26,7 @@
       - if can? :create, Event
         li.with-plus-btn
           = active_link_to t('.events'), events_path
-          = link_to '+', new_event_path, class: 'plus-btn', title: t('.add_event_button_title')
+          = link_to '+', new_event_path, class: 'plus-btn', title: t('.add_event_button_title'), data: { no_turbolink: true }
       - else
         = active_link_to t('.events'), events_path, wrap_tag: :li
       = active_link_to t('.members'), users_path, wrap_tag: :li
@@ -38,7 +38,7 @@
       ul.nav.nav-pills.nav-stacked
         = active_link_to t('.events'), events_path, wrap_tag: :li
         - if can? :create, Event
-          li = link_to t('.add_event_button_title'), new_event_path, class: 'plus-btn', title: t('.add_event_button_title')
+          li = link_to t('.add_event_button_title'), new_event_path, class: 'plus-btn', title: t('.add_event_button_title'), data: { no_turbolink: true }
         = active_link_to t('.members'), users_path, wrap_tag: :li
         = active_link_to t('.about'), '#', wrap_tag: :li
         - if current_user
