@@ -2,7 +2,7 @@ class My::UsersController < ApplicationController
   respond_to :html
   responders :flash
 
-  before_filter :set_user
+  before_action :set_user
 
   def show
     respond_with @user
@@ -13,11 +13,7 @@ class My::UsersController < ApplicationController
   end
 
   def update
-    location = if @user.update user_profile_params
-      my_profile_path
-    else
-      edit_my_profile_path
-    end
+    location = @user.update(user_profile_params) ? my_profile_path : edit_my_profile_path
     respond_with @user, location: location
   end
 

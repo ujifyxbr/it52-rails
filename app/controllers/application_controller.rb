@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   add_flash_types :error, :failure, :success, :alert
 
-  before_filter :authenticate_user!, if: -> { profile_path? }
+  before_action :authenticate_user!, if: -> { profile_path? }
 
   def after_sign_in_path_for(resource)
      request.env['omniauth.origin'] ||

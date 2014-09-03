@@ -3,7 +3,7 @@ class EventsController < ApplicationController
   responders :flash
 
   load_resource param_method: :event_params
-  before_filter :set_organizer, only: :create
+  before_action :set_organizer, only: :create
   authorize_resource
 
   has_scope :ordered_desc, type: :boolean, allow_blank: true, default: true
