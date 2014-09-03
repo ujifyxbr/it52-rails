@@ -77,6 +77,9 @@ gem 'mini_magick'
 gem 'carrierwave'
 gem 'asset_sync'
 
+# Monitoring
+gem 'newrelic_rpm'
+
 group :development do
   gem 'annotate', require: false
   gem 'quiet_assets'
