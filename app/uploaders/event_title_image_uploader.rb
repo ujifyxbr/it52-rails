@@ -48,16 +48,13 @@ class EventTitleImageUploader < CarrierWave::Uploader::Base
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   def filename
-    @name ||= "#{filename_transliterated}-#{md5}#{File.extname(super)}" if super
+     "#{secure_token(10)}.#{file.extension}" if original_filename.present?
   end
 
-  def filename_transliterated
-    only_name = original_filename.split('.')[0..-2].join('-')
-    I18n.transliterate(only_name).downcase
-  end
+  protected
 
-  def md5
-    chunk = model.send(mounted_as)
-    @md5 ||= Digest::MD5.hexdigest(chunk.read.to_s)
+  def secure_token(length=16)
+    var = :"@#{mounted_as}_secure_token"
+    model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.hex(length/2))
   end
 end
