@@ -34,3 +34,6 @@ nginx_rewrite.txt
 /config/deploy.rb
 # Ignore application configuration
 /config/application.yml
+
+# Ignore test coverage reports
+/coverage/
