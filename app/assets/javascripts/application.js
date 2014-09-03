@@ -11,9 +11,13 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
 //= require bootstrap
 //= require styx
 
 //= require events
 //= require common
+//= require turbolinks
+//= require nprogress
+//= require nprogress-turbolinks

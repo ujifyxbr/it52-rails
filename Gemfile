@@ -45,6 +45,9 @@ gem 'gon'
 gem "autoprefixer-rails"
 gem 'csso-rails'
 gem 'heroku_rails_deflate', group: :production
+gem 'turbolinks'
+gem 'jquery-turbolinks'
+gem 'nprogress-rails'
 
 # View template compilers and helpers
 gem 'jbuilder', '~> 2.0'
