@@ -79,7 +79,7 @@ ru:
       new:
         title: Добро пожаловать!
         log_in: Войти
-        social_login: Войти через соцсеть
+        social_login: Войти через
     passwords:
       new:
         title: Забыли пароль?
@@ -173,6 +173,7 @@ ru:
   authentications:
     destroyed: "Привязка аккаунта %{provider} удалена."
     not_destroyed: "Невозможно удалить единственный привязанный аккаунт, если не указан email."
+    unlink: "Отвязать аккаунт?"
 
   my:
     users:

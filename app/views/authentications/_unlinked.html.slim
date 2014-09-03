@@ -1,5 +1,5 @@
 - icon = t("social.#{provider}.icon")
 
-li = link_to omniauth_authorize_path(:user, provider), class: %(btn btn-#{icon}) do
+li = link_to omniauth_authorize_path(:user, provider), class: %(btn btn-#{icon} btn-social) do
   i.fa> class="fa-#{icon}"
   span< = t("social.#{provider}.name")
