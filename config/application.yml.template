@@ -2,25 +2,29 @@
 
 facebook_id: Facebook App ID
 facebook_secret: Facebook App Secret
-facebook_callback_url: http://localhost:8080/oauth/callback?provider=facebook
 
 vk_id: VK App ID
 vk_secret: VK App Secret
-vk_callback_url: http://localhost:8080/oauth/callback?provider=vk
 
 github_id: GitHub App ID
 github_secret: GitHub App Secret
-github_callback_url: http://localhost:8080/oauth/callback?provider=github
 
 google_id: Google App ID
 google_secret: Google App Secret
-google_callback_url: http://localhost:8080/oauth/callback?provider=google
 
-aws_access_key_id: AWS Access Key ID
-aws_secret_access_key: AWS Secret Access Key
-aws_region: AWS region
+aws_access_key_id: AWS Key
+aws_secret_access_key: AWS secret
 aws_host: AWS host
-aws_bucket: AWS S3 bucket
+aws_bucket: it52
+fog_host: s3.amazonaws.com
+fog_region: eu-west-1
+fog_provider: AWS
+
+mailing_host: localhost:8080
+
+mandrill_apikey: Your Mandrill API key
+mandrill_username: Your Mandrill username
+mandrill_host: 'smtp.mandrillapp.com'
 
 # Generate new secret key base with `rake secret`
 secret_key_base: deb6f966cf2ed2125688e0b8242018c4c3acabf3ed8ef2b2ad885153a639e95c9afabc64faef4fb848fc15c3cad7915b29fefe7746c577c2e8de31981e1b5eab
