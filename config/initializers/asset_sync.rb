@@ -1,17 +1,17 @@
 AssetSync.configure do |config|
   config.fog_provider = 'AWS'
-  config.aws_access_key_id = ENV['AWS_ACCESS_KEY_ID']
-  config.aws_secret_access_key = ENV['AWS_SECRET_ACCESS_KEY']
+  config.aws_access_key_id = Figaro.env.aws_access_key_id
+  config.aws_secret_access_key = Figaro.env.aws_secret_access_key
   # To use AWS reduced redundancy storage.
   # config.aws_reduced_redundancy = true
-  config.fog_directory = ENV['FOG_DIRECTORY']
+  config.fog_directory = Figaro.env.aws_bucket
 
   # Invalidate a file on a cdn after uploading files
   # config.cdn_distribution_id = "12345"
   # config.invalidate = ['file1.js']
 
   # Increase upload performance by configuring your region
-  config.fog_region = ENV['FOG_REGION']
+  config.fog_region = Figaro.env.fog_region
   #
   # Don't delete files from the store
   # config.existing_remote_files = "keep"
