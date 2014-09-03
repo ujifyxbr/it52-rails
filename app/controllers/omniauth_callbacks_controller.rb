@@ -15,8 +15,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       a.uid == auth_params[:uid] && a.provider == auth_params[:provider]
     end
 
-    pp auth_params
-
     if @user.persisted?
       set_flash_message(:notice, :success, kind: kind.to_s.capitalize) if is_navigational_format?
       sign_in_and_redirect @user, event: :authentication
