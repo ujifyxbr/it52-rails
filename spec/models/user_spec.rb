@@ -9,7 +9,7 @@
 #  created_at             :datetime
 #  updated_at             :datetime
 #  reset_password_token   :string(255)
-#  name                   :string(255)
+#  nickname               :string(255)      default("")
 #  role                   :integer
 #  first_name             :string(255)
 #  last_name              :string(255)
@@ -26,6 +26,8 @@
 #  confirmed_at           :datetime
 #  confirmation_sent_at   :datetime
 #  unconfirmed_email      :string(255)
+#  slug                   :string(255)
+#  website                :string(255)
 #
 
 require 'spec_helper'
