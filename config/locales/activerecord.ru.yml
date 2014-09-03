@@ -44,6 +44,8 @@ ru:
               invalid: 'Запросите актуальную ссылку для смены пароля.'
             current_password:
               invalid: 'Не правильный пароль'
+            website:
+              invalid: 'Это не похоже на адрес сайта'
         comment:
           attributes:
             description:
