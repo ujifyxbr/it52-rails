@@ -40,6 +40,9 @@ gem 'marked-rails'
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 gem 'gon'
+gem "autoprefixer-rails"
+gem 'csso-rails'
+gem 'heroku_rails_deflate', group: :production
 
 # View template compilers and helpers
 gem 'jbuilder', '~> 2.0'
