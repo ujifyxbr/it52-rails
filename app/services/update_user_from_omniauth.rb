@@ -51,6 +51,7 @@ class UpdateUserFromOmniauth
   end
 
   def set_website
-    user.website = (data['urls']['Blog'] || data['urls']['Website']).to_url
+    url = data['urls']['Blog'] || data['urls']['Website']
+    user.website = url.to_url unless url.nil?
   end
 end
