@@ -31,6 +31,11 @@ class EventsController < ApplicationController
     respond_with @event
   end
 
+  def destroy
+    @event.destroy
+    redirect_to :index
+  end
+
   def update
     @event.update_attributes event_params
     respond_with @event

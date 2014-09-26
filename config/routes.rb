@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show]
 
   # События
-  resources :events, except: [:destroy] do
+  resources :events do
     patch :publish, on: :member
     patch :cancel_publication, on: :member
   end
