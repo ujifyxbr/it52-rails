@@ -16,6 +16,10 @@
 //= require bootstrap
 //= require styx
 
+//= require moment
+//= require moment/ru
+//= require bootstrap-datetimepicker
+
 //= require common
 //= require turbolinks
 //= require nprogress

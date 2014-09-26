@@ -48,6 +48,8 @@ gem 'heroku_rails_deflate', group: :production
 gem 'turbolinks'
 gem 'jquery-turbolinks'
 gem 'nprogress-rails'
+gem 'momentjs-rails'
+gem 'bootstrap3-datetimepicker-rails'
 
 # View template compilers and helpers
 gem 'jbuilder', '~> 2.0'
