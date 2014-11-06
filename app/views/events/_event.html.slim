@@ -18,7 +18,7 @@
       .col-sm-4
         = link_to event_path(event) do
           .image-container = image_tag event.title_image.square_500.url
-        = render partial: 'participate_block', object: event, as: :event
+        = render partial: 'participate_block', object: event, as: :event               
       .col-sm-8
         .event-date: p
           i.fa.fa-fw.fa-calendar'
@@ -27,6 +27,9 @@
           .event-place: p
             i.fa.fa-fw.fa-map-marker'
             = event.place
+        .event-share: p
+          .i.fa.fa-share-alt'
+          span.yashare-auto-init data-yasharel10n="ru" data-yasharequickservices="vkontakte,facebook,twitter,gplus" data-yashareTheme="counter"             
         hr
         = markdown event.description
 

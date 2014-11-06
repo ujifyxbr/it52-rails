@@ -40,6 +40,9 @@
     .event-place: p
       i.fa.fa-fw.fa-map-marker'
       = @event.place
+  .event-share: p
+    .i.fa.fa-share-alt'
+    span.yashare-auto-init data-yasharel10n="ru" data-yasharequickservices="vkontakte,facebook,twitter,gplus" data-yashareTheme="counter" 
 
   hr
   .event-description = markdown @event.description
