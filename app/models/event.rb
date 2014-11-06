@@ -49,4 +49,17 @@ class Event < ActiveRecord::Base
     self.toggle :published
     save!
   end
+
+  def to_ics
+    event = Icalendar::Event.new
+    event.dtstart = self.started_at.strftime("%Y%m%dT%H%M%S")
+    event.summary = self.title
+    event.description = self.description
+    event.location = self.place
+    event.created = self.created_at
+    event.last_modified = self.updated_at
+    # TODO: remove hardcoded line
+    event.uid = event.url = "http://it52.info/events/#{self.id}"
+    event    
+  end
 end

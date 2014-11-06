@@ -1,3 +1,5 @@
+require 'icalendar'
+
 class EventsController < ApplicationController
   respond_to :html
   responders :flash
@@ -15,7 +17,17 @@ class EventsController < ApplicationController
 
   def show
     @event = @event.decorate
-    respond_with @event
+    respond_to do |format| 
+
+      format.html { respond_with @event }
+      format.ics {
+        calendar = Icalendar::Calendar.new
+        calendar.add_event(@event.to_ics)
+        calendar.publish
+        render :text => calendar.to_ical
+      }
+    end
+    #respond_with @event
   end
 
   def new

@@ -87,6 +87,9 @@ gem 'asset_sync'
 # Monitoring
 gem 'newrelic_rpm'
 
+# Utils 
+gem 'icalendar'
+
 group :development do
   gem 'annotate', require: false
   gem 'quiet_assets'
