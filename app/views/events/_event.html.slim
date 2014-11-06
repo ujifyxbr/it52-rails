@@ -2,7 +2,7 @@
   .panel-heading
     .pull-right
       - if can? :edit, event
-        = link_to edit_event_path(event), class: 'btn btn-xs btn-warning' do
+        = link_to edit_event_path(event), class: 'btn btn-xs btn-warning', data: { no_turbolink: true } do
           i.fa.fa-pencil
       - if can? :destroy, event
         = link_to event, method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: 'Are you sure?' } do
