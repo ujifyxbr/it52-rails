@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.1.4'
 
-gem 'rails', '~> 4.1.5'
+gem 'rails', '~> 4.1.7'
 gem 'rails-i18n'
 
 # Database
@@ -87,7 +87,7 @@ gem 'asset_sync'
 # Monitoring
 gem 'newrelic_rpm'
 
-# Utils 
+# Utils
 gem 'icalendar'
 
 group :development do
