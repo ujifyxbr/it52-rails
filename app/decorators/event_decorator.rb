@@ -16,4 +16,15 @@ class EventDecorator < Draper::Decorator
       h.t('.cancel_participation_submit_title')
     end
   end
+
+  def rendered_description
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new autolink: true, filter_html: true, hard_wrap: true)
+    markdown.render(object.description).html_safe
+  end
+
+  def truncated_description(length = 80)
+
+    text = h.strip_tags(rendered_description).squish
+    h.truncate(text, length: length, separator: '.')
+  end
 end

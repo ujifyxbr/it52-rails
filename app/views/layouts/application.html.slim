@@ -14,7 +14,6 @@ html lang='ru'
     / [if lt IE 9]
       script src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js'
       script src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js'
-    script src='//yastatic.net/share/share.js'
 
     = csrf_meta_tags
   body
@@ -29,3 +28,4 @@ html lang='ru'
               button type='button' class='close' data-dismiss='alert' aria-hidden='true' &times;
               == message
         = yield
+    = javascript_include_tag '//yastatic.net/share/share.js'

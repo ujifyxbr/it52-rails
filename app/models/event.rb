@@ -60,6 +60,6 @@ class Event < ActiveRecord::Base
     event.last_modified = self.updated_at
     # TODO: remove hardcoded line
     event.uid = event.url = "http://it52.info/events/#{self.id}"
-    event    
+    event
   end
 end

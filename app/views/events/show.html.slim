@@ -8,8 +8,7 @@
         - if !@event.published?
           = link_to t('.publish'), publish_event_path(@event), class: 'btn btn-warning', method: :patch
         - else
-          = link_to t('.cancel_publication'), cancel_publication_event_path(@event),
-            class: 'btn btn-warning', method: :patch
+          = link_to t('.cancel_publication'), cancel_publication_event_path(@event), class: 'btn btn-warning', method: :patch
     h1
       - if can? :edit, @event
         = render partial: 'admin_info', object: @event, as: :event
@@ -42,7 +41,7 @@
       = @event.place
   .event-share: p
     .i.fa.fa-share-alt'
-    span.yashare-auto-init data-yasharel10n="ru" data-yasharequickservices="vkontakte,facebook,twitter,gplus" data-yashareTheme="counter" 
+    span.yashare-auto-init data={ yasharel10n: "ru", yasharequickservices: "vkontakte,facebook,twitter,gplus", yasharetheme: "counter", yasharetitle: @event.title, yasharedescription: @event.truncated_description, yasharelink: event_url(@event)}
 
   hr
-  .event-description = markdown @event.description
+  .event-description = @event.rendered_description
