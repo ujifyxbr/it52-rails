@@ -109,6 +109,7 @@ ru:
   users:
     index:
       title: Люди
+      counter: нас уже %{count}
     edit:
       title: Мой профиль
       edit_title: Редактирование

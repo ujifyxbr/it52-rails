@@ -1,6 +1,8 @@
 = cache @users do
   .page-header
-    h1 = t('.title')
+    h1
+      = t('.title')
+      small< = t('.counter', count: User.count)
 
   - @users.each_slice(6) do |row_slice|
     .row = render row_slice
