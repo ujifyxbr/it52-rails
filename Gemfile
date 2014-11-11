@@ -31,7 +31,7 @@ gem 'friendly_id'
 gem 'draper'
 
 # Compile and serve assets
-gem 'sprockets-rails', '2.1.3'
+gem 'sprockets-rails', '~> 2.1.3'
 gem 'jquery-rails'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
@@ -52,7 +52,6 @@ gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
 
 # View template compilers and helpers
-gem 'execjs', '2.2.1'
 gem 'jbuilder', '~> 2.0'
 gem 'slim-rails'
 gem 'redcarpet'
