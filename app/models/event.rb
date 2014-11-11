@@ -25,8 +25,13 @@ class Event < ActiveRecord::Base
   validates :title, presence: true
   validates :organizer, presence: true
   validates :place, presence: true
+  validates :description, presence: true
 
-  scope :ordered_desc, -> { order(started_at: :desc) }
+  scope :ordered_desc,  -> { order(started_at: :desc) }
+  scope :ordered_asc,   -> { order(started_at: :asc) }
+
+  scope :past,    -> { ordered_desc.where("started_at < ?", Time.now.beginning_of_day ) }
+  scope :future,  -> { ordered_asc.where("started_at >= ?", Time.now.beginning_of_day ) }
 
   def user_participated?(user)
     user && event_participations.find_by(user_id: user.id)

@@ -11,7 +11,8 @@ class EventsController < ApplicationController
   has_scope :ordered_desc, type: :boolean, allow_blank: true, default: true
 
   def index
-    @events = apply_scopes(@events).decorate
+    @events = Event.future.decorate
+    @past_events = Event.past.decorate
     respond_with @events
   end
 

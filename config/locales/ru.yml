@@ -126,6 +126,8 @@ ru:
   events:
     index:
       add_event_button_title: Добавить мероприятие
+      future_events: Будут
+      past_events: Были
     new:
       title: Новое мероприятие
     edit:

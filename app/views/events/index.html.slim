@@ -2,4 +2,15 @@
   .page-header
     h1 = Event.model_name.human(count: 2)
 
-  .events = render @events
+  ul.nav.nav-pills role="tablist"
+    li.active role="presentation" class="active"
+      a href="#future_events" data-toggle="pill" = t('.future_events')
+    li role="presentation"
+      a href="#past_events" data-toggle="pill" = t('.past_events')
+  br
+
+  .tab-content
+    #future_events.tab-pane.active role="tabpanel"
+      .events = render @events
+    #past_events.tab-pane role="tabpanel"
+      .events = render @past_events
