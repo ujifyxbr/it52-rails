@@ -17,8 +17,8 @@ class EventsController < ApplicationController
 
   def show
     @event = @event.decorate
-    respond_to do |format| 
-
+    flash[:warning] = t('.waiting_for_approval') unless @event.published?
+    respond_to do |format|
       format.html { respond_with @event }
       format.ics {
         calendar = Icalendar::Calendar.new
