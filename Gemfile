@@ -39,7 +39,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'styx'
 gem 'compass-rails'
 gem 'marked-rails'
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '3.1.1.1'
 gem 'font-awesome-sass'
 gem 'gon'
 gem "autoprefixer-rails"
@@ -47,11 +47,12 @@ gem 'csso-rails'
 gem 'heroku_rails_deflate', group: :production
 gem 'turbolinks'
 gem 'jquery-turbolinks'
-gem 'nprogress-rails'
+gem 'nprogress-rails', '0.1.3.1'
 gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
 
 # View template compilers and helpers
+gem 'execjs', '2.2.1'
 gem 'jbuilder', '~> 2.0'
 gem 'slim-rails'
 gem 'redcarpet'
