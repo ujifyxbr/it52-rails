@@ -22,8 +22,6 @@
 
 //= require common
 //= require turbolinks
-//= require nprogress
-//= require nprogress-turbolinks
 
 //= require ace/ace
 //= require ace/theme-github

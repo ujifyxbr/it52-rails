@@ -31,7 +31,7 @@ gem 'friendly_id'
 gem 'draper'
 
 # Compile and serve assets
-gem 'sprockets-rails', '~> 2.1.3'
+gem 'sprockets-rails', '2.1.3'    # Locked for /assets/ prefix feature
 gem 'jquery-rails'
 gem 'sass-rails', '4.0.3'
 gem 'uglifier', '>= 1.3.0'
@@ -47,7 +47,6 @@ gem 'csso-rails'
 gem 'heroku_rails_deflate', group: :production
 gem 'turbolinks'
 gem 'jquery-turbolinks'
-gem 'nprogress-rails', '0.1.3.1'
 gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
 
@@ -69,7 +68,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'unicorn'
 
 # Environment variables management
-gem 'figaro', github: 'laserlemon/figaro'
+gem 'figaro'
 
 # Sexy rails console
 gem 'awesome_print'
