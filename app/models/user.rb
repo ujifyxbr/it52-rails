@@ -70,9 +70,9 @@ class User < ActiveRecord::Base
     ]
   end
 
-def should_generate_new_friendly_id?
-  nickname_changed? || super
-end
+  def should_generate_new_friendly_id?
+    nickname_changed? || super
+  end
 
   def self.new_with_session(params, session)
     super.tap do |user|
