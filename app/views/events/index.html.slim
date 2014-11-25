@@ -1,6 +1,9 @@
 .events-index
   .page-header
-    h1 = Event.model_name.human(count: 2)
+    h1
+      small.pull-right = link_to events_path(format: :atom), title: 'Atom feed', class: "color-rosewood" do
+        i.fa.fa-rss-square
+      = Event.model_name.human(count: 2)
 
   ul.nav.nav-pills role="tablist"
     li.active role="presentation" class="active"
