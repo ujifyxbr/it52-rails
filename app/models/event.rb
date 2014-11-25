@@ -26,9 +26,12 @@ class Event < ActiveRecord::Base
   validates :organizer, presence: true
   validates :place, presence: true
   validates :description, presence: true
+  validates :started_at, presence: true
 
   scope :ordered_desc,  -> { order(started_at: :desc) }
   scope :ordered_asc,   -> { order(started_at: :asc) }
+
+  scope :published, -> { where(published: true) }
 
   scope :past,    -> { ordered_desc.where("started_at < ?", Time.now.beginning_of_day ) }
   scope :future,  -> { ordered_asc.where("started_at >= ?", Time.now.beginning_of_day ) }
@@ -42,10 +45,11 @@ class Event < ActiveRecord::Base
   end
 
   def past?
-    started_at < DateTime.now
+    started_at < Time.now
   end
 
   def publish!
+    self.published_at = Time.now
     self.toggle :published
     save!
   end

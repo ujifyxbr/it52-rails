@@ -22,8 +22,17 @@ class EventDecorator < Draper::Decorator
     markdown.render(object.description).html_safe
   end
 
-  def truncated_description(length = 80)
+  def summary
+    [l(object.started_at), object.place, object.title].join(' – ')
+  end
 
+  def full_description
+    rendered_description +
+    h.content_tag(:hr, '') +
+    h.content_tag(:p, summary)
+  end
+
+  def truncated_description(length = 80)
     text = h.strip_tags(rendered_description).squish
     h.truncate(text, length: length, separator: '.')
   end

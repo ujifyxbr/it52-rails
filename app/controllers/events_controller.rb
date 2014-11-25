@@ -13,7 +13,11 @@ class EventsController < ApplicationController
   def index
     @events = Event.future.decorate
     @past_events = Event.past.decorate
-    respond_with @events
+    @rss_events = Event.published.future.order(published_at: :asc).decorate
+    respond_to do |format|
+      format.html
+      format.atom
+    end
   end
 
   def show
