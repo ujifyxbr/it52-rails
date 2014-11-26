@@ -14,9 +14,11 @@ class EventsController < ApplicationController
     @events = Event.future.decorate
     @past_events = Event.past.decorate
     @rss_events = Event.published.future.order(published_at: :asc).decorate
+    @all_events = Event.published.order(started_at: :asc)
     respond_to do |format|
       format.html
       format.atom
+      format.ics { render text: Calendar.new(@all_events).to_ical }
     end
   end
 
@@ -25,12 +27,7 @@ class EventsController < ApplicationController
     flash[:warning] = t('.waiting_for_approval') unless @event.published?
     respond_to do |format|
       format.html { respond_with @event }
-      format.ics {
-        calendar = Icalendar::Calendar.new
-        calendar.add_event(@event.to_ics)
-        calendar.publish
-        render :text => calendar.to_ical
-      }
+      format.ics { render text: Calendar.new(@event).to_ical }
     end
     #respond_with @event
   end

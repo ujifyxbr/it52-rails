@@ -22,6 +22,10 @@ class EventDecorator < Draper::Decorator
     markdown.render(object.description).html_safe
   end
 
+  def simple_description
+    h.strip_tags(rendered_description)
+  end
+
   def summary
     [l(object.started_at), object.place, object.title].join(' – ')
   end

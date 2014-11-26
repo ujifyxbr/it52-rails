@@ -59,16 +59,20 @@ class Event < ActiveRecord::Base
     save!
   end
 
+  def ics_uid
+    "#{created_at.iso8601}-#{started_at.iso8601}-#{id}@#{Figaro.env.mailing_host}"
+  end
+
   def to_ics
     event = Icalendar::Event.new
-    event.dtstart = self.started_at.strftime("%Y%m%dT%H%M%S")
-    event.summary = self.title
-    event.description = self.description
-    event.location = self.place
-    event.created = self.created_at
-    event.last_modified = self.updated_at
-    # TODO: remove hardcoded line
-    event.uid = event.url = "http://it52.info/events/#{self.id}"
+    event.dtstart = started_at.strftime("%Y%m%dT%H%M%S")
+    event.summary = title
+    event.description = self.decorate.simple_description
+    event.location = place
+    event.created = created_at
+    event.last_modified = updated_at
+    event.uid = ics_uid
+    event.url = Rails.application.routes.url_helpers.event_url(self, host: Figaro.env.mailing_host)
     event
   end
 end
