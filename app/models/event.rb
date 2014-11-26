@@ -36,6 +36,13 @@ class Event < ActiveRecord::Base
   scope :past,    -> { ordered_desc.where("started_at < ?", Time.now.beginning_of_day ) }
   scope :future,  -> { ordered_asc.where("started_at >= ?", Time.now.beginning_of_day ) }
 
+  extend FriendlyId
+  friendly_id :slug_candidates, use: :slugged
+
+  def slug_candidates
+    [[ started_at.strftime("%Y-%m-%d"), title ]]
+  end
+
   def user_participated?(user)
     user && event_participations.find_by(user_id: user.id)
   end

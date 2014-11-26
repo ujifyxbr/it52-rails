@@ -4,6 +4,7 @@ class EventsController < ApplicationController
   respond_to :html
   responders :flash
 
+  before_action :set_event, only: [:show, :edit, :destroy, :update, :publish, :cancel_publication]
   load_resource param_method: :event_params
   before_action :set_organizer, only: :create
   authorize_resource
@@ -68,6 +69,10 @@ class EventsController < ApplicationController
   end
 
   private
+
+  def set_event
+    @event = Event.friendly.find(params[:id])
+  end
 
   def set_organizer
     @event.organizer = current_user || nil
