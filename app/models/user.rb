@@ -67,11 +67,16 @@ class User < ActiveRecord::Base
     [
       :nickname,
       [:first_name, :last_name],
+      :email,
+      [:nickname, :first_name, :last_name],
+      [:nickname, :first_name, :last_name, :email],
+      authentications.map(&:uid),
+      [:nickname, :first_name, :last_name, :email] + authentications.map(&:uid)
     ]
   end
 
   def should_generate_new_friendly_id?
-    nickname_changed? || super
+    nickname_changed? || first_name_changed? || last_name_changed? || super
   end
 
   def self.new_with_session(params, session)
