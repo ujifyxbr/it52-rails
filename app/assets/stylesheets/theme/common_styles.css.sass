@@ -62,4 +62,17 @@ html.turbolinks-progress-bar::before
   box-shadow: 0 0 10px $ruby-red, 0 0 6px $ruby-red, 0 0 3px $ruby-red
 
 .color-rosewood
-  color: $color-rosewood
+  color: lighten($color-rosewood, 10%)
+  &:hover
+    color: $color-rosewood
+
+.no-underline:hover
+  text-decoration: none
+
+.fa-rss-square:before
+  transform: scale(1.1) translateY(1px)
+  display: inline-block
+
+.btn-xs,
+.btn-group-xs > .btn
+  border-radius: 1px
