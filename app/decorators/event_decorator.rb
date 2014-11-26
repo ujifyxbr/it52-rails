@@ -23,7 +23,7 @@ class EventDecorator < Draper::Decorator
   end
 
   def simple_description
-    h.strip_tags(rendered_description)
+    h.h h.strip_tags(rendered_description)
   end
 
   def summary
