@@ -12,9 +12,8 @@
     h1
       - if can? :edit, @event
         = render partial: 'admin_info', object: @event, as: :event
-      = @event.title
-      | &nbsp;
-      small
+      span> = @event.title
+      small: nobr
         = l @event.started_at, format: :date_time_full
 
   .row
@@ -34,11 +33,11 @@
 
   .event-date: p
     i.fa.fa-fw.fa-calendar'
-    = link_to (l @event.started_at, format: :date_time_full), event_path(@event, :format =>:ics)
+    = @event.link_to_time
   - if @event.place.present?
     .event-place: p
       i.fa.fa-fw.fa-map-marker'
-      = @event.place
+      = @event.link_to_place
   .event-share: p
     .i.fa.fa-share-alt'
     span.yashare-auto-init data={ yasharel10n: "ru", yasharequickservices: "vkontakte,facebook,twitter,gplus", yasharetheme: "counter", yasharetitle: @event.title, yasharedescription: @event.truncated_description, yasharelink: event_url(@event)}

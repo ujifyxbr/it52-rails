@@ -64,19 +64,20 @@ class User < ActiveRecord::Base
   end
 
   def slug_candidates
+    auth_uids = authentications.pluck(:uid)
     [
       :nickname,
       [:first_name, :last_name],
       :email,
       [:nickname, :first_name, :last_name],
       [:nickname, :first_name, :last_name, :email],
-      authentications.map(&:uid),
-      [:nickname, :first_name, :last_name, :email] + authentications.map(&:uid)
+      auth_uids,
+      [:nickname, :first_name, :last_name, :email] + auth_uids
     ]
   end
 
   def should_generate_new_friendly_id?
-    nickname_changed? || first_name_changed? || last_name_changed? || super
+    slug.blank? || nickname_changed? || first_name_changed? || last_name_changed? || super
   end
 
   def self.new_with_session(params, session)

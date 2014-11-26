@@ -24,12 +24,12 @@
           span.yashare-auto-init data={ yasharel10n: "ru", yasharequickservices: "vkontakte,facebook,twitter,gplus", yasharetheme: "counter", yasharetitle: event.title, yasharedescription: event.truncated_description, yasharelink: event_url(event)}
       .col-sm-8
         .event-date: p
-          i.fa.fa-fw.fa-calendar'
-          = link_to (l event.started_at, format: :date_time_full), event_path(event, :format =>:ics)
+          i.fa.fa-fw.fa-calendar>
+          = event.link_to_time
         - if event.place.present?
           .event-place: p
-            i.fa.fa-fw.fa-map-marker'
-            = event.place
+            i.fa.fa-fw.fa-map-marker>
+            = event.link_to_place
         hr
         = event.rendered_description
 

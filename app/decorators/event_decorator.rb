@@ -26,18 +26,27 @@ class EventDecorator < Draper::Decorator
     h.h h.strip_tags(rendered_description)
   end
 
-  def summary
-    [l(object.started_at), object.place, object.title].join(' – ')
-  end
-
   def full_description
     rendered_description +
-    h.content_tag(:hr, '') +
-    h.content_tag(:p, summary)
+    h.content_tag(:p, link_to_time) +
+    h.content_tag(:p, link_to_place)
   end
 
   def truncated_description(length = 80)
     text = h.strip_tags(rendered_description).squish
     h.truncate(text, length: length, separator: '.')
+  end
+
+  def summary
+    [h.l(object.started_at), object.place, object.title].join(' – ')
+  end
+
+  def link_to_place
+    base = "http://maps.yandex.ru/?text="
+    h.link_to object.place, URI.encode(base + object.place), target: "_blank"
+  end
+
+  def link_to_time
+    h.link_to h.l(object.started_at, format: :date_time_full), h.event_path(object, :format =>:ics)
   end
 end
