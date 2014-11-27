@@ -3,6 +3,7 @@ class My::UsersController < ApplicationController
   responders :flash
 
   before_action :set_user
+  after_action :sync_with_mailchimp, only: :update
 
   def show
     respond_with @user
@@ -25,6 +26,12 @@ class My::UsersController < ApplicationController
   end
 
   def user_profile_params
-    params.require(:user).permit(:first_name, :last_name, :nickname, :website, :bio, :avatar_image, :avatar_image_cache)
+    params.require(:user).permit(:first_name, :last_name, :nickname, :website, :bio, :avatar_image, :avatar_image_cache, :subscription)
+  end
+
+  def sync_with_mailchimp
+    attributes = %i(first_name last_name subscription)
+    @user.reload
+    @user.sync_with_mailchimp if attributes.any? { |attribute| @user.object.send(attribute) != user_profile_params[attribute] }
   end
 end

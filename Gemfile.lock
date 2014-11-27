@@ -176,6 +176,9 @@ GEM
       launchy (~> 2.2)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    mailchimp-api (2.0.6)
+      excon (>= 0.16.0)
+      json (>= 1.7.7)
     marked-rails (0.3.2.0)
     method_source (0.8.2)
     mime-types (2.4.3)
@@ -387,6 +390,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   letter_opener
+  mailchimp-api
   marked-rails
   mini_magick
   momentjs-rails

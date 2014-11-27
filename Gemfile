@@ -8,6 +8,9 @@ gem 'rails-i18n'
 # Database
 gem 'pg'
 
+# Mailing
+gem 'mailchimp-api', require: 'mailchimp'
+
 # Normaliztion
 gem 'unicode'
 gem 'postrank-uri'

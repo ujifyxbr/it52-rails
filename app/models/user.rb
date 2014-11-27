@@ -47,8 +47,11 @@ class User < ActiveRecord::Base
 
   before_create :assign_default_role, if: -> { role.nil? }
   before_validation :normalize_url, if: :website_changed?
+  after_create :sync_with_mailchimp
 
   validates :website, format: { with: URI::regexp(%w(http https)) }, allow_nil: true
+
+  scope :subscribed, -> { where(subscription: true) }
 
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
@@ -123,9 +126,33 @@ class User < ActiveRecord::Base
     super && authentications.blank?
   end
 
+  def sync_with_mailchimp
+    subscribe_params = [Figaro.env.mailchimp_list_id,
+      { email: email,
+        leid: id },
+      { fname: first_name,
+        lname: last_name, },
+      'html',
+      false,
+      true
+    ]
+    unsubscribe_params = [Figaro.env.mailchimp_list_id,
+              { email: email },
+              false,
+              false,
+              false]
+    mailchimp = Mailchimp::API.new(Figaro.env.mailchimp_api_key)
+    if subscription?
+      mailchimp.lists.subscribe(*subscribe_params)
+    else
+      mailchimp.lists.unsubscribe(*unsubscribe_params)
+    end
+  end
+
   private
 
   def normalize_url
+    return nil if website.blank?
     self.website = if result = website.to_url
       result
     else

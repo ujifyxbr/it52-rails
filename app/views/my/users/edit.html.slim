@@ -19,6 +19,8 @@
 
       = f.input :bio, input_html: { rows: 7 }
 
+      = f.input :subscription, wrapper: :vertical_boolean
+
       = f.submit class: 'btn btn-primary'
       ' &nbsp;
       = link_to t(:cancel), my_profile_path, class: 'btn btn-default'
