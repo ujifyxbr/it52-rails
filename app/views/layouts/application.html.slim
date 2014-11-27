@@ -1,10 +1,17 @@
 doctype html
 html lang='ru'
   head
+    title = t :app_name
+
     meta charset='utf-8'
     meta http-equiv='X-UA-Compatible' content='IE=edge'
     meta name='viewport' content='width=device-width, initial-scale=1'
-    title = t :app_name
+    meta name="description" content=t(:app_description)
+
+    = favicon_link_tag 'favicon.ico'
+
+    link rel="icon" href=asset_path('logo_96x96.png')
+    link rel="apple-touch-icon-precomposed" href=asset_path('logo_256x256.png')
 
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_include_tag 'application'
@@ -16,6 +23,7 @@ html lang='ru'
       script src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js'
 
     = csrf_meta_tags
+
   body
     = render 'shared/ga'
     #sidebar-container.affix data-offset-top="0" data-offset-bottom="0"

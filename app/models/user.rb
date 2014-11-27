@@ -46,12 +46,14 @@ class User < ActiveRecord::Base
   has_many :member_in_events, class_name: 'Event', through: :event_participations, source: :event
 
   before_create :assign_default_role, if: -> { role.nil? }
+  before_create :set_subscription, if: -> { email.present? }
+
   before_validation :normalize_url, if: :website_changed?
 
-  before_create :set_subscription
   after_create :sync_with_mailchimp
 
   validates :website, format: { with: URI::regexp(%w(http https)) }, allow_nil: true
+  validate :should_have_email_before_subscription
 
   scope :subscribed, -> { where(subscription: true) }
 
@@ -129,6 +131,7 @@ class User < ActiveRecord::Base
   end
 
   def sync_with_mailchimp
+    return nil if email.blank?
     params = [ Figaro.env.mailchimp_list_id, { email: email }]
     mailchimp = Mailchimp::API.new(Figaro.env.mailchimp_api_key)
     if subscription?
@@ -160,5 +163,12 @@ class User < ActiveRecord::Base
 
   def assign_default_role
     self.role = :member
+  end
+
+  def should_have_email_before_subscription
+    if subscription? && email.blank?
+      self.subscription = false
+      errors.add :subscription, I18n.t('activerecord.errors.models.user.attributes.subscription.email_absent')
+    end
   end
 end

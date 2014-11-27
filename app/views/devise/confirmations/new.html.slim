@@ -2,7 +2,8 @@
 
 .row: .col-xs-12.col-sm-6.col-md-6.col-lg-5
   = simple_form_for resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post } do |f|
-    = f.full_error :confirmation_token
+    - if f.error(:confirmation_token).present?
+      .alert.alert-danger: p = f.error(:confirmation_token)
     = f.input :email, autofocus: true
     = f.button :submit, t('.send'), class: 'btn-success'
   hr

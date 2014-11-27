@@ -63,7 +63,8 @@ html.turbolinks-progress-bar::before
 
 .color-rosewood
   color: lighten($color-rosewood, 10%)
-  &:hover
+  &:hover,
+  &:active
     color: $color-rosewood
 
 .no-underline:hover
@@ -79,3 +80,6 @@ html.turbolinks-progress-bar::before
 
 .checkbox + .help-block
   margin-top: -8px
+
+.alert .help-block
+  color: inherit

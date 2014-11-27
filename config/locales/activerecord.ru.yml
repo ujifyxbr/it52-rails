@@ -38,6 +38,8 @@ ru:
               taken: 'Этот адрес уже занят'
               invalid: 'Укажите свою электронную почту'
               restrict_modify: 'Вы не можете изменить свой логин'
+              already_confirmed: 'Этот email уже подтверждён'
+              not_found: 'У нас нет зарегистрированной почты с таким адресом. Возможно, вы не подтвердили её.'
             confirmation_token:
               invalid: 'Такой код подтверждения нам неизвестен'
             user_reset_password_token:
@@ -46,6 +48,8 @@ ru:
               invalid: 'Не правильный пароль'
             website:
               invalid: 'Это не похоже на адрес сайта'
+            subscription:
+              email_absent: 'Нужно обязательно указать email, чтобы подписаться на уведомления'
         comment:
           attributes:
             description:
