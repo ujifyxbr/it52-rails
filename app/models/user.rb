@@ -144,12 +144,12 @@ class User < ActiveRecord::Base
   private
 
   def normalize_url
-    return nil if website.blank?
     self.website = if result = website.to_url
       result
     else
       website
     end
+    self.website = nil if website.blank?
   end
 
   def assign_default_role
