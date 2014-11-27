@@ -47,6 +47,8 @@ class User < ActiveRecord::Base
 
   before_create :assign_default_role, if: -> { role.nil? }
   before_validation :normalize_url, if: :website_changed?
+
+  before_create :set_subscription
   after_create :sync_with_mailchimp
 
   validates :website, format: { with: URI::regexp(%w(http https)) }, allow_nil: true
@@ -142,6 +144,10 @@ class User < ActiveRecord::Base
   end
 
   private
+
+  def set_subscription
+    self.subscription = true
+  end
 
   def normalize_url
     self.website = if result = website.to_url
