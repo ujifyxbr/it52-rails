@@ -130,14 +130,14 @@ class User < ActiveRecord::Base
     params = [ Figaro.env.mailchimp_list_id, { email: email }]
     mailchimp = Mailchimp::API.new(Figaro.env.mailchimp_api_key)
     if subscription?
-      params << [{ fname: first_name, lname: last_name, }, 'html', false, true ]
+      params << [{ fname: first_name, lname: last_name }, 'html', false, true ]
       mailchimp.lists.subscribe(*params.flatten)
     else
       params << [ false, false, false ]
       mailchimp.lists.unsubscribe(*params.flatten)
     end
 
-  rescue Mailchimp::ListNotSubscribedError => e
+  rescue Mailchimp::ListNotSubscribedError, Mailchimp::EmailNotExistsError => e
     { error: e.message }
   end
 
