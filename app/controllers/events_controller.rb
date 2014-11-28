@@ -12,8 +12,8 @@ class EventsController < ApplicationController
   has_scope :ordered_desc, type: :boolean, allow_blank: true, default: true
 
   def index
-    @events = Event.future.decorate
-    @past_events = Event.past.decorate
+    @events = Event.visible_by_user(current_user).future.decorate
+    @past_events = Event.visible_by_user(current_user).past.decorate
     @rss_events = Event.published.future.order(published_at: :asc).decorate
     @all_events = Event.published.order(started_at: :asc)
     respond_to do |format|

@@ -36,6 +36,12 @@ class Event < ActiveRecord::Base
   scope :past,    -> { ordered_desc.where("started_at < ?", Time.now.beginning_of_day ) }
   scope :future,  -> { ordered_asc.where("started_at >= ?", Time.now.beginning_of_day ) }
 
+  scope :visible_by_user, -> (user) {
+    return published if user.nil?
+    user.admin? ? all : where("organizer_id IS ? OR published IS ?", user.id, true)
+  }
+
+
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
 
