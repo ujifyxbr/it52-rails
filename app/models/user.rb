@@ -142,7 +142,7 @@ class User < ActiveRecord::Base
       mailchimp.lists.unsubscribe(*params.flatten)
     end
 
-  rescue Mailchimp::ListNotSubscribedError, Mailchimp::EmailNotExistsError => e
+  rescue Mailchimp::ListNotSubscribedError, Mailchimp::EmailNotExistsError, Mailchimp::ListInvalidImportError => e
     { error: e.message }
   end
 
