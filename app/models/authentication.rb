@@ -21,8 +21,8 @@ class Authentication < ActiveRecord::Base
 
   def set_attributes_from_omniauth(auth)
     urls = auth['info']['urls']
-    self.link = auth['extra']['raw_info']['link'] || urls['GitHub']
-    self.link ||= urls['Twitter'] || urls['Facebook'] || urls['Vkontakte'] || urls['Google']
+    self.link = urls['GitHub'] || urls['Twitter'] || urls['Facebook'] || urls['Vkontakte'] || urls['Google'] if urls.present?
+    self.link ||= auth['extra']['raw_info']['link']
     self.token = auth['credentials']['token']
     self.token_expires = auth['credentials']['expires_at']
     self
