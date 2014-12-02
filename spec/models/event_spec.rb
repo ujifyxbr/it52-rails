@@ -17,7 +17,18 @@
 require 'spec_helper'
 
 describe Event do
-  it { should validate_presence_of(:title) }
-  it { should validate_presence_of(:organizer) }
-  it { should validate_presence_of(:place) }
+  describe 'should validate title' do
+    let(:event) { FactoryGirl.build :event, title: '' }
+    it { expect(event).not_to be_valid }
+  end
+
+  describe 'should validate place' do
+    let(:event) { FactoryGirl.build :event, place: '' }
+    it { expect(event).not_to be_valid }
+  end
+
+  describe 'should validate organizer' do
+    let(:event) { FactoryGirl.build :event, organizer: nil }
+    it { expect(event).not_to be_valid }
+  end
 end

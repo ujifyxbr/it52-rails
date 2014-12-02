@@ -106,7 +106,6 @@ group :development, :test do
   # Model factories
   gem 'factory_girl_rails'
   gem 'shoulda-matchers', require: false
+  gem "codeclimate-test-reporter", require: false
   gem 'rspec-rails', '~> 2.14'
 end
-
-gem "codeclimate-test-reporter", group: :test, require: false
