@@ -132,18 +132,7 @@ class User < ActiveRecord::Base
 
   def sync_with_mailchimp
     return nil if email.blank?
-    params = [ Figaro.env.mailchimp_list_id, { email: email }]
-    mailchimp = Mailchimp::API.new(Figaro.env.mailchimp_api_key)
-    if subscription?
-      params << [{ fname: first_name, lname: last_name }, 'html', false, true ]
-      mailchimp.lists.subscribe(*params.flatten)
-    else
-      params << [ false, false, false ]
-      mailchimp.lists.unsubscribe(*params.flatten)
-    end
-
-  rescue Mailchimp::ListNotSubscribedError, Mailchimp::EmailNotExistsError, Mailchimp::ListInvalidImportError => e
-    { error: e.message }
+    MailchimpSynchronizer.new(self).sync!
   end
 
   private

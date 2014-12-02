@@ -41,3 +41,5 @@ RSpec.configure do |config|
 
   config.include Devise::TestHelpers, type: :controller
 end
+
+User.any_instance.stub(:sync_with_mailchimp) { nil }
