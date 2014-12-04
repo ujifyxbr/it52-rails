@@ -38,7 +38,7 @@ class Event < ActiveRecord::Base
 
   scope :visible_by_user, -> (user) {
     return published if user.nil?
-    user.admin? ? all : where("organizer_id IS ? OR published IS ?", user.id, true)
+    user.admin? ? all : where("organizer_id = ? OR published = ?", user.id, true)
   }
 
 
