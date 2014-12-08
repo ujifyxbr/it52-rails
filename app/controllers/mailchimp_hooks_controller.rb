@@ -26,7 +26,6 @@ class MailchimpHooksController < ApplicationController
   end
 
   def set_user
-    Rails.logger.info "HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH"
     @user = User.find_by(email: subscribe_params[:data][:email])
     render nothing: true, status: :unprocessable_entity if @user.nil?
   end
