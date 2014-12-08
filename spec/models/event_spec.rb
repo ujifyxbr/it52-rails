@@ -14,7 +14,7 @@
 #  place        :string(255)
 #
 
-require 'spec_helper'
+require 'rails_helper'
 
 describe Event do
   describe 'should validate title' do

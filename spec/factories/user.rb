@@ -17,5 +17,13 @@ FactoryGirl.define do
     factory :unconfirmed_user do
       confirmed_at { nil }
     end
+
+    trait :subscribed do
+      subscription { true }
+    end
+
+    trait :unsubscribed do
+      subscription { false }
+    end
   end
 end

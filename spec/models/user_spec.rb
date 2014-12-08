@@ -30,14 +30,17 @@
 #  website                :string(255)
 #
 
-require 'spec_helper'
+require 'rails_helper'
 
 describe User do
   let(:user) { FactoryGirl.create(:user) }
-
-  subject { user }
+  let(:unsubscribed_user) { FactoryGirl.create(:user, :unsubscribed) }
 
   it 'has default(member) role after creation' do
-    expect(subject.role).to eq 'member'
+    expect(user.role).to eq 'member'
   end
+
+  it { expect(user.subscription).to eq true }
+  it { expect(unsubscribed_user.subscription).to eq false }
+
 end

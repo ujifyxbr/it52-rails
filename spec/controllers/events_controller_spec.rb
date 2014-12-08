@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe EventsController do
   context 'POST create' do
@@ -18,20 +18,14 @@ describe EventsController do
     end
 
     context 'when admin is logged in' do
-      let(:admin) { FactoryGirl.create :admin }
-
+      let(:created_event) { Event.first }
+      let(:request)  { post :create, event: event_attrs }
       before { sign_in admin }
 
-      it 'admin can create event' do
-        post :create, event: event_attrs
-
-        created_event = Event.first
-        should redirect_to event_path(created_event)
-      end
+      it { expect(request).to redirect_to event_path(created_event) }
 
       it 'assigns organizer to event' do
         post :create, event: event_attrs
-        created_event = Event.first
         expect(created_event.organizer).to eq admin
       end
     end

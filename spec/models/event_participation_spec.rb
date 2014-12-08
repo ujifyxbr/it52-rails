@@ -9,7 +9,7 @@
 #  updated_at :datetime
 #
 
-require 'spec_helper'
+require 'rails_helper'
 
 describe EventParticipation do
   it { should validate_uniqueness_of(:user_id).scoped_to(:event_id) }
