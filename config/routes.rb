@@ -24,6 +24,11 @@ Rails.application.routes.draw do
   post '/participate_in_event' => 'event_participations#create'
   delete '/cancel_participation' => 'event_participations#destroy'
 
+  constraints token: Figaro.env.mailchimp_hooks_token do
+    post "/mailchimp_hooks/:token" => 'mailchimp_hooks#update_subscription'
+    get "/mailchimp_hooks/:token" => 'mailchimp_hooks#check'
+  end
+
   root to: redirect('/events')
 
   get ':id' => 'high_voltage/pages#show', as: :page

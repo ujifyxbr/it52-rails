@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
   has_many :member_in_events, class_name: 'Event', through: :event_participations, source: :event
 
   before_create :assign_default_role, if: -> { role.nil? }
-  before_create :set_subscription, if: -> { email.present? }
+  before_create :set_subscription, if: -> { email.present? && subscription.nil? }
 
   before_validation :normalize_url, if: :website_changed?
 
