@@ -9,7 +9,7 @@
       = f.input :title_image_cache, as: :hidden
     .col-sm-6
       = f.input :started_at, as: :string, input_html: { value: l(f.object.started_at || 1.month.from_now, format: :date_time_short), data: { date_format: "DD.MM.YYYY HH:mm", min_date: l(Date.today, format: :timepicker) }}
-      = f.input :place
+      = f.input :place, as: :text
 
 
   ul.nav.nav-tabs.event-description
