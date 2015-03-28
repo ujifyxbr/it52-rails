@@ -2,10 +2,12 @@
   .page-header
     h1
       small.pull-right
+        = link_to new_event_path, 'Добавить', class: 'btn btn-success'
         = link_to events_path(format: :ics), title: 'iCalendar feed', class: "color-rosewood no-underline" do
           i.fa.fa-calendar>
         = link_to events_path(format: :atom), title: 'Atom feed', class: "color-rosewood no-underline" do
           i.fa.fa-rss-square<
+
 
       = Event.model_name.human(count: 2)
 
