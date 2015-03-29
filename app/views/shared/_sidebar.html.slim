@@ -45,3 +45,14 @@
           = active_link_to current_user, my_profile_path , wrap_tag: :li
         - else
           = active_link_to t('.login'), new_user_session_path, wrap_tag: :li
+
+    .sidebar-contacts
+      ul.list-inline
+        li: a href='https://www.facebook.com/groups/it52info/' target='_blank'
+          i.fa.fa-facebook
+        li |
+        li: a href='https://vk.com/it52info' target='_blank'
+          i.fa.fa-vk
+        li |
+        li: a href='mailto:events@it52.info' target='_blank'
+          i.fa.fa-envelope

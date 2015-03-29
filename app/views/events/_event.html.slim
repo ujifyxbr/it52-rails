@@ -19,17 +19,19 @@
         = link_to event_path(event) do
           .image-container = image_tag event.title_image.square_500.url
         = render partial: 'participate_block', object: event, as: :event
-
         .text-center
           span.yashare-auto-init data={ yasharel10n: "ru", yasharequickservices: "vkontakte,facebook,twitter,gplus", yasharetheme: "counter", yasharetitle: event.title, yasharedescription: event.truncated_description, yasharelink: event_url(event)}
       .col-sm-8
-        .event-date: p
+        .event-date: p title="Время проведения"
           i.fa.fa-fw.fa-calendar>
           = event.link_to_time
         - if event.place.present?
-          .event-place: p
+          .event-place: p title="Место проведения"
             i.fa.fa-fw.fa-map-marker>
             = event.link_to_place
+        .event-organizer: p title="Организатор"
+          i.fa.fa-fw.fa-user>
+          a href=user_path(event.organizer) = event.organizer
         hr
         = event.rendered_description
 
