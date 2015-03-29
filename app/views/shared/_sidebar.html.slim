@@ -23,12 +23,9 @@
         = active_link_to t('.login'), new_user_session_path, wrap_tag: :li
 
     ul#mainmenu.nav
-      - if can? :create, Event
-        li.with-plus-btn
-          = active_link_to t('.events'), events_path
-          = link_to '+', new_event_path, class: 'plus-btn', title: t('.add_event_button_title'), data: { no_turbolink: true }
-      - else
-        = active_link_to t('.events'), events_path, wrap_tag: :li
+      li.with-plus-btn
+        = active_link_to t('.events'), events_path
+        = link_to '+', new_event_path, class: 'plus-btn', title: t('.add_event_button_title'), data: { no_turbolink: true }
       = active_link_to t('.members'), users_path, wrap_tag: :li
       = active_link_to t('.about'), page_path(:about), wrap_tag: :li
 
@@ -50,9 +47,11 @@
       ul.list-inline
         li: a href='https://www.facebook.com/groups/it52info/' target='_blank'
           i.fa.fa-facebook
-        li |
+        li<> |
         li: a href='https://vk.com/it52info' target='_blank'
           i.fa.fa-vk
-        li |
+        li<> |
         li: a href='mailto:events@it52.info' target='_blank'
           i.fa.fa-envelope
+      hr
+      p: small == "2014 - #{Date.today.year} © #{link_to 'IT52.info', root_path}"

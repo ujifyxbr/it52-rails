@@ -71,7 +71,7 @@ ru:
       events: Мероприятия
       donations: Пожертвования
       about: О сайте
-      members: Люди
+      members: Участники
       add_event_button_title: Добавить мероприятие
       hashtag: "Наш хештег #%{hashtag}"
     small_screens_footer:
@@ -109,7 +109,7 @@ ru:
 
   users:
     index:
-      title: Люди
+      title: Участники
       counter: нас уже %{count}
     edit:
       title: Мой профиль
