@@ -42,5 +42,4 @@ describe User do
 
   it { expect(user.subscription).to eq true }
   it { expect(unsubscribed_user.subscription).to eq false }
-
 end

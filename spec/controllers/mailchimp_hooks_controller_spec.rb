@@ -10,13 +10,13 @@ describe MailchimpHooksController do
         type: 'unsubscribe',
         fired_at: '2014-12-08 18:20:30',
         data: {
-          action: "unsub",
-          reason: "manual",
-          id:     "27b600e23a",
+          action: 'unsub',
+          reason: 'manual',
+          id:     '27b600e23a',
           email:  subscribed_user.email,
-          email_type: "html",
-          ip_opt: "54.78.87.176",
-          web_id: "125886081",
+          email_type: 'html',
+          ip_opt: '54.78.87.176',
+          web_id: '125886081',
           list_id: '51957c4f07'
         }
       }
