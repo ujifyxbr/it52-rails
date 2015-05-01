@@ -81,7 +81,7 @@ gem 'pry-rails'
 gem 'rails_12factor'
 
 # Image and AWS S3 management
-gem "fog", require: "fog/aws/storage"
+gem "fog-aws"
 gem 'mini_magick'
 gem 'carrierwave'
 gem 'asset_sync'
