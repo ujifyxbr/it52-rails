@@ -14,7 +14,7 @@
 
 ### Ручная настройка
 
-1. Ставим rvm
+1. Ставим [rvm](https://rvm.io/)
 2. Ставим ruby
 3. Ставим postgres
 4. Настраиваем postgres
@@ -23,8 +23,8 @@
 
 ### Образ для Vagrant
 
-1. Ставим вагрант.
-2. Запускаем образ.
+1. Ставим [virtualbox](https://www.virtualbox.org/wiki/Downloads) & [vagrant](https://www.vagrantup.com/downloads.html).
+2. Запускаем `vagrant up`.
 
 ## Готовим pull request
 
