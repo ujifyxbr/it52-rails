@@ -37,3 +37,6 @@ nginx_rewrite.txt
 
 # Ignore test coverage reports
 /coverage/
+
+# Vagrant vm
+.vagrant
