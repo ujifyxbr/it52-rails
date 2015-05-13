@@ -11,7 +11,7 @@ apt-get install -y curl
 
 curl -sL https://deb.nodesource.com/setup_0.12 | sudo bash -
 
-apt-get install -y htop vim git most wget curl build-essential libssl-dev libmagick++-dev postgresql-9.3 libpq-dev nodejs zsh
+apt-get install -y htop vim git most wget build-essential libssl-dev libmagick++-dev postgresql-9.3 libpq-dev nodejs zsh
 
 locale-gen ru_RU.UTF-8
 
