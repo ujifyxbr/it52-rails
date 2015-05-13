@@ -53,7 +53,7 @@ $ rvm install 2.2.1 --autolibs=4
 2. Создаём в postgres базу и пользователя
 ```
 $ sudo -u postgres createdb it52_rails_dev
-$ sudo -u postgres createuser --superuser vagrant
+$ sudo -u postgres createuser --superuser $USER
 ```
 3. Клонируем репозиторий
 
@@ -64,6 +64,14 @@ $ sudo -u postgres createuser --superuser vagrant
 3. Клонирем репозиторий.
 4. Запускаем `vagrant up` в папке проекта.
 
+Для перехода в папку проекта внутри виртуальной машины нужно сделать следующее.
+```
+$ vagrant ssh
+$ cd /vagrant
+```
+Все дальнейшие инструкции, где упоминается папка проекта, должны выполняться там.
+При этом вы можете использовать привычный редактор для изменения файлов на компьютере-хосте.
+
 ## Запуск
 
 Для начала работы с проектом нужно создать конфигурационые файлы на основе шаблонов:
@@ -72,7 +80,9 @@ $ sudo -u postgres createuser --superuser vagrant
     cp config/secrets.yml.template config/secrets.yml
     cp config/application.yml.template config/application.yml
 
-Установить зависимости, создать и мигрировать БД:
+После этого необходимо изменить настройки подключения к БД в файле `config/database.yml` в том случае, если вы решили настроить локальный стэк.
+
+Установить зависимости, создать, мигрировать и засеять БД:
 
     bundle install
     bundle exec rake db:setup
@@ -81,5 +91,5 @@ $ sudo -u postgres createuser --superuser vagrant
 
     unicorn_rails
 
-Скрестить пальцы и открыть страницу http://192.168.100.10:8080/
-Админский доступ доступен для пользователя `admin@it52.info` с паролем `12345678`
+Скрестить пальцы и открыть страницу `http://192.168.100.10:8080/` — для установки с помощью Vagrant, 'localhost:8080' — для локальной конфигурации.
+Админский доступ доступен для пользователя `admin@it52.info` с паролем `12345678`.
