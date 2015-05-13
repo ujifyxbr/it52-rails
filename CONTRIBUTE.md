@@ -14,6 +14,12 @@
 * node.js
 * git
 
+*Библиотеки*
+
+* libmagick++-dev
+* imagemagick
+* libpq-dev
+
 Также вам потребуется аккаунт на [GitHub](https://github.com).
 
 ### Работа с репозиторием

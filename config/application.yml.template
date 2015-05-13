@@ -27,7 +27,7 @@ aws_secret_access_key: kNQ2pJeh4bWzCp41x+yy6//lS1B9ZZgLvNuCJ56y
 aws_host: http://it52-dev.s3.amazonaws.com
 aws_bucket: it52-dev
 fog_host: s3.amazonaws.com
-fog_region: eu-west-1
+fog_region: us-east-1
 fog_provider: AWS
 
 mailing_host: localhost:8080
