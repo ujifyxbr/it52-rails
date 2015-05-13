@@ -85,7 +85,8 @@ class EventsController < ApplicationController
       :description,
       :started_at,
       :title_image,
-      :place
+      :place,
+      :title_image_cache
     ]
     params.require(:event).permit(*permitted_attrs)
   end

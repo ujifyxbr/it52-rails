@@ -4,12 +4,13 @@
 Vagrant.configure(2) do |config|
 
   config.vm.box = "ubuntu/trusty64"
+  config.vm.box_check_update = false
   config.vm.network "private_network", ip: "192.168.100.10"
   config.vm.network "public_network"
 
   config.vm.provider "virtualbox" do |vb|
     vb.gui = false
-    vb.memory = "1024"
+    vb.memory = "1536"
   end
 
   config.vm.provision :shell, path: "bootstrap.sh"

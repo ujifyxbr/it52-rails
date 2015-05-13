@@ -12,14 +12,6 @@ github_secret: GitHub App Secret
 google_id: Google App ID
 google_secret: Google App Secret
 
-aws_access_key_id: AWS Key
-aws_secret_access_key: AWS secret
-aws_host: AWS host
-aws_bucket: it52
-fog_host: s3.amazonaws.com
-fog_region: eu-west-1
-fog_provider: AWS
-
 mailing_host: localhost:8080
 
 mandrill_apikey: Your Mandrill API key
@@ -30,8 +22,23 @@ mailchimp_api_key: Your Mailchimp API key
 mailchimp_list_id: Your Mailchimp lsit id
 mailchimp_hooks_token: Secure token for Mailchimp hooks
 
+aws_access_key_id: AKIAIDTQFPPTGR2L7XQQ
+aws_secret_access_key: kNQ2pJeh4bWzCp41x+yy6//lS1B9ZZgLvNuCJ56y
+aws_host: http://it52-dev.s3.amazonaws.com
+aws_bucket: it52-dev
+fog_host: s3.amazonaws.com
+fog_region: eu-west-1
+fog_provider: AWS
+
+mailing_host: localhost:8080
+
+mailchimp_api_key: "baeee87e77fccb0a5b76278a99744919-us4"
+mailchimp_list_id: "b00b5"
+
 # Generate new secret key base with `rake secret`
-secret_key_base: deb6f966cf2ed2125688e0b8242018c4c3acabf3ed8ef2b2ad885153a639e95c9afabc64faef4fb848fc15c3cad7915b29fefe7746c577c2e8de31981e1b5eab
+secret_key_base: 4c9d9f0e909db98be16c23563da655f61cb7cf6ea9245558e65e69fc15ae68389cd1f3ef552e7449db8b648dce32937bbca552bba7e5b85871f01ad56a585164
+devise_secret_key: c5a9472da92f93b178aedc463e88345563a980c72d4245fb9b5471d00d856f00c6c82ae3017831c574729cd6608e8e0fe373333da8c3abb0291adee2aeca9930
+devise_pepper: 74911f9b3338c1879dec7cb03dbc1e49e6a122d5a33b9e162d0870c7ac21795a3f009b43aea0a842866aa2e333fbbce072d6f4026e4bab5626226d2159cf1066
 
 # Override environment specific settings
 #

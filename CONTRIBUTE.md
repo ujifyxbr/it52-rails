@@ -1,4 +1,4 @@
-# Как помочь проекту
+# ALL HAIL CONTRIBUTORS!
 
 Тут мы расскажем как настроить свой компьютер для запуска проекта локально и как правильно оформить pull request со своими исправлениями.
 Если вы знакомы со стэком Ruby on Rails, то первую часть можно не читать.
@@ -10,25 +10,70 @@
 *Необходимое для запуска ПО*
 
 * Ruby 2.2.1
-* PostgreSQL 9.x
+* PostgreSQL 9.3+
+* node.js
+* git
+
+Также вам потребуется аккаунт на [GitHub](https://github.com).
+
+### Работа с репозиторием
+
+С репозиторием проекта мы будем работать следующим образом.
+
+1. Создаём форк репозитория в своём аккаунте Github.
+Переходим на страницу репозитория [NNRUG/it52-rails](https://github.com/NNRUG/it52-rails) и форкаем проект к себе.
+![Форкаем проект](http://take.ms/UOfFV)
+
+2. Клонируем репозиторий из своего аккаунта
+`$ git clone git@github.com:ВАШ_ЛОГИН/it52-rails.git`
+
+3. Переходим в папку проекта
+`$ cd it52-rails`
+
+4. Переходим на нужную ветку
+`$ git checkout hackathon-2015-05`
+
+Все изменения можно и нужно вносить в ветку `hackathon-2015-05`. Если хотите попробовать успеть сделать несколько фич, то крайне желательно завести ветку под каждую из них.
+В любом случае все pull request необходимо будет выставлять к ветке `hackathon-2015-05` оригинального репозитория. Более подробно про работу с PR можно почитать в [хелпе Github](https://help.github.com/articles/using-pull-requests/).
 
 ### Ручная настройка
 
-1. Ставим [rvm](https://rvm.io/)
-2. Ставим ruby
-3. Ставим postgres
-4. Настраиваем postgres
-5. Клонируем репу, настраиваем рельсу.
-6. Импортируем фейковую БД
+1. Ставим [rvm](https://rvm.io/) и [ruby](http://www.ruby-lang.org/en/) нужной версии
+```
+$ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+$ \curl -sSL https://get.rvm.io | bash -s stable
+$ rvm install 2.2.1 --autolibs=4
+```
+2. Создаём в postgres базу и пользователя
+```
+$ sudo -u postgres createdb it52_rails_dev
+$ sudo -u postgres createuser --superuser vagrant
+```
+3. Клонируем репозиторий
 
 ### Образ для Vagrant
 
-1. Ставим [virtualbox](https://www.virtualbox.org/wiki/Downloads) & [vagrant](https://www.vagrantup.com/downloads.html).
-2. Запускаем `vagrant up`.
+1. Ставим [virtualbox](https://www.virtualbox.org/wiki/Downloads).
+2. Ставим [vagrant](https://www.vagrantup.com/downloads.html).
+3. Клонирем репозиторий.
+4. Запускаем `vagrant up` в папке проекта.
 
-## Готовим pull request
+## Запуск
 
-1. Форкаем к себе.
-2. Делаем отдельную ветку под фичу.
-3. Пушаем к себе.
-4. Создаём PR с основной репозиторий.
+Для начала работы с проектом нужно создать конфигурационые файлы на основе шаблонов:
+
+    cp config/database.yml.template config/database.yml
+    cp config/secrets.yml.template config/secrets.yml
+    cp config/application.yml.template config/application.yml
+
+Установить зависимости, создать и мигрировать БД:
+
+    bundle install
+    bundle exec rake db:setup
+
+Запустить rails-сервер:
+
+    unicorn_rails
+
+Скрестить пальцы и открыть страницу http://192.168.100.10:8080/
+Админский доступ доступен для пользователя `admin@it52.info` с паролем `12345678`
