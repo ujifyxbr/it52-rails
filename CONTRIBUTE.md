@@ -50,11 +50,13 @@ $ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804B
 $ \curl -sSL https://get.rvm.io | bash -s stable
 $ rvm install 2.2.1 --autolibs=4
 ```
+
 2. Создаём в postgres базу и пользователя
 ```
 $ sudo -u postgres createdb it52_rails_dev
 $ sudo -u postgres createuser --superuser $USER
 ```
+
 3. Клонируем репозиторий
 
 ### Образ для Vagrant

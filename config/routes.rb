@@ -32,4 +32,12 @@ Rails.application.routes.draw do
   root to: redirect('/events')
 
   get ':id' => 'high_voltage/pages#show', as: :page
+
+  namespace :api do
+    namespace :v1 do
+      resources :events, only: [:index, :show] do
+        get '/in/:year', to: 'events#index', constraints: { year: /\d{4}/ }, on: :collection
+      end
+    end
+  end
 end

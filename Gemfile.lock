@@ -17,6 +17,8 @@ GEM
       erubis (~> 2.7.0)
     active_link_to (1.0.3)
       actionpack
+    active_model_serializers (0.8.3)
+      activemodel (>= 3.0)
     activemodel (4.1.8)
       activesupport (= 4.1.8)
       builder (~> 3.1)
@@ -424,6 +426,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_link_to
+  active_model_serializers (~> 0.8.0)
   annotate
   asset_sync
   autoprefixer-rails
