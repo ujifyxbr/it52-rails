@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:Apipie/apipie-rails.git
+  remote: https://github.com/Apipie/apipie-rails.git
   revision: f697ec2a887cd73c00c846eceb2ce63a050ccb20
   ref: f697ec2a887cd73c00c846eceb2ce63a050ccb20
   specs:
