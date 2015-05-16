@@ -36,7 +36,11 @@ class Event < ActiveRecord::Base
   scope :past,    -> { ordered_desc.where("started_at < ?", Time.now.beginning_of_day ) }
   scope :future,  -> { ordered_asc.where("started_at >= ?", Time.now.beginning_of_day ) }
 
-  scope :held_in,  -> (year) { ordered_desc.where("started_at BETWEEN ? AND ?", Date.new(year), Date.new(year + 1)) }
+  scope :held_in,  -> (year, month) {
+    start   = month.nil? ? Date.new(year) : Date.new(year, month)
+    finish  = month.nil? ? start.end_of_year : start.end_of_month
+    ordered_desc.where("started_at BETWEEN ? AND ?", start, finish)
+  }
 
   scope :visible_by_user, -> (user) {
     return published if user.nil?

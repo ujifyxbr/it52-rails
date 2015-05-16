@@ -6,8 +6,9 @@ module Api
       before_action :prepare_model
 
       def index
-        year = params[:year].present? ? params[:year].to_i : Time.now.year
-        @response_object = @model.held_in(year)
+        year  = params[:year].present?  ? params[:year].to_i  : Time.now.year
+        month = params[:month].present? ? params[:month].to_i : nil
+        @response_object = @model.held_in(year, month)
         render render_options
       end
 
