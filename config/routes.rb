@@ -37,7 +37,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :events, only: [:index, :show] do
-        get '/in/:year', to: 'events#index', constraints: { year: /\d{4}/ }, on: :collection
+        get '/in/:year(/:month)', to: 'events#index', constraints: { year: /\d{4}/, month: /(0[1-9]|1[012])/ }, on: :collection
       end
 
       resources :users, only: :show
