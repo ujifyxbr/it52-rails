@@ -38,6 +38,8 @@ Rails.application.routes.draw do
       resources :events, only: [:index, :show] do
         get '/in/:year', to: 'events#index', constraints: { year: /\d{4}/ }, on: :collection
       end
+
+      resources :users, only: :show
     end
   end
 end

@@ -1,10 +1,17 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :nickname, :full_name, :website, :bio, :avatar_url
+  cache key: 'user', expires_in: 3.hours
+  attributes :id, :nickname, :full_name, :website, :bio, :avatar_url, :url
 
   has_many :authentications
 
+  url :user
+
   def avatar_url
     object.avatar_image.square_150.url
+  end
+
+  def url
+    Rails.application.routes.url_helpers.user_url(object, host: Figaro.env.mailing_host)
   end
 end
 

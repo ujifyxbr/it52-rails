@@ -1,7 +1,10 @@
 class EventSerializer < ActiveModel::Serializer
-  attributes :id, :title, :description, :image_url, :place, :started_at, :started_at_js
+  cache key: 'event', expires_in: 3.hours
+  attributes :id, :title, :description, :image_url, :place, :started_at, :started_at_js, :url
 
   has_many :participants, each_serializer: UserSerializer
+
+  url :event
 
   def image_url
     object.title_image.square_500.url
@@ -9,6 +12,10 @@ class EventSerializer < ActiveModel::Serializer
 
   def started_at_js
     object.started_at.to_f * 1000
+  end
+
+  def url
+    Rails.application.routes.url_helpers.event_url(object, host: Figaro.env.mailing_host)
   end
 end
 

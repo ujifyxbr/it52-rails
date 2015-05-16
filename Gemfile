@@ -29,7 +29,7 @@ gem 'cancancan', '~> 1.7'
 gem 'responders'
 gem 'has_scope'
 gem 'friendly_id'
-gem 'active_model_serializers', '~> 0.8.0'
+gem 'active_model_serializers', '~> 0.10.0.rc1'
 
 # Decoration
 gem 'draper'

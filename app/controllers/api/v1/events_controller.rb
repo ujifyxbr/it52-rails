@@ -8,7 +8,6 @@ module Api
       def index
         year = params[:year].present? ? params[:year].to_i : Time.now.year
         @response_object = @model.held_in(year)
-        @default_options.merge! each_serializer: EventBriefSerializer
         render render_options
       end
 
