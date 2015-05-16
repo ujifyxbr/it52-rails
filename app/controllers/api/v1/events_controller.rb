@@ -12,7 +12,8 @@ module Api
         api_base_url 'api/v1/events'
       end
 
-      api!
+      api :GET, '/', 'Получить список событий за текущий год'
+      api :GET, '/in/:year', 'Получить список событий за указанный год'
       param :year,  /\d{4}/, desc: "Year", required: false
       def index
         year = params[:year].present? ? params[:year].to_i : Time.now.year
@@ -20,7 +21,7 @@ module Api
         render render_options
       end
 
-      api!
+      api :GET, '/:id', 'Получить информацию по событию'
       param :id, /\d+/, desc: "Event ID", required: true
       def show
         @response_object = @model.find(params[:id])
