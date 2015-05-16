@@ -10,7 +10,7 @@
     .col-sm-6
       = f.input :started_at, as: :string, input_html: { value: l(f.object.started_at || 1.month.from_now, format: :date_time_short), data: { date_format: "DD.MM.YYYY HH:mm", min_date: l(Date.today, format: :timepicker) }}
       = f.input :place, as: :text
-
+      = f.input :location, as: :hidden
 
   ul.nav.nav-tabs.event-description
     li.edit.active = link_to 'Описание', '#edit', 'data-toggle' => 'tab'
