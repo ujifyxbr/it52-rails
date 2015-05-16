@@ -88,6 +88,7 @@ $ cd /vagrant
 
 Установить зависимости, создать, мигрировать и засеять БД:
 
+    gem install bundler
     bundle install
     bundle exec rake db:setup
 
