@@ -5,7 +5,7 @@
 'use strict';
 
   angular
-      .module('it52.info', ['ngMaterial', 'ui.router','leaflet-directive', 'map', 'menu', 'ng-mfb'])
+      .module('it52.info', ['ngMaterial', 'ui.router','leaflet-directive','ng-mfb', 'btford.markdown', 'map', 'menu', 'calendar','eventDetail'])
       .config( function($mdThemingProvider, $mdIconProvider, $stateProvider, $urlRouterProvider) {
 
           $mdIconProvider
@@ -23,15 +23,17 @@
           $stateProvider
 
                .state('map', {
-                  url:'/',
+
                   templateUrl: 'src/map/map.html',
                   controller: 'MapController'
               })
               .state('calendar', {
-                  templateUrl: 'src/stub/notImplemented.html'
+                  url:'/',
+                  templateUrl: 'src/calendar/calendar.html',
+                  controller: 'CalendarController'
               })
               .state('home', {
-                  templateUrl: 'src/stub/notImplemented.html'
+                  templateUrl: 'src/home/home.html'
               });
 
       });

@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('map').service('Placemark', ['$q', '$http', function ($q, $http) {
+    angular.module('map').service('Placemark', ['$q', 'Event', function ($q, Event) {
         var STUB = [{
             lng: 44.006265,
             lat: 56.322584,
@@ -52,11 +52,9 @@
                 }
             }
         ];
-        var eventUrl = 'http://www.it52.info/api/v1/events?callback=JSON_CALLBACK';
-        var oneEventUrl = 'http://www.it52.info/api/v1/events/{0}?callback=JSON_CALLBACK';
 
-        function formatPlacemarks(result) {
-            return result.data.map(function (placemark) {
+        function formatPlacemarks(events) {
+            return events.map(function (placemark) {
                 return {
                     lng: placemark.location ? 0 : 44.006265,
                     lat: placemark.location ? 0 : 56.322584,
@@ -73,18 +71,12 @@
             })
         }
 
-        function loadAll() {
-            return $http.jsonp(eventUrl).then(function (result) {
-                return formatPlacemarks(result);
-            })
-        }
-
         return {
 
             getPlacemarks: function () {
 
                 //return $q.when(STUB);
-                return loadAll();
+                return Event.getEvents().then(function(events){return formatPlacemarks(events)});
             },
             getPlacemark: function (id) {
                 var url = oneEventUrl.replace('{0}', id);

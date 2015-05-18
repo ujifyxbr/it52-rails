@@ -15,7 +15,8 @@
     "angular-leaflet-directive": "~0.8.1",
     "ng-mfb": "~0.6.0",
     "Leaflet.ExtraMarkers": "https://github.com/coryasilva/Leaflet.ExtraMarkers/archive/v1.0.1.tar.gz",
-    "leaflet.markercluster": "~0.4.0"
+    "leaflet.markercluster": "~0.4.0",
+    "angular-markdown-directive": "~0.3.1"
   },
   "devDependencies": {
     "angular-material": "~0.8.2"

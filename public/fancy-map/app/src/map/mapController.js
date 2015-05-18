@@ -2,7 +2,7 @@
 
 angular
     .module('map')
-    .controller('MapController', ['$scope', 'Placemark', function($scope, Placemark){
+    .controller('MapController', ['$scope', 'Placemark', 'Event', 'EventDetail', function($scope, Placemark,Event, EventDetail){
         var NN = {
             lat: 56.32894042,
             lng: 44.000863,
@@ -14,12 +14,9 @@ angular
             $scope.markers = placemarks;
         });
 
-        $scope.$on("leafletDirectiveMarker.dblclick", function(event, args){
-
-            Placemark.getPlacemark(args.model.placemarkId).then(function(placemark){
-
-alert(placemark.data.description);
-
+        $scope.$on("leafletDirectiveMarker.click", function(event, args){
+            Event.getEvent(args.model.placemarkId).then(function(event){
+                EventDetail.show(event);
             });
         });
 
