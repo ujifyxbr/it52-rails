@@ -20,6 +20,18 @@
 
   .tab-content
     #future_events.tab-pane.active role="tabpanel"
-      .events = render @events
+      - if @events.present?
+        .events = render @events
+      - else
+        .alert.alert-success
+          p Похоже все коллеги устали митапить и хакахтонить и сейчас отдыхают.
+          p
+            'Но вы всегда можете встряхнуть их,
+            = link_to 'организовав новую встречу', new_event_path, class: 'alert-link'
+            |.
+          hr
+          p: small
+            = mail_to 'events@it52.info', 'Напишите нам', class: 'alert-link'
+            ', если хотите, но не знаете как. Мы всегда поможем с организацией. Бесплатно.
     #past_events.tab-pane role="tabpanel"
       .events = render @past_events
