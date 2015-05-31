@@ -12,10 +12,11 @@ class EventsController < ApplicationController
   has_scope :ordered_desc, type: :boolean, allow_blank: true, default: true
 
   def index
-    @events = Event.visible_by_user(current_user).future.decorate
-    @past_events = Event.visible_by_user(current_user).past.decorate
-    @rss_events = Event.published.future.order(published_at: :asc).decorate
-    @all_events = Event.published.order(started_at: :asc)
+    model = Event.includes(:event_participations, :participants, :organizer)
+    @events = model.visible_by_user(current_user).future.decorate
+    @past_events = model.visible_by_user(current_user).past.decorate
+    @rss_events = model.published.future.order(published_at: :asc).decorate
+    @all_events = model.published.order(started_at: :asc)
     respond_to do |format|
       format.json { render json: @all_events.to_json }
       format.html
@@ -89,6 +90,7 @@ class EventsController < ApplicationController
       :title_image_cache,
       :location
     ]
+    params[:event].delete(:location) if params[:event][:location].blank?
     params.require(:event).permit(*permitted_attrs)
   end
 end

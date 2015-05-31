@@ -12,6 +12,9 @@
 #  started_at   :datetime
 #  title_image  :string(255)
 #  place        :string(255)
+#  published_at :datetime
+#  slug         :string(255)
+#  location     :string
 #
 
 require 'rails_helper'

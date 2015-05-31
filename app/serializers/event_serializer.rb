@@ -1,3 +1,22 @@
+# == Schema Information
+#
+# Table name: events
+#
+#  id           :integer          not null, primary key
+#  title        :string(255)      not null
+#  created_at   :datetime
+#  updated_at   :datetime
+#  organizer_id :integer
+#  published    :boolean          default(FALSE)
+#  description  :text
+#  started_at   :datetime
+#  title_image  :string(255)
+#  place        :string(255)
+#  published_at :datetime
+#  slug         :string(255)
+#  location     :string
+#
+
 class EventSerializer < ActiveModel::Serializer
   cache key: 'event', expires_in: 3.hours
   attributes :id, :title, :description, :image_url, :place, :started_at, :started_at_js, :url, :location

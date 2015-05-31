@@ -28,6 +28,7 @@
 #  unconfirmed_email      :string(255)
 #  slug                   :string(255)
 #  website                :string(255)
+#  subscription           :boolean
 #
 
 class User < ActiveRecord::Base
