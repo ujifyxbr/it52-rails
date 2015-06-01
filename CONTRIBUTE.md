@@ -80,6 +80,7 @@ $ cd /vagrant
 
 Для начала работы с проектом нужно создать конфигурационые файлы на основе шаблонов:
 
+    cd /vagrant
     cp config/database.yml.template config/database.yml
     cp config/secrets.yml.template config/secrets.yml
     cp config/application.yml.template config/application.yml
