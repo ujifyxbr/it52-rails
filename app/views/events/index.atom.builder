@@ -3,7 +3,7 @@ atom_feed language: 'ru-RU', root_url: events_url do |feed|
   feed.subtitle t :app_description
   feed.icon asset_url('logo-it52-16x16.png')
   feed.logo asset_url('logo-it52.png')
-  feed.updated @rss_events.last.updated_at
+  feed.updated (@rss_events.last || Event.published.order(published_at: :asc).last).updated_at
   feed.category "Tech"
   feed.category "IT"
   feed.category "Geek"
