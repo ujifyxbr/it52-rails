@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-ruby '2.2.1'
+ruby '2.3.0'
 
-gem 'rails', '~> 4.1.8'
+gem 'rails', '~> 4.2.6'
 gem 'rails-i18n'
 
 # Database
@@ -99,6 +99,7 @@ group :development do
   gem 'annotate', require: false
   gem 'quiet_assets'
   gem 'letter_opener'
+  gem 'web-console', '~> 2.0'
 end
 
 group :development, :test do

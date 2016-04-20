@@ -28,6 +28,9 @@ module It52Rails
     # Add concerns to autoload
     config.autoload_paths += ["#{Rails.root}/app/uploaders/concerns"]
 
+    # Do not swallow errors in after_commit/after_rollback callbacks.
+    config.active_record.raise_in_transactional_callbacks = true
+
     # Mailing host
     config.action_mailer.default_url_options = { host: Figaro.env.mailing_host }
     config.action_mailer.default_options = { from: "robot@#{Figaro.env.mailing_host}" }
