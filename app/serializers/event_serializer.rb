@@ -23,8 +23,6 @@ class EventSerializer < ActiveModel::Serializer
 
   has_many :participants, each_serializer: UserSerializer
 
-  url :event
-
   def image_url
     object.title_image.square_500.url
   end
