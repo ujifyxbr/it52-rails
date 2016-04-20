@@ -35,15 +35,17 @@ gem 'active_model_serializers', '~> 0.10.0.rc1'
 gem 'draper'
 
 # Compile and serve assets
-gem 'sprockets-rails', '~> 3.0'    # Locked for /assets/ prefix feature
+gem 'sass-rails', github: 'rails/sass-rails'
+gem 'sprockets-rails'
+gem 'sprockets', '~> 4.0.0.beta'
+gem 'babel-transpiler'
 gem 'jquery-rails'
-gem 'sass-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'styx'
 gem 'marked-rails'
 gem 'bootstrap-sass'
-gem 'font-awesome-sass'
+gem 'font-awesome-sass', github: 'kugaevsky/font-awesome-sass'
 gem 'gon'
 gem "autoprefixer-rails"
 gem 'csso-rails'
