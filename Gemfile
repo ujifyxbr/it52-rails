@@ -35,7 +35,7 @@ gem 'active_model_serializers', '~> 0.10.0.rc1'
 gem 'draper'
 
 # Compile and serve assets
-gem 'sass-rails', github: 'rails/sass-rails'
+gem 'sass-rails', '~> 6.0.0.beta'
 gem 'sprockets-rails'
 gem 'sprockets', '~> 4.0.0.beta'
 gem 'babel-transpiler'
