@@ -17,7 +17,7 @@
     margin: $line-height-computed 0
     border: 0
     height: 1px
-    +background-image(linear-gradient(left, $sidebar-bg-color, lighten($sidebar-bg-color, 20%) 50%, $sidebar-bg-color))
+    background-image: linear-gradient(left, $sidebar-bg-color, lighten($sidebar-bg-color, 20%) 50%, $sidebar-bg-color)
 
   // ul.nav — это 1) блок с аватаром и именем вошедшего пользователя, 2) главное меню,
   // а также 3) ссылки на соц. сети (они стилизуются отдельно).
@@ -25,8 +25,7 @@
   ul.nav
     > li
       > a
-        +transition-property(background)
-        +transition-duration($default-transition-duration)
+        transition: background $default-transition-duration
         &:hover, &:focus
           background-color: lighten($sidebar-bg-color, 5%)
       // Стили для кнопки "+" в сайдбаре
@@ -62,7 +61,7 @@
       > a
         display: inline
         padding: 10px
-        +border-radius(1000px)
+        border-radius: 100%
         background-color: lighten($sidebar-bg-color, 15%)
         &:hover, &:focus
           background-color: lighten($sidebar-bg-color, 20%)

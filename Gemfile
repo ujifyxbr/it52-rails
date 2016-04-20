@@ -35,9 +35,9 @@ gem 'active_model_serializers', '~> 0.10.0.rc1'
 gem 'draper'
 
 # Compile and serve assets
-gem 'sprockets-rails', '2.1.3'    # Locked for /assets/ prefix feature
+gem 'sprockets-rails', '~> 3.0'    # Locked for /assets/ prefix feature
 gem 'jquery-rails'
-gem 'sass-rails', '4.0.3'
+gem 'sass-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'styx'
