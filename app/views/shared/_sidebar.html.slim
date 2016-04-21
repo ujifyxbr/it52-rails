@@ -1,4 +1,4 @@
-= cache ['sidebar', 'v1', current_user] do
+= cache ['sidebar', 'v2', current_user] do
 
   #logo-and-name = link_to root_path do
     #logotype = image_tag "logo-it#{t :app_region}.png"
@@ -28,6 +28,7 @@
         = link_to '+', new_event_path, class: 'plus-btn', title: t('.add_event_button_title'), data: { no_turbolink: true }
       = active_link_to t('.members'), users_path, wrap_tag: :li
       = active_link_to t('.about'), page_path(:about), wrap_tag: :li
+      = active_link_to t('.donate'), page_path(:donate), wrap_tag: :li
 
     hr
 
@@ -38,6 +39,7 @@
           li = link_to t('.add_event_button_title'), new_event_path, class: 'plus-btn', title: t('.add_event_button_title'), data: { no_turbolink: true }
         = active_link_to t('.members'), users_path, wrap_tag: :li
         = active_link_to t('.about'), '#', wrap_tag: :li
+        = active_link_to t('.donate'), page_path(:donate), wrap_tag: :li
         - if current_user
           = active_link_to current_user, my_profile_path , wrap_tag: :li
         - else
@@ -46,15 +48,15 @@
     .sidebar-contacts
       ul.list-inline
         li: a href='https://www.facebook.com/groups/it52info/' target='_blank' title="Facebook"
-          i.fa.fa-facebook
+          = icon 'facebook'
         li<> |
         li: a href='https://vk.com/it52info' target='_blank' title="Вконтакте"
-          i.fa.fa-vk
+          = icon 'vk'
         li<> |
         li: a href='mailto:events@it52.info' target='_blank' title="E-mail"
-          i.fa.fa-envelope-o
+          = icon 'envelope'
         li<> |
         li: a href='https://telegram.me/nnrug' target='_blank' title="Telegram"
-          i.fa.fa-comments-o
+          = icon 'paper-plane'
       hr
       p: small == "2014 - #{Date.today.year} © #{link_to 'IT52.info', root_path}"

@@ -72,6 +72,7 @@ ru:
       donations: Пожертвования
       about: О сайте
       members: Участники
+      donate: Пожертвования
       add_event_button_title: Добавить мероприятие
       hashtag: "Наш хештег #%{hashtag}"
     small_screens_footer:
