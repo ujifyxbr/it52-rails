@@ -14,7 +14,7 @@ class UserDecorator < Draper::Decorator
 
   def bio
     markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new autolink: true, filter_html: true, hard_wrap: true)
-    markdown.render(object.bio).html_safe
+    markdown.render(object.bio || '').html_safe
   end
 
   def link_to_website

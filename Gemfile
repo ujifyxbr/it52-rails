@@ -41,7 +41,7 @@ gem 'sprockets', '~> 4.0.0.beta'
 gem 'babel-transpiler'
 gem 'jquery-rails'
 gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails', '~> 4.0'
 gem 'styx'
 gem 'marked-rails'
 gem 'bootstrap-sass'
@@ -60,8 +60,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'slim-rails'
 gem 'redcarpet'
 gem 'active_link_to'
-gem 'high_voltage', '~> 2.1.0'
-gem 'simple_form', '~> 3.1.0.rc2'
+gem 'high_voltage'
+gem 'simple_form'
 
 # Caching
 gem 'dalli'
@@ -100,7 +100,7 @@ group :development do
   gem 'annotate', require: false
   gem 'quiet_assets'
   gem 'letter_opener'
-  gem 'web-console', '~> 2.0'
+  gem 'web-console'
 end
 
 group :development, :test do
