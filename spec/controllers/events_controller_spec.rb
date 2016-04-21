@@ -8,8 +8,10 @@ describe EventsController do
 
     context 'when user is anonymous' do
       it 'unlogged user cannot create event' do
-        expect { post :create, event: event_attrs }.to raise_error(CanCan::AccessDenied)
+        expect(post :create, event: event_attrs).to redirect_to root_path
       end
+
+      it { expect(get :new).to redirect_to new_user_session_path }
     end
 
     context 'when user is logged in' do

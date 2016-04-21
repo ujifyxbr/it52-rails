@@ -20,7 +20,7 @@ mandrill_host: 'smtp.mandrillapp.com'
 
 mailchimp_api_key: Your Mailchimp API key
 mailchimp_list_id: Your Mailchimp lsit id
-mailchimp_hooks_token: Secure token for Mailchimp hooks
+mailchimp_hooks_token: Secure_token_for_Mailchimp_hooks
 
 aws_access_key_id: AKIAIDTQFPPTGR2L7XQQ
 aws_secret_access_key: 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
