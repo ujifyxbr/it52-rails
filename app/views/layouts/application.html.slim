@@ -7,7 +7,7 @@ html lang='ru'
     meta http-equiv='X-UA-Compatible' content='IE=edge'
     meta name='viewport' content='width=device-width, initial-scale=1'
     meta name="description" content=t(:app_description)
-    meta name="google-site-verification" content="gAHNycGHH-SKaN0NR9XmhQu9VMFKHDbU_rkZEaf3Png"
+    meta name="google-site-verification" content="7IUs7VM3J7n6Uf8fMjijeAvHEq1BIFosZIJoL6IDBlw"
 
     = favicon_link_tag 'favicon.ico'
 
@@ -15,8 +15,6 @@ html lang='ru'
     link rel="apple-touch-icon-precomposed" href=asset_path('logo_256x256.png')
 
     = stylesheet_link_tag 'application', media: 'all'
-    = javascript_include_tag 'application'
-    = styx_initialize
 
     / HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
     / [if lt IE 9]
@@ -24,6 +22,8 @@ html lang='ru'
       script src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js'
 
     = csrf_meta_tags
+
+    script src='https://yastatic.net/share2/share.js' async='async'
 
   body
     = render 'shared/gtm'
@@ -37,4 +37,5 @@ html lang='ru'
               button type='button' class='close' data-dismiss='alert' aria-hidden='true' &times;
               == message
         = yield
-    = javascript_include_tag '//yastatic.net/share/share.js'
+    = javascript_include_tag 'application'
+    = styx_initialize

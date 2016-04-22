@@ -1,3 +1,5 @@
+initYandexShare = (element) -> Ya.share2(element)
+
 $ ->
   $('.admin-info i.fa').tooltip()
   $('li.participant a').tooltip()
@@ -18,3 +20,10 @@ $ ->
       down: "fa fa-arrow-down"
 
   Turbolinks.enableProgressBar()
+
+  shares = document.querySelectorAll('.ya-share2')
+  sharesInitialized = document.querySelectorAll('.ya-share2_inited')
+
+  if shares.length > 0 and sharesInitialized.length is 0
+    Array.from(shares).forEach (element) -> initYandexShare(element)
+

@@ -20,7 +20,7 @@
           .image-container = image_tag event.title_image.square_500.url
         = render partial: 'participate_block', object: event, as: :event
         .text-center
-          span.yashare-auto-init data={ yasharel10n: "ru", yasharequickservices: "vkontakte,facebook,twitter,gplus", yasharetheme: "counter", yasharetitle: event.title, yasharedescription: event.truncated_description, yasharelink: event_url(event)}
+          span.ya-share2 data={ counter: true, lang: "ru", services: "vkontakte,facebook,twitter,gplus", size: 'm', title: event.title, description: event.truncated_description, url: event_url(event)}
       .col-sm-8
         .event-date: p title="Время проведения"
           i.fa.fa-fw.fa-calendar>

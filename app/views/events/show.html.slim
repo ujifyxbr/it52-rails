@@ -42,8 +42,8 @@
     i.fa.fa-fw.fa-user>
     a href=user_path(@event.organizer) = @event.organizer
   .event-share: p
-    .i.fa.fa-share-alt'
-    span.yashare-auto-init data={ yasharel10n: "ru", yasharequickservices: "vkontakte,facebook,twitter,gplus", yasharetheme: "counter", yasharetitle: @event.title, yasharedescription: @event.truncated_description, yasharelink: event_url(@event)}
+    = icon 'share-alt'
+    span.ya-share2< data={ counter: true, lang: "ru", services: "vkontakte,facebook,twitter,gplus", size: 'm', title: @event.title, description: @event.truncated_description, url: event_url(@event)}
 
   hr
   .event-description = @event.rendered_description

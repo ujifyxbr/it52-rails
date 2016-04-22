@@ -29,4 +29,4 @@
 
 //= require marked
 //= require events
-//= require babel-test
+//= require shares
