@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     get "/mailchimp_hooks/:token" => 'mailchimp_hooks#check'
   end
 
-  root to: redirect('/events')
+  root to: 'events#index'
 
   get ':id' => 'high_voltage/pages#show', as: :page
 
