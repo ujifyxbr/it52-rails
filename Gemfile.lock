@@ -269,6 +269,10 @@ GEM
     mailchimp-api (2.0.6)
       excon (>= 0.16.0)
       json (>= 1.7.7)
+    mailgun_rails (0.8.0)
+      actionmailer (>= 3.2.13)
+      json (>= 1.7.7)
+      rest-client (>= 1.6.7)
     marked-rails (0.3.2.0)
     method_source (0.8.2)
     mime-types (3.0)
@@ -377,6 +381,8 @@ GEM
     request_store (1.1.0)
     responders (2.1.2)
       railties (>= 4.2.0, < 5.1)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     rspec-core (3.4.4)
       rspec-support (~> 3.4.0)
     rspec-expectations (3.4.0)
@@ -499,6 +505,7 @@ DEPENDENCIES
   jquery-turbolinks
   letter_opener
   mailchimp-api
+  mailgun_rails
   marked-rails
   mini_magick
   momentjs-rails

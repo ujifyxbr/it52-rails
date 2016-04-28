@@ -10,6 +10,7 @@ gem 'pg'
 
 # Mailing
 gem 'mailchimp-api', require: 'mailchimp'
+gem 'mailgun_rails'
 
 # Normaliztion
 gem 'unicode'
