@@ -74,6 +74,7 @@ class EventsController < ApplicationController
 
   def set_event
     @event = Event.friendly.find(params[:id])
+    redirect_to @event, status: :moved_permanently if request.path != event_path(@event)
   end
 
   def set_organizer
