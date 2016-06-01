@@ -5,6 +5,7 @@ class EventsController < ApplicationController
   responders :flash
 
   before_action :set_event, only: [:show, :edit, :destroy, :update, :publish, :cancel_publication]
+  before_action :check_actual_slug, only: :show
   load_resource param_method: :event_params
   before_action :set_organizer, only: :create
   authorize_resource
@@ -26,7 +27,6 @@ class EventsController < ApplicationController
   end
 
   def show
-    redirect_to @event, status: :moved_permanently if request.path != event_path(@event)
     @event = @event.decorate
     flash[:warning] = t('.waiting_for_approval') unless @event.published?
     respond_to do |format|
@@ -72,6 +72,10 @@ class EventsController < ApplicationController
   end
 
   private
+
+  def check_actual_slug
+    redirect_to @event, status: :moved_permanently if request.path != event_path(@event)
+  end
 
   def set_event
     @event = Event.friendly.find(params[:id])
