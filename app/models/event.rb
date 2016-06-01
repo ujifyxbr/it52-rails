@@ -58,6 +58,10 @@ class Event < ActiveRecord::Base
     [[ started_at.strftime("%Y-%m-%d"), title ]]
   end
 
+  def should_generate_new_friendly_id?
+    title_changed? || started_at_changed? || super
+  end
+
   def user_participated?(user)
     user && event_participations.find_by(user_id: user.id)
   end
