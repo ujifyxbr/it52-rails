@@ -52,7 +52,7 @@ class Event < ActiveRecord::Base
 
 
   extend FriendlyId
-  friendly_id :slug_candidates, use: :slugged
+  friendly_id :slug_candidates, use: :history
 
   def slug_candidates
     [[ started_at.strftime("%Y-%m-%d"), title ]]
