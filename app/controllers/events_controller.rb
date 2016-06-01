@@ -26,6 +26,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    redirect_to @event, status: :moved_permanently if request.path != event_path(@event)
     @event = @event.decorate
     flash[:warning] = t('.waiting_for_approval') unless @event.published?
     respond_to do |format|
@@ -74,7 +75,6 @@ class EventsController < ApplicationController
 
   def set_event
     @event = Event.friendly.find(params[:id])
-    redirect_to @event, status: :moved_permanently if request.path != event_path(@event)
   end
 
   def set_organizer
