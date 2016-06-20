@@ -9,4 +9,6 @@ CarrierWave.configure do |config|
     region:                 Figaro.env.fog_region,
     host:                   Figaro.env.fog_host
   }
+
+  config.asset_host = Figaro.env.aws_host
 end

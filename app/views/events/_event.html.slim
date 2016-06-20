@@ -36,9 +36,10 @@
         = event.rendered_description
 
   - if event.participants.any?
-    .panel-footer
-      .participants
-        h4
-          => Event.human_attribute_name(:participants)
-          small = event.participants.size
-        = render partial: 'participants_block', object: event, as: :event
+    = cache [event, event.participants]
+      .panel-footer
+        .participants
+          h4
+            => Event.human_attribute_name(:participants)
+            small = event.participants.size
+          = render partial: 'participants_block', object: event, as: :event

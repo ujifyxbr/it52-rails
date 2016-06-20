@@ -14,8 +14,9 @@ class EventsController < ApplicationController
 
   def index
     model = Event.includes(:event_participations, :participants, :organizer)
+    @past = request.path.include?('past')
     @events = model.visible_by_user(current_user).future.decorate
-    @past_events = model.visible_by_user(current_user).past.decorate
+    @events = model.visible_by_user(current_user).past.decorate if @past
     @rss_events = model.published.future.order(published_at: :asc).decorate
     @all_events = model.published.order(started_at: :asc)
     respond_to do |format|

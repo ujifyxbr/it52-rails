@@ -8,30 +8,27 @@
         = link_to events_path(format: :atom), title: 'Atom feed', class: "color-rosewood no-underline" do
           i.fa.fa-rss-square<
 
+      => Event.model_name.human(count: 2)
 
-      = Event.model_name.human(count: 2)
+      small
+        | (
+        - if @past
+          = link_to 'грядущие', events_path
+        - else
+          = link_to 'прошедшие', past_events_path
+        | )
 
-  ul.nav.nav-pills role="tablist"
-    li.active role="presentation" class="active"
-      a href="#future_events" data-toggle="pill" = t('.future_events')
-    li role="presentation"
-      a href="#past_events" data-toggle="pill" = t('.past_events')
-  br
 
-  .tab-content
-    #future_events.tab-pane.active role="tabpanel"
-      - if @events.present?
-        .events = render @events
-      - else
-        .alert.alert-success
-          p Похоже все коллеги устали митапить и хакатонить и сейчас отдыхают.
-          p
-            'Но вы всегда можете встряхнуть их,
-            = link_to 'организовав новую встречу', new_event_path, class: 'alert-link'
-            |.
-          hr
-          p: small
-            = mail_to 'events@it52.info', 'Напишите нам', class: 'alert-link'
-            ', если хотите, но не знаете как. Мы всегда поможем с организацией. Бесплатно.
-    #past_events.tab-pane role="tabpanel"
-      .events = render @past_events
+  - if @events.present?
+    .events = render @events
+  - else
+    .alert.alert-success
+      p Похоже все коллеги устали митапить и хакатонить и сейчас отдыхают.
+      p
+        'Но вы всегда можете встряхнуть их,
+        = link_to 'организовав новую встречу', new_event_path, class: 'alert-link'
+        |.
+      hr
+      p: small
+        = mail_to 'events@it52.info', 'Напишите нам', class: 'alert-link'
+        ', если хотите, но не знаете как. Мы всегда поможем с организацией. Бесплатно.

@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   # События
   resources :events do
+    get :past, on: :collection, to: :index
     patch :publish, on: :member
     patch :cancel_publication, on: :member
   end
