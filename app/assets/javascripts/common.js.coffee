@@ -1,7 +1,8 @@
 initYandexShare = (element) -> setTimeout (() -> Ya.share2(element)), 0
 
 $ ->
-  simplemdeId = document.querySelectorAll('.edit_event')[0].id
+  simplemdeId = document.querySelectorAll('.edit_event')[0]?.id
+  simplemdeId ||= document.getElementById('new_event')?.id
 
   if simplemdeId?
     new SimpleMDE
@@ -11,6 +12,7 @@ $ ->
       spellChecker: false
       autosave:
         enabled: true
+        deplay: 3
         uniqueId: simplemdeId
 
 
