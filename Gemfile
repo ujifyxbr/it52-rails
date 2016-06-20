@@ -1,6 +1,6 @@
-source 'https://rubygems.org'
+ruby '2.3.1'
 
-ruby '2.3.0'
+source 'https://rubygems.org'
 
 gem 'rails', '~> 4.2.6'
 gem 'rails-i18n'
@@ -46,7 +46,7 @@ gem 'coffee-rails', '~> 4.0'
 gem 'styx'
 gem 'marked-rails'
 gem 'bootstrap-sass'
-gem 'font-awesome-sass', github: 'kugaevsky/font-awesome-sass'
+gem 'font-awesome-sass'
 gem 'gon'
 gem "autoprefixer-rails"
 gem 'csso-rails'

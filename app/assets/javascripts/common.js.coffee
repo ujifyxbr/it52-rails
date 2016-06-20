@@ -1,6 +1,19 @@
 initYandexShare = (element) -> setTimeout (() -> Ya.share2(element)), 0
 
 $ ->
+  simplemdeId = document.querySelectorAll('.edit_event')[0].id
+
+  if simplemdeId?
+    new SimpleMDE
+      element: document.getElementById("event_description")
+      indentWithTabs: false
+      promptURLs: true
+      spellChecker: false
+      autosave:
+        enabled: true
+        uniqueId: simplemdeId
+
+
   $('.admin-info i.fa').tooltip()
   $('li.participant a').tooltip()
 

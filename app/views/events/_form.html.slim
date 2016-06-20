@@ -12,14 +12,7 @@
       = f.input :place, as: :text
       = f.input :location, as: :hidden
 
-  ul.nav.nav-tabs.event-description
-    li.edit.active = link_to 'Описание', '#edit', 'data-toggle' => 'tab'
-    li.preview = link_to 'Предпросмотр', '#preview'
-  .tab-content
-    #edit.tab-pane.active
-      = f.text_area :description, class: 'hidden'
-
-    #preview.tab-pane
-      .md_preview
+  .row: .col-sm-12
+    = f.input :description, input_html: { rows: 10 }
     hr
     = f.submit class: 'btn btn-primary'
