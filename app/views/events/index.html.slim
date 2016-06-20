@@ -8,16 +8,15 @@
         = link_to events_path(format: :atom), title: 'Atom feed', class: "color-rosewood no-underline" do
           i.fa.fa-rss-square<
 
-      => Event.model_name.human(count: 2)
 
-      small
-        | (
-        - if @past
-          = link_to 'грядущие', events_path
-        - else
-          = link_to 'прошедшие', past_events_path
-        | )
+      = Event.model_name.human(count: 2)
 
+  ul.nav.nav-pills role="tablist"
+    li role="presentation" class="#{'active' unless @past}"
+      = link_to t('.future_events'), events_path
+    li role="presentation" class="#{'active' if @past}"
+      = link_to t('.past_events'), past_events_path
+  br
 
   - if @events.present?
     .events = render @events

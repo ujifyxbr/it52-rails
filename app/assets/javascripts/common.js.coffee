@@ -1,4 +1,4 @@
-initYandexShare = (element) -> Ya.share2(element)
+initYandexShare = (element) -> setTimeout (() -> Ya.share2(element)), 0
 
 $ ->
   $('.admin-info i.fa').tooltip()
