@@ -2,7 +2,7 @@ class My::AuthenticationsController < ApplicationController
   before_action :set_user_and_auth
 
   def destroy
-    if @user.authentications.count == 1 && @user.email.blank?
+    if @user.authentications.size == 1 && @user.email.blank?
       flash[:danger] = t('authentications.not_destroyed')
     else
       @authentication.destroy

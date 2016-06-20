@@ -25,7 +25,7 @@
           .panel-heading
             h4
               =' Event.human_attribute_name(:participants)
-              small = @event.participants.count
+              small = @event.participants.size
           .panel-body
             = render partial: 'participants_block', object: @event, as: :event
           .panel-footer
