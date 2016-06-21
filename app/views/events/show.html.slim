@@ -13,6 +13,7 @@
       - if can? :edit, @event
         = render partial: 'admin_info', object: @event, as: :event
       span itemprop="name" => @event.title
+      span.hidden itemprop='url' content=event_url(@event)
       small: nobr itemprop="startDate" content=@event.started_at.to_time.iso8601
         = l @event.started_at, format: :date_time_full
 
@@ -35,12 +36,13 @@
     i.fa.fa-fw.fa-calendar'
     = @event.link_to_time
   - if @event.place.present?
-    .event-place: p itemprop="hasMap"
+    .event-place: p
       i.fa.fa-fw.fa-map-marker'
       = @event.link_to_place
   .event-organizer: p title="Организатор" itemprop='organizer' itemscope=true itemtype="http://schema.org/Person"
     i.fa.fa-fw.fa-user>
-    a href=user_path(@event.organizer) itemprop='name' = @event.organizer
+    a href=user_path(@event.organizer) itemprop='url' content=user_url(@event.organizer)
+      span itemprop="name" = @event.organizer
   .event-share: p
     = icon 'share-alt'
     span.ya-share2< data={ counter: true, lang: "ru", services: "vkontakte,facebook,twitter,gplus", size: 'm', title: @event.title, description: @event.truncated_description, url: event_url(@event)}

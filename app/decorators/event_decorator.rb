@@ -43,7 +43,10 @@ class EventDecorator < Draper::Decorator
 
   def link_to_place
     base = "http://maps.yandex.ru/?text="
-    h.link_to object.place, URI.encode(base + object.place), target: "_blank", itemprop: "location"
+    h.link_to URI.encode(base + object.place), target: "_blank", itemprop: 'location', itemscope: true, itemtype: 'http://schema.org/Place' do
+      h.content_tag(:span, object.place, itemprop: 'address') +
+      h.content_tag(:span, object.place, itemprop: 'name', class: 'hidden')
+    end
   end
 
   def link_to_time
