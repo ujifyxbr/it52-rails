@@ -1,4 +1,4 @@
-.events-show.event data={ id: @event.id }
+.events-show.event data={ id: @event.id } itemscope=true itemtype="http://schema.org/Event"
   .page-header
     .pull-right
       - if can? :edit, @event
@@ -12,13 +12,13 @@
     h1
       - if can? :edit, @event
         = render partial: 'admin_info', object: @event, as: :event
-      span> = @event.title
-      small: nobr
+      span itemprop="name" => @event.title
+      small: nobr itemprop="startDate" content=@event.started_at.to_time.iso8601
         = l @event.started_at, format: :date_time_full
 
   .row
     .col-xs-12.col-sm-4
-      .image-container = image_tag @event.title_image.square_500.url
+      .image-container = image_tag @event.title_image.square_500.url, itemprop: 'image', content: @event.title_image.square_500.url
     .col-xs-12.col-sm-8
       .participants
         .panel.panel-default
@@ -35,15 +35,15 @@
     i.fa.fa-fw.fa-calendar'
     = @event.link_to_time
   - if @event.place.present?
-    .event-place: p
+    .event-place: p itemprop="hasMap"
       i.fa.fa-fw.fa-map-marker'
       = @event.link_to_place
-  .event-organizer: p title="Организатор"
+  .event-organizer: p title="Организатор" itemprop='organizer' itemscope=true itemtype="http://schema.org/Person"
     i.fa.fa-fw.fa-user>
-    a href=user_path(@event.organizer) = @event.organizer
+    a href=user_path(@event.organizer) itemprop='name' = @event.organizer
   .event-share: p
     = icon 'share-alt'
     span.ya-share2< data={ counter: true, lang: "ru", services: "vkontakte,facebook,twitter,gplus", size: 'm', title: @event.title, description: @event.truncated_description, url: event_url(@event)}
 
   hr
-  .event-description = @event.rendered_description
+  .event-description itemprop="description" = @event.rendered_description
