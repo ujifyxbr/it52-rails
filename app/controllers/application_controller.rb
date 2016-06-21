@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
 
   add_flash_types :error, :failure, :success, :alert
 
+  before_action :define_common_meta_tags
   before_action :redirect_to_main_domain, if: -> { request.host != 'www.it52.info' && Rails.env.production? }
   before_action :authenticate_user!, if: -> { authenticated_path? }
 
@@ -28,6 +29,20 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def define_common_meta_tags
+    set_meta_tags({
+      site: t(:app_name),
+      description: t(:app_description),
+      keywords: t(:app_keywords),
+      reverse: true,
+      charset: 'utf-8',
+      og: {
+        site_name: :site,
+        locale: 'ru_RU'
+      }
+    })
+  end
 
   def authenticated_path?
     controller_namespace == My || new_event_path == request.original_fullpath

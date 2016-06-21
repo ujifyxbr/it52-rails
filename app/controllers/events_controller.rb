@@ -7,6 +7,7 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :destroy, :update, :publish, :cancel_publication]
   before_action :check_actual_slug, only: :show
   load_resource param_method: :event_params
+  before_action :define_meta_tags, only: :show
   before_action :set_organizer, only: :create
   authorize_resource
 
@@ -73,6 +74,22 @@ class EventsController < ApplicationController
   end
 
   private
+
+  def define_meta_tags
+    set_meta_tags({
+      title: [l(@event.started_at, format: :date_time_full), @event.title],
+      description: @event.decorate.description,
+      canonical: event_url(@event),
+      publisher: Figaro.env.mailing_host,
+      author: user_url(@event.organizer),
+      og: {
+        title: :title,
+        url: :canonical,
+        description: :description,
+        image: @event.title_image.square_500.url
+      }
+    })
+  end
 
   def check_actual_slug
     redirect_to @event, status: :moved_permanently if request.path != event_path(@event)

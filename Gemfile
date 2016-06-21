@@ -63,6 +63,7 @@ gem 'redcarpet'
 gem 'active_link_to'
 gem 'high_voltage'
 gem 'simple_form'
+gem 'meta-tags'
 
 # Caching
 gem 'dalli'
