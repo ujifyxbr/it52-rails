@@ -9,6 +9,7 @@ CarrierWave.configure do |config|
     region:                 Figaro.env.fog_region,
     host:                   Figaro.env.fog_host
   }
+  config.fog_attributes = { 'Cache-Control' => "max-age=#{365.days.to_i}" }
 
   config.asset_host = Figaro.env.aws_host
 end
