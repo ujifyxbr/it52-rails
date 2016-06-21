@@ -14,7 +14,7 @@
 #  place        :string(255)
 #  published_at :datetime
 #  slug         :string(255)
-#  location     :string
+#  location     :point
 #
 
 require 'rails_helper'

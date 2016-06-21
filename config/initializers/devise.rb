@@ -262,9 +262,10 @@ Devise.setup do |config|
   config.omniauth :google_oauth2, Figaro.env.google_id, Figaro.env.google_secret
   config.omniauth :facebook, Figaro.env.facebook_id, Figaro.env.facebook_secret,
                   scope: 'public_profile, email, user_events, user_groups, user_website, rsvp_event, user_about_me, user_website',
+                  info_fields: 'email,name',
                   secure_image_url: true,
                   image_size: 'large'
-  config.omniauth :vkontakte, Figaro.env.vk_id, Figaro.env.vk_secret
+  config.omniauth :vkontakte, Figaro.env.vk_id, Figaro.env.vk_secret, scope: 'email'
   config.omniauth :twitter, Figaro.env.twitter_key, Figaro.env.twitter_secret,
                   image_size: 'original'
 

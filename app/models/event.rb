@@ -14,7 +14,7 @@
 #  place        :string(255)
 #  published_at :datetime
 #  slug         :string(255)
-#  location     :string
+#  location     :point
 #
 
 class Event < ActiveRecord::Base
@@ -83,6 +83,15 @@ class Event < ActiveRecord::Base
   def cancel_publication!
     self.toggle :published
     save!
+  end
+
+  def send_to_telegram
+    header = ["*#{title}*", I18n.l(started_at, format: :date_time_full), place].join("\n")
+    fixed_description = description.gsub(/\*\*/, '_').gsub(/^\*\s/, '- ')
+    link = Rails.application.routes.url_helpers.event_url(self, host: Figaro.env.mailing_host)
+    text = [header, link, fixed_description].join("\n----------\n")
+    message = TelegramMessage.new(text)
+    message.send!
   end
 
   def ics_uid

@@ -13,7 +13,7 @@ class EventMap
 
     @handleMapLink() unless @editable
 
-  renderMap: () =>
+  renderMap: () ->
     that = @
     if that.map == null
       ymaps.ready ->
@@ -26,11 +26,11 @@ class EventMap
     else
       return
 
-  handleMapLink: =>
+  handleMapLink: ->
     that = @
     $('.event-map-link').on 'click', (e) ->
       that.renderMap()
-      $("##{@.dataset.target}").toggleClass('visible')
+      $("##{that.dataset.target}").toggleClass('visible')
       e.preventDefault()
       e.stopPropagation()
       false

@@ -14,7 +14,7 @@
 #  place        :string(255)
 #  published_at :datetime
 #  slug         :string(255)
-#  location     :string
+#  location     :point
 #
 
 class EventSerializer < ActiveModel::Serializer
@@ -35,14 +35,3 @@ class EventSerializer < ActiveModel::Serializer
     Rails.application.routes.url_helpers.event_url(object, host: Figaro.env.mailing_host)
   end
 end
-
-#  id           :integer          not null, primary key
-#  title        :string(255)      not null
-#  created_at   :datetime
-#  updated_at   :datetime
-#  organizer_id :integer
-#  published    :boolean          default(FALSE)
-#  description  :text
-#  started_at   :datetime
-#  title_image  :string(255)
-#  place        :string(255)
