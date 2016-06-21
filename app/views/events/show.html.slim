@@ -25,7 +25,7 @@
         .panel.panel-default
           .panel-heading
             h4
-              =' Event.human_attribute_name(:participants)
+              => Event.human_attribute_name(:participants)
               small = @event.participants.size
           .panel-body
             = render partial: 'participants_block', object: @event, as: :event
@@ -33,11 +33,11 @@
             = render partial: 'participate_block', object: @event, as: :event
 
   .event-date: p
-    i.fa.fa-fw.fa-calendar'
+    i.fa.fa-fw.fa-calendar>
     = @event.link_to_time
   - if @event.place.present?
     .event-place: p
-      i.fa.fa-fw.fa-map-marker'
+      i.fa.fa-fw.fa-map-marker>
       = @event.link_to_place
   .event-organizer: p title="Организатор" itemprop='organizer' itemscope=true itemtype="http://schema.org/Person"
     i.fa.fa-fw.fa-user>
