@@ -86,12 +86,20 @@ class Event < ActiveRecord::Base
   end
 
   def send_to_telegram
+    post = TelegramMessage.new(:message)
+    result = post.send_message(construct_telegram_message)
+  rescue TelegramParseError, TelegramLongMessageError => e
+    result = post.send_message(construct_telegram_message(true))
+  ensure
+    result
+  end
+
+  def construct_telegram_message(short = false)
     header = ["*#{title}*", I18n.l(started_at, format: :date_time_full), place].join("\n")
-    fixed_description = description.gsub(/\*\*/, '_').gsub(/^\*\s/, '- ')
     link = Rails.application.routes.url_helpers.event_url(self, host: Figaro.env.mailing_host)
-    text = [header, link, fixed_description].join("\n----------\n")
-    message = TelegramMessage.new(text)
-    message.send!
+    paragraphs = [header, link]
+    paragraphs << description.gsub(/\*\*/, '_').gsub(/^\*\s/, '- ') unless short
+    paragraphs.join("\n----------\n")
   end
 
   def ics_uid
