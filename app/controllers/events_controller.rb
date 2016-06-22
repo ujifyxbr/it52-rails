@@ -86,7 +86,7 @@ class EventsController < ApplicationController
         title: :title,
         url: :canonical,
         description: :description,
-        image: @event.title_image.square_500.url
+        image: @event.title_image.fb_1200.url
       }
     })
   end

@@ -35,6 +35,10 @@ class EventTitleImageUploader < CarrierWave::Uploader::Base
   # end
 
   version :square_500 do
-    process resize_to_fill: [500, 500]
+    process resize_to_fit: [500, nil]
+  end
+
+  version :fb_1200 do
+    process resize_to_fill: [1200, 630]
   end
 end
