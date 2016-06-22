@@ -9,7 +9,8 @@ class TelegramMessage
   BASE_URI = 'https://api.telegram.org'
   MAX_MESSAGE_LENGTH = 4096
   TYPES_MAP = {
-    message: 'sendMessage'
+    message: 'sendMessage',
+    webhook: 'setWebhook'
   }
 
   attr_reader :response, :uri, :query, :result
@@ -18,7 +19,7 @@ class TelegramMessage
     raise ArgumentError, "Unknown message type '#{type}'. Acceptable types are #{TYPES_MAP.keys.to_sentence}." unless TYPES_MAP.has_key?(type)
 
     @query = { chat_id: "@#{CHAT_ID}" }
-    @uri = URI"#{BASE_URI}/bot#{API_KEY}/#{TYPES_MAP[type]}"
+    @uri = URI "#{BASE_URI}/bot#{API_KEY}/#{TYPES_MAP[type]}"
   end
 
   def send_message(text)
@@ -26,6 +27,11 @@ class TelegramMessage
       text: normalize_text(text),
       parse_mode: 'Markdown'
     })
+    post!
+  end
+
+  def set_webhook(webhook_url)
+    @query = { url: webhook_url }
     post!
   end
 

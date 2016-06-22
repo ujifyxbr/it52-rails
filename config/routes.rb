@@ -31,6 +31,12 @@ Rails.application.routes.draw do
     get "/mailchimp_hooks/:token" => 'mailchimp_hooks#check'
   end
 
+  # Let's encrypt cert route
+  get '/.well-known/acme-challenge/:id' => 'letsencrypt#approve'
+
+  # Telegram hoooks
+  post "/telegram_hooks/#{Figaro.env.telegram_bot_token}" => 'telegram_hooks#process'
+
   root to: 'events#index'
 
   get ':id' => 'high_voltage/pages#show', as: :page
