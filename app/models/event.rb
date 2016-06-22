@@ -95,11 +95,15 @@ class Event < ActiveRecord::Base
   end
 
   def construct_telegram_message(short = false)
-    header = ["*#{title}*", I18n.l(started_at, format: :date_time_full), place].join("\n")
     link = Rails.application.routes.url_helpers.event_url(self, host: Figaro.env.mailing_host)
-    paragraphs = [header, link]
-    paragraphs << description.gsub(/\*\*/, '_').gsub(/^\*\s/, '- ') unless short
-    paragraphs.join("\n----------\n")
+    link += '?' + { utm_source: 'telegram', utm_medium: 'link', utm_campaign: friendly_id }.to_query
+    md_title = "[#{title.strip}](#{link})"
+    md_date = "*#{I18n.l(started_at, format: :date_time_full)}*"
+    md_place = "[#{place}](http://maps.yandex.ru/?text=#{URI.encode(place.strip)})"
+    header = [md_title, md_date, md_place].join("\n")
+    return header if short
+    fixed_description = description.gsub(/\*\*/, '_').gsub(/^\*\s/, '- ')
+    [header, fixed_description].join("\n"*2)
   end
 
   def ics_uid
