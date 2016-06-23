@@ -34,7 +34,7 @@ Rails.application.routes.draw do
 
   # Telegram hooks
   constraints token: Figaro.env.telegram_bot_token do
-    post "/telegram_hooks/:token" => 'telegram_hooks#process'
+    post "/telegram_hooks/:token" => 'telegram_hooks#process_bot_request'
   end
 
   # Let's encrypt cert route
