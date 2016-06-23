@@ -2,7 +2,6 @@ class TelegramHooksController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
   def process_bot_request
-    Rails.logger.info bot_request_params.inspect
     render nothing: true, status: :ok
   end
 

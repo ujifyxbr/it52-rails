@@ -86,9 +86,9 @@ class Event < ActiveRecord::Base
   end
 
   def send_to_telegram
-    post = TelegramMessage.new(:message)
+    post = Telegram::Message.new(:message)
     result = post.send_message(construct_telegram_message)
-  rescue TelegramParseError, TelegramLongMessageError => e
+  rescue Telegram::ParseError, Telegram::LongMessageError => e
     result = post.send_message(construct_telegram_message(true))
   ensure
     result
@@ -97,7 +97,7 @@ class Event < ActiveRecord::Base
   def construct_telegram_message(short = false)
     link = Rails.application.routes.url_helpers.event_url(self, host: Figaro.env.mailing_host)
     link += '?' + { utm_source: 'telegram', utm_medium: 'link', utm_campaign: friendly_id }.to_query
-    md_title = "[#{title.strip}](#{link})"
+    md_title = "#{id} — [#{title.strip}](#{link})"
     md_date = "*#{I18n.l(started_at, format: :date_time_full)}*"
     md_place = "[#{place}](http://maps.yandex.ru/?text=#{URI.encode(place.strip)})"
     header = [md_title, md_date, md_place].join("\n")
