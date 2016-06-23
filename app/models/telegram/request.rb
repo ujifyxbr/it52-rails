@@ -54,9 +54,10 @@ module Telegram
     private
 
     def parse_command(text)
+      return nil if text.nil?
       words = text.split
       return nil if (words.first =~ /^\//).nil?
-      command = words.first[1..-1].to_sym
+      command = words.first[1..-1].split('@').first.to_sym
       return nil unless COMMANDS.include? command
       [ command, words.second.to_i ]
     end
