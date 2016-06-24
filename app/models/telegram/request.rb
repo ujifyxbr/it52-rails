@@ -2,12 +2,14 @@ module Telegram
   class Request
     COMMANDS = %i(next previous get start help)
 
-    attr_reader *%i(chat_id action message)
+    attr_reader *%i(chat_id action message user_id text)
 
     def initialize(params)
       @chat_id = params['message']['chat']['id']
+      @user_id = params['message']['from']['username']
+      @text = params['message']['text']
+      @action = parse_command(@text)
       @message = Message.new(:message, @chat_id)
-      @action = parse_command(params['message']['text'])
     end
 
     def reply!
