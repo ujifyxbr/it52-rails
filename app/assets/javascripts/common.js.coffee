@@ -1,11 +1,12 @@
 initYandexShare = (element) -> setTimeout (() -> Ya.share2(element)), 0
 
 $ ->
+  window.simpleMDE = null
   simplemdeId = document.querySelectorAll('.edit_event')[0]?.id
   simplemdeId ||= document.getElementById('new_event')?.id
 
   if simplemdeId?
-    new SimpleMDE
+    window.simpleMDE = new SimpleMDE
       element: document.getElementById("event_description")
       indentWithTabs: false
       promptURLs: true
