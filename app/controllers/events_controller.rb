@@ -78,7 +78,7 @@ class EventsController < ApplicationController
   def define_meta_tags
     set_meta_tags({
       title: [l(@event.started_at, format: :date_time_full), @event.title],
-      description: @event.decorate.description,
+      description: @event.decorate.simple_description,
       canonical: event_url(@event),
       publisher: Figaro.env.mailing_host,
       author: user_url(@event.organizer),
@@ -89,6 +89,25 @@ class EventsController < ApplicationController
         image: @event.title_image.fb_1200.url
       }
     })
+
+    @structured_data = {
+      "@context": "http://schema.org",
+      "@type": "Event",
+      name: @event.title,
+      startDate: @event.started_at.iso8601,
+      url: event_url(@event),
+      image:  @event.title_image.square_500.url,
+      location: {
+        "@type": "Place",
+        name: @event.place,
+        address: @event.place
+      },
+      organizer: {
+        "@type": "Person",
+        url: user_url(@event.organizer),
+        name: @event.organizer.to_s
+      }
+    }
   end
 
   def check_actual_slug
