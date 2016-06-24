@@ -1,10 +1,8 @@
 module Telegram
   class Request
-    COMMANDS = %i(next previous get start)
+    COMMANDS = %i(next previous get start help)
 
     attr_reader *%i(chat_id action message)
-
-    alias_method :help, :start
 
     def initialize(params)
       @chat_id = params['message']['chat']['id']
@@ -56,6 +54,8 @@ module Telegram
     def unknown
       message.send_message I18n.t('telegram.unknown_command', list: COMMANDS.map{ |c| "/#{c}" }.to_sentence)
     end
+
+    alias_method :help, :start
 
     private
 
