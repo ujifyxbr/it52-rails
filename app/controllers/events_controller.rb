@@ -97,6 +97,9 @@ class EventsController < ApplicationController
       startDate: @event.started_at.iso8601,
       url: event_url(@event),
       image:  @event.title_image.square_500.url,
+      description: @event.decorate.simple_description,
+      canonical: event_url(@event),
+      publisher: Figaro.env.mailing_host,
       location: {
         "@type": "Place",
         name: @event.place,
