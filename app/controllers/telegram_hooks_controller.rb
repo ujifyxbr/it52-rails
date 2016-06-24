@@ -17,7 +17,14 @@ class TelegramHooksController < ApplicationController
   def track_bot_request
     token = Figaro.env.botan_token
     message = { text: @req.text }
-    puts Telegram::Botan.track(token, @req.user_id, message, @req.action.first)
+    action = if @req.action
+      @req.action.first
+    else
+      'Unkown'
+    end
+    puts Telegram::Botan.track(token, @req.user_id, message, action)
+  rescue StandardError => e
+    puts e.message
   end
 
   def bot_request_params
