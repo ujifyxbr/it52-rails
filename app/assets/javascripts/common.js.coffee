@@ -14,6 +14,7 @@ $ ->
         enabled: true
         deplay: 3
         uniqueId: simplemdeId
+      hideIcons: ['image']
 
 
   $('.admin-info i.fa').tooltip()

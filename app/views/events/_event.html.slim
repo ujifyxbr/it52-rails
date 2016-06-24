@@ -33,7 +33,7 @@
           i.fa.fa-fw.fa-user>
           a href=user_path(event.organizer) = event.organizer
         hr
-        = event.rendered_description
+        .event-description = event.rendered_description
 
   - if event.participants.any?
     = cache [event, event.participants]
