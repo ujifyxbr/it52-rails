@@ -1,11 +1,12 @@
 initYandexShare = (element) -> setTimeout (() -> Ya.share2(element)), 0
 
-$ ->
-  window.simpleMDE = null
+
+document.addEventListener 'turbolinks:load', ->
   simplemdeId = document.querySelectorAll('.edit_event')[0]?.id
   simplemdeId ||= document.getElementById('new_event')?.id
-
-  if simplemdeId?
+  hasEditor = document.querySelectorAll('.editor-toolbar').length > 0
+  if simplemdeId? and not hasEditor
+    delete window.simpleMDE
     window.simpleMDE = new SimpleMDE
       element: document.getElementById("event_description")
       indentWithTabs: false
@@ -16,6 +17,8 @@ $ ->
         deplay: 3
         uniqueId: simplemdeId
       hideIcons: ['image']
+
+$ ->
 
 
   $('.admin-info i.fa').tooltip()
@@ -35,8 +38,6 @@ $ ->
       date: "fa fa-calendar"
       up: "fa fa-arrow-up"
       down: "fa fa-arrow-down"
-
-  Turbolinks.enableProgressBar()
 
   shares = document.querySelectorAll('.ya-share2')
   sharesInitialized = document.querySelectorAll('.ya-share2_inited')
