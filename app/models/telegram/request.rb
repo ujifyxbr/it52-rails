@@ -1,8 +1,10 @@
 module Telegram
   class Request
-    COMMANDS = %i(next previous get)
+    COMMANDS = %i(next previous get start)
 
     attr_reader *%i(chat_id action message)
+
+    alias_method :help, :start
 
     def initialize(params)
       @chat_id = params['message']['chat']['id']
@@ -14,6 +16,10 @@ module Telegram
       return unknown if @action.nil?
       return send(@action.first) if @action.second <= 0
       send(*@action)
+    end
+
+    def start
+      message.send_message I18n.t('telegram.help')
     end
 
     def get(id = Event.last.id)
