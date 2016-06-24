@@ -11,6 +11,8 @@ module Telegram
         uri = URI(URI_TEMPLATE % {token: token, uid: uid, name: name})
         puts uri
         http = Net::HTTP.new(uri.host, uri.port)
+        http.use_ssl = true
+        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
         body = JSON.dump(message)
 
         req =  Net::HTTP::Post.new(uri)
