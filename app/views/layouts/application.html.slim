@@ -26,9 +26,11 @@ html lang='ru'
 
   body
     = render 'shared/gtm'
+    = render 'shared/nav'
+
     #sidebar-container.affix data-offset-top="0" data-offset-bottom="0"
-      #sidebar.clearfix = render 'shared/sidebar'
-    #page-content
+      / #sidebar.clearfix = render 'shared/sidebar'
+    main
       .container
         .flash-messages
           - flash.each do |type, message|

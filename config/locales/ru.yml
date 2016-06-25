@@ -72,7 +72,7 @@ ru:
         create: Добавить мероприятие
 
   shared:
-    sidebar:
+    sidebar: &navigation
       login: Войти
       logout: Выйти
       register: Регистрация
@@ -86,6 +86,8 @@ ru:
       donate: Пожертвования
       add_event_button_title: Добавить мероприятие
       hashtag: "Наш хештег #%{hashtag}"
+    nav:
+      <<: *navigation
     small_screens_footer:
       hashtag: "Наш хештег #%{hashtag}"
       social_links: Мы в соц. сетях
