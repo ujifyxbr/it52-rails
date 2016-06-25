@@ -22,5 +22,4 @@
 
 //= require common
 //= require shares
-//= require location
 //= require turbolinks
