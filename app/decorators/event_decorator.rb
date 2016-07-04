@@ -50,6 +50,6 @@ class EventDecorator < Draper::Decorator
   end
 
   def link_to_time
-    h.link_to h.l(object.started_at, format: :date_time_full), h.event_path(object, :format =>:ics)
+    h.link_to h.localize(object.started_at), h.event_path(object, format: :ics)
   end
 end

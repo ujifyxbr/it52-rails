@@ -31,7 +31,7 @@
 #  subscription           :boolean
 #
 
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,

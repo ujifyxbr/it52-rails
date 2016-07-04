@@ -13,7 +13,7 @@
 #  token_expires :datetime
 #
 
-class Authentication < ActiveRecord::Base
+class Authentication < ApplicationRecord
   validates :uid, uniqueness: { scope: :provider }, presence: true
   validates :provider, presence: true
 

@@ -4,11 +4,14 @@ initYandexShare = (element) -> setTimeout (() -> Ya.share2(element)), 0
 document.addEventListener 'turbolinks:load', ->
   simplemdeId = document.querySelectorAll('.edit_event')[0]?.id
   simplemdeId ||= document.getElementById('new_event')?.id
+  simplemdeId ||= document.getElementById('user_bio')?.id
   hasEditor = document.querySelectorAll('.editor-toolbar').length > 0
   if simplemdeId? and not hasEditor
     delete window.simpleMDE
+    editorElement = document.getElementById("event_description")
+    editorElement ||= document.getElementById("user_bio")
     window.simpleMDE = new SimpleMDE
-      element: document.getElementById("event_description")
+      element: editorElement
       indentWithTabs: false
       promptURLs: true
       spellChecker: false

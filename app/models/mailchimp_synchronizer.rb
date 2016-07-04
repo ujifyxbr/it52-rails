@@ -52,8 +52,6 @@ class MailchimpSynchronizer
   end
 
   def sync!
-    # Hack for hackathon
-    return {} unless Rails.env.production?
     @user.subscription? ? subscribe! : unsubscribe!
   end
 

@@ -17,7 +17,7 @@
 #  location     :point
 #
 
-class Event < ActiveRecord::Base
+class Event < ApplicationRecord
   mount_uploader :title_image, EventTitleImageUploader
 
   belongs_to :organizer, class_name: 'User'

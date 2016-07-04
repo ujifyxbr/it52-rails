@@ -55,9 +55,9 @@ ru:
             description:
               too_long: "Комментарий должен уместиться в %{count} символов."
     models:
-      discussion:
-        one:    Дискуссия
-        other:  Дискуссии
+      event:
+        one:    Мероприятие
+        other:  Мероприятия
       idea:
         one:    Идея
         other:  Идеи
@@ -70,9 +70,6 @@ ru:
       user:
         one:    Пользователь
         other:  Пользователи
-      acts_as_votable/vote:
-        one:    Голос
-        other:  Голоса
     attributes:
       user:
         password:     Пароль

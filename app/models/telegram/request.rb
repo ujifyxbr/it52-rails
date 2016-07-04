@@ -13,7 +13,8 @@ module Telegram
     end
 
     def reply!
-      return unknown if @action.nil?
+      # return unknown if @action.nil?
+      return nil if @action.nil?
       return send(@action.first) if @action.second <= 0
       send(*@action)
     end

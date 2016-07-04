@@ -24,7 +24,7 @@ class EventsController < ApplicationController
       format.json { render json: @all_events.to_json }
       format.html
       format.atom
-      format.ics { render text: Calendar.new(@all_events).to_ical }
+      format.ics { render body: Calendar.new(@all_events).to_ical }
     end
   end
 
@@ -33,7 +33,7 @@ class EventsController < ApplicationController
     flash[:warning] = t('.waiting_for_approval') unless @event.published?
     respond_to do |format|
       format.html { respond_with @event }
-      format.ics { render text: Calendar.new(@event).to_ical }
+      format.ics { render body: Calendar.new(@event).to_ical, mime_type: Mime::Type.lookup("text/calendar") }
     end
     #respond_with @event
   end
@@ -114,7 +114,9 @@ class EventsController < ApplicationController
   end
 
   def check_actual_slug
-    redirect_to @event, status: :moved_permanently if request.path != event_path(@event)
+    slug_correct = request.path == event_path(@event, format: request.format.symbol.to_s)
+    slug_correct = request.path == event_path(@event) if request.format.symbol == :html
+    redirect_to @event, status: :moved_permanently unless slug_correct
   end
 
   def set_event

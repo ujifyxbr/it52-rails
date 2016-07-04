@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  include Styx::Initializer
+  # include Styx::Initializer
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
