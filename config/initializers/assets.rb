@@ -7,8 +7,6 @@ Rails.application.config.assets.digest = true
 
 Rails.application.config.assets.compress = true
 
-Rails.application.config.assets.initialize_on_precompile = true
-
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path
 

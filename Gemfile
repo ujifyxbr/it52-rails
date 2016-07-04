@@ -83,9 +83,6 @@ gem 'figaro'
 gem 'awesome_print'
 gem 'pry-rails'
 
-# Heroku compatibility
-gem 'rails_12factor'
-
 # Image and AWS S3 management
 gem "fog-aws"
 gem 'mini_magick'
@@ -127,6 +124,9 @@ group :test do
   gem 'shoulda-matchers', require: false
   gem "codeclimate-test-reporter", require: false
 end
+
+# Heroku compatibility
+gem 'rails_12factor', group: :production
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
