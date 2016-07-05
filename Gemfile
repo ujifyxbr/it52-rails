@@ -38,8 +38,6 @@ gem 'draper'
 
 # Compile and serve assets
 gem 'sass-rails', github: 'rails/sass-rails'
-# gem 'sprockets-rails'
-# gem 'sprockets', '~> 4.0.0.beta'
 gem 'babel-transpiler'
 gem 'jquery-rails'
 gem 'uglifier', '>= 1.3.0'
@@ -51,7 +49,6 @@ gem 'font-awesome-sass'
 gem 'gon'
 gem "autoprefixer-rails"
 gem 'csso-rails'
-gem 'heroku_rails_deflate', group: :production
 gem 'turbolinks', '~> 5'
 gem 'jquery-turbolinks'
 gem 'momentjs-rails'
@@ -87,7 +84,7 @@ gem 'pry-rails'
 gem "fog-aws"
 gem 'mini_magick'
 gem 'carrierwave'
-# gem 'asset_sync'
+gem 'asset_sync'
 
 # Monitoring
 gem 'newrelic_rpm'

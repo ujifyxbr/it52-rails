@@ -173,10 +173,6 @@ GEM
       actionpack (>= 4.1, < 5.1)
       activesupport (>= 4.1, < 5.1)
     hashie (3.4.4)
-    heroku_rails_deflate (1.0.3)
-      actionpack (>= 3.2.13)
-      activesupport (>= 3.2.13)
-      rack (>= 1.4.5)
     high_voltage (3.0.0)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
@@ -446,7 +442,6 @@ DEPENDENCIES
   friendly_id
   gon
   has_scope
-  heroku_rails_deflate
   high_voltage
   icalendar
   jbuilder (~> 2.5)
