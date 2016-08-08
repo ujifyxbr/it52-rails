@@ -1,4 +1,15 @@
 GIT
+  remote: git://github.com/drapergem/draper.git
+  revision: 45e18569d9631710f889d75d49f971fb60d5cbcd
+  specs:
+    draper (3.0.0.pre1)
+      actionpack (~> 5.0)
+      activemodel (~> 5.0)
+      activemodel-serializers-xml (~> 1.0)
+      activesupport (~> 5.0)
+      request_store (~> 1.0)
+
+GIT
   remote: git://github.com/rails/activemodel-serializers-xml.git
   revision: 570ee7ed33d60e44ca1f3ccbec3d1fbf61d52cbf
   specs:
@@ -128,11 +139,6 @@ GEM
     docile (1.1.5)
     domain_name (0.5.20160615)
       unf (>= 0.0.5, < 1.0.0)
-    draper (2.1.0)
-      actionpack (>= 3.0)
-      activemodel (>= 3.0)
-      activesupport (>= 3.0)
-      request_store (~> 1.0)
     erubis (2.7.0)
     excon (0.50.1)
     execjs (2.7.0)
@@ -513,7 +519,7 @@ DEPENDENCIES
   csso-rails
   dalli
   devise
-  draper
+  draper!
   factory_girl_rails
   ffaker
   figaro

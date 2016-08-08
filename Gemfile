@@ -34,7 +34,7 @@ gem 'friendly_id'
 # Decoration
 gem 'active_model_serializers'
 gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
-gem 'draper'
+gem 'draper', github: 'drapergem/draper'
 
 # Compile and serve assets
 gem 'sass-rails', github: 'rails/sass-rails'
