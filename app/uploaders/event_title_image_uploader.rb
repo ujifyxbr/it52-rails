@@ -34,6 +34,10 @@ class EventTitleImageUploader < CarrierWave::Uploader::Base
   #   process :resize_to_fit => [50, 50]
   # end
 
+  def default_url
+    ActionController::Base.helpers.asset_path("events_fallback/" + [version_name, "default.png"].compact.join('_'))
+  end
+
   version :square_500 do
     process resize_to_fit: [500, nil]
   end
