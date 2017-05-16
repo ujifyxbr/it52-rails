@@ -1,10 +1,9 @@
 class EventSerializer < ActiveModel::Serializer
   cache key: 'event', expires_in: 3.hours
-  attributes :id, :title, :description, :image_url, :place, :started_at, :started_at_js, :url, :location
+  attributes :id, :title, :description, :image_url, :place, :started_at, :started_at_js, :url, :location, :organizer
 
+  belongs_to :organizer
   has_many :participants, each_serializer: UserSerializer
-
-  url :event
 
   def image_url
     object.title_image.square_500.url

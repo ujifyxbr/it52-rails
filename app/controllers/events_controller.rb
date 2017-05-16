@@ -3,7 +3,7 @@ require 'icalendar'
 class EventsController < ApplicationController
   respond_to :html
   responders :flash
-
+  before_action :set_allow_cors_headers
   before_action :set_event, only: [:show, :edit, :destroy, :update, :publish, :cancel_publication]
   load_resource param_method: :event_params
   before_action :set_organizer, only: :create
@@ -11,13 +11,20 @@ class EventsController < ApplicationController
 
   has_scope :ordered_desc, type: :boolean, allow_blank: true, default: true
 
+  def set_allow_cors_headers
+    headers['Access-Control-Allow-Origin']    = '*'
+    headers['Access-Control-Allow-Methods']   = 'GET'
+    headers['Access-Control-Request-Method']  = 'OPTIONS'
+    headers['Access-Control-Allow-Headers']   = 'Content-Type'
+  end
+
   def index
     @events = Event.visible_by_user(current_user).future.decorate
     @past_events = Event.visible_by_user(current_user).past.decorate
     @rss_events = Event.published.future.order(published_at: :asc).decorate
     @all_events = Event.published.order(started_at: :asc)
     respond_to do |format|
-      format.json { render json: @all_events.to_json }
+      format.json { render json: @all_events }
       format.html
       format.atom
       format.ics { render text: Calendar.new(@all_events).to_ical }
