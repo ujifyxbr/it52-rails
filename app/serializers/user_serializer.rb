@@ -4,8 +4,6 @@ class UserSerializer < ActiveModel::Serializer
 
   has_many :authentications
 
-  url :user
-
   def avatar_url
     object.avatar_image.square_150.url
   end
