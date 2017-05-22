@@ -98,8 +98,14 @@ class EventsController < ApplicationController
       url: event_url(@event),
       image:  @event.title_image.square_500.url,
       description: @event.decorate.simple_description,
-      canonical: event_url(@event),
-      publisher: Figaro.env.mailing_host,
+      # canonical: event_url(@event),
+      # publisher: Figaro.env.mailing_host,
+      performer: {
+        "@type": "PerformingGroup",
+        legalName: Figaro.env.mailing_host,
+        name: Figaro.env.mailing_host,
+        url: "https://#{Figaro.env.mailing_host}"
+      },
       location: {
         "@type": "Place",
         name: @event.place,
