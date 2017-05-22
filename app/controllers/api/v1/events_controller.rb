@@ -1,3 +1,4 @@
+# coding: utf-8
 module Api
   module V1
     class EventsController < ApiController
@@ -18,7 +19,7 @@ module Api
       def index
         year  = params[:year].present?  ? params[:year].to_i  : Time.now.year
         month = params[:month].present? ? params[:month].to_i : nil
-        @response_object = @model.held_in(year, month)
+        @response_object = @model.published.held_in(year, month)
         render render_options
       end
 
