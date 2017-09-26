@@ -27,7 +27,7 @@ $ ->
 
   if $('#uuid').length > 0
     uid = document.getElementById('uuid').dataset.userId
-    ga('set', '&uid', uid)
+    ga?('set', '&uid', uid)
 
   $('input#event_started_at').datetimepicker
     language: 'ru'
