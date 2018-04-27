@@ -1,15 +1,20 @@
+require 'carrierwave/storage/abstract'
+require 'carrierwave/storage/file'
+require 'carrierwave/storage/fog'
+
 CarrierWave.configure do |config|
+  config.fog_provider = 'fog/aws'
+  config.fog_use_ssl_for_aws = true
+  config.fog_directory    = ENV['aws_bucket']
+  config.fog_public       = true
+  config.fog_attributes   = { 'Cache-Control' => "max-age=#{365.days.to_i}" }
+  config.asset_host       = ENV['aws_host']
   config.cache_dir        = "#{Rails.root}/tmp/uploads"
-  config.storage          = :fog
-  config.fog_directory    = Figaro.env.aws_bucket
   config.fog_credentials  = {
     provider:               'AWS',
-    aws_access_key_id:      Figaro.env.aws_access_key_id,
-    aws_secret_access_key:  Figaro.env.aws_secret_access_key,
-    region:                 Figaro.env.fog_region,
-    host:                   Figaro.env.fog_host
+    aws_access_key_id:      ENV['aws_access_key_id'],
+    aws_secret_access_key:  ENV['aws_secret_access_key'],
+    region:                 ENV['fog_region'],
+    host:                   ENV['fog_host']
   }
-  config.fog_attributes = { 'Cache-Control' => "max-age=#{365.days.to_i}" }
-
-  config.asset_host = Figaro.env.aws_host
 end

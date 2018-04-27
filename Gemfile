@@ -6,7 +6,7 @@ gem 'rails', '~> 5.0.0'
 # gem 'rails-i18n'
 
 # Database
-gem 'pg'
+gem 'pg', '< 1.0.0'
 
 # Mailing
 gem 'mailchimp-api', require: 'mailchimp'
@@ -81,7 +81,7 @@ gem 'awesome_print'
 gem 'pry-rails'
 
 # Image and AWS S3 management
-gem "fog-aws"
+gem 'fog-aws'
 gem 'mini_magick'
 gem 'carrierwave'
 gem 'asset_sync'
