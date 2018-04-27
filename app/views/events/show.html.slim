@@ -46,7 +46,7 @@ script type="application/ld+json" == @structured_data.to_json
     a href=user_path(@event.organizer) itemprop='url' content=user_url(@event.organizer)
       span itemprop="name" = @event.organizer
   .event-share: p
-    = icon 'share-alt'
+    = icon 'fas', 'share-alt'
     span.ya-share2< data={ counter: true, lang: "ru", services: "vkontakte,facebook,twitter,gplus", size: 'm', title: @event.title, description: @event.truncated_description, url: event_url(@event)}
 
   hr
