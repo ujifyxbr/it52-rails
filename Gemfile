@@ -33,11 +33,11 @@ gem 'friendly_id'
 
 # Decoration
 gem 'active_model_serializers'
-gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
-gem 'draper', github: 'drapergem/draper'
+gem 'activemodel-serializers-xml'
+gem 'draper'
 
 # Compile and serve assets
-gem 'sass-rails', github: 'rails/sass-rails'
+gem 'sass-rails'
 gem 'babel-transpiler'
 gem 'jquery-rails'
 gem 'uglifier', '>= 1.3.0'
@@ -68,7 +68,7 @@ gem 'dalli'
 
 # Documentation
 gem 'sdoc', '~> 0.4.0', group: :doc
-gem 'apipie-rails', git: 'https://github.com/Apipie/apipie-rails.git', ref: 'f697ec2a887cd73c00c846eceb2ce63a050ccb20'
+# gem 'apipie-rails', git: 'https://github.com/Apipie/apipie-rails.git', ref: 'f697ec2a887cd73c00c846eceb2ce63a050ccb20'
 
 # Application server
 gem 'unicorn-rails'
@@ -84,7 +84,7 @@ gem 'pry-rails'
 gem 'fog-aws'
 gem 'mini_magick'
 gem 'carrierwave'
-gem 'asset_sync'
+# gem 'asset_sync'
 
 # Monitoring
 gem 'newrelic_rpm'
