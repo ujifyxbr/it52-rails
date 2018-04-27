@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   add_flash_types :error, :failure, :success, :alert
 
   before_action :define_common_meta_tags
-  before_action :redirect_to_main_domain, if: -> { request.host != 'www.it52.info' && Rails.env.production? }
+  # before_action :redirect_to_main_domain, if: -> { request.host != 'www.it52.info' && Rails.env.production? }
   before_action :authenticate_user!, if: -> { authenticated_path? }
 
   rescue_from CanCan::AccessDenied do |exception|
