@@ -25,7 +25,7 @@ class AuthenticationDecorator < Draper::Decorator
   end
 
   def icon
-    h.content_tag :i, '', class: "fas fa-#{object.provider}"
+    h.content_tag :i, '', class: "fab fa-#{object.provider}"
   end
 
   private
