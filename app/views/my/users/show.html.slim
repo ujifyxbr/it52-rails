@@ -2,11 +2,11 @@
   .col-sm-3
     .avatar.image-container = image_tag @user.avatar_image.square_150.url
     = link_to edit_my_profile_path, class: 'btn btn-warning btn-block' do
-      i.fa.fa-pencil>
+      i.fas.fa-pencil>
       = t('.edit')
     br
     = link_to destroy_user_session_path, method: :delete, class: 'btn btn-danger btn-block' do
-      i.fa.fa-power-off>
+      i.fas.fa-power-off>
       = t('shared.sidebar.logout')
     br
     .text-center = link_to t('.edit_registration'), edit_user_registration_path, class: 'text-danger'
@@ -41,10 +41,7 @@
 
 
 .user-profile-page
-
-
   .row
-
     .col-sm-9.col-md-10
 
   - if @user.owner_of_events.any?

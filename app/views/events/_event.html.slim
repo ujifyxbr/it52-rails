@@ -3,10 +3,10 @@
   /   .pull-right
   /     - if can? :edit, event
   /       = link_to edit_event_path(event), class: 'btn btn-xs btn-warning', data: { no_turbolink: true } do
-  /         i.fa.fa-pencil
+  /         i.fas.fa-pencil
   /     - if can? :destroy, event
   /       = link_to event, method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: 'Are you sure?' } do
-  /         i.fa.fa-times
+  /         i.fas.fa-times
   /   h3.panel-title
   /     - if can? :edit, event
   /       = render partial: 'admin_info', object: event, as: :event
@@ -33,18 +33,18 @@
           span.ya-share2 data={ counter: true, lang: "ru", services: "vkontakte,facebook,twitter,gplus", size: 'm', title: event.title, description: event.truncated_description, url: event_url(event)}
         hr
         .event-organizer: p title="Организатор"
-          i.fa.fa-fw.fa-user>
+          i.fas.fa-fw.fa-user>
           a href=user_path(event.organizer) = event.organizer
       .col-sm-8
         / .event-date: p title="Время проведения"
-        /   i.fa.fa-fw.fa-calendar>
+        /   i.fas.fa-fw.fa-calendar>
         /   = event.link_to_time
         / - if event.place.present?
         /   .event-place: p title="Место проведения"
-        /     i.fa.fa-fw.fa-map-marker>
+        /     i.fas.fa-fw.fa-map-marker>
         /     = event.link_to_place
         / .event-organizer: p title="Организатор"
-        /   i.fa.fa-fw.fa-user>
+        /   i.fas.fa-fw.fa-user>
         /   a href=user_path(event.organizer) = event.organizer
         / hr
         .event-description = event.rendered_description

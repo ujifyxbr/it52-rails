@@ -6,7 +6,7 @@
 
   #sidebar-menu
     = link_to '#mobile-menu', id: 'mobile-menu-toggler', class: 'toggle', data: {toggle: 'collapse'} do
-      i.fa.fa-align-justify
+      i.fas.fa-align-justify
 
     hr
 
@@ -17,7 +17,7 @@
         .user-name
           = link_to current_user.full_name, my_profile_path, class: 'profile-link'
           .logout< = link_to destroy_user_session_path, method: :delete, title: t('.logout') do
-            i.fa.fa-power-off
+            i.fas.fa-power-off
     - else
       ul#registration-login-nav.nav
         = active_link_to t('.login'), new_user_session_path, wrap_tag: :li
@@ -48,15 +48,15 @@
     .sidebar-contacts
       ul.list-inline
         li: a href='https://www.facebook.com/groups/it52info/' target='_blank' title="Facebook"
-          = icon 'facebook'
+          = icon 'fas', 'facebook'
         li<> |
         li: a href='https://vk.com/it52info' target='_blank' title="Вконтакте"
-          = icon 'vk'
+          = icon 'fas', 'vk'
         li<> |
         li: a href='mailto:events@it52.info' target='_blank' title="E-mail"
-          = icon 'envelope'
+          = icon 'fas', 'envelope'
         li<> |
         li: a href='https://telegram.me/nnrug' target='_blank' title="Telegram"
-          = icon 'paper-plane'
+          = icon 'fas', 'paper-plane'
       hr
       p: small == "2014 - #{Date.today.year} © #{link_to 'IT52.info', root_path}"

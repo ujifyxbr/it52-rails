@@ -22,7 +22,7 @@ document.addEventListener 'turbolinks:load', ->
       hideIcons: ['image']
 
 $ ->
-  $('.admin-info i.fa').tooltip()
+  $('.admin-info i.fas').tooltip()
   $('li.participant a').tooltip()
 
   if $('#uuid').length > 0
@@ -35,10 +35,10 @@ $ ->
     showToday: true
     sideBySide: true
     icons:
-      time: "fa fa-clock-o"
-      date: "fa fa-calendar"
-      up: "fa fa-arrow-up"
-      down: "fa fa-arrow-down"
+      time: "fas fa-clock-o"
+      date: "fas fa-calendar"
+      up: "fas fa-arrow-up"
+      down: "fas fa-arrow-down"
 
   shares = document.querySelectorAll('.ya-share2')
   sharesInitialized = document.querySelectorAll('.ya-share2_inited')

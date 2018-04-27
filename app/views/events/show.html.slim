@@ -35,14 +35,14 @@ script type="application/ld+json" == @structured_data.to_json
             = render partial: 'participate_block', object: @event, as: :event
 
   .event-date: p
-    i.fa.fa-fw.fa-calendar>
+    i.fas.fa-fw.fa-calendar>
     = @event.link_to_time
   - if @event.place.present?
     .event-place: p
-      i.fa.fa-fw.fa-map-marker>
+      i.fas.fa-fw.fa-map-marker>
       = @event.link_to_place
   .event-organizer: p title="Организатор" itemprop='organizer' itemscope=true itemtype="http://schema.org/Person"
-    i.fa.fa-fw.fa-user>
+    i.fas.fa-fw.fa-user>
     a href=user_path(@event.organizer) itemprop='url' content=user_url(@event.organizer)
       span itemprop="name" = @event.organizer
   .event-share: p

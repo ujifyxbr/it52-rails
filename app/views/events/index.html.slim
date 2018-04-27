@@ -4,9 +4,9 @@
       small.pull-right
         a.btn.btn-success> href=new_event_path Добавить
         = link_to events_path(format: :ics), title: 'iCalendar feed', class: "color-rosewood no-underline" do
-          i.fa.fa-calendar>
+          i.fas.fa-calendar>
         = link_to events_path(format: :atom), title: 'Atom feed', class: "color-rosewood no-underline" do
-          i.fa.fa-rss-square<
+          i.fas.fa-rss-square<
 
 
       = Event.model_name.human(count: 2)

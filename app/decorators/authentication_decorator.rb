@@ -20,12 +20,12 @@ class AuthenticationDecorator < Draper::Decorator
   def link_to_destroy(css_classes = [])
     @css_classes = css_classes
     h.link_to h.my_authentication_path(object), method: :delete, class: css_class, data: { confirm: h.t('authentications.unlink') } do
-      h.content_tag :i, '', class: "fa fa-times"
+      h.content_tag :i, '', class: "fas fa-times"
     end
   end
 
   def icon
-    h.content_tag :i, '', class: "fa fa-#{object.provider}"
+    h.content_tag :i, '', class: "fas fa-#{object.provider}"
   end
 
   private
