@@ -84,7 +84,7 @@ gem 'pry-rails'
 gem 'fog-aws'
 gem 'mini_magick'
 gem 'carrierwave'
-# gem 'asset_sync'
+gem 'asset_sync'
 
 # Monitoring
 gem 'newrelic_rpm'
