@@ -36,7 +36,7 @@ $ ->
     sideBySide: true
     icons:
       time: "fas fa-clock-o"
-      date: "fas fa-calendar"
+      date: "fas fa-calendar-alt"
       up: "fas fa-arrow-up"
       down: "fas fa-arrow-down"
 
