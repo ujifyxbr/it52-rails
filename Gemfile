@@ -24,7 +24,7 @@ gem 'omniauth-vkontakte'
 gem 'omniauth-github'
 gem "omniauth-google-oauth2"
 gem "omniauth-twitter"
-gem 'cancancan', '~> 1.7'
+gem 'cancancan', '< 1.13'
 
 # Request handling
 # gem 'responders'

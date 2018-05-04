@@ -20,5 +20,4 @@
 //= require bootstrap-datetimepicker
 
 //= require common
-//= require shares
 //= require turbolinks

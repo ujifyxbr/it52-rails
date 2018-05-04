@@ -6,9 +6,10 @@ class EventsController < ApplicationController
 
   before_action :set_event, only: [:show, :edit, :destroy, :update, :publish, :cancel_publication]
   before_action :check_actual_slug, only: :show
-  load_resource param_method: :event_params
   before_action :define_meta_tags, only: [:show, :edit]
   before_action :set_organizer, only: :create
+
+  load_resource param_method: :event_params
   authorize_resource
 
   has_scope :ordered_desc, type: :boolean, allow_blank: true, default: true
