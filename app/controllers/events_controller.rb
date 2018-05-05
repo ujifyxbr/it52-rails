@@ -131,6 +131,7 @@ class EventsController < ApplicationController
   end
 
   def set_organizer
+    @event = Event.new(event_params)
     @event.organizer = current_user || nil
   end
 
@@ -141,6 +142,7 @@ class EventsController < ApplicationController
       :started_at,
       :title_image,
       :place,
+      :title_image,
       :title_image_cache,
       :location
     ]
