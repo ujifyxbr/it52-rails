@@ -4,12 +4,6 @@
 
 CarrierWave.configure do |config|
   config.fog_provider = 'fog/aws'
-  config.fog_use_ssl_for_aws = true
-  config.fog_directory    = ENV['aws_bucket']
-  config.fog_public       = true
-  config.fog_attributes   = { 'Cache-Control' => "max-age=#{365.days.to_i}" }
-  config.asset_host       = ENV['aws_host']
-  config.cache_dir        = "#{Rails.root}/tmp/uploads"
   config.fog_credentials  = {
     provider:               'AWS',
     aws_access_key_id:      ENV['aws_access_key_id'],
@@ -17,4 +11,10 @@ CarrierWave.configure do |config|
     region:                 ENV['fog_region'],
     host:                   ENV['fog_host']
   }
+  config.fog_use_ssl_for_aws = true
+  config.fog_directory    = ENV['aws_bucket']
+  config.fog_public       = true
+  config.fog_attributes   = { 'Cache-Control' => "max-age=#{365.days.to_i}" }
+  config.asset_host       = ENV['aws_host']
+  config.cache_dir        = "#{Rails.root}/tmp/uploads"
 end
