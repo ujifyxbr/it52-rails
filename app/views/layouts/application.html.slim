@@ -1,6 +1,9 @@
 doctype html
 html lang='ru'
   head
+    javascript:
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-N5924B');
+
     = display_meta_tags
     meta http-equiv='X-UA-Compatible' content='IE=edge'
     meta name='viewport' content='width=device-width, initial-scale=1'
@@ -21,12 +24,19 @@ html lang='ru'
 
     = csrf_meta_tags
 
-    script src='https://yastatic.net/share2/share.js' async='async'
+    script src='https://yastatic.net/share2/share.js' async=true
     link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css"
     script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"
 
+    = javascript_include_tag 'application'
+
   body
-    = render 'shared/gtm'
+    script type="text/javascript" src="https://cdn.distiltag.com/api/v1/script/ybXNnCfNOJEo0cEJoqU6QUuoKhyOdbiDYqETdtG9?GA_TID=UA-54446007-1&GA_CDI=1" async=true defer=true
+
+    noscript: img src="https://cdn.distiltag.com/api/v1/noscript/ybXNnCfNOJEo0cEJoqU6QUuoKhyOdbiDYqETdtG9?GA_TID=UA-54446007-1&GA_CDI=1"
+
+    noscript: iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N5924B" height="0" width="0" style="display:none;visibility:hidden"
+
     = render 'shared/nav'
 
     main
@@ -47,5 +57,5 @@ html lang='ru'
             p Подписывайтесь!
 
         = yield
+
     = render 'shared/footer'
-    = javascript_include_tag 'application'
