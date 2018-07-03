@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :event do
     title       { FFaker::Lorem.words(4).join(' ') }
     description { FFaker::Lorem.paragraphs(3).join("\n\n") }

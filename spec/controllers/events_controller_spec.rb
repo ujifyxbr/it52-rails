@@ -2,9 +2,9 @@ require 'rails_helper'
 
 describe EventsController do
   context 'POST create' do
-    let(:event_attrs) { FactoryGirl.attributes_for(:event) }
-    let(:user) { FactoryGirl.create :user }
-    let(:admin) { FactoryGirl.create :admin }
+    let(:event_attrs) { FactoryBot.attributes_for(:event) }
+    let(:user) { FactoryBot.create :user }
+    let(:admin) { FactoryBot.create :admin }
 
     context 'when user is anonymous' do
       it 'unlogged user cannot create event' do
