@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe MailchimpHooksController do
   describe 'POST #update_subscription' do
-    let!(:subscribed_user) { FactoryGirl.create(:user, :subscribed) }
-    let!(:unsubscribed_user) { FactoryGirl.create(:user, :unsubscribed) }
+    let!(:subscribed_user) { FactoryBot.create(:user, :subscribed) }
+    let!(:unsubscribed_user) { FactoryBot.create(:user, :unsubscribed) }
 
     let(:subscription_params) {
       { token: Figaro.env.mailchimp_hooks_token,

@@ -21,17 +21,17 @@ require 'rails_helper'
 
 describe Event do
   describe 'should validate title' do
-    let(:event) { FactoryGirl.build :event, title: '' }
+    let(:event) { FactoryBot.build :event, title: '' }
     it { expect(event).not_to be_valid }
   end
 
   describe 'should validate place' do
-    let(:event) { FactoryGirl.build :event, place: '' }
+    let(:event) { FactoryBot.build :event, place: '' }
     it { expect(event).not_to be_valid }
   end
 
   describe 'should validate organizer' do
-    let(:event) { FactoryGirl.build :event, organizer: nil }
+    let(:event) { FactoryBot.build :event, organizer: nil }
     it { expect(event).not_to be_valid }
   end
 end

@@ -65,7 +65,7 @@ GEM
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
-    bcrypt (3.1.11)
+    bcrypt (3.1.12)
     bindex (0.5.0)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
@@ -115,10 +115,10 @@ GEM
     erubis (2.7.0)
     excon (0.62.0)
     execjs (2.7.0)
-    factory_girl (4.9.0)
+    factory_bot (4.10.0)
       activesupport (>= 3.0.0)
-    factory_girl_rails (4.9.0)
-      factory_girl (~> 4.9.0)
+    factory_bot_rails (4.10.0)
+      factory_bot (~> 4.10.0)
       railties (>= 3.0.0)
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
@@ -179,6 +179,18 @@ GEM
     json (1.8.6)
     jsonapi-renderer (0.2.0)
     jwt (1.5.6)
+    kaminari (1.1.1)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.1.1)
+      kaminari-activerecord (= 1.1.1)
+      kaminari-core (= 1.1.1)
+    kaminari-actionview (1.1.1)
+      actionview
+      kaminari-core (= 1.1.1)
+    kaminari-activerecord (1.1.1)
+      activerecord
+      kaminari-core (= 1.1.1)
+    kaminari-core (1.1.1)
     kgio (2.11.2)
     launchy (2.4.3)
       addressable (~> 2.3)
@@ -428,7 +440,7 @@ DEPENDENCIES
   dalli
   devise
   draper
-  factory_girl_rails
+  factory_bot_rails
   ffaker
   figaro
   fog-aws
@@ -441,6 +453,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   jquery-turbolinks
+  kaminari
   letter_opener
   listen (~> 3.0.5)
   mailchimp-api

@@ -2,8 +2,8 @@ class UsersController < ApplicationController
   respond_to :html
 
   def index
-    @users = User.order(:slug)
-    respond_with @users
+    @users = User.order(:slug).page(params[:page])
+    #respond_with @users
   end
 
   def show

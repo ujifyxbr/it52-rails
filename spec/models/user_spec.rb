@@ -34,8 +34,8 @@
 require 'rails_helper'
 
 describe User do
-  let(:user) { FactoryGirl.create(:user) }
-  let(:unsubscribed_user) { FactoryGirl.create(:user, :unsubscribed) }
+  let(:user) { FactoryBot.create(:user) }
+  let(:unsubscribed_user) { FactoryBot.create(:user, :unsubscribed) }
 
   it 'has default(member) role after creation' do
     expect(user.role).to eq 'member'
