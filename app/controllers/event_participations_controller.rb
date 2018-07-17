@@ -7,14 +7,14 @@ class EventParticipationsController < ApplicationController
     @event_participation.save!
 
     flash[:success] = t(:event_participation_created, title: @event_participation.event.title)
-    redirect_to :back
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy
     @event_participation.destroy!
 
     flash[:success] = t(:event_participation_canceled, title: @event_participation.event.title)
-    redirect_to :back
+    redirect_back(fallback_location: root_path)
   end
 
   private

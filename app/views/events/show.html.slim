@@ -3,16 +3,16 @@ script type="application/ld+json" == @structured_data.to_json
 .events-show.event data={ id: @event.id } itemscope=true itemtype="http://schema.org/Event"
   .page-header
     .pull-right
-      - if can? :edit, @event
+      - if can? :edit, @event.object
         = link_to t(:edit), edit_event_path(@event), class: 'btn btn-default'
         | &nbsp;
-      - if can? :publish, @event
+      - if can? :publish, @event.object
         - if !@event.published?
           = link_to t('.publish'), publish_event_path(@event), class: 'btn btn-warning', method: :patch
         - else
           = link_to t('.cancel_publication'), cancel_publication_event_path(@event), class: 'btn btn-warning', method: :patch
     h1
-      - if can? :edit, @event
+      - if can? :edit, @event.object
         = render partial: 'admin_info', object: @event, as: :event
       span itemprop="name" => @event.title
       span.hidden itemprop='url' content=event_url(@event)

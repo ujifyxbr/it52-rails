@@ -2,15 +2,14 @@ require 'icalendar'
 
 class EventsController < ApplicationController
   respond_to :html
-  responders :flash
+  # responders :flash
 
   before_action :set_event, only: [:show, :edit, :destroy, :update, :publish, :cancel_publication]
   before_action :check_actual_slug, only: :show
   before_action :define_meta_tags, only: [:show, :edit]
   before_action :set_organizer, only: :create
 
-  load_resource param_method: :event_params
-  authorize_resource
+  load_and_authorize_resource param_method: :event_params
 
   has_scope :ordered_desc, type: :boolean, allow_blank: true, default: true
 
@@ -78,11 +77,12 @@ class EventsController < ApplicationController
 
   def define_meta_tags
     set_meta_tags({
-      title: [l(@event.started_at, format: :date_time_full), @event.title],
+      title: [l(@event.started_at), @event.title],
       description: @event.decorate.simple_description,
       canonical: event_url(@event),
       publisher: Figaro.env.mailing_host,
       author: user_url(@event.organizer),
+      image_src: @event.title_image.fb_1200.url,
       og: {
         title: :title,
         url: :canonical,
@@ -136,15 +136,9 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    permitted_attrs = [
-      :title,
-      :description,
-      :started_at,
-      :title_image,
-      :place,
-      :title_image,
-      :title_image_cache,
-      :location
+    permitted_attrs = %i[
+      title description started_at title_image place
+      title_image title_image_cache location
     ]
     params[:event].delete(:location) if params[:event][:location].blank?
     params.require(:event).permit(*permitted_attrs)
