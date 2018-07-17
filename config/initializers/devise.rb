@@ -261,7 +261,7 @@ Devise.setup do |config|
                   scope: 'user:email, read:org'
   config.omniauth :google_oauth2, Figaro.env.google_id, Figaro.env.google_secret
   config.omniauth :facebook, Figaro.env.facebook_id, Figaro.env.facebook_secret,
-                  scope: 'public_profile, email, user_events, user_groups, user_website, rsvp_event, user_about_me, user_website',
+                  scope: 'public_profile, email, user_website',
                   info_fields: 'email,name',
                   secure_image_url: true,
                   image_size: 'large'
