@@ -57,6 +57,11 @@ $navbar-default-bg: white
     left: -1.6rem
   &:hover::before
     animation: blinker 1s step-start infinite
+  &.member::before
+    content: '$'
+  &.admin::before,
+  &.root::before
+    content: '#'
 
 body
   padding-top: 70px
