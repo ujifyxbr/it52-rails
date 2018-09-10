@@ -22,11 +22,41 @@ $color-rosewood: #700F00
 $navbar-default-bg: white
 
 
-.navbar-header
-  .navbar-brand
-    padding-top: 0
-  .navbar-logout
-    float: right
+.blink_me
+  animation: blinker 1s linear infinite
+
+@keyframes blinker
+  50%
+    opacity: 0
+
+.it52-logo
+  font-family: 'Fira Mono'
+  font-weight: 500
+  font-size: 26px
+  line-height: 1.4
+  color: #111
+  position: relative
+  margin: 0
+  letter-spacing: -1px
+  &::first-letter
+    margin-right: -1px
+  &::after
+    content: '2'
+    position: absolute
+    top: 0
+    right: 0
+    height: 100%
+    width: 1.5rem
+    background: #111
+    color: #fefefe
+    text-align: right
+  &::before
+    content: '>'
+    position: absolute
+    top: 0
+    left: -1.6rem
+  &:hover::before
+    animation: blinker 1s step-start infinite
 
 body
   padding-top: 70px

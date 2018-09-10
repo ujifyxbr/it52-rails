@@ -6,7 +6,7 @@ gem 'rails', '~> 5.1.0'
 # gem 'rails-i18n'
 
 # Database
-gem 'pg', '< 1.0.0'
+gem 'pg'
 
 # Mailing
 gem 'mailchimp-api', require: 'mailchimp'

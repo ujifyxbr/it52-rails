@@ -47,7 +47,7 @@ $font-family-sans-serif: "Helvetica Neue", sans-serif
 
 $font-family-serif:       Georgia, "Times New Roman", Times, serif !default
 //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
-$font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default
+$font-family-monospace:   "Fira Mono", Menlo, Monaco, Consolas, "Courier New", monospace !default
 $font-family-base:        $font-family-sans-serif !default
 
 $font-size-base:          14px !default
@@ -803,3 +803,16 @@ $component-offset-horizontal: 180px !default
 
 @import "bootstrap-sprockets"
 @import "bootstrap"
+
+.navbar-header
+  .navbar-brand
+    padding-top: 8px
+    margin-left: -19px
+  .navbar-logout
+    float: right
+
+@media (min-width: 768px)
+  .navbar
+    & > .container .navbar-brand,
+    & > .container-fluid .navbar-brand
+      margin-left: -20px
