@@ -1,5 +1,5 @@
 h1, .h1, h2, .h2
-  font-weight: 300
+  font-weight: 400
 
 h3, h4, h5, h6, .h3, .h4, .h5, .h6
   font-weight: 600
@@ -38,4 +38,25 @@ h3, h4, h5, h6, .h3, .h4, .h5, .h6
     border-radius: 1px
 
 a
-  transition: all .15s linear
+  color: black
+  text-decoration: underline
+  &:hover
+    color: #fefefe
+    background: #111
+    text-decoration: none
+
+.navbar a
+  color: $sidebar-bg-color
+
+.navbar,
+.nav
+  a
+    text-decoration: none
+
+.nav a:hover
+  color: #111
+
+.btn
+  text-decoration: none
+  font-weight: 400
+  letter-spacing: -1px
