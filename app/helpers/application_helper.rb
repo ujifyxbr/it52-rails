@@ -4,7 +4,8 @@ module ApplicationHelper
   end
 
   def logo_class
-    return 'root' if user_signed_in?
+    return 'user' if current_user&.member?
+    return 'root' if current_user&.admin?
     ''
   end
 end

@@ -57,8 +57,9 @@ $navbar-default-bg: white
     left: -1.6rem
   &:hover::before
     animation: blinker 1s step-start infinite
-  &.member::before
-    content: '$'
+  &.member::before,
+  &.user::before
+    content: '~'
   &.admin::before,
   &.root::before
     content: '#'
