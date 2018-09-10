@@ -30,9 +30,9 @@ $ ->
     ga?('set', '&uid', uid)
 
   $('input#event_started_at').datetimepicker
-    language: 'ru'
-    minuteStepping: 15
-    showToday: true
+    locale: 'ru'
+    stepping: 15
+    showTodayButton: true
     sideBySide: true
     icons:
       time: "fas fa-clock-o"

@@ -46,10 +46,10 @@ body
 .help-block
   font-size: 90%
 
-html.turbolinks-progress-bar::before
-  background-color: transparentize($ruby-red, .2) !important
-  height: 1px !important
-  box-shadow: 0 0 10px $ruby-red, 0 0 6px $ruby-red, 0 0 3px $ruby-red
+.turbolinks-progress-bar
+  background-color: transparentize(#111, .2)
+  height: 2px
+  box-shadow: 0 0 10px #111, 0 0 6px #111, 0 0 3px #111
 
 .color-rosewood
   color: lighten($color-rosewood, 10%)
@@ -76,7 +76,15 @@ html.turbolinks-progress-bar::before
 
 .add-new-button
   margin-right: .5rem
-    
-.users-paginator 
+
+.users-paginator
   text-align: center
 
+
+.event-date
+  text-decoration: none
+  .event-day
+    margin-right: 1rem
+  .event-time
+    background: #111
+    color: #fefefe

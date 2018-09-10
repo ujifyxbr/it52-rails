@@ -50,6 +50,20 @@ class EventDecorator < Draper::Decorator
   end
 
   def link_to_time
-    h.link_to h.localize(object.started_at), h.event_path(object, format: :ics)
+    days_to_event = Date.current - object.started_at.to_date
+    text = case days_to_event
+      when 2 then 'Позавчера'
+      when 1 then 'Вчера'
+      when 0 then 'Сегодня'
+      when -1 then 'Завтра'
+      when -2 then 'Послезавтра'
+    end
+
+    text ||= h.localize(object.started_at, format: :date_without_year) if object.started_at.year == Time.current.year
+    text ||= h.localize(object.started_at, format: :date)
+    h.link_to h.event_path(object, format: :ics), class: 'event-date' do
+      (h.content_tag :span, text, class: 'event-day') +
+      (h.content_tag :span, h.localize(object.started_at, format: :time), class: 'event-time')
+    end
   end
 end

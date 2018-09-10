@@ -19,6 +19,9 @@ ru:
       default: "%d %B %Y %H:%M"
       date_time_full: "%d %B %Y, %H:%M"
       date_time_short: "%d.%m.%Y %H:%M"
+      date: "%d.%m.%Y"
+      date_without_year: "%d %B"
+      time: "%H:%M"
       sitemap: "%Y-%m-%d"
   date:
     abbr_day_names:

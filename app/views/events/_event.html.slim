@@ -2,13 +2,12 @@
   .panel-body
     .row: .col-sm-12
       h2.event-header = link_to event.title, event_path(event)
+      h4.event-subheader title="Время проведения" = event.link_to_time
     hr
     .row
-      .col-sm-12.col-md-4
-        h3.event-subheader title="Время проведения" = event.link_to_time
-      .col-sm-12.col-md-8
-       - if event.place.present?
-        h3.event-subheader title="Место проведения" = event.link_to_place
+      .col-sm-12
+         - if event.place.present?
+          h4.event-subheader title="Место проведения" = event.link_to_place
     hr
     .row
       .col-sm-4

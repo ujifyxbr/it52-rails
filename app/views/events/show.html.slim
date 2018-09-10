@@ -17,7 +17,7 @@ script type="application/ld+json" == @structured_data.to_json
       span itemprop="name" => @event.title
       span.hidden itemprop='url' content=event_url(@event)
       small: nobr itemprop="startDate" content=@event.started_at.to_time.iso8601
-        = l @event.started_at, format: :date_time_full
+        = @event.link_to_time
 
   .row
     .col-xs-12.col-sm-4
