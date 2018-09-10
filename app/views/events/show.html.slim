@@ -16,8 +16,9 @@ script type="application/ld+json" == @structured_data.to_json
         = render partial: 'admin_info', object: @event, as: :event
       span itemprop="name" => @event.title
       span.hidden itemprop='url' content=event_url(@event)
-      small: nobr itemprop="startDate" content=@event.started_at.to_time.iso8601
-        = @event.link_to_time
+      small
+        nobr itemprop="startDate" content=@event.started_at.to_time.iso8601
+          = @event.link_to_time
 
   .row
     .col-xs-12.col-sm-4
@@ -36,7 +37,7 @@ script type="application/ld+json" == @structured_data.to_json
 
   .event-date: p
     i.fas.fa-fw.fa-calendar>
-    = @event.link_to_time
+    = link_to l(@event.started_at, format: :date_time_full), event_path(@event, format: :ics)
   - if @event.place.present?
     .event-place: p
       i.fas.fa-fw.fa-map-marker>

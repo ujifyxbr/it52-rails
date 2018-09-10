@@ -2,12 +2,11 @@
   .panel-body
     .row: .col-sm-12
       h2.event-header = link_to event.title, event_path(event)
-      h4.event-subheader title="Время проведения" = event.link_to_time
-    hr
-    .row
-      .col-sm-12
-         - if event.place.present?
-          h4.event-subheader title="Место проведения" = event.link_to_place
+      h4.event-subheader
+        span<> title="Время проведения" = event.link_to_time
+        - if event.place.present?
+          '|
+          span<> title="Место проведения" = event.link_to_place
     hr
     .row
       .col-sm-4
@@ -17,6 +16,13 @@
         .text-center
           span.ya-share2 data={ counter: true, lang: "ru", services: "vkontakte,facebook,twitter,gplus", size: 'm', title: event.title, description: event.truncated_description, url: event_url(event)}
         hr
+        .event-date: p
+          i.fas.fa-fw.fa-calendar>
+          = link_to l(event.started_at, format: :date_time_full), event_path(event, format: :ics)
+        - if event.place.present?
+          .event-place: p
+            i.fas.fa-fw.fa-map-marker>
+            = event.link_to_place
         .event-organizer: p title="Организатор"
           i.fas.fa-fw.fa-user>
           a href=user_path(event.organizer) = event.organizer
