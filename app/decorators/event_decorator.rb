@@ -61,7 +61,7 @@ class EventDecorator < Draper::Decorator
 
     text ||= h.localize(object.started_at, format: :date_without_year) if object.started_at.year == Time.current.year
     text ||= h.localize(object.started_at, format: :date)
-    h.link_to h.event_path(object, format: :ics), class: 'event-date' do
+    h.link_to h.event_path(object, format: :ics), class: 'event-date-inversed' do
       (h.content_tag :span, text, class: 'event-day') +
       (h.content_tag :span, h.localize(object.started_at, format: :time), class: 'event-time')
     end
