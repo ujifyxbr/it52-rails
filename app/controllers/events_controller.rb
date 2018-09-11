@@ -21,8 +21,8 @@ class EventsController < ApplicationController
     @rss_events = model.published.future.order(published_at: :asc).decorate
     @all_events = model.published.order(started_at: :asc)
     respond_to do |format|
-      format.json { render json: @all_events.to_json }
       format.html
+      format.json { render json: @all_events.to_json }
       format.atom
       format.ics { render body: Calendar.new(@all_events).to_ical }
     end
