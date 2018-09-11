@@ -135,10 +135,10 @@ ru:
       vk: Вконтакте
       facebook: Facebook
       events: Мероприятия
-      donations: Пожертвования
+      donations: Спонсорам
       about: О сайте
       members: Участники
-      donate: Пожертвования
+      donate: Спонсорам
       add_event_button_title: Добавить мероприятие
       hashtag: "Наш хештег #%{hashtag}"
     nav:
