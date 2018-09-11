@@ -106,6 +106,25 @@ class Event < ApplicationRecord
     [header, fixed_description].join("\n"*2)
   end
 
+  def to_meta_tags
+    simple_description = EventDecorator.decorate(self).simple_description
+    {
+      title: [I18n.l(started_at, format: :date), title],
+      description: simple_description,
+      canonical: canonical_url,
+      publisher: Figaro.env.mailing_host,
+      author: Rails.application.routes.url_helpers.user_url(organizer, host: Figaro.env.mailing_host),
+      image_src: title_image.fb_1200.url,
+      og: {
+        title: [I18n.l(started_at, format: :date), title].join(' ~ '),
+        url: canonical_url,
+        description: simple_description,
+        image: title_image.fb_1200.url,
+        updated_time: updated_at
+      }
+    }
+  end
+
   def ics_uid
     "#{created_at.iso8601}-#{started_at.iso8601}-#{id}@#{Figaro.env.mailing_host}"
   end
@@ -119,7 +138,11 @@ class Event < ApplicationRecord
     event.created = created_at
     event.last_modified = updated_at
     event.uid = ics_uid
-    event.url = Rails.application.routes.url_helpers.event_url(self, host: Figaro.env.mailing_host)
+    event.url = canonical_url
     event
+  end
+
+  def canonical_url
+    Rails.application.routes.url_helpers.event_url(self, host: Figaro.env.mailing_host)
   end
 end

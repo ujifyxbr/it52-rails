@@ -75,21 +75,29 @@ class EventsController < ApplicationController
 
   private
 
-  def define_meta_tags
+  def define_common_meta_tags
+    image_path = ActionController::Base.helpers.asset_url('it52_logo_fb@2x.png', type: :image)
     set_meta_tags({
-      title: [l(@event.started_at), @event.title],
-      description: @event.decorate.simple_description,
-      canonical: event_url(@event),
-      publisher: Figaro.env.mailing_host,
-      author: user_url(@event.organizer),
-      image_src: @event.title_image.fb_1200.url,
+      site: t(:app_name),
+      description: t(:app_description),
+      keywords: t(:app_keywords),
+      canonical: root_path,
+      reverse: true,
+      image_src: image_path,
+      charset: 'utf-8',
+
       og: {
-        title: :title,
-        url: :canonical,
-        description: :description,
-        image: @event.title_image.fb_1200.url
+        site_name: :site,
+        locale: 'ru_RU',
+        image: image_path,
+        description: t(:app_description),
+        url: root_path
       }
     })
+  end
+
+  def define_meta_tags
+    set_meta_tags @event
 
     @structured_data = {
       "@context": "http://schema.org",
