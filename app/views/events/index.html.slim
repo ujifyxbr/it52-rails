@@ -1,16 +1,15 @@
 .events-index
   .page-header
     h1
+      = Event.model_name.human(count: 2)
+
       small.pull-right
         a.btn.btn-success> href=new_event_path Добавить
-        = link_to events_path(format: :ics), title: 'iCalendar feed', class: "icon no-underline" do
-          i.fas.fa-calendar-alt
-        == "&nbsp;"
-        = link_to events_path(format: :atom), title: 'Atom feed', class: "icon no-underline" do
-          i.fas.fa-rss
-
-
-      = Event.model_name.human(count: 2)
+        span.feed-icons
+          = link_to events_path(format: :ics), title: 'iCalendar feed', class: "icon no-underline" do
+            i.fas.fa-calendar-alt
+          = link_to events_path(format: :atom), title: 'Atom feed', class: "icon no-underline" do
+            i.fas.fa-rss
 
   ul.nav.nav-pills role="tablist"
     li role="presentation" class="#{'active' unless @past}"
