@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def redirect_to_main_domain
-    redirect_to "http://www.#{Figaro.env.mailing_host}#{request.fullpath}", status: :moved_permanently
+    redirect_to "https://www.#{Figaro.env.mailing_host}#{request.fullpath}", status: :moved_permanently
   end
 
   private
