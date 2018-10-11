@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_11_094902) do
+ActiveRecord::Schema.define(version: 2018_10_10_093500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,7 +48,6 @@ ActiveRecord::Schema.define(version: 2018_10_11_094902) do
     t.datetime "published_at"
     t.string "slug", limit: 255
     t.point "location"
-    t.text "foreign_link"
     t.index ["organizer_id"], name: "index_events_on_organizer_id"
     t.index ["slug"], name: "index_events_on_slug", unique: true
   end
@@ -98,4 +97,5 @@ ActiveRecord::Schema.define(version: 2018_10_11_094902) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token"
     t.index ["slug"], name: "index_users_on_slug", unique: true
   end
+
 end
