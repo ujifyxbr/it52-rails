@@ -16,10 +16,11 @@
       h1
         = @user
         small< = @user.nickname
-      = @user.link_to_website
 
-      - unless @user.employment.blank?
+      - if @user.employment.present?
         h4 #{ t('activerecord.attributes.user.employment') }:  #{ @user.employment }
+
+      = @user.link_to_website
 
     - if @user.bio?
        = @user.bio
@@ -37,11 +38,6 @@
         h5.subheader = t('.unlinked_accounts')
         ul.list-inline
           = render partial: 'authentications/unlinked', collection: @user.unlinked_providers, as: :provider
-
-
-
-
-
 
 .user-profile-page
   .row
