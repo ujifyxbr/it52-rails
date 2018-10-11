@@ -7,6 +7,7 @@ class EventParticipationsController < ApplicationController
     @event_participation.save!
 
     flash[:success] = t(:event_participation_created, title: @event_participation.event.title)
+    return redirect_to @event_participation.event.foreign_link if !@event_participation.event.foreign_link.blank?
     redirect_back(fallback_location: root_path)
   end
 

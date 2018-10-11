@@ -245,6 +245,7 @@ ru:
         title_image: Титульное изображение
         participants: Участники
         place: Место проведения
+        foreign_link: Ссылка на стороннюю регистраци
 
   unauthorized:
     create:
@@ -264,3 +265,5 @@ ru:
         edit_registration: Сменить email и пароль
       edit:
         title: Профиль
+    events:
+      has_foreign_link: Сторонняя регистрация

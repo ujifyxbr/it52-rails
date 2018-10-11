@@ -1,3 +1,4 @@
+# coding: utf-8
 # == Schema Information
 #
 # Table name: events
@@ -19,6 +20,8 @@
 
 class Event < ApplicationRecord
   paginates_per 20
+
+  attr_accessor :has_foreign_link
 
   mount_uploader :title_image, EventTitleImageUploader
 

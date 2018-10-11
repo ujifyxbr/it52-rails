@@ -2,6 +2,15 @@ initYandexShare = (element) -> setTimeout (() -> Ya.share2(element)), 0
 
 
 document.addEventListener 'turbolinks:load', ->
+  if $('input#has_foreign_link').is(':checked')
+    $('div#event_foreign_link_box').removeClass("hidden")
+  $('input#has_foreign_link').on 'change', ->
+    $('div#event_foreign_link_box').toggleClass('hidden')
+    if !$(this).is(":checked")
+      $('input#event_foreign_link').val('').attr('disable', true)
+    else
+      $('input#even_foreign_link').attr('disable', false)
+
   simplemdeId = document.querySelectorAll('.edit_event')[0]?.id
   simplemdeId ||= document.getElementById('new_event')?.id
   simplemdeId ||= document.getElementById('user_bio')?.id
@@ -45,4 +54,3 @@ $ ->
 
   if shares.length > 0 and sharesInitialized.length is 0
     Array.from(shares).forEach (element) -> initYandexShare(element)
-

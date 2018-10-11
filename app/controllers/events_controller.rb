@@ -165,7 +165,7 @@ class EventsController < ApplicationController
   def event_params
     permitted_attrs = %i[
       title description started_at title_image place
-      title_image title_image_cache location
+      title_image title_image_cache location foreign_link
     ]
     params[:event].delete(:location) if params[:event][:location].blank?
     params.require(:event).permit(*permitted_attrs)
