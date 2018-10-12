@@ -9,7 +9,7 @@ before_script:
   - cp config/application.yml.template config/application.yml
 bundler_args: --retry 3
 install:
-  - bundle install --path vendor/bundle
+  - bundle install
 script:
   - bundle exec rake db:create db:migrate
   - bundle exec rspec
