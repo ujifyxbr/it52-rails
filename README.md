@@ -37,8 +37,8 @@ Main branch is [it52](https://github.com/NNRUG/it52-rails/tree/it52)
 
 ## Requirements
 
-- Ruby 2.2.1
-- PostgreSQL 9.x
+- Ruby 2.5.1
+- PostgreSQL 10.x
 
 ## Я хочу помочь!
 
