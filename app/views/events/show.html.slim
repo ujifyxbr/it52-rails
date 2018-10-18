@@ -1,6 +1,6 @@
 script type="application/ld+json" == @structured_data.to_json
 
-.events-show.event data={ id: @event.id } itemscope=true itemtype="http://schema.org/Event"
+.events-show.event data={ id: @event.id }
   .page-header
     .pull-right
       - if can? :edit, @event.object
@@ -14,15 +14,14 @@ script type="application/ld+json" == @structured_data.to_json
     h1
       - if can? :edit, @event.object
         = render partial: 'admin_info', object: @event, as: :event
-      span itemprop="name" => @event.title
-      span.hidden itemprop='url' content=event_url(@event)
+      span => @event.title
       small
-        nobr itemprop="startDate" content=@event.started_at.to_time.iso8601
+        nobr
           = @event.link_to_time
 
   .row
     .col-xs-12.col-sm-4
-      .image-container = image_tag @event.title_image.square_500.url, itemprop: 'image', content: @event.title_image.square_500.url
+      .image-container = image_tag @event.title_image.square_500.url, alt: @event.title
     .col-xs-12.col-sm-8
       .participants
         .panel.panel-default
@@ -45,13 +44,13 @@ script type="application/ld+json" == @structured_data.to_json
     .event-place: p
       i.fas.fa-fw.fa-map-marker>
       = @event.link_to_place
-  .event-organizer: p title="Организатор" itemprop='organizer' itemscope=true itemtype="http://schema.org/Person"
+  .event-organizer: p title="Организатор"
     i.fas.fa-fw.fa-user>
-    a href=user_path(@event.organizer) itemprop='url' content=user_url(@event.organizer)
-      span itemprop="name" = @event.organizer
+    a href=user_path(@event.organizer)
+      span = @event.organizer
   .event-share: p
     = icon 'fas', 'share-alt'
     span.ya-share2< data={ counter: true, lang: "ru", services: "vkontakte,facebook,twitter,gplus", size: 'm', title: @event.title, description: @event.truncated_description, url: event_url(@event)}
 
   hr
-  .event-description itemprop="description" = @event.rendered_description
+  .event-description = @event.rendered_description

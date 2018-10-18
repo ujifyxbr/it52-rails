@@ -120,28 +120,35 @@ class EventsController < ApplicationController
     set_meta_tags @event
 
     @structured_data = {
-      "@context": "http://schema.org",
-      "@type": "Event",
+      '@context': 'http://schema.org',
+      '@type': 'Event',
       name: @event.title,
       startDate: @event.started_at.iso8601,
+      endDate: (@event.started_at + 6.hours).iso8601,
       url: event_url(@event),
       image:  @event.title_image.square_500.url,
       description: @event.decorate.simple_description,
-      # canonical: event_url(@event),
-      # publisher: Figaro.env.mailing_host,
       performer: {
-        "@type": "PerformingGroup",
-        legalName: Figaro.env.mailing_host,
-        name: Figaro.env.mailing_host,
-        url: "https://#{Figaro.env.mailing_host}"
+        '@type': 'PerformingGroup',
+        image: @event.organizer.avatar_image.square_150.url,
+        name: @event.organizer.to_s,
+        sameAs: user_url(@event.organizer)
       },
       location: {
-        "@type": "Place",
+        '@type': 'Place',
         name: @event.place,
         address: @event.place
       },
+      offers: {
+        '@type': 'Offer',
+        url: event_url(@event),
+        availability: 'http://schema.org/InStock',
+        price: 0,
+        priceCurrency: 'RUB',
+        validFrom: (@event.published_at + 6.hours).iso8601
+      },
       organizer: {
-        "@type": "Person",
+        '@type': 'Person',
         url: user_url(@event.organizer),
         name: @event.organizer.to_s
       }
