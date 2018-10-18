@@ -11,14 +11,16 @@ xml.rss version: '2.0',
     xml.turbo(:analytics, id: '50290294', type: 'Yandex')
     xml.turbo(:analytics, id: 'UA-54446007-1', type: 'Google')
 
-    @rss_events.each do |event|
-      html = render partial: 'event-item', locals: { event: event }
-      xml.item(turbo: 'true') do |item|
-        item.link event_url(event)
-        item.pubDate event.published_at.rfc2822
-        item.author event.organizer.to_s
-        item.turbo(:content) do |content|
-          content.cdata! html
+    Rails.cache.fetch(@rss_events.object.cache_key) do
+      @rss_events.each do |event|
+        html = render partial: 'event-item', locals: { event: event }
+        xml.item(turbo: 'true') do |item|
+          item.link event_url(event)
+          item.pubDate event.published_at.rfc2822
+          item.author event.organizer.to_s
+          item.turbo(:content) do |content|
+            content.cdata! html
+          end
         end
       end
     end

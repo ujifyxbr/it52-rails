@@ -23,7 +23,7 @@ class EventsController < ApplicationController
               else
                 @events.future.decorate
               end
-    @rss_events = model.published.order(published_at: :desc).limit(100).decorate
+    @rss_events = model.published.order(published_at: :desc).limit(500).decorate
     @all_events = model.published.order(started_at: :asc)
     respond_to do |format|
       format.html
