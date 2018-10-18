@@ -4,9 +4,8 @@ atom_feed language: 'ru-RU', root_url: events_url do |feed|
   feed.icon asset_url('logo-it52-16x16.png')
   feed.logo asset_url('logo-it52.png')
   feed.updated (@rss_events.last || Event.published.order(published_at: :asc).last).updated_at
-  feed.category "Tech"
-  feed.category "IT"
-  feed.category "Geek"
+  feed.category term: 'Tech'
+  feed.category term: 'IT'
   feed.rights  "© 2014 — #{Date.today.year}, #{Figaro.env.mailing_host}"
 
   feed.author do |author|

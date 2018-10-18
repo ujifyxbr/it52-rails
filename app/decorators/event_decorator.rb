@@ -28,8 +28,8 @@ class EventDecorator < Draper::Decorator
 
   def full_description
     rendered_description +
-    h.content_tag(:p, link_to_time) +
-    h.content_tag(:p, link_to_place)
+    h.content_tag(:p, l(event.started_at, format: :date_time_full)) +
+    h.content_tag(:p, object.place)
   end
 
   def truncated_description(length = 80)
