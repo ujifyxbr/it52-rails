@@ -136,7 +136,7 @@ class Event < ApplicationRecord
 
   def to_ics
     event = Icalendar::Event.new
-    event.dtstart = started_at.strftime("%Y%m%dT%H%M%S")
+    event.dtstart = Icalendar::Values::DateTime.new started_at, tzid: Rails.configuration.time_zone
     event.summary = title
     event.description = self.decorate.simple_description
     event.location = place
@@ -144,6 +144,7 @@ class Event < ApplicationRecord
     event.last_modified = updated_at
     event.uid = ics_uid
     event.url = canonical_url
+    event.organizer = Icalendar::Values::CalAddress.new("mailto:#{organizer.email}", cn: organizer.to_s)
     event
   end
 
