@@ -15,6 +15,8 @@ html lang='ru'
     link rel="icon" type="image/png" href=asset_path('it52-logo-96x96.png') sizes="96x96"
     link rel="icon" type="image/png" href=asset_path('it52-logo-192x192.png') sizes="192x192"
 
+    link rel="alternate" type="application/atom+xml" title=t(:app_description) href=events_url(format: :atom)
+
     link rel="apple-touch-icon" sizes="180x180" href=asset_path('it52-logo-180x180.png')
 
     meta name="msapplication-TileColor" content="#111111"
@@ -25,11 +27,6 @@ html lang='ru'
     link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,600&amp;subset=cyrillic" rel="stylesheet"
 
     = stylesheet_link_tag 'application', media: 'all'
-
-    / HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
-    / [if lt IE 9]
-      script src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js'
-      script src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js'
 
     = csrf_meta_tags
 
@@ -43,10 +40,6 @@ html lang='ru'
     = javascript_include_tag 'application'
 
   body
-    script type="text/javascript" src="https://cdn.distiltag.com/api/v1/script/ybXNnCfNOJEo0cEJoqU6QUuoKhyOdbiDYqETdtG9?GA_TID=UA-54446007-1&GA_CDI=1" async=true defer=true
-
-    noscript: img src="https://cdn.distiltag.com/api/v1/noscript/ybXNnCfNOJEo0cEJoqU6QUuoKhyOdbiDYqETdtG9?GA_TID=UA-54446007-1&GA_CDI=1"
-
     noscript: iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N5924B" height="0" width="0" style="display:none;visibility:hidden"
 
     = render 'shared/nav'
