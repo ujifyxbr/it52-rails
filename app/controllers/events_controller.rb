@@ -145,7 +145,7 @@ class EventsController < ApplicationController
         availability: 'http://schema.org/InStock',
         price: 0,
         priceCurrency: 'RUB',
-        validFrom: (@event.published_at + 6.hours).iso8601
+        validFrom: ((@event.published_at || Time.current) + 6.hours).iso8601
       },
       organizer: {
         '@type': 'Person',
