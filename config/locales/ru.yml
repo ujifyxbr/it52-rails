@@ -198,6 +198,8 @@ ru:
       add_event_button_title: Добавить мероприятие
       future_events: Будут
       past_events: Были
+      unapproved_events: На модерации
+      new_event: Добавить
     new:
       title: Новое мероприятие
     edit:

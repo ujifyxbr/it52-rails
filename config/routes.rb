@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   # apipie
 
+  root to: 'events#index'
+
   get 'authentications/destroy'
   get '/sitemap', to: 'sitemap#index', defaults: { format: :xml }
 
@@ -20,8 +22,10 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show]
 
   # События
-  resources :events do
-    get :past, on: :collection, action: :index
+  resources :events, except: %i[index] do
+    get '/', on: :collection, to: redirect('/', status: 301)
+    get :past, on: :collection, action: :index_past
+    get :unapproved, on: :collection, action: :index_unapproved
     get :participants, on: :member
     patch :publish, on: :member
     patch :cancel_publication, on: :member
@@ -43,8 +47,6 @@ Rails.application.routes.draw do
 
   # Let's encrypt cert route
   get '/.well-known/acme-challenge/:id' => 'letsencrypt#approve'
-
-  root to: 'events#index'
 
   get ':id' => 'high_voltage/pages#show', as: :page
 

@@ -1,23 +1,23 @@
 .events-index
   .page-header
-    h1
-      = Event.model_name.human(count: 2)
+    .pull-right
+      .feed-icons
+        = link_to events_path(format: :ics), title: 'Добавить в календарь', class: "icon no-underline" do
+          i.fas.fa-calendar-alt.fa-2x
+        = link_to events_path(format: :atom), title: 'RSS', class: "icon no-underline" do
+          i.fas.fa-rss.fa-2x
 
-      small.pull-right
-        a.btn.btn-success> href=new_event_path Добавить
-        span.feed-icons
-          = link_to events_path(format: :ics), title: 'iCalendar feed', class: "icon no-underline" do
-            i.fas.fa-calendar-alt
-          = link_to events_path(format: :atom), title: 'Atom feed', class: "icon no-underline" do
-            i.fas.fa-rss
-
-  ul.nav.nav-pills role="tablist"
-    li role="presentation" class="#{'active' unless past_events_page? }"
-      = link_to t('.future_events'), events_path
-    li role="presentation" class="#{'active' if past_events_page? }"
-      = link_to t('.past_events'), past_events_path
-  br
-
+    ul.nav.nav-pills role="tablist"
+      li role="presentation" class="#{'active' if action_name == 'index' }"
+        = link_to t('.future_events'), root_path
+      li role="presentation" class="#{'active' if action_name == 'index_past' }"
+        = link_to t('.past_events'), past_events_path
+      - if user_signed_in?
+        li role="presentation" class="#{'active' if action_name == 'index_unapproved' }"
+          = link_to "#{t('.unapproved_events')} (#{unapproved_count})", unapproved_events_path
+      li role="presentation"
+        = link_to t('.new_event'), new_event_path, class: 'btn btn-success'
+        / a.btn.btn-success> href=new_event_path Добавить
   - if @events.empty?
     .alert.alert-success
       p Похоже все коллеги устали митапить и хакатонить и сейчас отдыхают.
@@ -34,6 +34,5 @@
       = render @events
 
   // pagination
-  - if past_events_page?
-    .text-center
-      == paginate @events
+  .text-center
+    == paginate @events.object

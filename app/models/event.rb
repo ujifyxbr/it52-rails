@@ -40,6 +40,7 @@ class Event < ApplicationRecord
   scope :ordered_asc,   -> { order(started_at: :asc) }
 
   scope :published, -> { where(published: true) }
+  scope :unapproved, -> { where(published: false) }
 
   scope :past,    -> { ordered_desc.where("started_at < ?", Time.now.beginning_of_day ) }
   scope :future,  -> { ordered_asc.where("started_at >= ?", Time.now.beginning_of_day ) }
@@ -50,7 +51,7 @@ class Event < ApplicationRecord
     ordered_desc.where("started_at BETWEEN ? AND ?", start, finish)
   }
 
-  scope :visible_by_user, -> (user) {
+  scope :visible_by_user, -> (user = nil) {
     return published if user.nil?
     user.admin? ? all : where("organizer_id = ? OR published = ?", user.id, true)
   }

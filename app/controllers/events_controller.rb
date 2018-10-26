@@ -2,27 +2,22 @@ require 'icalendar'
 
 class EventsController < ApplicationController
   respond_to :html
-  # responders :flash
 
-  helper_method :past_events_page?
+  helper_method :unapproved_count
 
+  before_action :authenticate_user!, except: %i[index index_past]
   before_action :set_event, only: [:show, :edit, :destroy, :update, :publish, :cancel_publication, :participants]
   before_action :check_actual_slug, only: :show
   before_action :define_meta_tags, only: [:show, :edit]
   before_action :set_organizer, only: :create
 
-  load_and_authorize_resource param_method: :event_params
+  load_and_authorize_resource param_method: :event_params, except: %i[index index_past index_unapproved]
 
   has_scope :ordered_desc, type: :boolean, allow_blank: true, default: true
 
   def index
     model = Event.includes(:event_participations, :participants, :organizer)
-    @events = model.visible_by_user(current_user)
-    @events = if past_events_page?
-                @events.past.page(params[:page]).decorate
-              else
-                @events.future.decorate
-              end
+    @events = model.published.future.page(params[:page]).decorate
     @rss_events = model.published.order(published_at: :desc).limit(500).decorate
     @all_events = model.published.order(started_at: :asc)
     respond_to do |format|
@@ -34,6 +29,20 @@ class EventsController < ApplicationController
     end
   end
 
+
+  def index_past
+    model = Event.includes(:event_participations, :participants, :organizer)
+    @events = model.published.past.page(params[:page]).decorate
+    render :index
+  end
+
+  def index_unapproved
+    model = Event.includes(:event_participations, :participants, :organizer)
+    @events = model.unapproved.visible_by_user(current_user).page(params[:page]).decorate
+    render :index
+  end
+
+
   def show
     @event = @event.decorate
     flash[:warning] = t('.waiting_for_approval') unless @event.published?
@@ -41,7 +50,6 @@ class EventsController < ApplicationController
       format.html { respond_with @event }
       format.ics { render body: Calendar.new(@event).to_ical, mime_type: Mime::Type.lookup("text/calendar") }
     end
-    #respond_with @event
   end
 
   def participants
@@ -179,7 +187,7 @@ class EventsController < ApplicationController
     params.require(:event).permit(*permitted_attrs)
   end
 
-  def past_events_page?
-    @past ||= request.path.include?('past')
+  def unapproved_count
+    Event.unapproved.visible_by_user(current_user).count
   end
 end
