@@ -5,13 +5,13 @@ class EventsController < ApplicationController
 
   helper_method :unapproved_count
 
-  before_action :authenticate_user!, except: %i[index index_past]
+  before_action :authenticate_user!, except: %i[index index_past show]
   before_action :set_event, only: [:show, :edit, :destroy, :update, :publish, :cancel_publication, :participants]
   before_action :check_actual_slug, only: :show
   before_action :define_meta_tags, only: [:show, :edit]
   before_action :set_organizer, only: :create
 
-  load_and_authorize_resource param_method: :event_params, except: %i[index index_past index_unapproved]
+  load_and_authorize_resource param_method: :event_params, except: %i[index index_past index_unapproved show]
 
   has_scope :ordered_desc, type: :boolean, allow_blank: true, default: true
 
