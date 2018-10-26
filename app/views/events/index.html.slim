@@ -12,7 +12,7 @@
         = link_to t('.future_events'), root_path
       li role="presentation" class="#{'active' if action_name == 'index_past' }"
         = link_to t('.past_events'), past_events_path
-      - if user_signed_in?
+      - if user_signed_in? && !unapproved_count.zero?
         li role="presentation" class="#{'active' if action_name == 'index_unapproved' }"
           = link_to "#{t('.unapproved_events')} (#{unapproved_count})", unapproved_events_path
       li role="presentation"
