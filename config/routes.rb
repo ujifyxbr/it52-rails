@@ -22,8 +22,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show]
 
   # События
-  resources :events, except: %i[index] do
-    get '/', on: :collection, to: redirect('/', status: 301)
+  resources :events do
     get :past, on: :collection, action: :index_past
     get :unapproved, on: :collection, action: :index_unapproved
     get :participants, on: :member
