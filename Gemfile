@@ -89,7 +89,7 @@ gem 'asset_sync'
 
 # Monitoring
 gem 'newrelic_rpm'
-gem 'runtimeerror_notifier'
+# gem 'runtimeerror_notifier'
 
 # Utils
 gem 'icalendar'

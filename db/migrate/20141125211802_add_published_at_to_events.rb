@@ -1,4 +1,4 @@
-class AddPublishedAtToEvents < ActiveRecord::Migration
+class AddPublishedAtToEvents < ActiveRecord::Migration[4.2]
   def change
     add_column :events, :published_at, :datetime
 

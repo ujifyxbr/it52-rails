@@ -1,4 +1,4 @@
-class NullableSorceryCore < ActiveRecord::Migration
+class NullableSorceryCore < ActiveRecord::Migration[4.2]
   def change
     change_column_null(:users, :email, true)
     change_column_null(:users, :crypted_password, true)

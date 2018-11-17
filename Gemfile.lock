@@ -179,8 +179,6 @@ GEM
     highline (1.7.10)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
-    httparty (0.16.2)
-      multi_xml (>= 0.5.2)
     i18n (1.1.0)
       concurrent-ruby (~> 1.0)
     icalendar (2.5.0)
@@ -369,12 +367,6 @@ GEM
       rspec-mocks (~> 3.8.0)
       rspec-support (~> 3.8.0)
     rspec-support (3.8.0)
-    runtimeerror_notifier (0.0.27)
-      actionmailer
-      actionpack
-      activesupport
-      httparty (>= 0.10.0)
-      rake
     sass (3.6.0)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -524,7 +516,6 @@ DEPENDENCIES
   rails_12factor
   redcarpet
   rspec-rails
-  runtimeerror_notifier
   sassc-rails
   sdoc (~> 0.4.0)
   shoulda-matchers
