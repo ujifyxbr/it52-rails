@@ -91,6 +91,11 @@ class Event < ApplicationRecord
     save!
   end
 
+  def update_pageviews!
+    service = UpdateEventPageviews.new([self])
+    service.update_pageviews!
+  end
+
   def send_to_telegram
     post = Telegram::Message.new(:message)
     result = post.send_message(construct_telegram_message)

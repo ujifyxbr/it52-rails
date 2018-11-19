@@ -107,4 +107,6 @@ Rails.application.configure do
     api_key: Figaro.env.mailgun_api_key,
     domain: Figaro.env.mailing_host
   }
+
+  config.require_master_key = true
 end

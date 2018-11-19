@@ -59,3 +59,6 @@ nginx_rewrite.txt
 
 # Vagrant vm
 .vagrant
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key

@@ -31,6 +31,7 @@ module It52Rails
 
     # Add concerns to autoload
     config.autoload_paths += ["#{Rails.root}/app/uploaders/concerns"]
+    config.autoload_paths += ["#{Rails.root}/app/services"]
 
     # Mailing host
     config.action_mailer.default_url_options = { host: Figaro.env.mailing_host }

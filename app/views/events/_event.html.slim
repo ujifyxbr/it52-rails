@@ -19,12 +19,15 @@
           i.fas.fa-fw.fa-calendar>
           = link_to l(event.started_at, format: :date_time_full), event_path(event, format: :ics)
         - if event.place.present?
-          .event-place: p
+          .event-place: p title="Место проведения"
             i.fas.fa-fw.fa-map-marker>
             = event.link_to_place
         .event-organizer: p title="Организатор"
           i.fas.fa-fw.fa-user>
           a href=user_path(event.organizer) = event.organizer
+        .event-views: p title="Просмотры"
+          i.fas.fa-fw.fa-eye>
+          span.event-views-counter data={ 'event-path' => event_path(event) } = event.pageviews
       .col-sm-8
         .event-description = event.rendered_description
 
