@@ -18,9 +18,8 @@ class UpdateEventPageviews
   def update_pageviews!
     ga_data.each_with_index do |row, index|
       value = row['metrics'][0]['values'][0]
-      event = Event.find_by(slug: row['dimensions'][0].split('/')[2])
-      events[index]
-      event.update(pageviews: value)
+      slug = row['dimensions'][0].split('/')[2]
+      Event.find_by(slug: slug).update(pageviews: value)
     end
   end
 
@@ -28,10 +27,7 @@ class UpdateEventPageviews
 
   def get_ga_data!
     url = 'https://analyticsreporting.googleapis.com/v4/reports:batchGet'
-    headers = {
-      # 'Content-Type' => 'application/x-www-form-urlencoded',
-      'Authorization' => "Bearer #{token}"
-    }
+    headers = { 'Authorization' => "Bearer #{token}" }
     @urls = events.map { |event| Rails.application.routes.url_helpers.event_path(event) }
     response = Excon.post(url, body: build_request_body(urls), headers: headers)
     @ga_data = extract_data(response)
@@ -80,7 +76,6 @@ class UpdateEventPageviews
       }]
     }
     params.to_json
-    # URI.encode_www_form(params)
   end
 
   def extract_data(response)

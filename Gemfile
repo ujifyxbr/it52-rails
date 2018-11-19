@@ -68,7 +68,6 @@ gem 'meta-tags'
 gem 'dalli'
 
 # Reporting
-gem 'google-api-client'
 gem 'jwt'
 
 # Documentation

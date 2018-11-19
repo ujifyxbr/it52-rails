@@ -1,67 +1,5 @@
 initYandexShare = (element) -> setTimeout (() -> Ya.share2(element)), 0
 
-displayResults = (response) ->
-  console.log(response)
-
-# queryReports = () ->
-#   gapi.client.request({
-#     path: '/v4/reports:batchGet'
-#     root: 'https://analyticsreporting.googleapis.com/'
-#     method: 'POST'
-#     body:
-#       reportRequests: [
-#         {
-#           viewId: VIEW_ID,
-#           dateRanges: [
-#             {
-#               startDate: '7daysAgo',
-#               endDate: 'today'
-#             }
-#           ],
-#           metrics: [{ expression: 'ga:sessions' }]
-#         }
-#       ]
-#   }).then(displayResults, console.error.bind(console));
-
-start = () ->
-  gapi.client.init({
-    apiKey: 'WemgJsdSj21MbgDpDPotyLuz',
-    # // Your API key will be automatically added to the Discovery Document URLs.
-    # discoveryDocs: ['https://people.googleapis.com/$discovery/rest'],
-    # // clientId and scope are optional if auth is not required.
-    clientId: '906201887339-m7bmjtsk94pin8av2shoasbkasshp4er.apps.googleusercontent.com',
-    scope: 'https://www.googleapis.com/auth/analytics.readonly'
-  }).then(() ->
-    # // 3. Initialize and make the API request.
-    gapi.client.request({
-      path: '/v4/reports:batchGet',
-      root: 'https://analyticsreporting.googleapis.com/',
-      method: 'POST',
-      body: {
-        reportRequests: [
-          {
-            viewId: VIEW_ID,
-            dateRanges: [
-              {
-                startDate: '7daysAgo',
-                endDate: 'today'
-              }
-            ],
-            metrics: [
-              {
-                expression: 'ga:sessions'
-              }
-            ]
-          }
-        ]
-      }
-    })
-  ).then((response) ->
-    console.log(response);
-  , (reason) ->
-    console.log('Error:', reason);
-  );
-
 document.addEventListener 'turbolinks:load', (event) ->
   if $('input#has_foreign_link').is(':checked')
     $('div#event_foreign_link_box').removeClass("hidden")
@@ -71,8 +9,6 @@ document.addEventListener 'turbolinks:load', (event) ->
       $('input#event_foreign_link').val('').attr('disable', true)
     else
       $('input#even_foreign_link').attr('disable', false)
-
-  gapi.load('client', start);
 
   simplemdeId = document.querySelectorAll('.edit_event')[0]?.id
   simplemdeId ||= document.getElementById('new_event')?.id
@@ -120,7 +56,3 @@ document.addEventListener 'turbolinks:load', (event) ->
 
   if shares.length > 0 and sharesInitialized.length is 0
     Array.from(shares).forEach (element) -> initYandexShare(element)
-
-
-
-VIEW_ID = "90699875"
