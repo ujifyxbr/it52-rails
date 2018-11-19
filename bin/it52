@@ -1,0 +1,69 @@
+#!/usr/bin/env ruby
+
+require "thor"
+
+class It52CLI < Thor
+  TALKS = [
+    { speaker: 'Антон Кастрицкий',
+      company: 'Yandex',
+      title: 'Типографика в вебе',
+      description: 'Разберём на примерах, как и из чего собираются интерфейсы. Поговорим про тексты, их оформление, доступность и производительность в контексте современных веб-приложений' },
+    { speaker: 'Александр Шушунов',
+      company: 'EPAM Systems',
+      title: "Let's kill lifecycle",
+      description: "Не любите lifecycle, а componentWillReceiveProps заставляет вас плакать? Let's make React pure again! Я покажу, как lifecycle делает ваш код сложнее и добавляет в него ошибки. Расскажу, как от этого избавиться или хотя бы спрятать" },
+    { speaker: 'Назим Гафаров',
+      compeny: 'Yandex',
+      title: 'Цена типизации',
+      description: 'Типизация обходится дорого. Сегодня ты пишешь дженерики, завтра дженерики от дженериков, а послезавтра программируешь на типах и выносишь из дома вещи ради новой дозы типизации. Я расскажу, как получить преимущества типизации, прилагая минимум усилий или вовсе не используя типизацию. Обозначу условия, при которых типизация окупается. Доклад будет интересен командам, которые присматриваются к TypeScript или Flow, но боятся, что затраты на внедрение превысят выгоду' },
+    { speaker: 'Павел Малышев',
+      company: 'Mustlab',
+      title: 'Жизнь после Svelte',
+      description: 'Что делать, если хочется ещё больше ванилы? Готовы ли веб-стандарты для решения прикладных задач разработки? Есть ли жизнь после Svelte?'
+    }
+  ]
+
+  PARTICIPANTS = 63
+
+  desc "create EVENT", "create community EVENT"
+  def create(name)
+    lines = [
+      "Creating #{name} event...",
+      'Finding organizers...',
+      'Locating host...',
+      'Persuading speakers...',
+      'Inviting participants...'
+    ]
+
+    lines.each do |line|
+      current_line = ''
+      prng = Random.new
+      line.chars.each do |char|
+        current_line << char
+        print "\r#{current_line}"
+        sleep prng.rand(0.3)
+      end
+      puts ''
+      sleep prng.rand(1.0)
+    end
+
+    puts 'Done!'
+  end
+
+  desc "find_talk INDEX", "find talk with INDEX (begins from 1)"
+  def find_talk(index)
+    index = index.to_i - 1
+
+    if index > TALKS.size - 1
+      puts "No talk with index `#{index}`"
+      return
+    end
+
+    talk = TALKS[index]
+    talk.each_key do |key|
+      puts "#{key[0].capitalize}#{key[1..-1]}: #{talk[key]}"
+    end
+  end
+end
+
+It52CLI.start(ARGV)

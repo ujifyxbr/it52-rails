@@ -67,6 +67,10 @@ gem 'meta-tags'
 # Caching
 gem 'dalli'
 
+# Reporting
+gem 'google-api-client'
+gem 'jwt'
+
 # Documentation
 gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'apipie-rails', git: 'https://github.com/Apipie/apipie-rails.git', ref: 'f697ec2a887cd73c00c846eceb2ce63a050ccb20'
