@@ -46,15 +46,16 @@ script type="application/ld+json" == @structured_data.to_json
       = @event.link_to_place
   .event-organizer: p title="Организатор"
     i.fas.fa-fw.fa-user>
+    span> Организатор:
     a href=user_path(@event.organizer)
       span = @event.organizer
+  .event-share: p title="Поделиться"
+    i.fas.fa-fw.fa-share-alt>
+    span> Поделиться в
+    span.ya-share2< data={ counter: true, lang: "ru", services: "telegram,vkontakte,facebook,twitter,gplus", size: 'm', title: @event.title, description: @event.truncated_description, url: event_url(@event)}
   .event-views: p title="Просмотры"
     i.fas.fa-fw.fa-eye>
     span.event-views-counter data={ 'event-path' => event_path(@event) } = @event.pageviews
-
-  .event-share: p
-    = icon 'fas', 'share-alt'
-    span.ya-share2< data={ counter: true, lang: "ru", services: "vkontakte,facebook,twitter,gplus", size: 'm', title: @event.title, description: @event.truncated_description, url: event_url(@event)}
 
   hr
   .event-description = @event.rendered_description

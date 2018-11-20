@@ -12,8 +12,7 @@
         = link_to event_path(event) do
           .image-container = image_tag event.title_image.square_500.url
         = render partial: 'participate_block', object: event, as: :event
-        .text-center
-          span.ya-share2 data={ counter: true, lang: "ru", services: "vkontakte,facebook,twitter,gplus", size: 'm', title: event.title, description: event.truncated_description, url: event_url(event)}
+
         hr
         .event-date: p
           i.fas.fa-fw.fa-calendar>
@@ -24,7 +23,12 @@
             = event.link_to_place
         .event-organizer: p title="Организатор"
           i.fas.fa-fw.fa-user>
+          span> Организатор
           a href=user_path(event.organizer) = event.organizer
+        .event-share: p title="Поделиться"
+          i.fas.fa-fw.fa-share-alt>
+          span> Поделиться в
+          span.ya-share2 data={ counter: true, lang: "ru", services: "telegram,vkontakte,facebook,twitter,gplus", size: 'm', title: event.title, description: event.truncated_description, url: event_url(event)}
         .event-views: p title="Просмотры"
           i.fas.fa-fw.fa-eye>
           span.event-views-counter data={ 'event-path' => event_path(event) } = event.pageviews
