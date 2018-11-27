@@ -157,4 +157,31 @@ class Event < ApplicationRecord
   def canonical_url
     Rails.application.routes.url_helpers.event_url(self, host: Figaro.env.mailing_host)
   end
+
+  def user_foreign_link(user)
+    build_foreign_link(user)
+  end
+
+  private
+
+  def build_foreign_link(user)
+    return nil unless foreign_link.present?
+    url = URI.parse(foreign_link)
+    url_params = Rack::Utils.parse_nested_query(url.query).deep_symbolize_keys
+    params = case url.host
+    when /timepad\.ru/
+      {
+        twf_prefill_attendees: { 0 => {
+          name: user.first_name,
+          surname: user.last_name,
+          mail: user.email
+        }},
+        twf_prefill_aux: [{ our_user: user.id }]
+      }
+    else
+      {}
+    end
+    params = params.merge(utm_source: 'it52')
+    [url.to_s, params.to_query].join('?')
+  end
 end
