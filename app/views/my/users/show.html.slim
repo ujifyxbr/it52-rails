@@ -39,27 +39,4 @@
         ul.list-inline
           = render partial: 'authentications/unlinked', collection: @user.unlinked_providers, as: :provider
 
-.user-profile-page
-  .row
-    .col-sm-9.col-md-10
-
-      - if @user.owner_of_events.any?
-        - year = 0
-        .owner-of-events
-          h2 = t('.organizer_block_title')
-          ul.date-list
-            - @user.owner_of_events.each do |event|
-              - if event.started_at.year != year
-                li.no-date: h3.text-muted = year = event.started_at.year
-              li date=l(event.started_at, format: :date_without_year)
-                = link_to event.title, event_path(event)
-
-      - if @user.member_in_events.any?
-        - year = 0
-        h2 = t('.member_block_title')
-        ul.date-list
-          - @user.member_in_events.each do |event|
-            - if event.started_at.year != year
-              li.no-date: h3.text-muted = year = event.started_at.year
-            li date=l(event.started_at, format: :date_without_year)
-              = link_to event.title, event_path(event)
+= render partial: 'users/user-events', locals: { user: @user }

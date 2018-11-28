@@ -44,7 +44,7 @@ class User < ApplicationRecord
 
   has_many :owner_of_events, -> { order(started_at: :desc) }, class_name: 'Event', foreign_key: 'organizer_id'
   has_many :event_participations
-  has_many :member_in_events, -> { order(started_at: :desc) }, class_name: 'Event', through: :event_participations, source: :event
+  has_many :member_in_events, -> { order(started_at: :desc).published }, class_name: 'Event', through: :event_participations, source: :event
 
   before_create :assign_default_role, if: -> { role.nil? }
   before_create :set_subscription, if: -> { email.present? && subscription.nil? }

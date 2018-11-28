@@ -193,6 +193,9 @@ ru:
       linked_accounts: Аккаунты в соцсетях
     available_accounts:
       title: Привязать дополнительные аккаунты
+    user-events:
+      organizer_block_title: Организатор мероприятий
+      member_block_title: Участник мероприятий
   events:
     index:
       add_event_button_title: Добавить мероприятие
