@@ -45,6 +45,9 @@
           margin-bottom: 0
           line-height: 50px
 
+    .panel-body
+      padding: 1.5rem
+
     @media (min-width: 768px)
       .panel-body
         padding: 3rem 3.4rem
@@ -85,12 +88,26 @@ form.edit_event, form.new_event
   font-family: 'Fira Sans', sans-serif
   line-height: 1.65
   font-size: 110%
+  overflow: auto
 
   img
     max-width: 100%
     background-color: #fefefe
-  ul
+  ul,
+  ol
     margin-bottom: 1rem
+    padding-left: 1.5rem
+
+  ul
+    position: relative
+    list-style: none
+
+    li:before
+      content: ">"
+      position: absolute
+      left: 0
+      font-weight: bold
+
 
 .event_description
   .CodeMirror-fullscreen,

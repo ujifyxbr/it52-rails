@@ -1,6 +1,6 @@
 - if event.participants.any?
   ul.list-unstyled
-    - event.participants.sample(25).each do |p|
+    - event.participants.sample(24).each do |p|
       li.participant
         = link_to p, data: { toggle: 'tooltip', placement: 'bottom', title: p.full_name }, class: 'participant-link' do
           .avatar = image_tag p.avatar_image.square_50.url
