@@ -23,8 +23,8 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-vkontakte'
 gem 'omniauth-github'
-gem "omniauth-google-oauth2"
-gem "omniauth-twitter"
+gem 'omniauth-google-oauth2'
+gem 'omniauth-twitter'
 gem 'cancancan'
 
 # Request handling
@@ -48,7 +48,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 gem 'gon'
-gem "autoprefixer-rails"
+gem 'autoprefixer-rails'
 gem 'csso-rails'
 gem 'turbolinks', '~> 5'
 gem 'jquery-turbolinks'
@@ -112,7 +112,7 @@ end
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-  gem 'travis'
+  # gem 'travis'
 
   # Data generator
   gem 'ffaker'
@@ -123,8 +123,8 @@ group :development, :test do
 end
 
 group :test do
-  gem "simplecov"
-  gem "codeclimate-test-reporter", "~> 1.0.0"
+  gem 'simplecov'
+  gem 'codeclimate-test-reporter'
   gem 'shoulda-matchers', require: false
 end
 
