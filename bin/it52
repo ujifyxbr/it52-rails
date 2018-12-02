@@ -44,7 +44,7 @@ class It52CLI < Thor
         sleep prng.rand(0.3)
       end
       puts ''
-      sleep prng.rand(1.0)
+      sleep prng.rand(0.7)
     end
 
     puts 'Done!'

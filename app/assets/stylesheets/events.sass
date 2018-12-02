@@ -93,20 +93,22 @@ form.edit_event, form.new_event
   img
     max-width: 100%
     background-color: #fefefe
-  ul,
   ol
     margin-bottom: 1rem
     padding-left: 1.5rem
 
-  ul
-    position: relative
-    list-style: none
+ul.chevron-bullets,
+.event-description ul
+  position: relative
+  list-style: none
+  margin-bottom: 1rem
+  padding-left: 1.5rem
 
-    li:before
-      content: ">"
-      position: absolute
-      left: 0
-      font-weight: bold
+  li:before
+    content: ">"
+    position: absolute
+    left: 0
+    font-weight: bold
 
 
 .event_description

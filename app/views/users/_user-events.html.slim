@@ -8,6 +8,7 @@
           h2 = t('.organizer_block_title')
           ul.date-list
             - user.owner_of_events.each do |event|
+              - next if cannot? :read, event
               - if event.started_at.year != year
                 li.no-date: h3.text-muted = year = event.started_at.year
               li date=l(event.started_at, format: :date_without_year)
@@ -18,6 +19,7 @@
         h2 = t('.member_block_title')
         ul.date-list
           - user.member_in_events.each do |event|
+            - next if cannot? :read, event
             - if event.started_at.year != year
               li.no-date: h3.text-muted = year = event.started_at.year
             li date=l(event.started_at, format: :date_without_year)

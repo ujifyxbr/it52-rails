@@ -11,7 +11,7 @@ class EventsController < ApplicationController
   before_action :define_meta_tags, only: [:show, :edit]
   before_action :set_organizer, only: :create
 
-  load_and_authorize_resource param_method: :event_params, except: %i[index index_past index_unapproved show]
+  load_and_authorize_resource param_method: :event_params, except: %i[index index_past index_unapproved]
 
   has_scope :ordered_desc, type: :boolean, allow_blank: true, default: true
 
