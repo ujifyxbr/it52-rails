@@ -1,5 +1,17 @@
+html, body
+  height: 100%
+
 body
-  -webkit-font-smoothing: antialiased
+  display: flex
+  flex-direction: column
+
+  & > main
+    flex: 1 0 auto
+
+  & > .navbar-footer
+  flex-shrink: 0
+
+body
   font-smoothing: antialiased
 
 #page-content
