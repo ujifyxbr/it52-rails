@@ -42,9 +42,9 @@ class User < ApplicationRecord
   has_many :authentications, dependent: :destroy
   accepts_nested_attributes_for :authentications
 
-  has_many :owner_of_events, class_name: 'Event', foreign_key: 'organizer_id'
+  has_many :owner_of_events, -> { order(started_at: :desc) }, class_name: 'Event', foreign_key: 'organizer_id'
   has_many :event_participations
-  has_many :member_in_events, class_name: 'Event', through: :event_participations, source: :event
+  has_many :member_in_events, -> { order(started_at: :desc).published }, class_name: 'Event', through: :event_participations, source: :event
 
   before_create :assign_default_role, if: -> { role.nil? }
   before_create :set_subscription, if: -> { email.present? && subscription.nil? }
@@ -65,6 +65,10 @@ class User < ApplicationRecord
 
   def full_name
     [first_name, last_name].compact.join(' ').presence || nickname.presence || email
+  end
+
+  def profile_link
+    url_helpers.user_url(self, host: Figaro.env.mailing_host)
   end
 
   def to_s
@@ -133,6 +137,7 @@ class User < ApplicationRecord
 
   def sync_with_mailchimp
     return nil if email.blank?
+    return unless Rails.env.production?
     MailchimpSynchronizer.new(self).sync!
   end
 

@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/NNRUG/it52-rails.svg?branch=it52)](https://travis-ci.org/NNRUG/it52-rails)
 [![Code Climate](https://codeclimate.com/github/NNRUG/it52-rails/badges/gpa.svg)](https://codeclimate.com/github/NNRUG/it52-rails)
-[![Test Coverage](https://codeclimate.com/github/NNRUG/it52-rails/badges/coverage.svg)](https://codeclimate.com/github/NNRUG/it52-rails)
+[![Test Coverage](https://codeclimate.com/github/NNRUG/it52-rails/badges/coverage.svg)](https://codeclimate.com/github/NNRUG/it52-rails) [![Join the chat at https://gitter.im/NNRUG/it52-rails](https://badges.gitter.im/NNRUG/it52-rails.svg)](https://gitter.im/NNRUG/it52-rails?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## Main branch
 
@@ -37,8 +37,8 @@ Main branch is [it52](https://github.com/NNRUG/it52-rails/tree/it52)
 
 ## Requirements
 
-- Ruby 2.2.1
-- PostgreSQL 9.x
+- Ruby 2.5.1
+- PostgreSQL 10.x
 
 ## Я хочу помочь!
 

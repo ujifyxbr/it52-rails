@@ -1,3 +1,4 @@
+# coding: utf-8
 # == Schema Information
 #
 # Table name: events
@@ -18,9 +19,15 @@
 #
 
 class Event < ApplicationRecord
+  paginates_per 20
+
+  attr_accessor :has_foreign_link
+
   mount_uploader :title_image, EventTitleImageUploader
 
   belongs_to :organizer, class_name: 'User'
+
+  enum kind: { event: 0, education: 1 }
 
   has_many :event_participations
   has_many :participants, class_name: 'User', through: :event_participations, source: :user
@@ -35,6 +42,7 @@ class Event < ApplicationRecord
   scope :ordered_asc,   -> { order(started_at: :asc) }
 
   scope :published, -> { where(published: true) }
+  scope :unapproved, -> { where(published: false) }
 
   scope :past,    -> { ordered_desc.where("started_at < ?", Time.now.beginning_of_day ) }
   scope :future,  -> { ordered_asc.where("started_at >= ?", Time.now.beginning_of_day ) }
@@ -45,14 +53,17 @@ class Event < ApplicationRecord
     ordered_desc.where("started_at BETWEEN ? AND ?", start, finish)
   }
 
-  scope :visible_by_user, -> (user) {
+  scope :visible_by_user, -> (user = nil) {
     return published if user.nil?
     user.admin? ? all : where("organizer_id = ? OR published = ?", user.id, true)
   }
 
-
   extend FriendlyId
   friendly_id :slug_candidates, use: :history
+
+  def self.humanized_kinds_map
+    kinds.map { |kind| [I18n.t("activerecord.attributes.event.kinds.#{kind[0]}"), kind[0]] }
+  end
 
   def slug_candidates
     [[ started_at.strftime("%Y-%m-%d"), title ]]
@@ -85,6 +96,11 @@ class Event < ApplicationRecord
     save!
   end
 
+  def update_pageviews!
+    service = UpdateEventPageviews.new([self])
+    service.update_pageviews!
+  end
+
   def send_to_telegram
     post = Telegram::Message.new(:message)
     result = post.send_message(construct_telegram_message)
@@ -106,20 +122,71 @@ class Event < ApplicationRecord
     [header, fixed_description].join("\n"*2)
   end
 
+  def to_meta_tags
+    simple_description = EventDecorator.decorate(self).simple_description
+    {
+      title: [I18n.l(started_at, format: :date), title],
+      description: simple_description,
+      canonical: canonical_url,
+      publisher: Figaro.env.mailing_host,
+      author: Rails.application.routes.url_helpers.user_url(organizer, host: Figaro.env.mailing_host),
+      image_src: title_image.fb_1200.url,
+      og: {
+        title: [I18n.l(started_at, format: :date), title].join(' ~ '),
+        url: canonical_url,
+        description: simple_description,
+        image: title_image.fb_1200.url,
+        updated_time: updated_at
+      }
+    }
+  end
+
   def ics_uid
     "#{created_at.iso8601}-#{started_at.iso8601}-#{id}@#{Figaro.env.mailing_host}"
   end
 
   def to_ics
     event = Icalendar::Event.new
-    event.dtstart = started_at.strftime("%Y%m%dT%H%M%S")
+    event.dtstart = Icalendar::Values::DateTime.new started_at, tzid: Rails.configuration.time_zone
     event.summary = title
     event.description = self.decorate.simple_description
     event.location = place
     event.created = created_at
     event.last_modified = updated_at
     event.uid = ics_uid
-    event.url = Rails.application.routes.url_helpers.event_url(self, host: Figaro.env.mailing_host)
+    event.url = canonical_url
+    event.organizer = Icalendar::Values::CalAddress.new("mailto:#{organizer.email}", cn: organizer.to_s)
     event
+  end
+
+  def canonical_url
+    Rails.application.routes.url_helpers.event_url(self, host: Figaro.env.mailing_host)
+  end
+
+  def user_foreign_link(user)
+    build_foreign_link(user)
+  end
+
+  private
+
+  def build_foreign_link(user)
+    return nil unless foreign_link.present?
+    url = URI.parse(foreign_link)
+    url_params = Rack::Utils.parse_nested_query(url.query).deep_symbolize_keys
+    params = case url.host
+    when /timepad\.ru/
+      {
+        twf_prefill_attendees: { 0 => {
+          name: user.first_name,
+          surname: user.last_name,
+          mail: user.email
+        }},
+        twf_prefill_aux: [{ our_user: user.id }]
+      }
+    else
+      {}
+    end
+    params = params.merge(utm_source: 'it52')
+    [url.to_s, params.to_query].join('?')
   end
 end

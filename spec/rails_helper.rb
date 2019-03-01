@@ -1,8 +1,8 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV['RAILS_ENV'] ||= 'test'
 
-require 'codeclimate-test-reporter'
-CodeClimate::TestReporter.start
+require "simplecov"
+SimpleCov.start
 
 require 'spec_helper'
 require File.expand_path('../../config/environment', __FILE__)
@@ -53,7 +53,7 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
 
-  config.include Devise::TestHelpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :controller
 
   config.before(:each) do
     allow_any_instance_of(MailchimpSynchronizer).to receive(:sync!).and_return({})

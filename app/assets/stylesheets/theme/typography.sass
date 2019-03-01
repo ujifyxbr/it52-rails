@@ -1,8 +1,10 @@
 h1, .h1, h2, .h2
-  font-weight: 300
+  font-weight: 400
+  letter-spacing: -2px
 
 h3, h4, h5, h6, .h3, .h4, .h5, .h6
-  font-weight: 600
+  font-weight: 500
+  letter-spacing: -1px
 
 /* Стили кнопок логина через соц. сети. */
 .btn-facebook, .btn-vk, .btn-github, .btn-google-plus, .btn-twitter, .btn-vkontakte, .btn-google_oauth2
@@ -38,4 +40,30 @@ h3, h4, h5, h6, .h3, .h4, .h5, .h6
     border-radius: 1px
 
 a
-  transition: all .15s linear
+  color: black
+  text-decoration: underline
+  &:hover,
+  &:active,
+  &:focus
+    color: #fefefe
+    background-color: #111
+    text-decoration: none
+  &:active,
+  &:focus
+    background-color: #444
+
+.navbar a
+  color: $sidebar-bg-color
+
+.navbar,
+.nav
+  a
+    text-decoration: none
+
+.nav a:hover
+  color: #111
+
+.btn
+  text-decoration: none
+  font-weight: 400
+  letter-spacing: -1px

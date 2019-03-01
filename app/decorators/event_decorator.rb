@@ -28,8 +28,8 @@ class EventDecorator < Draper::Decorator
 
   def full_description
     rendered_description +
-    h.content_tag(:p, link_to_time) +
-    h.content_tag(:p, link_to_place)
+    h.content_tag(:p, l(event.started_at, format: :date_time_full)) +
+    h.content_tag(:p, object.place)
   end
 
   def truncated_description(length = 80)
@@ -50,6 +50,20 @@ class EventDecorator < Draper::Decorator
   end
 
   def link_to_time
-    h.link_to h.localize(object.started_at), h.event_path(object, format: :ics)
+    days_to_event = Date.current - object.started_at.to_date
+    text = case days_to_event
+      when 2 then 'Позавчера'
+      when 1 then 'Вчера'
+      when 0 then 'Сегодня'
+      when -1 then 'Завтра'
+      when -2 then 'Послезавтра'
+    end
+
+    text ||= h.localize(object.started_at, format: :date_without_year) if object.started_at.year == Time.current.year
+    text ||= h.localize(object.started_at, format: :date)
+    h.link_to h.event_path(object, format: :ics), class: 'event-date-inversed' do
+      (h.content_tag :span, text, class: 'event-day') +
+      (h.content_tag :span, h.localize(object.started_at, format: :time), class: 'event-time')
+    end
   end
 end

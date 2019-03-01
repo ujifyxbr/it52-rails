@@ -1,0 +1,5 @@
+#!/bin/bash
+heroku pg:backups:capture -a it52
+heroku pg:backups:download -a it52
+pg_restore --verbose --clean --no-acl --no-owner -d it52_rails_dev ./latest.dump
+rm ./latest.dump

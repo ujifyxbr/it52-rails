@@ -56,8 +56,8 @@ ru:
               too_long: "Комментарий должен уместиться в %{count} символов."
     models:
       event:
-        one:    Мероприятие
-        other:  Мероприятия
+        one:    Событие
+        other:  События
       idea:
         one:    Идея
         other:  Идеи
@@ -95,4 +95,10 @@ ru:
         website: Сайт
         bio: О себе
         nickname: Ник
-        subscription: Получать уведомления о мероприятиях
+        employment: Место работы
+        subscription: Получать уведомления о событиях
+      event:
+        kind: Тип
+        kinds:
+          event: Событие
+          education: Обучение

@@ -17,8 +17,11 @@ ru:
   time:
     formats:
       default: "%d %B %Y %H:%M"
-      date_time_full: "%d %B %Y, %H:%M"
+      date_time_full: "%d %B %Y %H:%M"
       date_time_short: "%d.%m.%Y %H:%M"
+      date: "%d.%m.%Y"
+      date_without_year: "%d %B"
+      time: "%H:%M"
       sitemap: "%Y-%m-%d"
   date:
     abbr_day_names:
@@ -131,11 +134,13 @@ ru:
       my_profile: Мой профиль
       vk: Вконтакте
       facebook: Facebook
-      events: Мероприятия
-      donations: Пожертвования
+      events: События
+      education: Обучение
+      donations: Донат
       about: О сайте
       members: Участники
-      donate: Пожертвования
+      communities: Сообщества
+      donate: Спонсорам
       add_event_button_title: Добавить мероприятие
       hashtag: "Наш хештег #%{hashtag}"
     nav:
@@ -190,11 +195,16 @@ ru:
       linked_accounts: Аккаунты в соцсетях
     available_accounts:
       title: Привязать дополнительные аккаунты
+    user-events:
+      organizer_block_title: Организатор мероприятий
+      member_block_title: Участник мероприятий
   events:
     index:
       add_event_button_title: Добавить мероприятие
       future_events: Будут
       past_events: Были
+      unapproved_events: На модерации
+      new_event: Добавить
     new:
       title: Новое мероприятие
     edit:
@@ -203,6 +213,7 @@ ru:
       publish: Опубликовать
       cancel_publication: Отменить публикацию
       waiting_for_approval: Событие ещё не прошло модерацию и доступно только создателю и модераторам.
+      participants_export: Выгрузить участников
     publish:
       success_message: Событие успешно опубликовано
     cancel_publication:
@@ -241,6 +252,7 @@ ru:
         title_image: Титульное изображение
         participants: Участники
         place: Место проведения
+        foreign_link: Ссылка на стороннюю регистраци
 
   unauthorized:
     create:
@@ -260,3 +272,5 @@ ru:
         edit_registration: Сменить email и пароль
       edit:
         title: Профиль
+    events:
+      has_foreign_link: Сторонняя регистрация

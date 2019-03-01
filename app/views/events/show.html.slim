@@ -1,34 +1,37 @@
 script type="application/ld+json" == @structured_data.to_json
 
-.events-show.event data={ id: @event.id } itemscope=true itemtype="http://schema.org/Event"
+.events-show.event data={ id: @event.id }
   .page-header
     .pull-right
-      - if can? :edit, @event
+      - if can? :edit, @event.object
         = link_to t(:edit), edit_event_path(@event), class: 'btn btn-default'
         | &nbsp;
-      - if can? :publish, @event
+      - if can? :publish, @event.object
         - if !@event.published?
           = link_to t('.publish'), publish_event_path(@event), class: 'btn btn-warning', method: :patch
         - else
           = link_to t('.cancel_publication'), cancel_publication_event_path(@event), class: 'btn btn-warning', method: :patch
     h1
-      - if can? :edit, @event
+      - if can? :edit, @event.object
         = render partial: 'admin_info', object: @event, as: :event
-      span itemprop="name" => @event.title
-      span.hidden itemprop='url' content=event_url(@event)
-      small: nobr itemprop="startDate" content=@event.started_at.to_time.iso8601
-        = l @event.started_at, format: :date_time_full
+      span => @event.title
+      small
+        nobr
+          = @event.link_to_time
 
   .row
     .col-xs-12.col-sm-4
-      .image-container = image_tag @event.title_image.square_500.url, itemprop: 'image', content: @event.title_image.square_500.url
+      .image-container = image_tag @event.title_image.square_500.url, alt: @event.title
     .col-xs-12.col-sm-8
       .participants
         .panel.panel-default
-          .panel-heading
-            h4
+          .panel-heading.clearfix
+            h4.pull-left
               => Event.human_attribute_name(:participants)
               small = @event.participants.size
+            .pull-right
+              - if can? :update, @event.object
+                = link_to t('.participants_export'), participants_event_path(@event, format: :csv), class: 'btn btn-warning'
           .panel-body
             = render partial: 'participants_block', object: @event, as: :event
           .panel-footer
@@ -36,18 +39,23 @@ script type="application/ld+json" == @structured_data.to_json
 
   .event-date: p
     i.fas.fa-fw.fa-calendar>
-    = @event.link_to_time
+    = link_to l(@event.started_at, format: :date_time_full), event_path(@event, format: :ics)
   - if @event.place.present?
-    .event-place: p
+    .event-place: p title="Место проведения"
       i.fas.fa-fw.fa-map-marker>
       = @event.link_to_place
-  .event-organizer: p title="Организатор" itemprop='organizer' itemscope=true itemtype="http://schema.org/Person"
+  .event-organizer: p title="Организатор"
     i.fas.fa-fw.fa-user>
-    a href=user_path(@event.organizer) itemprop='url' content=user_url(@event.organizer)
-      span itemprop="name" = @event.organizer
-  .event-share: p
-    = icon 'fas', 'share-alt'
-    span.ya-share2< data={ counter: true, lang: "ru", services: "vkontakte,facebook,twitter,gplus", size: 'm', title: @event.title, description: @event.truncated_description, url: event_url(@event)}
+    span> Организатор:
+    a href=user_path(@event.organizer)
+      span = @event.organizer
+  .event-share: p title="Поделиться"
+    i.fas.fa-fw.fa-share-alt>
+    span> Поделиться в
+    span.ya-share2< data={ counter: true, lang: "ru", services: "telegram,vkontakte,facebook,twitter,gplus", size: 'm', title: @event.title, description: @event.truncated_description, url: event_url(@event)}
+  .event-views: p title="Просмотры"
+    i.fas.fa-fw.fa-eye>
+    span.event-views-counter data={ 'event-path' => event_path(@event) } = @event.pageviews
 
   hr
-  .event-description itemprop="description" = @event.rendered_description
+  .event-description = @event.rendered_description

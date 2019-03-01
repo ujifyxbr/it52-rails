@@ -1,12 +1,13 @@
-ruby '2.5.1'
+ruby '2.6.1'
 
 source 'https://rubygems.org'
 
-gem 'rails', '~> 5.0.0'
+gem 'rails', '~> 5.2.0'
+gem 'bootsnap'
 # gem 'rails-i18n'
 
 # Database
-gem 'pg', '< 1.0.0'
+gem 'pg'
 
 # Mailing
 gem 'mailchimp-api', require: 'mailchimp'
@@ -22,9 +23,9 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-vkontakte'
 gem 'omniauth-github'
-gem "omniauth-google-oauth2"
-gem "omniauth-twitter"
-gem 'cancancan', '< 1.13'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-twitter'
+gem 'cancancan'
 
 # Request handling
 # gem 'responders'
@@ -37,7 +38,7 @@ gem 'activemodel-serializers-xml'
 gem 'draper'
 
 # Compile and serve assets
-gem 'sass-rails'
+gem 'sassc-rails'
 gem 'babel-transpiler'
 gem 'jquery-rails'
 gem 'uglifier', '>= 1.3.0'
@@ -47,7 +48,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 gem 'gon'
-gem "autoprefixer-rails"
+gem 'autoprefixer-rails'
 gem 'csso-rails'
 gem 'turbolinks', '~> 5'
 gem 'jquery-turbolinks'
@@ -66,6 +67,9 @@ gem 'meta-tags'
 # Caching
 gem 'dalli'
 
+# Reporting
+gem 'jwt'
+
 # Documentation
 gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'apipie-rails', git: 'https://github.com/Apipie/apipie-rails.git', ref: 'f697ec2a887cd73c00c846eceb2ce63a050ccb20'
@@ -81,14 +85,14 @@ gem 'awesome_print'
 gem 'pry-rails'
 
 # Image and AWS S3 management
-gem 'fog-aws'
+gem 'fog-aws', '< 3'
 gem 'mini_magick'
 gem 'carrierwave'
 gem 'asset_sync'
 
 # Monitoring
 gem 'newrelic_rpm'
-gem 'runtimeerror_notifier'
+# gem 'runtimeerror_notifier'
 
 # Utils
 gem 'icalendar'
@@ -108,6 +112,7 @@ end
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  # gem 'travis'
 
   # Data generator
   gem 'ffaker'
@@ -118,8 +123,9 @@ group :development, :test do
 end
 
 group :test do
+  gem 'simplecov'
+  gem 'codeclimate-test-reporter'
   gem 'shoulda-matchers', require: false
-  gem "codeclimate-test-reporter", require: false
 end
 
 # Heroku compatibility

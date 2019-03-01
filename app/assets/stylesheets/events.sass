@@ -11,24 +11,49 @@
           width: 50px
           height: 50px
 
+.panel
+  position: relative
+
+  &::after
+    position: absolute
+    content: ' '
+    width: 100%
+    height: 100%
+    background: #444
+    bottom: -5px
+    right: -5px
+    z-index: -1
+
+
 .events-index
   .events
     .event
-      &.panel
-        .panel-heading
-          .admin-info
-            margin-right: 1em
-            display: inline
-        .panel-footer
-          .participants
-            height: 50px
-            overflow: hidden
-            h4
-              float: left
-              margin-right: 1em
-              margin-top: 0
-              margin-bottom: 0
-              line-height: 50px
+      .panel-heading
+        .admin-info
+          margin-right: 1em
+          display: inline
+
+    .panel-footer
+      padding: 1rem $panel-body-padding
+      .participants
+        height: 50px
+        overflow: hidden
+        h4
+          float: left
+          margin-right: 1em
+          margin-top: 0
+          margin-bottom: 0
+          line-height: 50px
+
+    .panel-body
+      padding: 1.5rem
+
+    @media (min-width: 768px)
+      .panel-body
+        padding: 3rem 3.4rem
+      .panel-footer
+        padding: 1rem 3.4rem
+
 
 .events-show
   .page-header
@@ -60,10 +85,31 @@ form.edit_event, form.new_event
   display: inline
 
 .event-description
+  font-family: 'Fira Sans', sans-serif
+  line-height: 1.65
+  font-size: 110%
+  overflow: auto
+
   img
     max-width: 100%
-  ul
+    background-color: #fefefe
+  ol
     margin-bottom: 1rem
+    padding-left: 1.5rem
+
+ul.chevron-bullets,
+.event-description ul
+  position: relative
+  list-style: none
+  margin-bottom: 1rem
+  padding-left: 1.5rem
+
+  li:before
+    content: ">"
+    position: absolute
+    left: 0
+    font-weight: bold
+
 
 .event_description
   .CodeMirror-fullscreen,

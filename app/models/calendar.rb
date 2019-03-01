@@ -13,6 +13,9 @@ class Calendar
     @events = events
     @ical   = Icalendar::Calendar.new
     @ical.prodid  = DEFAULTS[:prodid]
+    @ical.timezone do |t|
+      t.tzid = Rails.configuration.time_zone
+    end
     if events.respond_to?(:each)
       @events.each { |event| @ical.add_event(event.to_ics) }
     else

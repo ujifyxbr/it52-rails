@@ -1,0 +1,12 @@
+header
+  h1 = event.title
+  figure = image_tag event.title_image.square_500.url
+  h2 = [l(event.started_at, format: :date_time_full), event.place].join(' | ')
+
+= event.rendered_description
+
+button formaction=event_url(event) data={'background-color' => '#333333', color: '#FEFEFE', turbo: 'false', primary: 'true'} Зарегистрироваться
+
+div data={ block: 'share', network: 'telegram, vkontakte, twitter, facebook, google'}
+
+

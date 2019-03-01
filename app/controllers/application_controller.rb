@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
+  protect_from_forgery prepend: true, with: :exception
 
   add_flash_types :error, :failure, :success, :alert
 
@@ -12,8 +12,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!, if: -> { authenticated_path? }
 
   rescue_from CanCan::AccessDenied do |exception|
-    path = request.referer =~ /#{Figaro.env.mailing_host}/ ? :back : '/'
-    redirect_to path, flash: { error: exception.message }
+    redirect_back(fallback_location: root_path, error: exception.message)
   end
 
   def after_sign_in_path_for(resource)
@@ -25,7 +24,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def redirect_to_main_domain
-    redirect_to "http://www.#{Figaro.env.mailing_host}#{request.fullpath}", status: :moved_permanently
+    redirect_to "https://www.#{Figaro.env.mailing_host}#{request.fullpath}", status: :moved_permanently
   end
 
   private
