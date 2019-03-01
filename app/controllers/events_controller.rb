@@ -12,7 +12,7 @@ class EventsController < ApplicationController
   before_action :define_meta_tags, only: [:show, :edit]
   before_action :set_organizer, only: :create
 
-  load_and_authorize_resource param_method: :event_params, except: %i[index index_past index_unapproved]
+  load_and_authorize_resource param_method: :event_params, except: %i[index index_past index_unapproved index_education]
 
   has_scope :ordered_desc, type: :boolean, allow_blank: true, default: true
 
@@ -190,7 +190,7 @@ class EventsController < ApplicationController
 
   def event_params
     permitted_attrs = %i[
-      title description started_at title_image place
+      title description started_at title_image place kind
       title_image title_image_cache location foreign_link
     ]
     params[:event].delete(:location) if params[:event][:location].blank?
