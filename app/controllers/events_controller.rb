@@ -5,7 +5,7 @@ class EventsController < ApplicationController
 
   helper_method :unapproved_count, :educational?
 
-  before_action :authenticate_user!, except: %i[index index_past show]
+  before_action :authenticate_user!, except: %i[index index_past index_education show]
   before_action :set_model, only: %i[index index_past index_unapproved index_education]
   before_action :set_event, only: [:show, :edit, :destroy, :update, :publish, :cancel_publication, :participants]
   before_action :check_actual_slug, only: :show
