@@ -3,9 +3,10 @@ require 'icalendar'
 class EventsController < ApplicationController
   respond_to :html
 
-  helper_method :unapproved_count
+  helper_method :unapproved_count, :educational?
 
   before_action :authenticate_user!, except: %i[index index_past show]
+  before_action :set_model, only: %i[index index_past index_unapproved index_education]
   before_action :set_event, only: [:show, :edit, :destroy, :update, :publish, :cancel_publication, :participants]
   before_action :check_actual_slug, only: :show
   before_action :define_meta_tags, only: [:show, :edit]
@@ -16,10 +17,9 @@ class EventsController < ApplicationController
   has_scope :ordered_desc, type: :boolean, allow_blank: true, default: true
 
   def index
-    model = Event.includes(:event_participations, :participants, :organizer)
-    @events = model.published.future.page(params[:page]).decorate
-    @rss_events = model.published.order(published_at: :desc).limit(500).decorate
-    @all_events = model.published.order(started_at: :asc)
+    @events = @model.event.published.future.page(params[:page]).decorate
+    @rss_events = @model.published.order(published_at: :desc).limit(500).decorate
+    @all_events = @model.published.order(started_at: :asc)
     respond_to do |format|
       format.html
       format.json { render json: @all_events.to_json }
@@ -31,17 +31,19 @@ class EventsController < ApplicationController
 
 
   def index_past
-    model = Event.includes(:event_participations, :participants, :organizer)
-    @events = model.published.past.page(params[:page]).decorate
+    @events = @model.event.published.past.page(params[:page]).decorate
     render :index
   end
 
   def index_unapproved
-    model = Event.includes(:event_participations, :participants, :organizer)
-    @events = model.unapproved.visible_by_user(current_user).page(params[:page]).decorate
+    @events = @model.unapproved.visible_by_user(current_user).page(params[:page]).decorate
     render :index
   end
 
+  def index_education
+    @events = @model.education.published.order(started_at: :desc).page(params[:page]).decorate
+    render :index
+  end
 
   def show
     @event = @event.decorate
@@ -169,8 +171,16 @@ class EventsController < ApplicationController
     redirect_to @event, status: :moved_permanently unless slug_correct
   end
 
+  def set_model
+    @model = Event.includes(:event_participations, :participants, :organizer)
+  end
+
   def set_event
     @event = Event.friendly.find(params[:id])
+  end
+
+  def educational?
+    action_name == 'index_education'
   end
 
   def set_organizer

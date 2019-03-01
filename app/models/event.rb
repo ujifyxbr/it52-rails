@@ -27,6 +27,8 @@ class Event < ApplicationRecord
 
   belongs_to :organizer, class_name: 'User'
 
+  enum kind: { event: 0, education: 1 }
+
   has_many :event_participations
   has_many :participants, class_name: 'User', through: :event_participations, source: :user
 
@@ -56,9 +58,12 @@ class Event < ApplicationRecord
     user.admin? ? all : where("organizer_id = ? OR published = ?", user.id, true)
   }
 
-
   extend FriendlyId
   friendly_id :slug_candidates, use: :history
+
+  def self.humanized_kinds_map
+    kinds.map { |kind| [I18n.t("activerecord.attributes.event.kinds.#{kind[0]}"), kind[0]] }
+  end
 
   def slug_candidates
     [[ started_at.strftime("%Y-%m-%d"), title ]]

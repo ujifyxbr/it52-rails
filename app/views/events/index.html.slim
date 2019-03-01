@@ -11,16 +11,18 @@
           i.fas.fa-rss.fa-2x
 
     ul.nav.nav-pills role="tablist"
-      li role="presentation" class="#{'active' if action_name == 'index' }"
-        = link_to t('.future_events'), root_path
-      li role="presentation" class="#{'active' if action_name == 'index_past' }"
-        = link_to t('.past_events'), past_events_path
+      - unless educational?
+        li role="presentation" class="#{'active' if action_name == 'index' }"
+          = link_to t('.future_events'), root_path
+        li role="presentation" class="#{'active' if action_name == 'index_past' }"
+          = link_to t('.past_events'), past_events_path
       - if user_signed_in? && !unapproved_count.zero?
         li role="presentation" class="#{'active' if action_name == 'index_unapproved' }"
           = link_to "#{t('.unapproved_events')} (#{unapproved_count})", unapproved_events_path
       li role="presentation"
         = link_to t('.new_event'), new_event_path, class: 'btn btn-success'
         / a.btn.btn-success> href=new_event_path Добавить
+
   - if @events.empty?
     .alert.alert-success
       p Похоже все коллеги устали митапить и хакатонить и сейчас отдыхают.

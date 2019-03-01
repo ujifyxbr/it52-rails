@@ -31,7 +31,7 @@
 #  subscription           :boolean
 #
 
-require 'rails_helper'
+# require 'rails_helper'
 
 describe User do
   let(:user) { FactoryBot.create(:user) }

@@ -17,6 +17,9 @@ nav.navbar.navbar-default.navbar-fixed-top
         li = link_to root_path do
           span.hidden-md.hidden-sm = t('.events')
           i.fas.fa-calendar.visible-md-inline.visible-sm-inline
+        li = link_to education_events_path do
+          span.hidden-md.hidden-sm = t('.education')
+          i.fas.fa-calendar.visible-md-inline.visible-sm-inline
         li = link_to page_path(:communities) do
           span.hidden-md.hidden-sm = t('.communities')
           i.fas.fa-users.visible-md-inline.visible-sm-inline
