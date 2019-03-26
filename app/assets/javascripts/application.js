@@ -21,3 +21,6 @@
 
 //= require common
 //= require turbolinks
+
+//= require select2-full
+//= require events_tags_select2.js

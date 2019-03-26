@@ -21,6 +21,8 @@
 class Event < ApplicationRecord
   paginates_per 20
 
+  acts_as_taggable_on :tags
+
   attr_accessor :has_foreign_link
 
   mount_uploader :title_image, EventTitleImageUploader
