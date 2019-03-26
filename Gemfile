@@ -139,6 +139,3 @@ gem 'kaminari'
 
 #tags
 gem 'acts-as-taggable-on'
-
-#select2
-gem 'select2-rails'
