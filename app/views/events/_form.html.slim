@@ -22,6 +22,6 @@
 
   .row: .col-sm-12
     = f.input :description, input_html: { rows: 10 }
-    = f.input :tag_list
+    = f.input :tag_list, input_html: {:placeholder => "Используйте ", value: @event.tag_list.to_s, :maxlength=>"100"}
     hr
     = f.submit class: 'btn btn-primary'
