@@ -205,6 +205,7 @@ ru:
       past_events: Были
       unapproved_events: На модерации
       new_event: Добавить
+      go_home: На главную
     new:
       title: Новое мероприятие
     edit:
@@ -274,3 +275,4 @@ ru:
         title: Профиль
     events:
       has_foreign_link: Сторонняя регистрация
+      tags_sepparator: В качестве разделителя используйте запятую 
