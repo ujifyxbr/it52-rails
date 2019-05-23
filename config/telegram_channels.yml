@@ -1,0 +1,38 @@
+---
+groups:
+  main:
+    name: Всё о самом главном
+    channels:
+      it52info: IT события в Нижнем Новгороде
+      nnrug: lounge for developers since 2014 (тут в основном общий флудчат)
+
+  work:
+    name: Предложения и поиск работы
+    channels:
+      jobsit52: Вакансии в IT Нижний Новгород
+      js_nn_jobs: Вакансии для фронтовиков
+
+  languages:
+    name: По языкам программирования
+    channels:
+      rannts: Python
+      jugnn: Java
+      js_nn: Javascript
+      nnrug: Ruby
+      golang_events_nizhny: GoLang
+  interests:
+    name: По интересам
+    channels:
+      defcon_nn_ch: новости ITSecurity
+      defcon_nn: ITSecurity
+      defcon_nn_offtop: ITSecurity offtop
+      nnlug: NN Linux user group
+      android_nn: Android NN
+      iosnndevs: iOS NN devs
+      wtm_nn: Women Techmakers
+      gdgnn: Google developers group
+      cadr_hackerspace: Хакерспейс CADR
+      qalliance: Всё о тестировании
+      jenkins_nn: Чат организаторов и активистов сообщества Jenkins в Нижнем Новгороде
+      jenkins_ru_events: Анонсы событий в Jenkins
+      nn_cv: Машинное зрение/AR/VR
