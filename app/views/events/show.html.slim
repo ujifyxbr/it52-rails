@@ -18,7 +18,7 @@ script type="application/ld+json" == @structured_data.to_json
       small
         nobr
           = @event.link_to_time
-
+          
   .row
     .col-xs-12.col-sm-4
       .image-container = image_tag @event.title_image.square_500.url, alt: @event.title
@@ -59,3 +59,4 @@ script type="application/ld+json" == @structured_data.to_json
 
   hr
   .event-description = @event.rendered_description
+  == @event.tag_list.map{|t| link_to t, tag_path(t)}.join(', ')

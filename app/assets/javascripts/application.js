@@ -21,3 +21,4 @@
 
 //= require common
 //= require turbolinks
+

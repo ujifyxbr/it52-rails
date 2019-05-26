@@ -17,7 +17,12 @@ class EventsController < ApplicationController
   has_scope :ordered_desc, type: :boolean, allow_blank: true, default: true
 
   def index
-    @events = @model.event.published.future.page(params[:page]).decorate
+    if params[:tag]
+      @events = @model.published.page(params[:page]).tagged_with(params[:tag]).decorate
+    else 
+      @events = @model.published.future.page(params[:page]).decorate
+    end
+    
     @rss_events = @model.published.order(published_at: :desc).limit(500).decorate
     @all_events = @model.published.order(started_at: :asc)
     respond_to do |format|
@@ -192,6 +197,7 @@ class EventsController < ApplicationController
     permitted_attrs = %i[
       title description started_at title_image place kind
       title_image title_image_cache location foreign_link
+      tag_list
     ]
     params[:event].delete(:location) if params[:event][:location].blank?
     params.require(:event).permit(*permitted_attrs)

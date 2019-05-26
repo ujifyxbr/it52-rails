@@ -136,3 +136,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 #paginator
 gem 'kaminari'
+
+#tags
+gem 'acts-as-taggable-on'

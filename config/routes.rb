@@ -45,6 +45,9 @@ Rails.application.routes.draw do
     post "/telegram_hooks/:token" => 'telegram_hooks#process_bot_request'
   end
 
+  #Tags
+  get '/tags/:tag' => 'events#index', as: :tag
+
   # Let's encrypt cert route
   get '/.well-known/acme-challenge/:id' => 'letsencrypt#approve'
 

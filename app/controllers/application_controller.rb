@@ -50,4 +50,6 @@ class ApplicationController < ActionController::Base
   def controller_namespace
     self.class.parent
   end
+
+  ActsAsTaggableOn.delimiter=[',', ' ', '\|', '\/', '\;']
 end
