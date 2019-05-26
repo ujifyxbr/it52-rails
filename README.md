@@ -8,6 +8,16 @@
 
 Main branch is [it52](https://github.com/NNRUG/it52-rails/tree/it52)
 
+## Requirements
+
+- Ruby 2.6.3
+- PostgreSQL 11.x
+- memcached
+
+ИЛИ
+
+- Docker
+
 ## Getting started
 
 Для начала работы с проектом нужно создать конфигурационые файлы на основе шаблонов:
@@ -15,6 +25,8 @@ Main branch is [it52](https://github.com/NNRUG/it52-rails/tree/it52)
     cp config/database.yml.template config/database.yml
     cp config/secrets.yml.template config/secrets.yml
     cp config/application.yml.template config/application.yml
+
+### Без докера
 
 Установить зависимости, создать и мигрировать БД:
 
@@ -25,6 +37,12 @@ Main branch is [it52](https://github.com/NNRUG/it52-rails/tree/it52)
 
     unicorn_rails
 
+### С докером
+
+Запустить окружение
+
+    docker-compose up
+
 ## Style guides
 
 - [Ruby](https://github.com/bbatsov/ruby-style-guide)
@@ -34,11 +52,6 @@ Main branch is [it52](https://github.com/NNRUG/it52-rails/tree/it52)
 - [Testing](https://github.com/thoughtbot/guides/tree/master/style#testing)
 - [CoffeeScript](https://github.com/thoughtbot/guides/tree/master/style#coffeescript)
 - [Markdown](http://www.cirosantilli.com/markdown-styleguide)
-
-## Requirements
-
-- Ruby 2.5.1
-- PostgreSQL 10.x
 
 ## Я хочу помочь!
 
