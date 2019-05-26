@@ -1,0 +1,20 @@
+version: '2'
+services:
+  db:
+    image: postgres:11.3-alpine
+    ports:
+      - '5432:5432'
+  memcached:
+    image: memcached:alpine
+    ports:
+      - '11211:11211'
+  web:
+    image: kugaevsky/it52:latest
+    command: bin/rails server --port 3000 --binding 0.0.0.0
+    ports:
+      - '3000:3000'
+    links:
+      - db
+      - memcached
+    volumes:
+      - .:/it52
