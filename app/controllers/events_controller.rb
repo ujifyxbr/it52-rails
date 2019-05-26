@@ -18,7 +18,7 @@ class EventsController < ApplicationController
 
   def index
     if params[:tag]
-      @events = @model.published.page(params[:page]).tagged_with(params[:tag]).decorate
+      @events = @model.published.order(published_at: :desc).page(params[:page]).tagged_with(params[:tag]).decorate
     else
       @events = @model.published.future.page(params[:page]).decorate
     end
