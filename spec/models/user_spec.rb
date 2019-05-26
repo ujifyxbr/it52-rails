@@ -29,6 +29,7 @@
 #  slug                   :string(255)
 #  website                :string(255)
 #  subscription           :boolean
+#  employment             :string
 #
 
 # require 'rails_helper'

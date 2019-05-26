@@ -15,6 +15,9 @@
 #  published_at :datetime
 #  slug         :string(255)
 #  location     :point
+#  foreign_link :string
+#  pageviews    :integer          default(0)
+#  kind         :integer          default("event")
 #
 
 class EventSerializer < ActiveModel::Serializer

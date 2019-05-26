@@ -253,7 +253,7 @@ ru:
         title_image: Титульное изображение
         participants: Участники
         place: Место проведения
-        foreign_link: Ссылка на стороннюю регистраци
+        foreign_link: Ссылка на стороннюю регистрацию
 
   unauthorized:
     create:
@@ -275,4 +275,3 @@ ru:
         title: Профиль
     events:
       has_foreign_link: Сторонняя регистрация
-      tags_sepparator: В качестве разделителя используйте запятую 
