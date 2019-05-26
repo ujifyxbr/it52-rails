@@ -1,12 +1,12 @@
 # require 'carrierwave/storage/abstract'
-if remote_storage? = Rails.env.production? || Rails.env.staging?
+if remote_storage = (Rails.env.production? || Rails.env.staging?)
   require 'carrierwave/storage/fog'
 else
   require 'carrierwave/storage/file'
 end
 
 CarrierWave.configure do |config|
-  config.storage = remote_storage? ? :fog : :file
+  config.storage = remote_storage ? :fog : :file
 
   config.fog_provider = 'fog/aws'
   config.fog_credentials  = {
