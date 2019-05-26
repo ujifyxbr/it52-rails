@@ -31,7 +31,7 @@ Main branch is [it52](https://github.com/NNRUG/it52-rails/tree/it52)
 Установить зависимости, создать и мигрировать БД:
 
     bundle install
-    bundle exec rake db:setup
+    bundle exec rails db:setup
 
 Запустить rails-сервер:
 
@@ -41,6 +41,7 @@ Main branch is [it52](https://github.com/NNRUG/it52-rails/tree/it52)
 
 Запустить окружение
 
+    docker-compose run web bundle exec rails db:setup
     docker-compose up
 
 ## Style guides
