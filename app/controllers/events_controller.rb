@@ -20,7 +20,7 @@ class EventsController < ApplicationController
     if params[:tag]
       @events = @model.published.order(published_at: :desc).page(params[:page]).tagged_with(params[:tag]).decorate
     else
-      @events = @model.published.future.page(params[:page]).decorate
+      @events = @model.event.published.future.page(params[:page]).decorate
     end
 
     @rss_events = @model.published.order(published_at: :desc).limit(500).decorate
