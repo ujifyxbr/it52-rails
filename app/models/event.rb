@@ -116,7 +116,7 @@ class Event < ApplicationRecord
   end
 
   def construct_telegram_message(short = false)
-    link = Rails.application.routes.url_helpers.event_url(self, host: Figaro.env.mailing_host)
+    link = Rails.application.routes.url_helpers.event_url(self, host: ENV.fetch('mailing_host') {'mailing_host'})
     link += '?' + { utm_source: 'telegram', utm_medium: 'link', utm_campaign: friendly_id }.to_query
     md_title = "#{id} — [#{title.strip}](#{link})"
     md_date = "*#{I18n.l(started_at, format: :date_time_full)}*"
@@ -133,8 +133,8 @@ class Event < ApplicationRecord
       title: [I18n.l(started_at, format: :date), title],
       description: simple_description,
       canonical: canonical_url,
-      publisher: Figaro.env.mailing_host,
-      author: Rails.application.routes.url_helpers.user_url(organizer, host: Figaro.env.mailing_host),
+      publisher: ENV.fetch('mailing_host') {'mailing_host'},
+      author: Rails.application.routes.url_helpers.user_url(organizer, host: ENV.fetch('mailing_host') {'mailing_host'}),
       image_src: title_image.fb_1200.url,
       og: {
         title: [I18n.l(started_at, format: :date), title].join(' ~ '),
@@ -147,7 +147,7 @@ class Event < ApplicationRecord
   end
 
   def ics_uid
-    "#{created_at.iso8601}-#{started_at.iso8601}-#{id}@#{Figaro.env.mailing_host}"
+    "#{created_at.iso8601}-#{started_at.iso8601}-#{id}@#{ENV.fetch('mailing_host') {'mailing_host'}}"
   end
 
   def to_ics
@@ -165,7 +165,7 @@ class Event < ApplicationRecord
   end
 
   def canonical_url
-    Rails.application.routes.url_helpers.event_url(self, host: Figaro.env.mailing_host)
+    Rails.application.routes.url_helpers.event_url(self, host: ENV.fetch('mailing_host') {'mailing_host'})
   end
 
   def user_foreign_link(user)

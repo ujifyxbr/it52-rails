@@ -1,0 +1,16 @@
+# Add application configuration variables here, as shown below.
+#
+
+secret_key_base: 3ed5c557685115895b2bc54cc59dc56a2d86252a610280a533cc8646fdd7ad0570e9fb1d7d9ebf8b1545de342c992bccb4a9579ab0a470af0691a404286a633a
+devise_secret_key: ef6adebc88bd3a9976c602a98ec6581589afbecc900000afdef2702e97ef362ce5c576d67b9e9f1fd37ac931de6859919a3703f927df7193db13ba6c6556882b
+devise_pepper: 52fa43c0218b1eb1102f84dcf570376a0c6199de1555c9b3d90b2d6e976165622e65e9b972438301f7a88e46305018f1eab70f3a057fc5e71da97a1a232da28d
+mailing_host: localhost:3000
+telegram_domain: 't.me'
+
+github_id: 07a1486f0bf491a0c3a7
+github_secret: a661de5c80b6d648803b1e9c8564a280d06cad83
+github_callback_url: http://localhost:3000/oauth/github/callback
+
+facebook_callback_url: http://localhost:3000/oauth/facebook/callback
+facebook_secret: '47fc23b99842fce5948da63ca2320653'
+facebook_id: '711928915527342'

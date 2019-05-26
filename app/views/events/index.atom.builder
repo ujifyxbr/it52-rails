@@ -10,7 +10,7 @@ atom_feed language: 'ru-RU',
   feed.category term: 'tech'
   feed.category term: 'IT'
   feed.category term: 'programming'
-  feed.rights "© 2014 — #{Date.today.year}, #{Figaro.env.mailing_host}"
+  feed.rights "© 2014 — #{Date.today.year}, #{ENV.fetch('mailing_host') {'mailing_host'}}"
   feed.webfeeds(:cover, image: asset_url('it52_logo_fb@2x.png'))
   feed.webfeeds(:icon, asset_url('it52_logo_white_clean.svg'))
   feed.webfeeds(:analytics, id: 'UA-54446007-1', engine: 'GoogleAnalytics')

@@ -1,8 +1,9 @@
 class Calendar
+  DOMAIN = ENV.fetch('mailing_host') {'mailing_host'}
   DEFAULTS = {
-    prodid:       "-//#{Figaro.env.mailing_host}//IT events calendar//RU",
-    url:          Rails.application.routes.url_helpers.events_url(host: Figaro.env.mailing_host),
-    source:       Rails.application.routes.url_helpers.events_url(host: Figaro.env.mailing_host, format: :ics),
+    prodid:       "-//#{DOMAIN}//IT events calendar//RU",
+    url:          Rails.application.routes.url_helpers.events_url(host: DOMAIN),
+    source:       Rails.application.routes.url_helpers.events_url(host: DOMAIN, format: :ics),
     name:         'IT events calendar',
     description:  'All IT events in 52 region'
   }.with_indifferent_access

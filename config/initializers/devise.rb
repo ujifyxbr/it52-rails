@@ -4,13 +4,13 @@ Devise.setup do |config|
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
-  config.secret_key = Figaro.env.devise_secret_key
+  config.secret_key = ENV.fetch('devise_secret_key') {'devise_secret_key'}
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = "robot@#{Figaro.env.mailing_host}"
+  config.mailer_sender = "robot@#{ENV.fetch('mailing_host') {'mailing_host'}}"
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -97,7 +97,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 10
 
   # Setup a pepper to generate the encrypted password.
-  config.pepper = Figaro.env.pepper
+  config.pepper = ENV.fetch('pepper') {'pepper'}
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without
@@ -257,16 +257,16 @@ Devise.setup do |config|
   # so you need to do it manually. For the users scope, it would be:
   config.omniauth_path_prefix = '/oauth'
 
-  config.omniauth :github, Figaro.env.github_id, Figaro.env.github_secret,
+  config.omniauth :github, ENV.fetch('github_id') {'github_id'}, ENV.fetch('github_secret') {'github_secret'},
                   scope: 'user:email, read:org'
-  config.omniauth :google_oauth2, Figaro.env.google_id, Figaro.env.google_secret
-  config.omniauth :facebook, Figaro.env.facebook_id, Figaro.env.facebook_secret,
+  config.omniauth :google_oauth2, ENV.fetch('google_id') {'google_id'}, ENV.fetch('google_secret') {'google_secret'}
+  config.omniauth :facebook, ENV.fetch('facebook_id') {'facebook_id'}, ENV.fetch('facebook_secret') {'facebook_secret'},
                   scope: 'public_profile, email',
                   info_fields: 'email,name',
                   secure_image_url: true,
                   image_size: 'large'
-  config.omniauth :vkontakte, Figaro.env.vk_id, Figaro.env.vk_secret, scope: 'email'
-  config.omniauth :twitter, Figaro.env.twitter_key, Figaro.env.twitter_secret,
+  config.omniauth :vkontakte, ENV.fetch('vk_id') {'vk_id'}, ENV.fetch('vk_secret') {'vk_secret'}, scope: 'email'
+  config.omniauth :twitter, ENV.fetch('twitter_key') {'twitter_key'}, ENV.fetch('twitter_secret') {'twitter_secret'},
                   image_size: 'original'
 
 end

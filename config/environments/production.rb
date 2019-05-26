@@ -34,7 +34,7 @@ Rails.application.configure do
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = 'http://assets.example.com'
-  config.action_controller.asset_host = Figaro.env.aws_host
+  config.action_controller.asset_host = ENV.fetch('aws_host') {'aws_host'}
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
@@ -104,8 +104,8 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :mailgun
   config.action_mailer.mailgun_settings = {
-    api_key: Figaro.env.mailgun_api_key,
-    domain: Figaro.env.mailing_host
+    api_key: ENV.fetch('mailgun_api_key') {'mailgun_api_key'},
+    domain: ENV.fetch('mailing_host') {'mailing_host'}
   }
 
   config.require_master_key = true

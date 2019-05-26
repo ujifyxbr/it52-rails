@@ -15,7 +15,7 @@ class TelegramHooksController < ApplicationController
   private
 
   def track_bot_request
-    token = Figaro.env.botan_token
+    token = ENV.fetch('botan_token') { 'botan_token' }
     message = { text: @req.text }
     action = if @req.action
       @req.action.first

@@ -35,13 +35,13 @@ Rails.application.routes.draw do
   delete '/cancel_participation' => 'event_participations#destroy'
 
   # Mailchimp hooks
-  constraints token: Figaro.env.mailchimp_hooks_token do
+  constraints token: ENV.fetch('mailchimp_hooks_token') { 'mailchimp_hooks_token' } do
     post "/mailchimp_hooks/:token" => 'mailchimp_hooks#update_subscription'
     get "/mailchimp_hooks/:token" => 'mailchimp_hooks#check'
   end
 
   # Telegram hooks
-  constraints token: Figaro.env.telegram_bot_token do
+  constraints token: ENV.fetch('telegram_bot_token') { 'telegram_bot_token' } do
     post "/telegram_hooks/:token" => 'telegram_hooks#process_bot_request'
   end
 

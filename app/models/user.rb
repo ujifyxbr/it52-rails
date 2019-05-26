@@ -69,7 +69,7 @@ class User < ApplicationRecord
   end
 
   def profile_link
-    url_helpers.user_url(self, host: Figaro.env.mailing_host)
+    url_helpers.user_url(self, host: ENV.fetch('mailing_host') {'mailing_host'})
   end
 
   def to_s

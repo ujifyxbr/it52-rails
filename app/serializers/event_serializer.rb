@@ -36,6 +36,6 @@ class EventSerializer < ActiveModel::Serializer
   end
 
   def url
-    Rails.application.routes.url_helpers.event_url(object, host: Figaro.env.mailing_host)
+    Rails.application.routes.url_helpers.event_url(object, host: ENV.fetch('mailing_host') {'mailing_host'})
   end
 end

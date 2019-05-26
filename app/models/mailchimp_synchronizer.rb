@@ -1,6 +1,6 @@
 class MailchimpSynchronizer
-  API_KEY = Figaro.env.mailchimp_api_key
-  LIST_ID = Figaro.env.mailchimp_list_id
+  API_KEY = ENV.fetch('mailchimp_api_key') { 'mailchimp_api_key' }
+  LIST_ID = ENV.fetch('mailchimp_list_id') { 'mailchimp_list_id' }
   PAGE_SIZE = 100
 
   def self.clear_list!

@@ -34,8 +34,8 @@ module It52Rails
     config.autoload_paths += ["#{Rails.root}/app/services"]
 
     # Mailing host
-    config.action_mailer.default_url_options = { host: Figaro.env.mailing_host }
-    config.action_mailer.default_options = { from: "robot@#{Figaro.env.mailing_host}" }
+    config.action_mailer.default_url_options = { host: ENV.fetch('mailing_host') {'mailing_host'} }
+    config.action_mailer.default_options = { from: "robot@#{ENV.fetch('mailing_host') {'mailing_host'}}" }
     config.action_mailer.smtp_settings = {}
     config.action_mailer.delivery_method = :letter_opener
   end
