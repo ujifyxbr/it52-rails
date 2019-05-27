@@ -1,5 +1,7 @@
 #!/bin/bash
 heroku pg:backups:capture -a it52
 heroku pg:backups:download -a it52
-pg_restore --verbose --clean --no-acl --no-owner -d it52_rails_dev ./latest.dump
+docker cp ./latest.dump $(docker-compose ps -q db):/tmp/latest.dump
+docker-compose exec db pg_restore --verbose --clean --no-acl --no-owner -U postgres -d it52_rails_dev /tmp/latest.dump
+docker-compose exec db rm /tmp/latest.dump
 rm ./latest.dump

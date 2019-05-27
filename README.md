@@ -20,13 +20,19 @@ Main branch is [it52](https://github.com/NNRUG/it52-rails/tree/it52)
 
 ## Getting started
 
+### С докером
+
+Запустить скрипт
+
+    ./bootstrap.sh
+
+### Без докера
+
 Для начала работы с проектом нужно создать конфигурационые файлы на основе шаблонов:
 
     cp config/database.yml.template config/database.yml
     cp config/secrets.yml.template config/secrets.yml
     cp config/application.yml.template config/application.yml
-
-### Без докера
 
 Установить зависимости, создать и мигрировать БД:
 
@@ -37,12 +43,6 @@ Main branch is [it52](https://github.com/NNRUG/it52-rails/tree/it52)
 
     unicorn_rails
 
-### С докером
-
-Запустить окружение
-
-    docker-compose run web bundle exec rails db:setup
-    docker-compose up
 
 ## Style guides
 
