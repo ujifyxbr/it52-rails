@@ -11,6 +11,10 @@ FactoryBot.define do
       description { %(I'm **description** with _markdown_.) }
     end
 
+    trait :published do
+      published { true }
+    end
+
     factory :published_event do
       published { true }
     end

@@ -35,7 +35,8 @@ class EventTitleImageUploader < CarrierWave::Uploader::Base
   # end
 
   def default_url
-    ActionController::Base.helpers.asset_path("events_fallback/" + [version_name, "default.png"].compact.join('_'))
+    ActionController::Base.helpers.asset_path("events_fallback/" + [version_name, "default.png"].compact.join('_'),
+                                              skip_pipeline: true)
   end
 
   version :square_500 do
