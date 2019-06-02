@@ -49,7 +49,7 @@ Main branch is [it52](https://github.com/NNRUG/it52-rails/tree/it52)
 
 ### API
 
-(On SwaggerHub)[https://app.swaggerhub.com/apis-docs/kugaevsky/it52/2].
+[On SwaggerHub](https://app.swaggerhub.com/apis-docs/kugaevsky/it52/2).
 
 
 ## Style guides
