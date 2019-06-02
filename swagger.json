@@ -2,7 +2,7 @@
   "openapi" : "3.0.0",
   "servers" : [ {
     "description" : "IT52 API",
-    "url" : "https://www.it52.info/api/v1"
+    "url" : "https://www.it52.info/api/v2"
   } ],
   "info" : {
     "description" : "IT52 API",
