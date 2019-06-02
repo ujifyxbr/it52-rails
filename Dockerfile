@@ -2,18 +2,6 @@ FROM ruby:2.6.3-slim
 MAINTAINER Nick Kugaevsky "nick@kugaevsky.ru"
 
 # Build-time metadata as defined at http://label-schema.org
-ARG BUILD_DATE
-ARG VCS_REF
-ARG VERSION
-LABEL org.label-schema.build-date=$BUILD_DATE \
-      org.label-schema.name="IT52" \
-      org.label-schema.description="IT52 rails application" \
-      org.label-schema.url="https://www.it52.info" \
-      org.label-schema.vcs-ref=$VCS_REF \
-      org.label-schema.vcs-url="https://github.com/nnrug/it52-rails" \
-      org.label-schema.vendor="IT52" \
-      org.label-schema.version=$VERSION \
-      org.label-schema.schema-version="1.0"
 
 RUN apt-get update -qq && apt-get install -y build-essential
 
@@ -48,5 +36,18 @@ ADD Gemfile* $APP_HOME/
 RUN bundle install
 
 ADD . $APP_HOME
+
+ARG BUILD_DATE
+ARG VCS_REF
+ARG VERSION
+LABEL org.label-schema.build-date=$BUILD_DATE \
+      org.label-schema.name="IT52" \
+      org.label-schema.description="IT52 rails application" \
+      org.label-schema.url="https://www.it52.info" \
+      org.label-schema.vcs-ref=$VCS_REF \
+      org.label-schema.vcs-url="https://github.com/nnrug/it52-rails" \
+      org.label-schema.vendor="IT52" \
+      org.label-schema.version=$VERSION \
+      org.label-schema.schema-version="1.0"
 
 CMD [ "bundle", "exec", "rails", "console" ]
