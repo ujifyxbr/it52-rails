@@ -34,6 +34,7 @@ gem 'friendly_id'
 
 # Decoration
 gem 'active_model_serializers'
+gem 'fast_jsonapi'
 gem 'activemodel-serializers-xml'
 gem 'draper'
 
@@ -42,7 +43,7 @@ gem 'sassc-rails'
 gem 'babel-transpiler'
 gem 'jquery-rails'
 gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.2'
+gem 'coffee-rails'
 # gem 'styx'
 # gem 'marked-rails'
 gem 'bootstrap-sass'
@@ -71,11 +72,12 @@ gem 'dalli'
 gem 'jwt'
 
 # Documentation
-gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'sdoc', group: :doc
 # gem 'apipie-rails', git: 'https://github.com/Apipie/apipie-rails.git', ref: 'f697ec2a887cd73c00c846eceb2ce63a050ccb20'
 
 # Application server
-gem 'unicorn-rails'
+gem 'puma-rails'
+gem 'foreman'
 
 # Environment variables management
 gem 'figaro'
