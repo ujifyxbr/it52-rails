@@ -64,3 +64,6 @@ nginx_rewrite.txt
 
 # Ignore javascript dependencies
 /node_modules/
+
+# Ignore ruby dependencies
+/vendor/bundle

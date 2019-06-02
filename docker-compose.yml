@@ -6,7 +6,7 @@ services:
     image: memcached:alpine
   web:
     image: it52/rails:latest
-    command: bin/rails foreman start
+    command: bin/bundle exec foreman start
     ports:
       - '3000:3000'
     links:
