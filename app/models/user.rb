@@ -38,7 +38,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
          :trackable, :validatable, :confirmable, :omniauthable
 
-  enum role: [ :member, :admin ]
+  enum role: %i[member admin]
 
   has_many :authentications, dependent: :destroy
   accepts_nested_attributes_for :authentications

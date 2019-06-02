@@ -61,5 +61,9 @@ Rails.application.routes.draw do
 
       resources :users, only: :show
     end
+
+    namespace :v2 do
+      resources :events, only: :index
+    end
   end
 end

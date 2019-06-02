@@ -6,7 +6,7 @@ describe MailchimpHooksController do
     let!(:unsubscribed_user) { FactoryBot.create(:user, :unsubscribed) }
 
     let(:subscription_params) {
-      { token: Figaro.env.mailchimp_hooks_token,
+      { token: ENV.fetch('mailchimp_hooks_token') { '' },
         type: 'unsubscribe',
         fired_at: '2014-12-08 18:20:30',
         data: {
