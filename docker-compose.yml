@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   db:
     image: postgres:11.3-alpine
@@ -14,3 +14,6 @@ services:
       - memcached
     volumes:
       - .:/it52
+    depends_on:
+      - memcached
+      - db

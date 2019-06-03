@@ -1,0 +1,8 @@
+#!/bin/bash
+
+export RAILS_ENV=test
+export mailchimp_hooks_token=mailchimp_token
+
+bundle exec rails db:create
+bundle exec rails db:schema:load
+rspec

@@ -1,3 +1,13 @@
+db:
+  image: postgres:11.3-alpine
+memcached:
+  image: memcached:alpine
 sut:
   build: .
-  command: rspec
+  command: bin/docker_spec
+  links:
+    - db
+    - memcached
+  depends_on:
+    - memcached
+    - db
