@@ -125,8 +125,9 @@ group :development, :test do
 end
 
 group :test do
-  gem 'simplecov'
   gem 'codeclimate-test-reporter'
+  gem 'simplecov'
+  gem 'codecov', require: false
   gem 'shoulda-matchers', require: false
 end
 
