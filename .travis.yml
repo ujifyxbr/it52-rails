@@ -14,6 +14,7 @@ rvm:
 install:
 - bundle install --path vendor/bundle --retry 3
 before_script:
+- cp config/database.yml.travis config/database.yml
 - cp config/secrets.yml.template config/secrets.yml
 - cp config/application.yml.template config/application.yml
 before_script:
