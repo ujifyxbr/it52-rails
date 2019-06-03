@@ -14,15 +14,18 @@ rvm:
 install:
 - bundle install --path vendor/bundle --retry 3
 before_script:
-- cp config/database.yml.travis config/database.yml
 - cp config/secrets.yml.template config/secrets.yml
 - cp config/application.yml.template config/application.yml
+before_script:
+- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+- chmod +x ./cc-test-reporter
+- ./cc-test-reporter before-build
 script:
 - bundle exec rake db:create
 - bundle exec rake db:schema:load
 - bundle exec rspec
 after_script:
-- bundle exec codeclimate-test-reporter
+- ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 env:
   global:
     secure: bp3xJOb795L63tCXYb6XbJmTI7fSquwT59z7QlcUi2lHID7gqNLnCBTtZHjRY1ASSvwqk+hbPj857JXZ3SpGL4mySM0BicKIC7iPIvECtnMQeeg3EBk7h0S5ZE/P00Xk03peWmpbRzClXSZS+kmsRxKREK3dJh6+jO7XNaRpg6w=
