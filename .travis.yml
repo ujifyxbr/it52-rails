@@ -17,7 +17,6 @@ before_script:
 - cp config/database.yml.travis config/database.yml
 - cp config/secrets.yml.template config/secrets.yml
 - cp config/application.yml.template config/application.yml
-before_script:
 - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
 - chmod +x ./cc-test-reporter
 - ./cc-test-reporter before-build
