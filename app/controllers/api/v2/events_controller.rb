@@ -2,8 +2,6 @@
 module Api
   module V2
     class EventsController < ApiController
-      PAGINATE_PER = 100
-
       before_action :prepare_model
 
       def index
