@@ -38,6 +38,7 @@ nginx_rewrite.txt
 *.sublime-workspace
 .idea
 
+/config/database.yml
 /config/application.yml
 /config/settings.yml
 /config/newrelic.yml
