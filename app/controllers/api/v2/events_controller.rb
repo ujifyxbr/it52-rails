@@ -7,7 +7,7 @@ module Api
       def index
         @events = @model.published.order(published_at: :desc)
         @events = @events.tagged_with(params[:tag]) if params[:tag].present?
-        @events = @events.page(params[:page] || 1).per(PAGINATE_PER)
+        @events = @events.page(params[:page] || 1)
         options = {
           links: {
             self: events_url(page: @events.current_page),

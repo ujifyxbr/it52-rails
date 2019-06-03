@@ -3,7 +3,7 @@ MAINTAINER Nick Kugaevsky "nick@kugaevsky.ru"
 
 # Build-time metadata as defined at http://label-schema.org
 
-RUN apt-get update -qq && apt-get install -y build-essential
+RUN apt-get update -qq && apt-get install -y build-essential git
 
 # for postgres
 RUN apt-get install -y libpq-dev
