@@ -63,7 +63,7 @@ Rails.application.routes.draw do
     end
 
     namespace :v2 do
-      resources :events, only: :index
+      resources :events, only: %i[index show]
     end
   end
 end

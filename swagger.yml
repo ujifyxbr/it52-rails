@@ -13,13 +13,75 @@ info:
     name: MIT
     url: 'https://github.com/NNRUG/it52-rails/blob/it52/LICENSE.md'
 paths:
+  /events/{eventId}:
+    get:
+      summary: Event detail
+      operationId: eventDetail
+      parameters:
+        - in: path
+          required: true
+          name: eventId
+          description: event id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: event detail
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      attributes:
+                        '$ref': '#/components/schemas/Event'
+                      id:
+                        type: string
+                      links:
+                        type: object
+                        properties:
+                          url:
+                            type: string
+                      relationships:
+                        type: object
+                        properties:
+                          organizer:
+                            '$ref': '#/components/schemas/OneRelationship'
+                          participants:
+                            '$ref': '#/components/schemas/ManyRelationship'
+                      type:
+                        type: string
+                  included:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        type:
+                          type: string
+                        links:
+                          type: object
+                          properties:
+                            url:
+                              type: string
+                        attributes:
+                          '$ref': '#/components/schemas/User'
+                  links:
+                    type: object
+                    properties:
+                      self:
+                        type: string
+                        example: "https://www.it52.info/events/2019-06-29"
+
+        '404':
+          description: event not found
   /events:
     get:
       summary: Events index
       operationId: eventsIndex
-      description: |
-        By passing in the appropriate options, you can search for
-        available inventory in the system
       parameters:
         - in: query
           name: page
@@ -52,6 +114,22 @@ paths:
                         type: string
                       prev:
                         type: string
+                  included:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                        links:
+                          type: object
+                          properties:
+                            url:
+                              type: string
+                        id:
+                          type: string
+                        attributes:
+                          $ref: '#/components/schemas/User'
                   meta:
                     type: object
                     properties:
@@ -64,23 +142,23 @@ components:
     Event:
       type: object
       properties:
-        id:
-          type: integer
-          example: 123
         title:
           type: string
           example: 'My Event'
-        created_at:
+        createdAt:
           type: string
-        updated_at:
+          example: "2019-06-13T19:00:00.000+03:00"
+        updatedAt:
           type: string
-        started_at:
+          example: "2019-06-13T19:00:00.000+03:00"
+        startedAt:
           type: string
+          example: "2019-06-13T19:00:00.000+03:00"
         published:
           type: boolean
         description:
           type: string
-        title_image:
+        titleImage:
           type: object
           properties:
             url:
@@ -99,7 +177,7 @@ components:
           type: string
         slug:
           type: string
-        foreign_link:
+        foreignLink:
           type: string
         pageviews:
           type: integer
@@ -108,24 +186,57 @@ components:
           enum:
           - event
           - education
-        tag_list:
+        tagList:
           type: array
           items:
             type: string
 
-    User:
+    UserAvatarImage:
       type: object
-      required:
-        - id
-        - email
       properties:
-        id:
-          type: integer
-          example: 123
-        email:
+        url:
           type: string
-          format: email
-          example: 'senior@developer.dev'
+        square_25:
+          type: object
+          properties:
+            url:
+              type: string
+        square_50:
+          type: object
+          properties:
+            url:
+              type: string
+        square_150:
+          type: object
+          properties:
+            url:
+              type: string
+    OneRelationship:
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+    ManyRelationship:
+      required:
+      - data
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              type:
+                type: string
+    User:
+      properties:
         nickname:
           type: string
           example: 'cool_hacker'
@@ -134,18 +245,18 @@ components:
           enum:
           - member
           - admin
-        first_name:
+        firstName:
           type: string
-        last_name:
+        lastName:
           type: string
         bio:
           type: string
-        avatar_image:
-          type: string
+        avatarImage:
+          $ref: '#/components/schemas/UserAvatarImage'
         slug:
           type: string
         website:
           type: string
         employment:
           type: string
-
+      type: object

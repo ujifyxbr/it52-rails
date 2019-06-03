@@ -82,6 +82,10 @@ class Event < ApplicationRecord
     user && event_participations.find_by(user_id: user.id)
   end
 
+  def participants_count
+    participants.size
+  end
+
   def participation_for(user)
     event_participations.find_by(user_id: user.id)
   end

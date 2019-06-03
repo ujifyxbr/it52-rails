@@ -5,9 +5,14 @@ module V2
     cache_options enabled: true, cache_length: 1.day
     set_key_transform :camel_lower
 
-    attributes :id, :title, :created_at, :updated_at, :started_at, :published, :description, :title_image, :place, :slug, :foreign_link, :pageviews, :kind, :tag_list
-    belongs_to :organizer
-    has_many :participants
+    attributes :title, :created_at, :updated_at, :started_at, :published, :description, :title_image, :place, :slug, :foreign_link, :pageviews, :kind, :tag_list
+
+    attribute :participants_count
+
+    belongs_to :organizer, record_type: :user, serializer: :user
+    has_many :participants, record_type: :user,
+                            serializer: :user,
+                            if: Proc.new { |_record, params| params[:action] != 'index' }
 
     link :url do |object|
       Rails.application.routes.url_helpers.event_url(object, host: ENV.fetch('mailing_host') { 'it52.info'} )
