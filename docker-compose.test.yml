@@ -8,6 +8,3 @@ sut:
   links:
     - db
     - memcached
-  depends_on:
-    - memcached
-    - db
