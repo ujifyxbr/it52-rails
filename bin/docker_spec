@@ -3,6 +3,11 @@
 export RAILS_ENV=test
 export mailchimp_hooks_token=mailchimp_token
 
+cp config/database.yml.template config/database.yml
+cp config/secrets.yml.template config/secrets.yml
+cp config/application.yml.template config/application.yml
+
 bundle exec rails db:create
 bundle exec rails db:schema:load
+
 rspec
