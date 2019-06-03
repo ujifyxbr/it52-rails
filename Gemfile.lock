@@ -108,6 +108,7 @@ GEM
     csso-rails (0.8.2)
       execjs (>= 1)
     dalli (2.7.10)
+    database_cleaner (1.7.0)
     devise (4.6.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -450,6 +451,7 @@ DEPENDENCIES
   coffee-rails
   csso-rails
   dalli
+  database_cleaner
   devise
   draper
   factory_bot_rails

@@ -16,11 +16,12 @@ describe EventsController do
 
     context 'when user is logged in' do
       before { sign_in user }
+
       it { expect { post :create, params: { event: event_attrs } }.to change(Event, :count).by 1 }
     end
 
     context 'when admin is logged in' do
-      let(:created_event) { Event.first }
+      let(:created_event) { Event.find_by(title: event_attrs[:title]) }
 
       before { sign_in admin }
 

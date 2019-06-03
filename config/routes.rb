@@ -64,6 +64,7 @@ Rails.application.routes.draw do
 
     namespace :v2 do
       resources :events, only: %i[index show]
+      resources :tags, only: %i[index]
     end
   end
 end

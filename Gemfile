@@ -129,6 +129,7 @@ group :test do
   gem 'simplecov'
   gem 'codecov', require: false
   gem 'shoulda-matchers', require: false
+  gem 'database_cleaner'
 end
 
 # Heroku compatibility

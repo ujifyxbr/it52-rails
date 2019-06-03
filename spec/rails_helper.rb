@@ -58,7 +58,18 @@ RSpec.configure do |config|
 
   config.include Devise::Test::ControllerHelpers, type: :controller
 
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
   config.before(:each) do
     allow_any_instance_of(MailchimpSynchronizer).to receive(:sync!).and_return({})
+  end
+
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
   end
 end

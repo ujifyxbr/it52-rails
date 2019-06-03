@@ -104,7 +104,14 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: '#/components/schemas/Event'
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        type:
+                          type: string
+                        attributes:
+                          $ref: '#/components/schemas/Event'
                   links:
                     type: object
                     properties:
@@ -137,6 +144,41 @@ paths:
                         type: integer
                       total_pages:
                         type: integer
+  /tags:
+    get:
+      summary: tags index
+      operationId: tagsIndex
+      parameters:
+        - in: query
+          name: q
+          description: search query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: tags index
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        type:
+                          type: string
+                        attributes:
+                          $ref: '#/components/schemas/Tag'
+                  meta:
+                    type: object
+                    properties:
+                      total_count:
+                        type: integer
+
 components:
   schemas:
     Event:
@@ -260,3 +302,10 @@ components:
         employment:
           type: string
       type: object
+    Tag:
+      type: object
+      properties:
+        name:
+          type: string
+        taggingsCount:
+          type: integer

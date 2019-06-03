@@ -1,6 +1,6 @@
 module Api
   module V2
-    class ApiController < ActionController::Base
+    class ApiController < ActionController::API
       before_action :set_allow_cors_headers
 
       rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
