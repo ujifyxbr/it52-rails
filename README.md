@@ -6,9 +6,11 @@
 [![Join the chat at https://gitter.im/NNRUG/it52-rails](https://badges.gitter.im/NNRUG/it52-rails.svg)](https://gitter.im/NNRUG/it52-rails?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![codecov](https://codecov.io/gh/NNRUG/it52-rails/branch/it52/graph/badge.svg)](https://codecov.io/gh/NNRUG/it52-rails)
 
+
 ## Main branch
 
 Main branch is [it52](https://github.com/NNRUG/it52-rails/tree/it52)
+
 
 ## Requirements
 
@@ -19,6 +21,7 @@ Main branch is [it52](https://github.com/NNRUG/it52-rails/tree/it52)
 ИЛИ
 
 - Docker
+
 
 ## Getting started
 
@@ -35,7 +38,6 @@ Main branch is [it52](https://github.com/NNRUG/it52-rails/tree/it52)
 
 Для начала работы с проектом нужно создать конфигурационые файлы на основе шаблонов:
 
-    cp config/database.yml.template config/database.yml
     cp config/secrets.yml.template config/secrets.yml
     cp config/application.yml.template config/application.yml
 
@@ -49,7 +51,7 @@ Main branch is [it52](https://github.com/NNRUG/it52-rails/tree/it52)
     unicorn_rails
 
 
-### API
+## API
 
 [On SwaggerHub](https://app.swaggerhub.com/apis-docs/kugaevsky/it52/2).
 
@@ -64,6 +66,7 @@ Main branch is [it52](https://github.com/NNRUG/it52-rails/tree/it52)
 - [CoffeeScript](https://github.com/thoughtbot/guides/tree/master/style#coffeescript)
 - [Markdown](http://www.cirosantilli.com/markdown-styleguide)
 
+
 ## Я хочу помочь!
 
 Всегда пожалуйста. Мы всегда рады хорошим людям. Помочь вы можете разными способами.
@@ -75,6 +78,7 @@ Main branch is [it52](https://github.com/NNRUG/it52-rails/tree/it52)
 **Я гуру (начинающий/хочу изучить) Ruby on Rails, и у меня есть немного времени.** — _Круто! Присылайте pull request. Только про тесты не забудьте._
 
 **Я не умею программировать, но умею рисовать.** — _Хороший дизайнер всегда пригодится. Мы будем безмерно благодарны за красивый логотип для ресурса. Если найдёте время причесать дизайн, то совсем хорошо. Логотип обсуждаем на [этой странице](https://github.com/NNRUG/it52-rails/issues/7)._
+
 
 ## Спасибо
 
