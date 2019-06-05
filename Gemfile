@@ -9,7 +9,7 @@ gem 'bootsnap'
 # Database
 gem 'pg'
 
-# Mailing
+# Integrations
 gem 'mailchimp-api', require: 'mailchimp'
 gem 'mailgun_rails'
 
@@ -95,6 +95,8 @@ gem 'asset_sync'
 # Monitoring
 gem 'newrelic_rpm'
 # gem 'runtimeerror_notifier'
+
+
 
 # Utils
 gem 'icalendar'

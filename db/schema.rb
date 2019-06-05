@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_01_180745) do
+ActiveRecord::Schema.define(version: 2019_06_05_125210) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,14 @@ ActiveRecord::Schema.define(version: 2019_03_01_180745) do
     t.string "link", limit: 255
     t.string "token", limit: 255
     t.datetime "token_expires"
+  end
+
+  create_table "donations", force: :cascade do |t|
+    t.float "amount", null: false
+    t.integer "kind", null: false
+    t.float "amount_in_rub", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "event_participations", id: :serial, force: :cascade do |t|
