@@ -46,7 +46,7 @@ class Donation < ApplicationRecord
 
     response[:rows].group_by { |row| row[:date] }.each_pair do |month, rows|
       amount = rows.sum { |row| row[:net_usd] }.round(2)
-      data << { created_at: Time.zone.parse("#{month}-01"),
+      data << { created_at: Time.zone.parse("#{month}-01").end_of_month,
                 amount: amount,
                 amount_in_rub: (amount * USD_RUB).round(2),
                 kind: 1 }
