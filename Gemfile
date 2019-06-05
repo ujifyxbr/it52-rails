@@ -94,6 +94,7 @@ gem 'asset_sync'
 
 # Monitoring
 gem 'newrelic_rpm'
+gem 'rollbar'
 # gem 'runtimeerror_notifier'
 
 
