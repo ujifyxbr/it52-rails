@@ -4,7 +4,6 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 5.2.0'
 gem 'bootsnap'
-# gem 'rails-i18n'
 
 # Database
 gem 'pg'
@@ -48,6 +47,7 @@ gem 'webpacker'
 gem 'jbuilder', '~> 2.5'
 gem 'slim-rails'
 gem 'redcarpet'
+# gem 'active_link_to'
 gem 'high_voltage'
 gem 'simple_form'
 gem 'meta-tags'
@@ -82,9 +82,6 @@ gem 'asset_sync'
 # Monitoring
 gem 'newrelic_rpm'
 gem 'rollbar'
-# gem 'runtimeerror_notifier'
-
-
 
 # Utils
 gem 'icalendar'
