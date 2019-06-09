@@ -2,8 +2,6 @@
 // like app/views/layouts/application.html.erb.
 
 import * as SimpleMDE from 'simplemde'
-import 'simplemde/dist/simplemde.min.css'
-
 
 document.addEventListener('turbolinks:load', init)
 
