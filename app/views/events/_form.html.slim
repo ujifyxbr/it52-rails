@@ -12,7 +12,8 @@
       = f.input :title_image_cache, as: :hidden
     .col-sm-6
       = f.input :kind, as: :select, collection: Event.humanized_kinds_map, allow_blank: false, selected: @event.kind
-      = f.input :started_at, as: :string, input_html: { value: l(f.object.started_at || 1.month.from_now, format: :date_time_short), data: { date_format: "DD.MM.YYYY HH:mm", min_date: l(Date.today, format: :timepicker) }}
+      - started_at_string = l(f.object.started_at || 1.month.from_now, format: :date_time_short)
+      = f.input :started_at, as: :string, input_html: { value: started_at_string, data: { default_date: started_at_string }}
       = f.input :place, as: :text
       = f.input :location, as: :hidden
       = f.input :tag_list, input_html: { value: @event.tag_list.to_s, maxlength: 100 }

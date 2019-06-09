@@ -2,6 +2,8 @@
 // like app/views/layouts/application.html.erb.
 
 import * as SimpleMDE from 'simplemde'
+import flatpickr from 'flatpickr'
+import { Russian } from 'flatpickr/dist/l10n/ru'
 
 document.addEventListener('turbolinks:load', init)
 
@@ -10,6 +12,17 @@ function hasEditor(): boolean {
 }
 
 function init(event?: Event | any): void {
+  flatpickr('#event_started_at', {
+    enableTime: true,
+    minuteIncrement: 15,
+    time_24hr: true,
+    defaultHour: 19,
+    dateFormat: "d.m.Y H:i",
+    minDate: 'today',
+    locale: Russian
+  })
+
+
   const simplemdeEl = document.querySelectorAll('#event_description, #user_bio')[0]
   if (!!simplemdeEl && !hasEditor()) {
     const simplemde = new SimpleMDE({

@@ -28,7 +28,6 @@ gem 'omniauth-twitter'
 gem 'cancancan'
 
 # Request handling
-# gem 'responders'
 gem 'has_scope'
 gem 'friendly_id'
 
@@ -40,28 +39,15 @@ gem 'draper'
 
 # Compile and serve assets
 gem 'sassc-rails'
-gem 'babel-transpiler'
-gem 'jquery-rails'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails'
-# gem 'styx'
-# gem 'marked-rails'
-gem 'bootstrap-sass'
 gem 'font-awesome-sass'
-gem 'gon'
 gem 'autoprefixer-rails'
 gem 'csso-rails'
-# gem 'turbolinks', '~> 5'
-# gem 'jquery-turbolinks'
-gem 'momentjs-rails'
-gem 'bootstrap3-datetimepicker-rails'
 gem 'webpacker'
 
 # View template compilers and helpers
 gem 'jbuilder', '~> 2.5'
 gem 'slim-rails'
 gem 'redcarpet'
-# gem 'active_link_to'
 gem 'high_voltage'
 gem 'simple_form'
 gem 'meta-tags'

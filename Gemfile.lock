@@ -67,19 +67,10 @@ GEM
     autoprefixer-rails (9.6.0)
       execjs
     awesome_print (1.8.0)
-    babel-source (5.8.35)
-    babel-transpiler (0.7.0)
-      babel-source (>= 4.0, < 6)
-      execjs (~> 2.0)
     bcrypt (3.1.13)
     bindex (0.7.0)
     bootsnap (1.4.4)
       msgpack (~> 1.0)
-    bootstrap-sass (3.4.1)
-      autoprefixer-rails (>= 5.2.1)
-      sassc (>= 2.0.0)
-    bootstrap3-datetimepicker-rails (4.17.47)
-      momentjs-rails (>= 2.8.1)
     builder (3.2.3)
     byebug (11.0.1)
     cancancan (3.0.1)
@@ -96,13 +87,6 @@ GEM
       simplecov
       url
     coderay (1.1.2)
-    coffee-rails (5.0.0)
-      coffee-script (>= 2.2.0)
-      railties (>= 5.2.0)
-    coffee-script (2.4.1)
-      coffee-script-source
-      execjs
-    coffee-script-source (1.12.2)
     concurrent-ruby (1.1.5)
     crass (1.0.4)
     csso-rails (0.8.2)
@@ -165,10 +149,6 @@ GEM
       activerecord (>= 4.0.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    gon (6.2.1)
-      actionpack (>= 3.0)
-      multi_json
-      request_store (>= 1.0)
     has_scope (0.7.2)
       actionpack (>= 4.1)
       activesupport (>= 4.1)
@@ -184,10 +164,6 @@ GEM
     ipaddress (0.8.3)
     jbuilder (2.9.1)
       activesupport (>= 4.2.0)
-    jquery-rails (4.3.3)
-      rails-dom-testing (>= 1, < 3)
-      railties (>= 4.2.0)
-      thor (>= 0.14, < 2.0)
     json (2.2.0)
     jsonapi-renderer (0.2.0)
     jwt (2.2.1)
@@ -236,8 +212,6 @@ GEM
     mini_mime (1.0.1)
     mini_portile2 (2.4.0)
     minitest (5.11.3)
-    momentjs-rails (2.20.1)
-      railties (>= 3.1)
     msgpack (1.2.10)
     multi_json (1.13.1)
     multi_xml (0.6.0)
@@ -408,8 +382,6 @@ GEM
     tilt (2.0.9)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    uglifier (4.1.20)
-      execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.6)
@@ -441,16 +413,12 @@ DEPENDENCIES
   asset_sync
   autoprefixer-rails
   awesome_print
-  babel-transpiler
   bootsnap
-  bootstrap-sass
-  bootstrap3-datetimepicker-rails
   byebug
   cancancan
   carrierwave
   codeclimate-test-reporter
   codecov
-  coffee-rails
   csso-rails
   dalli
   database_cleaner
@@ -464,12 +432,10 @@ DEPENDENCIES
   font-awesome-sass
   foreman
   friendly_id
-  gon
   has_scope
   high_voltage
   icalendar
   jbuilder (~> 2.5)
-  jquery-rails
   jwt
   kaminari
   letter_opener
@@ -478,7 +444,6 @@ DEPENDENCIES
   mailgun_rails
   meta-tags
   mini_magick
-  momentjs-rails
   newrelic_rpm
   omniauth
   omniauth-facebook
@@ -504,7 +469,6 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
-  uglifier (>= 1.3.0)
   unicode
   web-console
   webpacker
