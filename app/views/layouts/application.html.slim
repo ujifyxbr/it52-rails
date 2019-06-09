@@ -53,7 +53,6 @@ html lang='ru'
       = javascript_tag header, nonce: true
 
     = javascript_include_tag 'https://yastatic.net/share2/share.js', nonce: true, defer: true
-    = javascript_include_tag 'application', 'data-turbolinks-track': true, defer: true
     = javascript_pack_tag 'application', 'data-turbolinks-track': true, defer: true
 
     = yield(:dynamic_javascripts) if content_for(:dynamic_javascripts)

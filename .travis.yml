@@ -6,13 +6,16 @@ addons:
       secure: rHKRm9apsLJJxFYf1ZoylgOw+rpqdaPIxK+LeyJVYHhnFYMDpjl58wQwKx0zwv96NSITnwXChacfyHHFT/5QS+Htjmiro9F8bOfaUswBggG9BmWlrqJ4te94dlYVcbhgTEY37+9ZuzPK5RDA1zyGk/q4zAFme+dmy3JIkGH3MPs=
 cache:
   bundler: true
+  yarn: true
   directories:
   - "/home/travis/.rvm/"
+  - node_modules
 language: ruby
 rvm:
 - 2.6.3
 install:
 - bundle install --path vendor/bundle --retry 3
+- yarn install
 before_script:
 - cp config/database.yml.travis config/database.yml
 - cp config/secrets.yml.template config/secrets.yml
