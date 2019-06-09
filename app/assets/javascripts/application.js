@@ -18,6 +18,5 @@
 //= require moment/ru
 //= require bootstrap-datetimepicker
 
-//= require turbolinks
 //= require common
 

@@ -1,3 +1,6 @@
+- content_for :dynamic_javascripts
+  = javascript_pack_tag 'editor', 'data-turbolinks-track': true, defer: true
+
 .page-header
   h1 = t('.title')
 

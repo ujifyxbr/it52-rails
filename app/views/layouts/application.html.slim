@@ -36,11 +36,7 @@ html lang='ru'
 
     link rel="alternate" type="application/atom+xml" title=t(:app_description) href=events_url(format: :atom)
 
-    = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Fira+Mono:400,500&amp;subset=cyrillic', nonce: true
-    = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Fira+Sans:400,600&amp;subset=cyrillic', nonce: true
-    = stylesheet_link_tag "https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css", nonce: true
-
-    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': true
 
     = yield(:head) if content_for(:head)
 
@@ -56,12 +52,11 @@ html lang='ru'
     - headers.each do |header|
       = javascript_tag header, nonce: true
 
-    = javascript_include_tag 'https://yastatic.net/share2/share.js', nonce: true
-    = javascript_include_tag 'https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js', nonce: true
+    = javascript_include_tag 'https://yastatic.net/share2/share.js', nonce: true, defer: true
+    = javascript_include_tag 'application', 'data-turbolinks-track': true, defer: true
+    = javascript_pack_tag 'application', 'data-turbolinks-track': true, defer: true
 
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
-    = javascript_pack_tag 'application'
-    = javascript_pack_tag 'hello_typescript'
+    = yield(:dynamic_javascripts) if content_for(:dynamic_javascripts)
 
   body
     noscript: div: img src="https://mc.yandex.ru/watch/50290294" style="position:absolute; left:-9999px;" alt=""
