@@ -1,15 +1,25 @@
 doctype html
 html lang='ru'
   head
+    = csrf_meta_tags
     = display_meta_tags
+
+    meta name="turbolinks-cache-control" content="no-cache"
+
     meta http-equiv='X-UA-Compatible' content='IE=edge'
     meta name='viewport' content='width=device-width, initial-scale=1'
     meta name="google-site-verification" content="7IUs7VM3J7n6Uf8fMjijeAvHEq1BIFosZIJoL6IDBlw"
-    meta property="fb:pages" content="1903318093228825"
 
     meta name='yandex-verification' content='637a660a79fbb6d1'
     meta property='fb:app_id' content=(ENV.fetch('facebook_id') { 'facebook_id' })
     meta property='fb:pages' content='1903318093228825'
+
+    link rel='preconnect' href='https://assets.it52.info'
+    link rel='preconnect' href='https://bam.nr-data.net'
+    link rel='preconnect' href='https://cdn.jsdelivr.net'
+    link rel='preconnect' href='https://fonts.googleapis.com'
+    link rel='preconnect' href='https://www.googletagmanager.com'
+    link rel='preconnect' href='https://mc.yandex.ru'
 
     link rel="shortcut icon" href=asset_path('it52_favicon.ico')
 
@@ -18,34 +28,43 @@ html lang='ru'
     link rel="icon" type="image/png" href=asset_path('it52-logo-96x96.png') sizes="96x96"
     link rel="icon" type="image/png" href=asset_path('it52-logo-192x192.png') sizes="192x192"
 
-    link rel="alternate" type="application/atom+xml" title=t(:app_description) href=events_url(format: :atom)
-
     link rel="apple-touch-icon" sizes="180x180" href=asset_path('it52-logo-180x180.png')
 
     meta name="msapplication-TileColor" content="#111111"
     meta name="msapplication-TileImage" content=asset_path('it52-logo-144x144.png')
     meta name="theme-color" content="#111111"
 
-    link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Mono:400,500&amp;subset=cyrillic"
-    link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,600&amp;subset=cyrillic" rel="stylesheet"
+    link rel="alternate" type="application/atom+xml" title=t(:app_description) href=events_url(format: :atom)
 
-    = stylesheet_link_tag 'application', media: 'all'
+    = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Fira+Mono:400,500&amp;subset=cyrillic', nonce: true
+    = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Fira+Sans:400,600&amp;subset=cyrillic', nonce: true
+    = stylesheet_link_tag "https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css", nonce: true
 
-    = csrf_meta_tags
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
 
     = yield(:head) if content_for(:head)
 
-    javascript:
-      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-N5924B');
+    / Yandex.Metrika
+    = javascript_tag '(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)}; m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)}) (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym"); ym(50290294, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true })', nonce: true
 
-    script src='https://yastatic.net/share2/share.js' async=true
-    link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css"
-    script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"
+    / Global site tag (gtag.js) / Google Analytics
+    = javascript_include_tag 'https://www.googletagmanager.com/gtag/js?id=UA-54446007-1', nonce: true, async: true
+    = javascript_tag "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'UA-54446007-1');", nonce: true
 
-    = javascript_include_tag 'application'
+    / New Relic instrumentation
+    - headers = ::NewRelic::Agent.browser_timing_header.scan(/<script>(.*?)<\/script>/).flatten
+    - headers.each do |header|
+      = javascript_tag header, nonce: true
+
+    = javascript_include_tag 'https://yastatic.net/share2/share.js', nonce: true
+    = javascript_include_tag 'https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js', nonce: true
+
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = javascript_pack_tag 'application'
+    = javascript_pack_tag 'hello_typescript'
 
   body
-    noscript: iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N5924B" height="0" width="0" style="display:none;visibility:hidden"
+    noscript: div: img src="https://mc.yandex.ru/watch/50290294" style="position:absolute; left:-9999px;" alt=""
 
     = render 'shared/nav'
 
@@ -56,15 +75,14 @@ html lang='ru'
             div class="alert alert-#{type} alert-dismissable"
               button type='button' class='close' data-dismiss='alert' aria-hidden='true' &times;
               == message
-          div.alert.alert-success.alert-dismissable.hidden
+          div.alert.alert-notice.alert-dismissable.hidden
             h4
               |it52 +
               i.fas.fa-paper-plane<>
               | =
               i.fas.fa-heart<
             p Анонсы всех событий в Телеграме: канал <a href="tg://resolve=it52info">@it52info</a>.
-            p Запросить информацию о событиях: бот <a href="tg://resolve=it52_bot">@it52_bot</a>.
-            p Подписывайтесь!
+            p: a.button href="tg://resolve=it52info" Подписаться!
 
         = yield
 

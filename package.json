@@ -4,5 +4,16 @@
   "main": "index.js",
   "repository": "git@github.com:NNRUG/it52-rails.git",
   "author": "Nick Kugaevsky <nick@kugaevsky.ru>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@rails/webpacker": "^4.0.7",
+    "babel-loader": "^8.0.6",
+    "ts-loader": "^6.0.2",
+    "typescript": "^3.5.1",
+    "webpack": "^4.33.0",
+    "webpack-cli": "^3.3.2"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^3.6.0"
+  }
 }

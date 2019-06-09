@@ -35,6 +35,10 @@ WORKDIR $APP_HOME
 ADD Gemfile* $APP_HOME/
 RUN bundle install
 
+ADD package.json $APP_HOME/
+ADD yarn.lock $APP_HOME/
+RUN yarn
+
 ADD . $APP_HOME
 
 ARG BUILD_DATE

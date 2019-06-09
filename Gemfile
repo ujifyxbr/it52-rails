@@ -55,6 +55,7 @@ gem 'turbolinks', '~> 5'
 gem 'jquery-turbolinks'
 gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
+gem 'webpacker'
 
 # View template compilers and helpers
 gem 'jbuilder', '~> 2.5'

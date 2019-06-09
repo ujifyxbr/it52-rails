@@ -48,6 +48,8 @@ nginx_rewrite.txt
 /public/assets
 /public/sitemap*
 /public/uploads
+/public/packs
+/public/packs-test
 
 /config/deploy.rb
 # Ignore application configuration
@@ -63,6 +65,9 @@ nginx_rewrite.txt
 
 # Ignore javascript dependencies
 /node_modules/
+/yarn-error.log
+yarn-debug.log
+.yarn-integrity
 
 # Ignore ruby dependencies
 /vendor/bundle
