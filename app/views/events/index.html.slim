@@ -5,31 +5,27 @@
   .page-header
     .pull-right
       .feed-icons
-        = link_to events_path(format: :ics), title: 'Добавить в календарь', class: "icon no-underline" do
-          i.fas.fa-calendar-alt.fa-2x
-        = link_to events_path(format: :atom), title: 'RSS', class: "icon no-underline" do
-          i.fas.fa-rss.fa-2x
+        a.mdc-icon-button href=events_path(format: :ics) title='Добавить в календарь'
+          i.material-icons.mdc-icon-button__icon aria-hidden="true" event_note
+        a.mdc-icon-button href=events_path(format: :atom) title='RSS'
+          i.material-icons.mdc-icon-button__icon aria-hidden="true" rss_feed
 
-    -unless current_page?(root_path) || current_page?(:controller => 'events', :action => 'index_past') || current_page?(:controller => 'events', :action => 'index_unapproved') || current_page?(:controller => 'events', :action => 'index_education')
-      ul.nav.nav-pills role="tablist"
-        li role="presentation" class="#{'active' if action_name == 'index' }"
-          = link_to t('.go_home'), root_path
-        li role="presentation"
-          = link_to t('.new_event'), new_event_path, class: 'btn btn-success'
-    -else
-      ul.nav.nav-pills role="tablist"
+    nav.events-nav
+      - unless current_page?(root_path) || current_page?(:controller => 'events', :action => 'index_past') || current_page?(:controller => 'events', :action => 'index_unapproved') || current_page?(:controller => 'events', :action => 'index_education')
+        a.mdc-button href=root_path class=('mdc-button--outlined' unless action_name == 'index')
+            span.mdc-button__label = t('.go_home')
+      - else
         - unless educational?
-          li role="presentation" class="#{'active' if action_name == 'index' }"
-            = link_to t('.future_events'), root_path
-          li role="presentation" class="#{'active' if action_name == 'index_past' }"
-            = link_to t('.past_events'), past_events_path
+          a.mdc-button href=root_path class=('mdc-button--outlined' unless action_name == 'index')
+            span.mdc-button__label = t('.future_events')
+          a.mdc-button href=past_events_path class=('mdc-button--outlined' unless action_name == 'index_past')
+            span.mdc-button__label = t('.past_events')
         - if user_signed_in? && !unapproved_count.zero?
-          li role="presentation" class="#{'active' if action_name == 'index_unapproved' }"
-            = link_to "#{t('.unapproved_events')} (#{unapproved_count})", unapproved_events_path
-        li role="presentation"
-          = link_to t('.new_event'), new_event_path, class: 'btn btn-success'
-        / a.btn.btn-success> href=new_event_path Добавить
-    end
+          a.mdc-button href=unapproved_events_path class=('mdc-button--outlined' unless action_name == 'index_unapproved')
+            span.mdc-button__label = "#{t('.unapproved_events')} (#{unapproved_count})"
+      a.mdc-button.mdc-button--unelevated.mdc-button--success href=new_event_path
+        i.material-icons.mdc-button__icon aria-hidden="true" add
+        span.mdc-button__label = t('.new_event')
 
   - if @events.empty?
     .alert.alert-success

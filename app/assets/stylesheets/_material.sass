@@ -1,0 +1,81 @@
+// Variables
+
+$mdc-theme-primary: #111
+$mdc-theme-secondary: #b71c1c
+$mdc-theme-on-primary: #fefefe
+$mdc-theme-on-secondary: #442b2d
+
+$mdc-theme-success: #2e7d32
+
+// Top app bar
+@import "@material/top-app-bar/mdc-top-app-bar"
+
+.mdc-top-app-bar__row--container
+  margin-left: auto
+  margin-right: auto
+
+  @media (min-width: 768px)
+    max-width: 750px
+
+  @media (min-width: 992px)
+    max-width: 697px
+
+  @media (min-width: 1200px)
+    max-width: 897px
+
+.it52-logo
+  margin: 0
+  margin-left: 2.1rem
+
+  @media (min-width: 768px)
+    margin-left: 3px
+
+
+// Layout grid
+@import "@material/layout-grid/mdc-layout-grid"
+
+// Buttons
+@import "@material/button/mdc-button"
+@import "@material/fab/mdc-fab"
+@import "@material/icon-button/mdc-icon-button"
+
+.mdc-button
+  @include mdc-button-shape-radius(0)
+  font-size: 1.2rem
+
+.events-nav
+  .mdc-button
+    margin-right: 1rem
+
+    &:last-child
+      margin-right: 0
+
+    &--success
+      @include mdc-button-filled-accessible($mdc-theme-success)
+
+.mdc-fab
+  &--success
+    @include mdc-fab-accessible($mdc-theme-success)
+
+// Lists
+@import "@material/list/mdc-list"
+
+// Drawer
+@import "@material/drawer/mdc-drawer"
+.mdc-drawer
+  @include mdc-drawer-fill-color-accessible(#222)
+  // @include mdc-drawer-surface-fill-color($mdc-theme-primary)
+  &__title
+    font-size: 2rem
+  &__subtitle
+    font-size: 1.5rem
+  .mdc-list-item
+    font-size: 16px
+    font-weight: 400
+    line-height: 1.75rem
+
+// Tabs
+@import "@material/tab-bar/mdc-tab-bar"
+@import "@material/tab-scroller/mdc-tab-scroller"
+@import "@material/tab-indicator/mdc-tab-indicator"
+@import "@material/tab/mdc-tab"
