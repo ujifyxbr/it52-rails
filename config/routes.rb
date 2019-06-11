@@ -14,18 +14,19 @@ Rails.application.routes.draw do
 
   # Редактирование профиля и аккаунта
   namespace :my do
-    resource :profile, controller: 'users', only: [:show, :edit, :update,]
+    resource :profile, controller: 'users', only: %i[show edit update]
     resources :authentications, only: [:destroy]
   end
 
+  namespace :turbo do
+    resources :events, only: :index, defaults: { format: :rss }
+  end
+
   # Список пользователей и публичные профили
-  resources :users, only: [:index, :show]
+  resources :users, only: %i[index show]
 
   # События
   resources :events do
-    get :past, on: :collection, action: :index_past
-    get :unapproved, on: :collection, action: :index_unapproved
-    get :education, on: :collection, action: :index_education
     get :participants, on: :member
     patch :publish, on: :member
     patch :cancel_publication, on: :member

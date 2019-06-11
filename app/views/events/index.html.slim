@@ -16,26 +16,30 @@
     .mdc-select__selected-text
     #events-select-menu-list.mdc-select__menu.mdc-menu.mdc-menu-surface
       ul.mdc-list
-        - t('events.index.kind_filter').each_pair do |key, title|
-          li.mdc-list-item class=('mdc-list-item--selected' if current_filter?(key)) role="option" data-value=key data-url=events_path(filter_params.merge(kind: key)) aria-selected=(current_filter?(key) ? "true" : false)
-            = filter_params[:tag] ? "#{title} с тэгом #{filter_params[:tag]}" : title
+        - if filter_params[:status] == 'unapproved'
+          li.mdc-list-item.mdc-list-item--selected role="option" data-value='unapproved' data-url=events_path(filter_params.merge(status: 'unapproved')) aria-selected="true" = "На модерации (#{unapproved_count})"
+        - else
+          - t('events.index.kind_filter').each_pair do |key, title|
+            li.mdc-list-item class=('mdc-list-item--selected' if current_filter?(key)) role="option" data-value=key data-url=events_path(filter_params.merge(kind: key)) aria-selected=(current_filter?(key) ? "true" : false)
+              = filter_params[:tag] ? "#{title} с тэгом #{filter_params[:tag]}" : title
     / span.mdc-floating-label Select something
     / .mdc-line-ripple
 
 .events-index
-  .page-header
-    .pull-right
-      .feed-icons
-        a.mdc-icon-button href=events_path(format: :ics) title='Добавить в календарь'
-          i.material-icons.mdc-icon-button__icon aria-hidden="true" event_note
-        a.mdc-icon-button href=events_path(format: :atom) title='RSS'
-          i.material-icons.mdc-icon-button__icon aria-hidden="true" rss_feed
+  - if @events.present? && filter_params[:status] != 'unapproved'
+    .page-header
+      .pull-right
+        .feed-icons
+          a.mdc-icon-button href=events_path(format: :ics) title='Добавить в календарь'
+            i.material-icons.mdc-icon-button__icon aria-hidden="true" event_note
+          a.mdc-icon-button href=events_path(format: :atom) title='RSS'
+            i.material-icons.mdc-icon-button__icon aria-hidden="true" rss_feed
 
-    nav.events-nav
-      a.mdc-button href=events_path(filter_params.merge(status: 'future')) class=('mdc-button--outlined' unless filter_params[:status].nil? || filter_params[:status] == 'future')
-        span.mdc-button__label = t('.future_events')
-      a.mdc-button href=events_path(filter_params.merge(status: 'past')) class=('mdc-button--outlined' unless filter_params[:status] == 'past')
-        span.mdc-button__label = t('.past_events')
+      nav.events-nav
+        a.mdc-button href=events_path(filter_params.merge(status: 'future')) class=('mdc-button--outlined' unless filter_params[:status].nil? || filter_params[:status] == 'future')
+          span.mdc-button__label = t('.future_events')
+        a.mdc-button href=events_path(filter_params.merge(status: 'past')) class=('mdc-button--outlined' unless filter_params[:status] == 'past')
+          span.mdc-button__label = t('.past_events')
 
   - if @events.empty?
     .alert.alert-success

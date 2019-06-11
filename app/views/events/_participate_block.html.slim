@@ -1,12 +1,14 @@
 .line
   - if event.user_participated? current_user
     = form_tag cancel_participation_path(id: event.participation_for(current_user)), method: :delete do
-      = submit_tag event.cancel_participation_submit_title, class: 'btn btn-default btn-block'
+      button.mdc-button.mdc-button--wide.mdc-button--outlined type='submit'
+        span.mdc-button__label = event.cancel_participation_submit_title
     - if event.foreign_link.present?
       p.foreign-link-disclaimer Используется сторонняя регистрация. Свяжитесь с организатором, чтобы отказаться от участия.
   - else
     = form_tag participate_in_event_path do
       = hidden_field_tag 'event_participation[event_id]', event.id
-      = submit_tag event.participate_submit_title, class: 'btn btn-success btn-block'
+      button.mdc-button.mdc-button--wide.mdc-button--success type='submit'
+        span.mdc-button__label = event.participate_submit_title
     - if event.foreign_link.present?
       p.foreign-link-disclaimer Используется сторонняя регистрация. После клика вы будете перенаправлены на другой сайт, не пугайтесь.

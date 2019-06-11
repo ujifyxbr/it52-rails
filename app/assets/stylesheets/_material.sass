@@ -8,6 +8,8 @@ $mdc-theme-on-secondary: #442b2d
 $mdc-theme-success: #2e7d32
 $mdc-theme-warning: #fdd835
 
+$mdc-typography-font-family: 'Fira Mono', Roboto, Helvetica, sans-serif
+
 // Top app bar
 @import "@material/top-app-bar/mdc-top-app-bar"
 
@@ -43,15 +45,18 @@ $mdc-theme-warning: #fdd835
   @include mdc-button-shape-radius(0)
   font-size: 1.2rem
 
+  &--wide
+    width: 100%
+
+  &--success
+    @include mdc-button-filled-accessible($mdc-theme-success)
+
 .events-nav
   .mdc-button
     margin-right: 1rem
 
     &:last-child
       margin-right: 0
-
-    &--success
-      @include mdc-button-filled-accessible($mdc-theme-success)
 
 .mdc-fab
   &--success
@@ -100,13 +105,24 @@ $mdc-theme-warning: #fdd835
 
   .mdc-select__selected-text
     font-size: 2rem
+    letter-spacing: -1px
+    word-spacing: -.4rem
+
+  .mdc-select__dropdown-icon
+    width: 16px
+    height: 16px
+    background-size: contain
+    bottom: 18px
+    right: 22px
+
+  &.mdc-select--activated .mdc-select__dropdown-icon
+    transform: rotate(180deg)
 
   .mdc-list
     font-size: 1.5rem
 
 .events-select-menu-wrapper
-  margin-top: 1rem
-  margin-bottom: -2.5rem
+  margin: 1rem 0
   max-width: 100%
 
 // Chips
@@ -119,3 +135,6 @@ $mdc-theme-warning: #fdd835
     background-color: #ffff6b
   .mdc-chip__text
     font-size: 1.4rem
+
+// Typography
+@import "@material/typography/mdc-typography"

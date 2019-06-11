@@ -12,6 +12,7 @@ FactoryBot.define do
     end
 
     trait :published do
+      published_at  { Time.current }
       published { true }
     end
 
