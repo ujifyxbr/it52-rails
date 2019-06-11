@@ -67,14 +67,17 @@ function init(event: Event | any): void {
   // Array.from(menus).forEach((menu) => new MDCMenu(menu))
   // Array.from(selects).forEach((select) => new MDCSelect(select))
 
-  const eventsKindMenu = new MDCSelect(document.querySelector('#events-select-menu'))
-  eventsKindMenu.listen('MDCSelect:change', (event: CustomEvent) => {
-    const menu = document.querySelector('#events-select-menu-list')
-    const items = menu.querySelectorAll('.mdc-list-item')
-    const selectedItem = items[event.detail.index] as HTMLElement
-    console.log(menu, items, selectedItem)
-    Turbolinks.visit(selectedItem.dataset.url)
-  })
+  let eventsKindMenu = null
+  try {
+    const eventsKindMenu = new MDCSelect(document.querySelector('#events-select-menu'))
+    eventsKindMenu.listen('MDCSelect:change', (event: CustomEvent) => {
+      const menu = document.querySelector('#events-select-menu-list')
+      const items = menu.querySelectorAll('.mdc-list-item')
+      const selectedItem = items[event.detail.index] as HTMLElement
+      console.log(menu, items, selectedItem)
+      Turbolinks.visit(selectedItem.dataset.url)
+    })
+  } catch (e) { /* Workaround for bugged select menu */ }
 }
 
 init({ data: { url: location.href }});

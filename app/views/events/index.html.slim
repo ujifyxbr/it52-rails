@@ -10,10 +10,10 @@
   a.material-icons.mdc-top-app-bar__action-item href=new_event_path title='Добавить событие' add
 
 .events-select-menu-wrapper
-  #events-select-menu.events-select-menu.mdc-select
+  #events-select-menu.events-select-menu.mdc-select.mdc-menu-surface--anchor
     input type="hidden" name="enhanced-select" role="button" aria-haspopup="listbox"
-    .mdc-select__dropdown-icon
-    .mdc-select__selected-text
+    i.mdc-select__dropdown-icon
+    .mdc-select__selected-text aria-haspopup="true"
     #events-select-menu-list.mdc-select__menu.mdc-menu.mdc-menu-surface
       ul.mdc-list
         - if filter_params[:status] == 'unapproved'

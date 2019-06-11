@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   add_flash_types :error, :failure, :success, :alert
 
-  before_action :define_common_meta_tags
+  before_action :define_common_meta_tags, only: %i[index show new edit]
   before_action :authenticate_user!, if: -> { authenticated_path? }
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -43,6 +43,4 @@ class ApplicationController < ActionController::Base
   def controller_namespace
     self.class.parent
   end
-
-  ActsAsTaggableOn.delimiter=[',', ' ', '\|', '\/', '\;']
 end

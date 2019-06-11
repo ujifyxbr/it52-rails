@@ -5,15 +5,15 @@ class EventsController < ApplicationController
 
   helper_method :unapproved_count, :educational?, :current_filter?, :filter_params
 
-  before_action :authenticate_user!, except: %i[index index_past index_education show]
-  before_action :set_model, only: %i[index index_past index_unapproved index_education]
+  before_action :authenticate_user!, except: %i[index show]
+  before_action :set_model, only: %i[index]
   before_action :set_event, only: [:show, :edit, :destroy, :update, :publish, :cancel_publication, :participants]
   before_action :check_actual_slug, only: :show
   before_action :define_meta_tags, only: [:show, :edit]
   before_action :set_organizer, only: :create
   before_action :set_filter_kind, only: :index
 
-  load_and_authorize_resource param_method: :event_params, except: %i[index index_past index_unapproved index_education]
+  load_and_authorize_resource param_method: :event_params, except: %i[index]
 
   has_scope :ordered_desc, type: :boolean, allow_blank: true, default: true
 
@@ -72,8 +72,14 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    @event.destroy
-    redirect_to :index
+    redirect_back(fallback_location: root_path, alert: 'Вы не можете удалить опубликованное событие') and return if @event.published?
+    notice_text = if @event.destroy
+      'Событие удалено'
+    else
+      "Невозможно удалить событие. #{@event.errors.error_messages.to_sentence}"
+    end
+
+    redirect_back(fallback_location: root_path, notice: 'Событие удалено')
   end
 
   def update
