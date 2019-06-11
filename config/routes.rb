@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   root to: 'events#index'
 
   get 'authentications/destroy'
-  get '/sitemap', to: 'sitemap#index', defaults: { format: :xml }
+  get '/sitemap', to: 'sitemaps#index', defaults: { format: :xml }
 
   devise_for :user,
              path: '', path_names: { sign_in: "login", sign_out: "logout", sign_up: "signup", edit: 'my/profile/secret' },

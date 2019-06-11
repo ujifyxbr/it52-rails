@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe EventsController do
   let!(:user) { FactoryBot.create :user }
   let(:admin) { FactoryBot.create :admin }

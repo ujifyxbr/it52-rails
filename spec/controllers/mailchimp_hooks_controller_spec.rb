@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe MailchimpHooksController do
   describe 'POST #update_subscription' do
     let!(:subscribed_user) { FactoryBot.create(:user, :subscribed) }

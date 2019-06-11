@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe Api::V2::EventsController do
   describe 'GET index' do
     let!(:events) { FactoryBot.create_list(:event, 10, :published) }

@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe Api::V2::TagsController do
   describe 'GET index' do
     before(:all) do
