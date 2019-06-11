@@ -6,6 +6,7 @@ $mdc-theme-on-primary: #fefefe
 $mdc-theme-on-secondary: #442b2d
 
 $mdc-theme-success: #2e7d32
+$mdc-theme-warning: #fdd835
 
 // Top app bar
 @import "@material/top-app-bar/mdc-top-app-bar"
@@ -24,8 +25,7 @@ $mdc-theme-success: #2e7d32
     max-width: 897px
 
 .it52-logo
-  margin: 0
-  margin-left: 2.1rem
+  margin: 0 2rem 0 2.1rem
 
   @media (min-width: 768px)
     margin-left: 3px
@@ -60,6 +60,9 @@ $mdc-theme-success: #2e7d32
 // Lists
 @import "@material/list/mdc-list"
 
+.mdc-list
+  font-size: 16px
+
 // Drawer
 @import "@material/drawer/mdc-drawer"
 .mdc-drawer
@@ -79,3 +82,49 @@ $mdc-theme-success: #2e7d32
 @import "@material/tab-scroller/mdc-tab-scroller"
 @import "@material/tab-indicator/mdc-tab-indicator"
 @import "@material/tab/mdc-tab"
+
+
+// Menu
+@import "@material/menu-surface/mdc-menu-surface"
+@import "@material/menu/mdc-menu"
+@import "@material/select/mdc-select"
+
+.mdc-select__native-control, .mdc-select__selected-text
+  font-size: 16px
+
+.mdc-select.events-select-menu
+  @include mdc-select-bottom-line-color(rgba(0,0,0,0))
+  @include mdc-select-shape-radius(0)
+  @include mdc-select-ink-color($mdc-theme-on-primary)
+
+  background-color: $mdc-theme-primary
+  height: 48px
+
+  &:hover::before
+    opacity: 0
+
+  .mdc-select__dropdown-icon
+    background: none
+    bottom: 50%
+    margin-bottom: -12px
+
+  .mdc-select__selected-text
+    font-size: 2rem
+    height: 48px
+    line-height: 48px
+    padding-top: 0
+    padding-bottom: 0
+
+  .mdc-list
+    font-size: 1.5rem
+
+// Chips
+@import "@material/chips/mdc-chips"
+
+.unapproved-chip
+  @include mdc-chip-fill-color-accessible($mdc-theme-warning)
+
+  &:hover
+    background-color: #ffff6b
+  .mdc-chip__text
+    font-size: 1.4rem

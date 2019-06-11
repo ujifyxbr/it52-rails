@@ -5,10 +5,13 @@ import Rails from 'rails-ujs'
 import { ForeignLinkSwitcher } from './helpers/foreign-link-switcher'
 
 import { MDCTopAppBar } from '@material/top-app-bar'
-import { MDCRipple } from '@material/ripple'
-import { MDCList } from '@material/list'
-import { MDCDrawer } from "@material/drawer"
-import { MDCTabBar } from '@material/tab-bar'
+import { MDCRipple }    from '@material/ripple'
+import { MDCList }      from '@material/list'
+import { MDCDrawer }    from "@material/drawer"
+import { MDCTabBar }    from '@material/tab-bar'
+import { MDCMenu }      from '@material/menu'
+import { MDCSelect }    from '@material/select'
+import { MDCChipSet }     from '@material/chips'
 
 Turbolinks.start()
 Rails.start()
@@ -46,19 +49,32 @@ function init(event: Event | any): void {
   const iconButtons = document.querySelectorAll('.mdc-icon-button')
   const lists = document.querySelectorAll('.mdc-list')
   const tabBars = document.querySelectorAll('.mdc-tab-bar')
-  topAppBar.setScrollTarget(document.getElementById('main-content'));
-  topAppBar.listen('MDCTopAppBar:nav', () => {
-    drawer.open = !drawer.open;
-  });
+  const menus = document.querySelectorAll('.mdc-menu')
+  const selects = document.querySelectorAll('.mdc-select')
+  const chips = document.querySelectorAll('.mdc-chip-set')
 
-  Array.from(lists).forEach((list) => MDCList.attachTo(list))
+  topAppBar.setScrollTarget(document.getElementById('main-content'));
+  topAppBar.listen('MDCTopAppBar:nav', () => drawer.open = !drawer.open)
+
+  // Array.from(lists).forEach((list) => MDCList.attachTo(list))
   Array.from(buttons).forEach((button) => new MDCRipple(button))
   Array.from(iconButtons).forEach((button) => {
     const ripple = new MDCRipple(button)
     ripple.unbounded = true
   })
   Array.from(tabBars).forEach((tabBar) => new MDCTabBar(tabBar))
+  Array.from(chips).forEach((chip) => new MDCChipSet(chip))
+  // Array.from(menus).forEach((menu) => new MDCMenu(menu))
+  // Array.from(selects).forEach((select) => new MDCSelect(select))
 
+  const eventsKindMenu = new MDCSelect(document.querySelector('#events-select-menu'))
+  eventsKindMenu.listen('MDCSelect:change', (event: CustomEvent) => {
+    const menu = document.querySelector('#events-select-menu-list')
+    const items = menu.querySelectorAll('.mdc-list-item')
+    const selectedItem = items[event.detail.index] as HTMLElement
+    console.log(menu, items, selectedItem)
+    Turbolinks.visit(selectedItem.dataset.url)
+  })
 }
 
 init({ data: { url: location.href }});

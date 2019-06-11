@@ -1,6 +1,27 @@
 - content_for(:head) do
   link rel="canonical" href=root_path
 
+- content_for(:topbar_menu) do
+  #events-select-menu.events-select-menu.mdc-select
+    input type="hidden" name="enhanced-select" role="button" aria-haspopup="listbox"
+    .mdc-select__dropdown-icon
+      i.material-icons arrow_drop_down
+    .mdc-select__selected-text
+    #events-select-menu-list.mdc-select__menu.mdc-menu.mdc-menu-surface
+      ul.mdc-list
+        - t('events.index.kind_filter').each_pair do |key, title|
+          li.mdc-list-item class=('mdc-list-item--selected' if current_filter?(key)) role="option" data-value=key data-url=events_path(filter_params.merge(kind: key)) aria-selected=(current_filter?(key) ? "true" : false) = title
+    / span.mdc-floating-label Select something
+    / .mdc-line-ripple
+
+- content_for(:topbar_actions) do
+  - if user_signed_in? && !unapproved_count.zero?
+    a.mdc-chip.unapproved-chip href=events_path(status: 'unapproved') title='На модерации'
+      i.material-icons.mdc-chip__icon.mdc-chip__icon--leading warning
+      .mdc-chip__text = "(#{unapproved_count})"
+
+  a.material-icons.mdc-top-app-bar__action-item href=new_event_path title='Добавить событие' add
+
 .events-index
   .page-header
     .pull-right
@@ -11,21 +32,10 @@
           i.material-icons.mdc-icon-button__icon aria-hidden="true" rss_feed
 
     nav.events-nav
-      - unless current_page?(root_path) || current_page?(:controller => 'events', :action => 'index_past') || current_page?(:controller => 'events', :action => 'index_unapproved') || current_page?(:controller => 'events', :action => 'index_education')
-        a.mdc-button href=root_path class=('mdc-button--outlined' unless action_name == 'index')
-            span.mdc-button__label = t('.go_home')
-      - else
-        - unless educational?
-          a.mdc-button href=root_path class=('mdc-button--outlined' unless action_name == 'index')
-            span.mdc-button__label = t('.future_events')
-          a.mdc-button href=past_events_path class=('mdc-button--outlined' unless action_name == 'index_past')
-            span.mdc-button__label = t('.past_events')
-        - if user_signed_in? && !unapproved_count.zero?
-          a.mdc-button href=unapproved_events_path class=('mdc-button--outlined' unless action_name == 'index_unapproved')
-            span.mdc-button__label = "#{t('.unapproved_events')} (#{unapproved_count})"
-      a.mdc-button.mdc-button--unelevated.mdc-button--success href=new_event_path
-        i.material-icons.mdc-button__icon aria-hidden="true" add
-        span.mdc-button__label = t('.new_event')
+      a.mdc-button href=root_path class=('mdc-button--outlined' unless filter_params[:status].nil?)
+        span.mdc-button__label = t('.future_events')
+      a.mdc-button href=events_path(filter_params.merge(status: 'past')) class=('mdc-button--outlined' unless filter_params[:status] == 'past')
+        span.mdc-button__label = t('.past_events')
 
   - if @events.empty?
     .alert.alert-success

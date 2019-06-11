@@ -208,6 +208,10 @@ ru:
       unapproved_events: На модерации
       new_event: Добавить
       go_home: На главную
+      kind_filter:
+        all: Все события
+        event: Митапы
+        education: Обучение
     new:
       title: Новое мероприятие
     edit:
