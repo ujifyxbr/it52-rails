@@ -6,7 +6,7 @@ $mdc-theme-on-primary: #fefefe
 $mdc-theme-on-secondary: #442b2d
 
 $mdc-theme-success: #2e7d32
-$mdc-theme-warning: #fdd835
+$mdc-theme-warning: #ffffff
 
 $mdc-typography-font-family: 'Fira Mono', Roboto, Helvetica, sans-serif
 
@@ -133,9 +133,9 @@ $mdc-typography-font-family: 'Fira Mono', Roboto, Helvetica, sans-serif
 
 .unapproved-chip
   @include mdc-chip-fill-color-accessible($mdc-theme-warning)
-
+  @include mdc-chip-shape-radius(4px,$mdc-theme-warning)
   &:hover
-    background-color: #ffff6b
+    background-color: #ffffff
   .mdc-chip__text
     font-size: 1.4rem
 
