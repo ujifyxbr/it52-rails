@@ -25,7 +25,7 @@ class Event < ApplicationRecord
   DEFAULT_FILTER_PARAMS = { kind: 'all',
                             status: 'future',
                             tag: nil }.freeze
-  paginates_per 20
+  paginates_per 10
 
   acts_as_taggable_on :tags
 

@@ -25,6 +25,7 @@ class EventsController < ApplicationController
     end
 
     @events = @events.page(params[:page]).decorate
+    @rss_events = @model.published.order(published_at: :desc).limit(100).decorate
     respond_to do |format|
       format.html
       format.json { render json: @model.published.order(started_at: :asc).page(params[:page]).to_json }
@@ -33,23 +34,6 @@ class EventsController < ApplicationController
       format.rss
     end
   end
-
-
-  # def index_past
-  #   @events = @model.event.published.past.page(params[:page]).decorate
-  #   render :index
-  # end
-
-  # def index_unapproved
-  #   @events = @model.unapproved.visible_by_user(current_user).page(params[:page]).decorate
-  #   render :index
-  # end
-
-  # def index_education
-  #   session[:events_kind_filter] = 'education'
-  #   @events = @model.education.published.order(started_at: :desc).page(params[:page]).decorate
-  #   render :index
-  # end
 
   def show
     @event = @event.decorate

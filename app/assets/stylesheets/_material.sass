@@ -95,28 +95,19 @@ $mdc-theme-warning: #fdd835
 .mdc-select.events-select-menu
   @include mdc-select-bottom-line-color(rgba(0,0,0,0))
   @include mdc-select-shape-radius(0)
-  @include mdc-select-ink-color($mdc-theme-on-primary)
-
-  background-color: $mdc-theme-primary
-  height: 48px
-
-  &:hover::before
-    opacity: 0
-
-  .mdc-select__dropdown-icon
-    background: none
-    bottom: 50%
-    margin-bottom: -12px
+  // @include mdc-select-ink-color($mdc-theme-primary)
+  max-width: 100%
 
   .mdc-select__selected-text
     font-size: 2rem
-    height: 48px
-    line-height: 48px
-    padding-top: 0
-    padding-bottom: 0
 
   .mdc-list
     font-size: 1.5rem
+
+.events-select-menu-wrapper
+  margin-top: 1rem
+  margin-bottom: -2.5rem
+  max-width: 100%
 
 // Chips
 @import "@material/chips/mdc-chips"
