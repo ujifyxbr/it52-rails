@@ -104,6 +104,7 @@ $mdc-typography-font-family: 'Fira Mono', Roboto, Helvetica, sans-serif
   @include mdc-select-bottom-line-color(rgba(0,0,0,0))
   @include mdc-select-shape-radius(0)
   // @include mdc-select-ink-color($mdc-theme-primary)
+  @include mdc-select-container-fill-color(#ffffff)
   max-width: 100%
 
   .mdc-select__selected-text
@@ -116,13 +117,13 @@ $mdc-typography-font-family: 'Fira Mono', Roboto, Helvetica, sans-serif
     height: 16px
     background-size: contain
     bottom: 18px
-    right: 22px
+    right: 16px
 
   &.mdc-select--activated .mdc-select__dropdown-icon
     transform: rotate(180deg)
 
   .mdc-list
-    font-size: 1.5rem
+    font-size: 1.2rem
 
 .events-select-menu-wrapper
   margin: 1rem 0
@@ -133,7 +134,7 @@ $mdc-typography-font-family: 'Fira Mono', Roboto, Helvetica, sans-serif
 
 .unapproved-chip
   @include mdc-chip-fill-color-accessible($mdc-theme-warning)
-  @include mdc-chip-shape-radius(4px,$mdc-theme-warning)
+  @include mdc-chip-shape-radius(4px)
   &:hover
     background-color: #ffffff
   .mdc-chip__text
