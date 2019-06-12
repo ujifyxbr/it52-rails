@@ -30,8 +30,8 @@ module It52Rails
     config.responders.flash_keys = [:success, :error]
 
     # Add concerns to autoload
-    config.autoload_paths += ["#{Rails.root}/app/uploaders/concerns"]
-    config.autoload_paths += ["#{Rails.root}/app/services"]
+    config.autoload_paths += %w[app/uploaders/concerns app/services lib].map { |path| Rails.root.join(path) }
+    config.eager_load_paths << Rails.root.join("lib")
 
     # Mailing host
     config.action_mailer.default_url_options = { host: ENV.fetch('mailing_host') {'mailing_host'} }

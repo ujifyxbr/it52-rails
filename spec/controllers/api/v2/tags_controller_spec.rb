@@ -1,6 +1,6 @@
 describe Api::V2::TagsController do
   describe 'GET index' do
-    before(:all) do
+    before do
       FactoryBot.create(:event, tag_list: ['js'])
       FactoryBot.create(:event, tag_list: ['js', 'rannts'])
       FactoryBot.create(:event, tag_list: ['js', 'rambler', 'rannts'])

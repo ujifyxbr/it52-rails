@@ -38,6 +38,7 @@ Main branch is [it52](https://github.com/NNRUG/it52-rails/tree/it52)
 
 Для начала работы с проектом нужно создать конфигурационые файлы на основе шаблонов:
 
+    cp config/database.yml.template config/database.yml
     cp config/secrets.yml.template config/secrets.yml
     cp config/application.yml.template config/application.yml
 
@@ -48,7 +49,7 @@ Main branch is [it52](https://github.com/NNRUG/it52-rails/tree/it52)
 
 Запустить rails-сервер:
 
-    unicorn_rails
+    bundle exec rails s
 
 
 ## API
