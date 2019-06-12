@@ -8,15 +8,9 @@ Rails.application.config.content_security_policy do |policy|
   policy.default_src :none
   policy.font_src    :self, :https, :data, 'https://assets.it52.info', 'https://fonts.googleapis.com'
   policy.img_src     :self, :https, :data, 'https://assets.it52.info', 'https://mc.yandex.ru/'
-<<<<<<< HEAD
   policy.frame_src  'https://yastatic.net', 'https://money.yandex.ru', 'https://www.patreon.com'
   policy.script_src  :self, :https, :unsafe_inline, 'https://assets.it52.info', 'https://bam.nr-data.net', 'js-agent.newrelic.com', '*.newrelic.com', 'https://mc.yandex.ru/', 'ajax.cloudflare.com'
   policy.style_src   :self, :https, :unsafe_inline, :blob, 'https://fonts.googleapis.com', 'https://assets.it52.info'
-=======
-  policy.frame_src  'https://yastatic.net'
-  policy.script_src  :self, :https, 'https://assets.it52.info', 'https://bam.nr-data.net', 'js-agent.newrelic.com', '*.newrelic.com', 'https://mc.yandex.ru/', 'ajax.cloudflare.com'
-  policy.style_src   :self, :https, :unsafe_inline, 'https://assets.it52.info'
->>>>>>> Fix CSP for New Relic config
 
 #   # Specify URI for violation reports
 #   # policy.report_uri "/csp-violation-report-endpoint"
