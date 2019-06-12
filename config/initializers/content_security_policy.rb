@@ -43,3 +43,4 @@ Rails.application.config.content_security_policy_nonce_generator = -> (request) 
   # img-src 'self' *.newrelic.com;
   # script-src 'self' *.newrelic.com 'unsafe-inline';
   # style-src 'self'
+  
