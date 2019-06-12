@@ -11,6 +11,7 @@ gem 'pg'
 # Integrations
 gem 'mailchimp-api', require: 'mailchimp'
 gem 'mailgun_rails'
+gem 'http'
 
 # Normaliztion
 gem 'unicode'
@@ -33,6 +34,8 @@ gem 'friendly_id'
 # Decoration
 gem 'active_model_serializers'
 gem 'fast_jsonapi'
+gem 'oj'
+gem 'ox'
 gem 'activemodel-serializers-xml'
 gem 'draper'
 

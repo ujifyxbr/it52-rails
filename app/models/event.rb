@@ -187,6 +187,10 @@ class Event < ApplicationRecord
     build_foreign_link(user)
   end
 
+  def extract_address
+    DaData::Request.suggest_address(place)
+  end
+
   private
 
   def build_foreign_link(user)
