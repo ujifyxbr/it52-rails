@@ -1,3 +1,3 @@
 # Draper workaround for Rails 5
-class Rails::SubTestTask < Rake::TestTask
+class Rails::SubTestTask < Rails::TestTask
 end
