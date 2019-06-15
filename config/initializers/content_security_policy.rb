@@ -8,7 +8,7 @@ Rails.application.config.content_security_policy do |policy|
   policy.default_src :none
   policy.font_src    :self, :https, :data, 'https://assets.it52.info', 'https://fonts.googleapis.com'
   policy.img_src     :self, :https, :data, 'https://assets.it52.info', 'https://mc.yandex.ru/'
-  policy.frame_src  'https://yastatic.net', 'https://money.yandex.ru', 'https://www.patreon.com'
+  policy.frame_src  'https://yastatic.net', 'https://money.yandex.ru', 'https://www.patreon.com', 'https://docs.google.com'
   policy.script_src  :self, :https, :unsafe_inline, 'https://assets.it52.info', 'https://bam.nr-data.net', 'js-agent.newrelic.com', '*.newrelic.com', 'https://mc.yandex.ru/', 'ajax.cloudflare.com'
   policy.style_src   :self, :https, :unsafe_inline, :blob, 'https://fonts.googleapis.com', 'https://assets.it52.info'
 
