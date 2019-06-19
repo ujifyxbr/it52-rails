@@ -20,46 +20,53 @@ script type="application/ld+json" == @structured_data.to_json
           = @event.link_to_time
 
   .row
-    .col-xs-12.col-sm-4
-      .image-container = image_tag @event.title_image.square_500.url, alt: @event.title
-    .col-xs-12.col-sm-8
-      .participants
-        .panel.panel-default
-          .panel-heading.clearfix
-            h4.pull-left
-              => Event.human_attribute_name(:participants)
-              small = @event.participants.size
-            .pull-right
-              - if can? :update, @event.object
-                = link_to t('.participants_export'), participants_event_path(@event, format: :csv), class: 'btn btn-warning'
-          .panel-body
-            = render partial: 'participants_block', object: @event, as: :event
-          .panel-footer
-            = render partial: 'participate_block', object: @event, as: :event
+    .col-xs-12.col-sm-5
+      - if @event.address.present?
+        #event-map.event-map data={ lat: @event.address.lat, long: @event.address.long, title: @event.title }
+      - else
+        .image-container = image_tag @event.title_image.square_500.url, alt: @event.title
 
-  .event-date: p title="Время проведения"
-    i.fas.fa-fw.fa-calendar>
-    = link_to l(@event.started_at, format: :date_time_full), event_path(@event, format: :ics)
-  - if @event.place.present?
-    .event-place: p title="Место проведения"
-      i.fas.fa-fw.fa-map-marker>
-      = @event.link_to_place
-  .event-organizer: p title="Организатор"
-    i.fas.fa-fw.fa-user>
-    span> Организатор:
-    a href=user_path(@event.organizer)
-      span = @event.organizer
-  - if @event.tag_list.present?
-    .event-tags: p title="Тэги"
-        i.fas.fa-fw.fa-tag>
-        == @event.tag_list.map { |tag| link_to "##{tag}", tag_path(tag)}.join(', ')
-  .event-share: p title="Поделиться"
-    i.fas.fa-fw.fa-share-alt>
-    span> Поделиться в
-    span.ya-share2< data={ counter: true, lang: "ru", services: "telegram,vkontakte,facebook,twitter,gplus", size: 'm', title: @event.title, description: @event.truncated_description, url: event_url(@event)}
-  .event-views: p title="Просмотры"
-    i.fas.fa-fw.fa-eye>
-    span.event-views-counter data={ 'event-path' => event_path(@event) } = @event.pageviews
+    .col-xs-12.col-sm-7
+      .event-date: p title="Время проведения"
+        i.fas.fa-fw.fa-calendar>
+        = link_to l(@event.started_at, format: :date_time_full), event_path(@event, format: :ics)
+      - if @event.place.present?
+        .event-place: p title="Место проведения"
+          i.fas.fa-fw.fa-map-marker>
+          = @event.link_to_place
+      .event-organizer: p title="Организатор"
+        i.fas.fa-fw.fa-user>
+        span> Организатор:
+        a href=user_path(@event.organizer)
+          span = @event.organizer
+      - if @event.tag_list.present?
+        .event-tags: p title="Тэги"
+            i.fas.fa-fw.fa-tag>
+            == @event.tag_list.map { |tag| link_to "##{tag}", tag_path(tag)}.join(', ')
+      .event-share: p title="Поделиться"
+        i.fas.fa-fw.fa-share-alt>
+        span> Поделиться в
+        span.ya-share2< data={ counter: true, lang: "ru", services: "telegram,vkontakte,facebook,twitter,gplus", size: 'm', title: @event.title, description: @event.truncated_description, url: event_url(@event)}
+      .event-views: p title="Просмотры"
+        i.fas.fa-fw.fa-eye>
+        span.event-views-counter data={ 'event-path' => event_path(@event) } = @event.pageviews
 
+
+      = render partial: 'participate_block', object: @event, as: :event
   hr
   .event-description = @event.rendered_description
+
+
+  .participants
+    .panel.panel-default
+      .panel-heading.clearfix
+        h4.pull-left
+          => Event.human_attribute_name(:participants)
+          small = @event.participants.size
+        .pull-right
+          - if can? :update, @event.object
+            = link_to t('.participants_export'), participants_event_path(@event, format: :csv), class: 'btn btn-warning'
+      .panel-body
+        = render partial: 'participants_block', object: @event, as: :event
+      .panel-footer
+        = render partial: 'participate_block', object: @event, as: :event

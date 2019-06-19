@@ -2,22 +2,24 @@
 #
 # Table name: events
 #
-#  id           :integer          not null, primary key
-#  title        :string(255)      not null
-#  created_at   :datetime
-#  updated_at   :datetime
-#  organizer_id :integer
-#  published    :boolean          default(FALSE)
-#  description  :text
-#  started_at   :datetime
-#  title_image  :string(255)
-#  place        :string(255)
-#  published_at :datetime
-#  slug         :string(255)
-#  location     :point
-#  foreign_link :string
-#  pageviews    :integer          default(0)
-#  kind         :integer          default("event")
+#  id              :integer          not null, primary key
+#  title           :string(255)      not null
+#  created_at      :datetime
+#  updated_at      :datetime
+#  organizer_id    :integer
+#  published       :boolean          default(FALSE)
+#  description     :text
+#  started_at      :datetime
+#  title_image     :string(255)
+#  place           :string(255)
+#  published_at    :datetime
+#  slug            :string(255)
+#  location        :point
+#  foreign_link    :string
+#  pageviews       :integer          default(0)
+#  kind            :integer          default("event")
+#  address_id      :bigint
+#  address_comment :string
 #
 
 require 'rails_helper'

@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_05_125210) do
+ActiveRecord::Schema.define(version: 2019_06_12_020440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.string "unrestricted_value", null: false
+    t.string "city", null: false
+    t.string "street", null: false
+    t.string "house", null: false
+    t.string "kladr_id", null: false
+    t.string "fias_id", null: false
+    t.float "lat", null: false
+    t.float "long", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "authentications", id: :serial, force: :cascade do |t|
     t.integer "user_id", null: false
@@ -59,6 +72,9 @@ ActiveRecord::Schema.define(version: 2019_06_05_125210) do
     t.string "foreign_link"
     t.integer "pageviews", default: 0
     t.integer "kind", default: 0
+    t.bigint "address_id"
+    t.string "address_comment"
+    t.index ["address_id"], name: "index_events_on_address_id"
     t.index ["organizer_id"], name: "index_events_on_organizer_id"
     t.index ["slug"], name: "index_events_on_slug", unique: true
   end
@@ -134,4 +150,5 @@ ActiveRecord::Schema.define(version: 2019_06_05_125210) do
     t.index ["slug"], name: "index_users_on_slug", unique: true
   end
 
+  add_foreign_key "events", "addresses"
 end

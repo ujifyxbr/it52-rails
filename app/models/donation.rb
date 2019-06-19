@@ -3,9 +3,9 @@
 # Table name: donations
 #
 #  id            :bigint           not null, primary key
-#  amount        :float
-#  kind          :string
-#  amount_in_rub :float
+#  amount        :float            not null
+#  kind          :integer          not null
+#  amount_in_rub :float            not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #

@@ -64,6 +64,7 @@ class EventsController < ApplicationController
 
   def create
     @event.save
+    @event.migrate_to_address
     respond_with @event
   end
 

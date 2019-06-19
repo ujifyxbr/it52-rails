@@ -6,7 +6,8 @@ module DaData
     BASE = 'https://suggestions.dadata.ru/suggestions/api/4_1'.freeze
 
     API_METHOD_MAP = {
-      suggest_address: 'rs/suggest/address'
+      suggest_address: 'rs/suggest/address',
+      find_by_id: 'rs/findById/address'
     }.freeze
 
     CONTENT_TYPES = {
@@ -14,12 +15,12 @@ module DaData
       json: 'application/json'
     }.freeze
 
-    attr_reader :api_method, :query, :count, :content_type, :client, :response
+    attr_reader :api_method, :content_type, :client, :response
 
-    def self.method_missing(method_name, *arguments, &block)
+    def self.method_missing(method_name, query, params = {})
       super unless method_name.in? API_METHOD_MAP.keys
 
-      new(method_name).query(arguments.first)
+      new(method_name).query(query, params)
     end
 
     def initialize(api_method, content_type = :json)
@@ -29,8 +30,8 @@ module DaData
                     .headers({ 'Content-Type': 'application/json', 'Accept': @content_type })
     end
 
-    def query(query_string, **params)
-      query_params = DaData.configuration.default_params.merge(params).merge(query: query_string)
+    def query(query_string, params = {})
+      query_params = DaData.configuration.default_params.merge(query: query_string).merge(params)
       @response = client.post(build_url, json: query_params)
       parse_response(@response.to_s)
     end

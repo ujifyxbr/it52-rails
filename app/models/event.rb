@@ -3,22 +3,24 @@
 #
 # Table name: events
 #
-#  id           :integer          not null, primary key
-#  title        :string(255)      not null
-#  created_at   :datetime
-#  updated_at   :datetime
-#  organizer_id :integer
-#  published    :boolean          default(FALSE)
-#  description  :text
-#  started_at   :datetime
-#  title_image  :string(255)
-#  place        :string(255)
-#  published_at :datetime
-#  slug         :string(255)
-#  location     :point
-#  foreign_link :string
-#  pageviews    :integer          default(0)
-#  kind         :integer          default("event")
+#  id              :integer          not null, primary key
+#  title           :string(255)      not null
+#  created_at      :datetime
+#  updated_at      :datetime
+#  organizer_id    :integer
+#  published       :boolean          default(FALSE)
+#  description     :text
+#  started_at      :datetime
+#  title_image     :string(255)
+#  place           :string(255)
+#  published_at    :datetime
+#  slug            :string(255)
+#  location        :point
+#  foreign_link    :string
+#  pageviews       :integer          default(0)
+#  kind            :integer          default("event")
+#  address_id      :bigint
+#  address_comment :string
 #
 
 class Event < ApplicationRecord
@@ -34,6 +36,7 @@ class Event < ApplicationRecord
   mount_uploader :title_image, EventTitleImageUploader
 
   belongs_to :organizer, class_name: 'User'
+  belongs_to :address, optional: true
 
   enum kind: { event: 0, education: 1 }
 
@@ -187,8 +190,14 @@ class Event < ApplicationRecord
     build_foreign_link(user)
   end
 
-  def extract_address
-    DaData::Request.suggest_address(place)
+  def migrate_to_address
+    suggestions = DaData::Request.suggest_address("Нижний Новгород, #{place}")
+    main_suggestions = DaData::Request.suggest_address(suggestions['suggestions'].first['unrestricted_value'], count: 1)
+    address = Address.first_or_create_from_dadata(main_suggestions['suggestions'].first)
+    self.update(address: address)
+  rescue ActiveRecord::RecordInvalid => e
+    p self.place
+    p self.inspect
   end
 
   private

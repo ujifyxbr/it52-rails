@@ -1,4 +1,5 @@
 declare var Ya;
+declare var ymaps;
 
 import * as Turbolinks from 'turbolinks'
 import Rails from 'rails-ujs'
@@ -78,6 +79,27 @@ function init(event: Event | any): void {
       Turbolinks.visit(selectedItem.dataset.url)
     })
   } catch (e) { /* Workaround for bugged select menu */ }
+
+  let ymapsInited = !!document.querySelector('#event-map ymaps');
+
+  ymaps.ready(() => {
+    let ymapsInited = !!document.querySelector('#event-map ymaps');
+    const el = document.getElementById('event-map')
+    if (ymapsInited || !el) return
+    const geo = [el.dataset.lat, el.dataset.long]
+    const eventMap = new ymaps.Map("event-map", {
+        center: geo,
+        zoom: 16,
+        controls: ['smallMapDefaultSet']
+    });
+
+    eventMap.geoObjects
+      .add(new ymaps.Placemark(geo, {
+        balloonContentHeader: el.dataset.title
+      }, {
+          preset: 'islands#blackGovernmentIcon'
+      }))
+  });
 }
 
 init({ data: { url: location.href }});

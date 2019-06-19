@@ -48,6 +48,8 @@ html lang='ru'
     = javascript_include_tag 'https://www.googletagmanager.com/gtag/js?id=UA-54446007-1', nonce: true, async: true
     = javascript_tag "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'UA-54446007-1');", nonce: true
 
+    = javascript_include_tag "https://api-maps.yandex.ru/2.1/?apikey=e9120f05-3b34-45fd-b494-a5996caf00ae&lang=ru_RU", nonce: true
+
     / New Relic instrumentation
     - headers = ::NewRelic::Agent.browser_timing_header.scan(/<script>(.*?)<\/script>/).flatten
     - headers.each do |header|
