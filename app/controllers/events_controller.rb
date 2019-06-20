@@ -64,7 +64,7 @@ class EventsController < ApplicationController
 
   def create
     @event.save
-    @event.migrate_to_address
+    @event.migrate_to_address unless Rails.env.test?
     respond_with @event
   end
 
