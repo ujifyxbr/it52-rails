@@ -85,6 +85,7 @@ gem 'asset_sync'
 # Monitoring
 gem 'newrelic_rpm'
 gem 'rollbar'
+gem 'silencer'
 
 # Utils
 gem 'icalendar'

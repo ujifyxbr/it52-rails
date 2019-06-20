@@ -7,14 +7,15 @@ export class ForeignLinkSwitcher {
   foreignLinkInput      = document.getElementById('event_foreign_link')     as HTMLInputElement
 
   static init() {
-      if (!ForeignLinkSwitcher.instance || ForeignLinkSwitcher.initPage != location.href ) {
-          ForeignLinkSwitcher.initPage = location.href;
-          ForeignLinkSwitcher.instance = new ForeignLinkSwitcher();
-      }
-      return ForeignLinkSwitcher.instance;
+    if (!ForeignLinkSwitcher.instance || ForeignLinkSwitcher.initPage != location.href ) {
+      ForeignLinkSwitcher.initPage = location.href;
+      ForeignLinkSwitcher.instance = new ForeignLinkSwitcher();
+      document.addEventListener('turbolinks:request-start', (_e) => ForeignLinkSwitcher.initPage = null)
+    }
+    return ForeignLinkSwitcher.instance;
   }
 
-  get isChecked(): boolean {
+  private get isChecked(): boolean {
     return this.foreignLinkCheckbox.checked
   }
 
@@ -33,7 +34,5 @@ export class ForeignLinkSwitcher {
         this.foreignLinkInput.removeAttribute('disabled');
       }
     })
-
-    document.addEventListener('turbolinks:request-start', (_e) => ForeignLinkSwitcher.initPage = null)
   }
 }

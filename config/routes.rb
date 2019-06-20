@@ -52,7 +52,8 @@ Rails.application.routes.draw do
   # Let's encrypt cert route
   get '/.well-known/acme-challenge/:id' => 'letsencrypt#approve'
 
-  get ':id' => 'pages#show', as: :page, format: false
+  get ':id' => 'pages#show', as: :page, format: false, constraints: { id: %r{#{HighVoltage.page_ids.map().map{ |p| "(#{p})" }.join('|')}} }
+
 
   namespace :api do
     namespace :v1 do
@@ -68,4 +69,6 @@ Rails.application.routes.draw do
       resources :tags, only: %i[index]
     end
   end
+
+  get '/images/aws_host/uploads/*any', to: 'errors#image'
 end
