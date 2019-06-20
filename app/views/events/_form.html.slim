@@ -4,19 +4,21 @@
 = simple_form_for @event do |f|
   = f.input :title
   .row
-    .col-sm-6: .well
-      - if @event.title_image.present?
-        .title-image.image-container
-          = image_tag @event.title_image.square_500.url
-      = f.input :title_image, wrapper: :vertical_file_input
-      = f.input :title_image_cache, as: :hidden
     .col-sm-6
+      .well
+        - if @event.title_image.present?
+          .title-image.image-container
+            = image_tag @event.title_image.square_500.url
+        = f.input :title_image, wrapper: :vertical_file_input
+        = f.input :title_image_cache, as: :hidden
       = f.input :kind, as: :select, collection: Event.humanized_kinds_map, allow_blank: false, selected: @event.kind
       - started_at_string = l(f.object.started_at || 1.month.from_now, format: :date_time_short)
       = f.input :started_at, as: :string, input_html: { value: started_at_string, data: { default_date: started_at_string }}
-      = f.input :place, as: :text
-      = f.input :location, as: :hidden
       = f.input :tag_list, input_html: { value: @event.tag_list.to_s, maxlength: 100 }
+    .col-sm-6
+      = f.input :place
+      = f.input :address_comment, as: :text
+      = f.input :location, as: :hidden
       = check_box_tag :has_foreign_link, !@event.foreign_link.blank?, !@event.foreign_link.blank?
       = label_tag :has_foreign_link, t("my.events.has_foreign_link"), style: "padding-left: 10px;"
       div#event_foreign_link_box.hidden

@@ -256,9 +256,10 @@ ru:
         published: Мероприятие опубликовано
         description: Описание
         started_at: Дата начала
-        title_image: Титульное изображение
+        title_image: Картинка для привлечения внимания
         participants: Участники
-        place: Место проведения
+        address_comment: Место проведения
+        place: Адрес
         foreign_link: Ссылка на стороннюю регистрацию
 
   unauthorized:

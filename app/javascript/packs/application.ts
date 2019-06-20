@@ -12,7 +12,7 @@ import { MDCDrawer }    from "@material/drawer"
 import { MDCTabBar }    from '@material/tab-bar'
 import { MDCMenu }      from '@material/menu'
 import { MDCSelect }    from '@material/select'
-import { MDCChipSet }     from '@material/chips'
+import { MDCChipSet }   from '@material/chips'
 
 Turbolinks.start()
 Rails.start()
@@ -25,7 +25,7 @@ function initYandexShare(element) {
 
 function init(event: Event | any): void {
   const foreignLinkCheckbox = document.getElementById('has_foreign_link')
-  if (!!foreignLinkCheckbox) new ForeignLinkSwitcher()
+  if (!!foreignLinkCheckbox) ForeignLinkSwitcher.init()
 
   let uuid = null
   const uuidEl = document.getElementById('uuid')

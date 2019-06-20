@@ -30,6 +30,8 @@ ru:
         website: http://yandex.ru
       event:
         tag_list: jsnn, workshop, barcamp
+        address_comment: Гостиница Ibis или офис Яндекса
+        place: Нижний Новгород, ул Алексеевская, дом 13
     hints:
       user:
         bio: Можно использовать Markdown
@@ -38,4 +40,6 @@ ru:
         subscription: Обещаем часто не беспокоить и всегда соответстовать <a target="_blank" href="http://www.business.ftc.gov/documents/bus61-can-spam-act-compliance-guide-business">US CAN-SPAM Act</a>
       event:
         tag_list: В качестве разделителя используйте пробелы или запятые
+        address_comment: Офис компании, бизнес-центр, гостиница, кафе
+        place: 'Просто адрес: город, улица и дом'
 
