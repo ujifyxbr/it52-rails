@@ -35,7 +35,7 @@ class Event < ApplicationRecord
 
   mount_uploader :title_image, EventTitleImageUploader
 
-  after_commit :migrate_to_address, on: %i[create update]
+  after_commit :migrate_to_address, on: %i[create update], if: :place_changed?
 
   belongs_to :organizer, class_name: 'User'
   belongs_to :address, optional: true
@@ -196,7 +196,7 @@ class Event < ApplicationRecord
     suggestions = DaData::Request.suggest_address("Нижний Новгород, #{place}")
     main_suggestions = DaData::Request.suggest_address(suggestions['suggestions'].first['unrestricted_value'], count: 1)
     address = Address.first_or_create_from_dadata(main_suggestions['suggestions'].first)
-    self.update(address: address)
+    self.update_columns(address_id: address.id)
   rescue Exception => e
     Rollbar.error(e, event: to_meta_tags)
   end
