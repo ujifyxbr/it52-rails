@@ -121,6 +121,7 @@ group :test do
   gem 'codecov', require: false
   gem 'shoulda-matchers', require: false
   gem 'database_cleaner'
+  gem 'webmock'
 end
 
 # Heroku compatibility
