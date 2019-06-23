@@ -45,6 +45,7 @@ gem 'activemodel-serializers-xml'
 gem 'draper'
 
 # Compile and serve assets
+gem 'uglifier'
 gem 'sassc-rails'
 gem 'font-awesome-sass'
 gem 'autoprefixer-rails'
@@ -80,11 +81,10 @@ gem 'pry-rails'
 
 # Image and AWS S3 management
 gem 'fog-aws', '< 3'
+gem 'asset_sync'
 gem 'mini_magick'
 gem 'carrierwave'
-gem 'carrierwave-vips'
 gem 'carrierwave-imageoptimizer'
-gem 'asset_sync'
 
 # Monitoring
 gem 'newrelic_rpm'

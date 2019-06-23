@@ -4,19 +4,16 @@ MAINTAINER Nick Kugaevsky "nick@kugaevsky.ru"
 # Build-time metadata as defined at http://label-schema.org
 
 RUN apt-get update -qq
-
-# for nokogiri
-RUN apt-get install -y libpq-dev build-essential git libxml2-dev libxslt1-dev glib2.0-dev libvips-dev optipng jpegoptim
+RUN apt-get install -y curl software-properties-common libpq-dev libxml2-dev libxslt1-dev optipng jpegoptim
 
 # for capybara-webkit
 # RUN apt-get install -y libqt4-webkit libqt4-dev xvfb
 
 # for a JS runtime
-RUN apt-get install -y curl software-properties-common
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-RUN apt-get update
+RUN apt-get update -qq
 RUN apt-get install -y nodejs yarn
 
 # Install latest rubygems, bundler and rake

@@ -1,22 +1,25 @@
-libvips-dev optipng jpegoptim
-
 services:
 - postgresql
 addons:
   code_climate:
     repo_token:
       secure: rHKRm9apsLJJxFYf1ZoylgOw+rpqdaPIxK+LeyJVYHhnFYMDpjl58wQwKx0zwv96NSITnwXChacfyHHFT/5QS+Htjmiro9F8bOfaUswBggG9BmWlrqJ4te94dlYVcbhgTEY37+9ZuzPK5RDA1zyGk/q4zAFme+dmy3JIkGH3MPs=
+  apt:
+    update: true
+    packages:
+    - libxml2-dev
+    - libxslt1-dev
+    - optipng
+    - jpegoptim
 cache:
   bundler: true
   yarn: true
   directories:
-  - "/home/travis/.rvm/"
+  - /home/travis/.rvm/
   - node_modules
 language: ruby
 rvm:
 - 2.6.3
-before_install:
-- sudo apt-get install -y libvips-dev optipng jpegoptim libxml2-dev libxslt1-dev glib2.0-dev
 install:
 - bundle install --path vendor/bundle --retry 3
 - yarn install

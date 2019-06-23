@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 class EventTitleImageUploader < CarrierWave::Uploader::Base
   include UploaderConcern
 
@@ -8,7 +6,7 @@ class EventTitleImageUploader < CarrierWave::Uploader::Base
   end
 
   version :square_500 do
-    process resize_to_fit: [500, nil]
+    process resize_to_fit: [500, 500]
   end
 
   version :fb_1200 do

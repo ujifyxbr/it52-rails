@@ -83,7 +83,7 @@ class EventsController < ApplicationController
   end
 
   def update
-    @event.update_attributes event_params
+    @event.update event_params
     respond_with @event
   end
 

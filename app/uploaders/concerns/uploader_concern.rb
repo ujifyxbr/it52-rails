@@ -2,7 +2,7 @@ module UploaderConcern
   extend ActiveSupport::Concern
 
   included do
-    include CarrierWave::Vips
+    include CarrierWave::MiniMagick
     include CarrierWave::ImageOptimizer
 
     process :optimize
@@ -18,6 +18,10 @@ module UploaderConcern
   # For images you might use something like this:
   def extension_white_list
     %w(jpg jpeg png)
+  end
+
+  def content_type_whitelist
+    /image\//
   end
 
   # Override the filename of the uploaded files:
