@@ -5,8 +5,13 @@ source 'https://rubygems.org'
 gem 'rails', '~> 5.2.0'
 gem 'bootsnap'
 
-# Database
+# Databases
 gem 'pg'
+gem 'hiredis'
+gem 'redis'
+
+# Queue
+gem 'sidekiq'
 
 # Integrations
 gem 'mailchimp-api', require: 'mailchimp'
@@ -54,9 +59,6 @@ gem 'redcarpet'
 gem 'high_voltage'
 gem 'simple_form'
 gem 'meta-tags'
-
-# Caching
-gem 'dalli'
 
 # Reporting
 gem 'jwt'

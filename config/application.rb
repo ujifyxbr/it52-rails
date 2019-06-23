@@ -33,6 +33,10 @@ module It52Rails
     config.autoload_paths += %w[app/uploaders/concerns app/services lib].map { |path| Rails.root.join(path) }
     config.eager_load_paths << Rails.root.join("lib")
 
+    # Use a real queuing backend for Active Job (and separate queues per environment)
+    config.active_job.queue_adapter = :sidekiq
+    config.active_job.queue_name_prefix = "it52_active_job_#{Rails.env}"
+
     # Mailing host
     config.action_mailer.default_url_options = { host: ENV.fetch('mailing_host') {'mailing_host'} }
     config.action_mailer.default_options = { from: "robot@#{ENV.fetch('mailing_host') {'mailing_host'}}" }

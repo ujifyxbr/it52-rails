@@ -1,3 +1,4 @@
 web: bundle exec puma -C config/puma.rb
+worker: bundle exec sidekiq
 webpack: WEBPACKER_DEV_SERVER_HOST=0.0.0.0 ./bin/webpack-dev-server
 log: tail -f log/development.log

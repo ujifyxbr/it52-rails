@@ -88,12 +88,12 @@ GEM
       url
     coderay (1.1.2)
     concurrent-ruby (1.1.5)
+    connection_pool (2.2.2)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     crass (1.0.4)
     csso-rails (0.8.2)
       execjs (>= 1)
-    dalli (2.7.10)
     database_cleaner (1.7.0)
     devise (4.6.2)
       bcrypt (~> 3.0)
@@ -157,6 +157,7 @@ GEM
     hashdiff (0.4.0)
     hashie (3.6.0)
     high_voltage (3.1.2)
+    hiredis (0.6.3)
     http (4.1.1)
       addressable (~> 2.3)
       http-cookie (~> 1.0)
@@ -222,7 +223,7 @@ GEM
     mini_mime (1.0.1)
     mini_portile2 (2.4.0)
     minitest (5.11.3)
-    msgpack (1.2.10)
+    msgpack (1.3.0)
     multi_json (1.13.1)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
@@ -280,6 +281,8 @@ GEM
       puma
       rack
     rack (2.0.7)
+    rack-protection (2.0.5)
+      rack
     rack-proxy (0.6.5)
       rack
     rack-test (1.1.0)
@@ -319,11 +322,12 @@ GEM
       ffi (~> 1.0)
     rdoc (6.1.1)
     redcarpet (3.4.0)
+    redis (4.1.2)
     request_store (1.4.1)
       rack (>= 1.4)
-    responders (2.4.1)
-      actionpack (>= 4.2.0, < 6.0)
-      railties (>= 4.2.0, < 6.0)
+    responders (3.0.0)
+      actionpack (>= 5.0)
+      railties (>= 5.0)
     rest-client (2.0.2)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
@@ -362,6 +366,11 @@ GEM
       rdoc (>= 5.0)
     shoulda-matchers (4.1.0)
       activesupport (>= 4.2.0)
+    sidekiq (5.2.7)
+      connection_pool (~> 2.2, >= 2.2.2)
+      rack (>= 1.5.0)
+      rack-protection (>= 1.5.0)
+      redis (>= 3.3.5, < 5)
     silencer (1.0.1)
     simple_form (4.1.0)
       actionpack (>= 5.0)
@@ -437,7 +446,6 @@ DEPENDENCIES
   codeclimate-test-reporter
   codecov
   csso-rails
-  dalli
   database_cleaner
   devise
   draper
@@ -451,6 +459,7 @@ DEPENDENCIES
   friendly_id
   has_scope
   high_voltage
+  hiredis
   http
   icalendar
   jbuilder (~> 2.5)
@@ -478,11 +487,13 @@ DEPENDENCIES
   rails (~> 5.2.0)
   rails_12factor
   redcarpet
+  redis
   rollbar
   rspec-rails
   sassc-rails
   sdoc
   shoulda-matchers
+  sidekiq
   silencer
   simple_form
   simplecov
