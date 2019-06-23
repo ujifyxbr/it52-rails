@@ -9,7 +9,7 @@ RUN apt-get update -qq && apt-get install -y build-essential git
 RUN apt-get install -y libpq-dev
 
 # for nokogiri
-RUN apt-get install -y libxml2-dev libxslt1-dev
+RUN apt-get install -y libxml2-dev libxslt1-dev glib2.0-dev libvips-dev optipng jpegoptim
 
 # for capybara-webkit
 # RUN apt-get install -y libqt4-webkit libqt4-dev xvfb

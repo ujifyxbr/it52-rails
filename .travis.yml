@@ -1,3 +1,5 @@
+libvips-dev optipng jpegoptim
+
 services:
 - postgresql
 addons:
@@ -13,6 +15,8 @@ cache:
 language: ruby
 rvm:
 - 2.6.3
+before_install:
+- sudo apt-get install -y libvips-dev optipng jpegoptim libxml2-dev libxslt1-dev glib2.0-dev
 install:
 - bundle install --path vendor/bundle --retry 3
 - yarn install
