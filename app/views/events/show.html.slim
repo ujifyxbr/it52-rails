@@ -1,30 +1,31 @@
 script type="application/ld+json" == @structured_data.to_json
 
-.events-show.event data={ id: @event.id }
-  .page-header
-    .pull-right
-      - if can? :edit, @event.object
-        = link_to t(:edit), edit_event_path(@event), class: 'btn btn-default'
-        | &nbsp;
-      - if can? :publish, @event.object
-        - if !@event.published?
-          = link_to t('.publish'), publish_event_path(@event), class: 'btn btn-warning', method: :patch
-        - else
-          = link_to t('.cancel_publication'), cancel_publication_event_path(@event), class: 'btn btn-warning', method: :patch
-    h1
-      - if can? :edit, @event.object
-        = render partial: 'admin_info', object: @event, as: :event
-      span => @event.title
-      small
-        nobr
-          = @event.link_to_time
+.title-image-wrapper style="background-image: url(#{image_url(@event.title_image.fb_1200.url)})"
+  .event-page-header
+    h2
+      = @event.local_started_at
+      div = @event.time_distance
 
+    h1 = @event.title
+    h3
+      = @event.place
+      - if @event.address_comment.present?
+        div = @event.address_comment
+
+.events-show.event data={ id: @event.id }
+  .pull-right
+    - if can? :edit, @event.object
+      = link_to t(:edit), edit_event_path(@event), class: 'btn btn-default'
+      | &nbsp;
+    - if can? :publish, @event.object
+      - if !@event.published?
+        = link_to t('.publish'), publish_event_path(@event), class: 'btn btn-warning', method: :patch
+      - else
+        = link_to t('.cancel_publication'), cancel_publication_event_path(@event), class: 'btn btn-warning', method: :patch
   .row
     .col-xs-12.col-sm-5
       - if @event.address.present?
         #event-map.event-map data={ lat: @event.address.lat, long: @event.address.long, title: @event.title }
-      - else
-        .image-container = image_tag @event.title_image.square_500.url, alt: @event.title
 
     .col-xs-12.col-sm-7
       .event-date: p title="Время проведения"
@@ -39,6 +40,9 @@ script type="application/ld+json" == @structured_data.to_json
         span> Организатор:
         a href=user_path(@event.organizer)
           span = @event.organizer
+      .event-participants: p title="Участники"
+        i.fas.fa-fw.fa-users>
+        span = "Участники: #{@event.participants.size}"
       - if @event.tag_list.present?
         .event-tags: p title="Тэги"
             i.fas.fa-fw.fa-tag>

@@ -136,6 +136,10 @@ class User < ApplicationRecord
     super && authentications.blank?
   end
 
+  def send_devise_notification(notification, *args)
+    devise_mailer.send(notification, self, *args).deliver_later
+  end
+
   def sync_with_mailchimp
     return nil if email.blank?
     return unless Rails.env.production?

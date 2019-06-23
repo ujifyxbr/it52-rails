@@ -87,7 +87,7 @@ class Event < ApplicationRecord
   end
 
   def slug_candidates
-    [[ started_at.strftime("%Y-%m-%d"), title ]]
+    [[ started_at.strftime("%Y-%m-%d"), I18n.transliterate(title) ]]
   end
 
   def should_generate_new_friendly_id?

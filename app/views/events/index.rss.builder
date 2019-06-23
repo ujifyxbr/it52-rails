@@ -1,17 +1,17 @@
-xml.instruct! :xml, version: '1.0'
-xml.rss version: '2.0',
-        'xmlns:yandex' => 'http://news.yandex.ru',
-        'xmlns:media' => 'http://search.yahoo.com/mrss/',
-        'xmlns:turbo' => 'http://turbo.yandex.ru' do
-  xml.channel do
-    xml.title ['it52', t(:app_name)].join(' | ')
-    xml.link root_url
-    xml.description t :app_description
-    xml.language 'ru'
-    xml.turbo(:analytics, id: '50290294', type: 'Yandex')
-    xml.turbo(:analytics, id: 'UA-54446007-1', type: 'Google')
+cache @rss_events do
+  xml.instruct! :xml, version: '1.0'
+  xml.rss version: '2.0',
+          'xmlns:yandex' => 'http://news.yandex.ru',
+          'xmlns:media' => 'http://search.yahoo.com/mrss/',
+          'xmlns:turbo' => 'http://turbo.yandex.ru' do
+    xml.channel do
+      xml.title ['it52', t(:app_name)].join(' | ')
+      xml.link root_url
+      xml.description t :app_description
+      xml.language 'ru'
+      xml.turbo(:analytics, id: '50290294', type: 'Yandex')
+      xml.turbo(:analytics, id: 'UA-54446007-1', type: 'Google')
 
-    Rails.cache.fetch(@rss_events.object.cache_key) do
       @rss_events.each do |event|
         html = render partial: 'event-item', locals: { event: event }
         xml.item(turbo: 'true') do |item|

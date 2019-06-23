@@ -17,7 +17,7 @@ ru:
   time:
     formats:
       default: "%d %B %Y %H:%M"
-      date_time_full: "%d %B %Y %H:%M"
+      date_time_full: "%A, %d %B %Y %H:%M"
       date_time_short: "%d.%m.%Y %H:%M"
       date: "%d.%m.%Y"
       date_without_year: "%d %B"

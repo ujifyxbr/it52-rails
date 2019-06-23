@@ -41,11 +41,31 @@ class EventDecorator < Draper::Decorator
     [h.l(object.started_at), object.place, object.title].join(' – ')
   end
 
+  def local_started_at
+    helpers.l(object.started_at, format: :date_time_full).capitalize
+  end
+
+  def address_text
+    [object.place, object.address_comment].select(&:present?).join(', ')
+  end
+
+  def time_distance
+    delta = (Time.current.to_date - object.started_at.to_date).to_i
+    delta_in_words= h.distance_of_time_in_words(Time.current, object.started_at)
+    if delta > 0
+      "#{delta_in_words} назад"
+    elsif delta < 0
+      "через #{delta_in_words}"
+    else
+      'сегодня'
+    end
+  end
+
   def link_to_place
     base = "http://maps.yandex.ru/?text="
     h.link_to URI.encode(base + object.place), target: "_blank", itemprop: 'location', itemscope: true, itemtype: 'http://schema.org/Place' do
       link_arr = [h.content_tag(:span, object.place, itemprop: 'address')]
-      link_arr << h.content_tag(:span, object.address_comment, itemprop: 'name') if object.address_comment
+      link_arr << h.content_tag(:span, object.address_comment, itemprop: 'name') if object.address_comment.present?
       link_arr.join(', ').html_safe
     end
   end

@@ -1,3 +1,5 @@
+require_dependency 'my'
+
 class ApplicationController < ActionController::Base
   # include Styx::Initializer
 
