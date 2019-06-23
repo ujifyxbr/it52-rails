@@ -3,13 +3,10 @@ MAINTAINER Nick Kugaevsky "nick@kugaevsky.ru"
 
 # Build-time metadata as defined at http://label-schema.org
 
-RUN apt-get update -qq && apt-get install -y build-essential git
-
-# for postgres
-RUN apt-get install -y libpq-dev
+RUN apt-get update -qq
 
 # for nokogiri
-RUN apt-get install -y libxml2-dev libxslt1-dev glib2.0-dev libvips-dev optipng jpegoptim
+RUN apt-get install -y libpq-dev build-essential git libxml2-dev libxslt1-dev glib2.0-dev libvips-dev optipng jpegoptim
 
 # for capybara-webkit
 # RUN apt-get install -y libqt4-webkit libqt4-dev xvfb
