@@ -30,7 +30,7 @@ script type="application/ld+json" == @structured_data.to_json
     .col-xs-12.col-sm-7
       .event-date: p title="Время проведения"
         i.fas.fa-fw.fa-calendar>
-        = link_to l(@event.started_at, format: :date_time_full), event_path(@event, format: :ics)
+        = link_to @event.local_started_at, event_path(@event, format: :ics)
       - if @event.place.present?
         .event-place: p title="Место проведения"
           i.fas.fa-fw.fa-map-marker>

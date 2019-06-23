@@ -196,7 +196,9 @@ class Event < ApplicationRecord
     suggestions = DaData::Request.suggest_address("Нижний Новгород, #{place}")
     main_suggestions = DaData::Request.suggest_address(suggestions['suggestions'].first['unrestricted_value'], count: 1)
     address = Address.first_or_create_from_dadata(main_suggestions['suggestions'].first)
+    self.place = main_suggestions['suggestions'].first['value']
     self.address_id = address.id
+    self
   rescue Exception => e
     Rollbar.error(e, event: to_meta_tags)
   end

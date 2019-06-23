@@ -5,13 +5,11 @@ import * as SimpleMDE from 'simplemde'
 import flatpickr from 'flatpickr'
 import { Russian } from 'flatpickr/dist/l10n/ru'
 
-document.addEventListener('turbolinks:load', init)
-
 function hasEditor(): boolean {
   return document.querySelectorAll('.editor-toolbar').length > 0
 }
 
-function init(event?: Event | any): void {
+function init(event?: Event): void {
   flatpickr('#event_started_at', {
     enableTime: true,
     minuteIncrement: 15,
@@ -35,4 +33,5 @@ function init(event?: Event | any): void {
   }
 }
 
-init({ data: location.href });
+document.addEventListener('turbolinks:load', init)
+init()

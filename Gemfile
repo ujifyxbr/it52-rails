@@ -82,6 +82,8 @@ gem 'pry-rails'
 gem 'fog-aws', '< 3'
 gem 'mini_magick'
 gem 'carrierwave'
+gem 'carrierwave-vips'
+gem 'carrierwave-imageoptimizer'
 gem 'asset_sync'
 
 # Monitoring

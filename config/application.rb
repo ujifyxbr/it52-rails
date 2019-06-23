@@ -42,5 +42,8 @@ module It52Rails
     config.action_mailer.default_options = { from: "robot@#{ENV.fetch('mailing_host') {'mailing_host'}}" }
     config.action_mailer.smtp_settings = {}
     config.action_mailer.delivery_method = :letter_opener
+
+    # Middleware
+    config.middleware.insert_after ActionDispatch::Static, Rack::Deflater
   end
 end
