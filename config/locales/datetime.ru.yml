@@ -89,11 +89,13 @@ ru:
         many: меньше %{count} секунд
         other: меньше %{count} секунды
       less_than_x_minutes:
+        zero: меньше %{count} минут
         one: меньше %{count} минуты
         few: меньше %{count} минут
         many: меньше %{count} минут
         other: меньше %{count} минуты
       over_x_years:
+        zero: "больше %{count} лет"
         one: больше %{count} года
         few: больше %{count} лет
         many: больше %{count} лет
@@ -115,11 +117,13 @@ ru:
         one: "%{count} день"
         few: "%{count} дня"
         many: "%{count} дней"
+        other: "%{count} дня"
       x_months:
         zero: "%{count} месяцев"
         one: "%{count} месяц"
         few: "%{count} месяца"
         many: "%{count} месяцев"
+        other: "%{count} месяца"
       x_years:
         zero: "%{count} лет"
         one: "%{count} год"
