@@ -54,7 +54,7 @@
         ', если хотите, но не знаете как. Мы всегда поможем с организацией. Бесплатно.
   - else
     .events
-      = render @events
+      = render @events, cached: true
 
   // pagination
   .text-center

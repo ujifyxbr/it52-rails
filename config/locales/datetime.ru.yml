@@ -99,26 +99,29 @@ ru:
         many: больше %{count} лет
         other: больше %{count} лет
       x_seconds:
+        zero: "%{count} секунд"
         one: "%{count} секунду"
         few: "%{count} секунды"
         many: "%{count} секунд"
         other: "%{count} секунды"
       x_minutes:
+        zero: "%{count} минут"
         one: "%{count} минуту"
         few: "%{count} минуты"
         many: "%{count} минут"
         other: "%{count} минуты"
       x_days:
+        zero: "%{count} дней"
         one: "%{count} день"
         few: "%{count} дня"
         many: "%{count} дней"
-        other: "%{count} дня"
       x_months:
+        zero: "%{count} месяцев"
         one: "%{count} месяц"
         few: "%{count} месяца"
         many: "%{count} месяцев"
-        other: "%{count} месяца"
       x_years:
+        zero: "%{count} лет"
         one: "%{count} год"
         few: "%{count} года"
         many: "%{count} лет"
