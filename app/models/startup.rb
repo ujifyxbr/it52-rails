@@ -1,5 +1,6 @@
 class Startup < ApplicationRecord
   validates :title, presence: true
+  validates :description, presence: true
   validates :author_id, presence: true, numericality: true
 
   belongs_to :author, class_name: 'User'

@@ -118,6 +118,7 @@ group :development, :test do
   # Model factories
   gem 'factory_bot_rails'
   gem 'rspec-rails'
+  gem 'spring-commands-rspec'
 end
 
 group :test do
