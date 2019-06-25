@@ -51,7 +51,7 @@ describe EventsController do
     context 'when user logged in' do
       before { sign_in user }
 
-      it { expect(delete_request).to redirect_to new_user_session_path }
+      it { expect(delete_request).to redirect_to root_path }
       it { expect { delete_request }.not_to change(Event, :count) }
     end
 
