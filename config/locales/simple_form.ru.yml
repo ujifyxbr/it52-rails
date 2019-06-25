@@ -33,9 +33,11 @@ ru:
         address_comment: Гостиница Ibis или офис Яндекса
         place: Нижний Новгород, ул Алексеевская, дом 13
       startup:
+        title: WeWork
         intro: Caecus si caeco ducatum praestet, ambo in foveam cadunt
+        url: https://angel.co
       contacts:
-        name: Elon Mask
+        name: Elon Musk
         email: ceo@angel.co
     hints:
       user:
