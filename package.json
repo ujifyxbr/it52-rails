@@ -7,6 +7,7 @@
   "license": "MIT",
   "dependencies": {
     "@material/button": "^2.3.0",
+    "@material/card": "^2.3.0",
     "@material/chips": "^2.3.0",
     "@material/drawer": "^2.3.0",
     "@material/fab": "^2.3.0",

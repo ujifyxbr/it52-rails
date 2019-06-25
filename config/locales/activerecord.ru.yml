@@ -70,6 +70,9 @@ ru:
       user:
         one:    Пользователь
         other:  Пользователи
+      startup:
+        one: Стартап
+        other: Стартапы
     attributes:
       user:
         password:     Пароль
@@ -97,9 +100,26 @@ ru:
         nickname: Ник
         employment: Место работы
         subscription: Получать уведомления о событиях
+        avatar_image: Аватар
       event:
         kind: Тип
         kinds:
           event: Событие
           education: Обучение
         tag_list: Тэги
+        title: Название
+        published: Мероприятие опубликовано
+        description: Описание
+        started_at: Дата начала
+        title_image: Картинка для привлечения внимания
+        participants: Участники
+        address_comment: Место проведения
+        place: Адрес
+        foreign_link: Ссылка на стороннюю регистрацию
+      startup:
+        title: Название
+        url: Сайт
+        logo: Лого
+        intro: Интро
+        description: Описание
+        contacts: Контакты

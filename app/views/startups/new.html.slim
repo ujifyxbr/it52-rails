@@ -1,0 +1,6 @@
+- content_for(:topbar_actions) do
+  a.material-icons.mdc-top-app-bar__action-item href=startups_path title='Все стартапы' list
+
+h1 = t('meta.startups.new.title')
+
+== render 'form'

@@ -8,4 +8,8 @@ module ApplicationHelper
     return 'root' if current_user&.admin?
     ''
   end
+
+  def meta_t(key)
+    I18n.t("meta.#{controller_name}.#{action_name}.#{key}")
+  end
 end

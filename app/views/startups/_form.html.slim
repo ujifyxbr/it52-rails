@@ -1,0 +1,24 @@
+- content_for :dynamic_javascripts
+  = javascript_pack_tag 'editor', 'data-turbolinks-track': true, defer: true
+
+= simple_form_for(@startup) do |f|
+  .row
+    .col-sm-5
+      = f.input :title
+      = f.input :url
+      - if f.object.logo.present?
+        = image_tag f.object.logo.small.url, alt: f.object.title
+      = f.input :logo
+      = f.input :intro
+      = f.simple_fields_for :contacts, OpenStruct.new(@startup.contacts) do |c|
+        = f.label :contacts
+        .row
+          .col-xs-6 = c.input :name, label: false
+          .col-xs-6 = c.input :email, label: false
+    .col-sm-7
+      = f.input :description, input_html: { rows: 8, class: 'mde-textarea' }
+
+  .form-actions
+    = f.submit meta_t(:title), class: 'mdc-button mdc-button--success'
+    '&nbsp;
+    = link_to 'Отмена', startups_path, class: 'mdc-button mdc-button--outline'

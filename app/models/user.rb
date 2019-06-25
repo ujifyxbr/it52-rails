@@ -81,10 +81,10 @@ class User < ApplicationRecord
     [
       :nickname,
       [:first_name, :last_name],
-      :email,
       [:nickname, :first_name, :last_name],
-      [:nickname, :first_name, :last_name, :email],
       auth_uids,
+      [:nickname, :first_name, :last_name, :email],
+      :email,
       [:nickname, :first_name, :last_name, :email] + auth_uids
     ]
   end

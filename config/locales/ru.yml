@@ -237,31 +237,6 @@ ru:
     form:
       hint: Рекомендуются квадратные изображения размером 500*500 px.
 
-  activerecord:
-    models:
-      event:
-        one: Мероприятие
-        few: Мероприятия
-    attributes:
-      user:
-        email: E-mail
-        password: Пароль
-        password_confirmation: Подтверждение пароля
-        first_name: Имя
-        last_name: Фамилия
-        bio: Обо мне
-        avatar_image: Аватар
-      event:
-        title: Название
-        published: Мероприятие опубликовано
-        description: Описание
-        started_at: Дата начала
-        title_image: Картинка для привлечения внимания
-        participants: Участники
-        address_comment: Место проведения
-        place: Адрес
-        foreign_link: Ссылка на стороннюю регистрацию
-
   unauthorized:
     create:
       event_participation: Для участия в мероприятии необходимо войти.
@@ -282,3 +257,17 @@ ru:
         title: Профиль
     events:
       has_foreign_link: Сторонняя регистрация
+
+  meta:
+    startups:
+      index:
+        title: Стартапы в Нижнем Новгороде
+        description: Список стартапов Нижнего Новгорода
+      new:
+        title: Добавить стартап
+      create:
+        title: Добавить стартап
+      edit:
+        title: Сохранить
+      update:
+        title: Сохранить

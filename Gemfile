@@ -18,9 +18,10 @@ gem 'mailchimp-api', require: 'mailchimp'
 gem 'mailgun_rails'
 gem 'http'
 
-# Normaliztion
+# Normalization and locales
 gem 'unicode'
 gem 'postrank-uri'
+gem 'rails-i18n'
 
 # Authentication and authorization
 gem 'devise'

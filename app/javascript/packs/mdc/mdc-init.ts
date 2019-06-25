@@ -16,7 +16,7 @@ export class MdcInit {
   topAppBarElement = document.querySelector('.mdc-top-app-bar')
   topAppBar = new MDCTopAppBar(this.topAppBarElement)
   drawer = MDCDrawer.attachTo(document.querySelector('.mdc-drawer'))
-  buttons = document.querySelectorAll('.mdc-button,.mdc-fab')
+  buttons = document.querySelectorAll('.mdc-button, .mdc-fab, .mdc-card__primary-action')
   iconButtons = document.querySelectorAll('.mdc-icon-button')
   lists = document.querySelectorAll('.mdc-list')
   tabBars = document.querySelectorAll('.mdc-tab-bar')

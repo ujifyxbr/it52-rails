@@ -21,14 +21,16 @@ function init(event?: Event): void {
   })
 
 
-  const simplemdeEl = document.querySelectorAll('#event_description, #user_bio')[0]
-  if (!!simplemdeEl && !hasEditor()) {
-    const simplemde = new SimpleMDE({
-      element: simplemdeEl,
-      indentWithTabs: false,
-      promptURLs: true,
-      spellChecker: false,
-      hideIcons: ['image']
+  const simplemdeElements = document.querySelectorAll('.mde-textarea')
+  if (simplemdeElements.length > 0 && !hasEditor()) {
+    simplemdeElements.forEach((el) => {
+      new SimpleMDE({
+        element: el,
+        indentWithTabs: false,
+        promptURLs: true,
+        spellChecker: false,
+        hideIcons: ['image']
+      })
     })
   }
 }

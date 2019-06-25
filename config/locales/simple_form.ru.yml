@@ -32,6 +32,11 @@ ru:
         tag_list: jsnn, workshop, barcamp
         address_comment: Гостиница Ibis или офис Яндекса
         place: Нижний Новгород, ул Алексеевская, дом 13
+      startup:
+        intro: Caecus si caeco ducatum praestet, ambo in foveam cadunt
+      contacts:
+        name: Elon Mask
+        email: ceo@angel.co
     hints:
       user:
         bio: Можно использовать Markdown
@@ -43,4 +48,11 @@ ru:
         address_comment: Офис компании, бизнес-центр, гостиница, кафе
         place: 'Просто адрес: город, улица и дом'
         title_image: Размер не менее 1200×630
+      startup:
+        logo: Размер не менее 512×512
+        intro: Суть в одном предложении
+      contacts:
+        name: Имя
+        email: Email
+
 

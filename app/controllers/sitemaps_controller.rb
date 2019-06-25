@@ -3,6 +3,7 @@ class SitemapsController < ApplicationController
 
   def index
     @events = Event.published
+    @startups = Startup.all
     @pages = HighVoltage.page_ids
   end
 end

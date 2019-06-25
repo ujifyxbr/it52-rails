@@ -11,6 +11,6 @@ class ErrorsController < ApplicationController
 
   def build_attachment_path
     production_prefix = 'https://assets.it52.info'
-    [production_prefix, request.path.gsub('images/aws_host/uploads/development', 'uploads/production')].join
+    [production_prefix, request.path.gsub('uploads/development', 'uploads/production')].join
   end
 end

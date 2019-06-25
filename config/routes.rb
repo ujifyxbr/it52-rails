@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :startups
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   # apipie
@@ -70,5 +71,5 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/images/aws_host/uploads/*any', to: 'errors#image'
+  get 'uploads/*any', to: 'errors#image'
 end

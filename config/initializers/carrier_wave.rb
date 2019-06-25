@@ -20,7 +20,7 @@ CarrierWave.configure do |config|
   config.fog_directory    = ENV.fetch('aws_bucket') { 'aws_bucket' }
   config.fog_public       = true
   config.fog_attributes   = { 'Cache-Control' => "max-age=#{365.days.to_i}" }
-  config.asset_host       = ENV.fetch('aws_host') { 'aws_host' }
+  config.asset_host       = ENV.fetch('aws_host') { nil }
   config.cache_dir        = "#{Rails.root}/tmp/uploads"
 
   config.ignore_integrity_errors = false

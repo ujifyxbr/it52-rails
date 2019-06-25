@@ -1,0 +1,16 @@
+.grid__cell--startup
+  .mdc-card.mdc-card--startup.mdc-card--outlined
+    a.mdc-card__primary-action tabindex="0" href=startup_path(startup) title=startup.title
+      .mdc-card__media.mdc-card__media--square[style="background-image: url(#{asset_url(startup.logo.big.url)});"]
+
+      .mdc-card__primary
+        h2.mdc-card__title = startup.title
+        p.mdc-card__subtitle = startup.intro
+
+    - if can? :edit, startup
+      .mdc-card__actions
+        .mdc-card__action-icons
+          a.mdc-icon-button.mdc-card__action.mdc-card__action--icon--unbounded title="Изменить" href=edit_startup_path(startup)
+            i.material-icons.mdc-icon-button__icon edit
+          = link_to startup_path(startup), class: 'mdc-icon-button mdc-card__action mdc-card__action--icon--unbounded', method: :delete, title: "Удалить", data: { confirm: 'Удалить стартап?' } do
+            i.material-icons.mdc-icon-button__icon delete

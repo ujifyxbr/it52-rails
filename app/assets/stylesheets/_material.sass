@@ -20,7 +20,7 @@ $mdc-typography-font-family: 'Fira Mono', Roboto, Helvetica, sans-serif
   @media (min-width: 768px)
     max-width: $container-sm
 
-  @media (min-width: 992px)
+  @media (min-width: 1024px)
     max-width: $container-md
 
   @media (min-width: 1200px)
@@ -34,7 +34,55 @@ $mdc-typography-font-family: 'Fira Mono', Roboto, Helvetica, sans-serif
 
 
 // Layout grid
+$mdc-layout-grid-default-margin: (desktop: 0, tablet: 0, phone: 0)
+
 @import "@material/layout-grid/mdc-layout-grid"
+
+.grid
+  @include mdc-layout-grid(phone, 0)
+
+.grid__inner
+  @media (max-width: 767px)
+    @include mdc-layout-grid-inner(phone, 0, 1rem)
+  @media (min-width: 768px)
+    @include mdc-layout-grid-inner(tablet, 0, 1rem)
+  @media (min-width: 1024px)
+    @include mdc-layout-grid-inner(desktop, 0, 1rem)
+
+.grid__cell--startup
+  @media (max-width: 767px)
+    @include mdc-layout-grid-cell(phone, 4, 1rem)
+  @media (min-width: 768px)
+    @include mdc-layout-grid-cell(tablet, 4, 1rem)
+  @media (min-width: 1024px)
+    @include mdc-layout-grid-cell(desktop, 4, 1.5rem)
+  @media (min-width: 1200px)
+    @include mdc-layout-grid-cell(desktop, 3, 1.5rem)
+
+  .mdc-card__title
+    font-size: 2rem
+
+.grid__cell--startup-meta
+  @media (max-width: 767px)
+    @include mdc-layout-grid-cell(phone, 4, 1rem)
+  @media (min-width: 768px)
+    @include mdc-layout-grid-cell(tablet, 2, 1rem)
+  @media (min-width: 1024px)
+    @include mdc-layout-grid-cell(desktop, 3, 1.5rem)
+
+.grid__cell--startup-description
+  @media (max-width: 767px)
+    @include mdc-layout-grid-cell(phone, 4, 1rem)
+  @media (min-width: 768px)
+    @include mdc-layout-grid-cell(tablet, 6, 1rem)
+  @media (min-width: 1024px)
+    @include mdc-layout-grid-cell(desktop, 9, 1.5rem)
+
+
+
+.startup-image
+  max-width: 100%
+  margin-bottom: 2rem
 
 // Buttons
 @import "@material/button/mdc-button"
@@ -141,3 +189,18 @@ $mdc-typography-font-family: 'Fira Mono', Roboto, Helvetica, sans-serif
 
 // Typography
 @import "@material/typography/mdc-typography"
+
+// Cards
+@import "@material/card/mdc-card"
+
+.mdc-card__primary,
+.mdc-card__description
+  padding: 0 2rem
+
+.mdc-card__primary
+  h2
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
+    a
+      text-decoration: none

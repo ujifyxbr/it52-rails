@@ -694,6 +694,18 @@
     "@material/theme" "^1.1.0"
     "@material/typography" "^2.3.0"
 
+"@material/card@^2.3.0":
+  version "2.3.0"
+  resolved "http://npmjs.pik.ru/@material%2fcard/-/card-2.3.0.tgz#f59ac3b16d21d21af5747a530624f14622286c29"
+  integrity sha512-udVIanyz3KhZ8IfZjX2Yg+YJxU+oYdP9RbCM3hl7l1aqvNr8WSAy/YZ60Ue54fuN+0CpXiNpz1J8GyDktUZKKg==
+  dependencies:
+    "@material/elevation" "^1.1.0"
+    "@material/feature-targeting" "^0.44.1"
+    "@material/ripple" "^2.3.0"
+    "@material/rtl" "^0.42.0"
+    "@material/shape" "^1.1.1"
+    "@material/theme" "^1.1.0"
+
 "@material/checkbox@^2.3.0":
   version "2.3.0"
   resolved "http://npmjs.pik.ru/@material%2fcheckbox/-/checkbox-2.3.0.tgz#3fd2d8ad4d602b8486f841fc561e01107f06b4a3"
