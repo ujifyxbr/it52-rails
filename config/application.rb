@@ -35,7 +35,7 @@ module It52Rails
 
     # Use a real queuing backend for Active Job (and separate queues per environment)
     config.active_job.queue_adapter = :sidekiq
-    config.active_job.queue_name_prefix = "it52_active_job_#{Rails.env}"
+    config.active_job.queue_name_prefix = "it52.#{Rails.env}"
 
     # Mailing host
     config.action_mailer.default_url_options = { host: ENV.fetch('mailing_host') {'mailing_host'} }

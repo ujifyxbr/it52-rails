@@ -1,0 +1,17 @@
+---
+:concurrency: 5
+staging:
+  :concurrency: 10
+production:
+  :concurrency: 2
+:queues:
+  - critical
+  - mailers
+  - it52_active_job_development_mailers
+  - it52_active_job_production_mailers
+  - default
+  - low
+  - it52.<%= ENV.fetch("RAILS_ENV") %>.critical
+  - it52.<%= ENV.fetch("RAILS_ENV") %>.mailers
+  - it52.<%= ENV.fetch("RAILS_ENV") %>.default
+  - it52.<%= ENV.fetch("RAILS_ENV") %>.low
