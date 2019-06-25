@@ -41,6 +41,7 @@ after_script:
 - "./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT"
 env:
   global:
+    PGPORT: 5433
     secure: bp3xJOb795L63tCXYb6XbJmTI7fSquwT59z7QlcUi2lHID7gqNLnCBTtZHjRY1ASSvwqk+hbPj857JXZ3SpGL4mySM0BicKIC7iPIvECtnMQeeg3EBk7h0S5ZE/P00Xk03peWmpbRzClXSZS+kmsRxKREK3dJh6+jO7XNaRpg6w=
 deploy:
   provider: heroku
