@@ -15,3 +15,7 @@ production:
   - it52.<%= ENV.fetch("RAILS_ENV") %>.mailers
   - it52.<%= ENV.fetch("RAILS_ENV") %>.default
   - it52.<%= ENV.fetch("RAILS_ENV") %>.low
+  - it52.<%= ENV.fetch("RAILS_ENV") %>_critical
+  - it52.<%= ENV.fetch("RAILS_ENV") %>_mailers
+  - it52.<%= ENV.fetch("RAILS_ENV") %>_default
+  - it52.<%= ENV.fetch("RAILS_ENV") %>_low
