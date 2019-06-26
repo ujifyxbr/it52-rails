@@ -26,6 +26,11 @@ $mdc-typography-font-family: 'Fira Mono', Roboto, Helvetica, sans-serif
   @media (min-width: 1200px)
     max-width: $container-lg
 
+.top-app-bar-nav
+  @media (max-width: 767px)
+    display: none
+
+
 .it52-logo
   margin: 0 2rem 0 2.1rem
 
@@ -99,6 +104,15 @@ $mdc-layout-grid-default-margin: (desktop: 0, tablet: 0, phone: 0)
   &--success
     @include mdc-button-filled-accessible($mdc-theme-success)
 
+.mdc-top-bar-button
+  @include mdc-button-filled-accessible($mdc-theme-primary)
+  @include mdc-button-outline-color($mdc-theme-on-primary)
+  @include mdc-button-outline-width(1px)
+  @include mdc-button-shape-radius(4px)
+
+  &--active
+    @include mdc-button-ink-color(darken($mdc-theme-on-primary, 25%))
+
 .events-nav
   .mdc-button
     margin-right: 1rem
@@ -129,6 +143,12 @@ $mdc-layout-grid-default-margin: (desktop: 0, tablet: 0, phone: 0)
     font-size: 16px
     font-weight: 400
     line-height: 1.75rem
+  &__footer-inner
+    padding: 2rem
+    text-align: center
+
+.mdc-drawer .mdc-list-item--activated .mdc-list-item__graphic
+  color: inherit
 
 // Tabs
 @import "@material/tab-bar/mdc-tab-bar"
@@ -184,6 +204,7 @@ $mdc-layout-grid-default-margin: (desktop: 0, tablet: 0, phone: 0)
 
   &:hover
     background-color: #ffff6b
+
   .mdc-chip__text
     font-size: 1.4rem
 

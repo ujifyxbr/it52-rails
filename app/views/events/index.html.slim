@@ -17,10 +17,10 @@
     #events-select-menu-list.mdc-select__menu.mdc-menu.mdc-menu-surface
       ul.mdc-list
         - if filter_params[:status] == 'unapproved'
-          li.mdc-list-item.mdc-list-item--selected role="option" data-value='unapproved' data-url=events_path(filter_params.merge(status: 'unapproved')) aria-selected="true" = "На модерации (#{unapproved_count})"
+          li.mdc-list-item.mdc-list-item--selected role="option" data-value='unapproved' data-url=root_path(filter_params.merge(status: 'unapproved')) aria-selected="true" = "На модерации (#{unapproved_count})"
         - else
           - t('events.index.kind_filter').each_pair do |key, title|
-            li.mdc-list-item class=('mdc-list-item--selected' if current_filter?(key)) role="option" data-value=key data-url=events_path(filter_params.merge(kind: key)) aria-selected=(current_filter?(key) ? "true" : false)
+            li.mdc-list-item class=('mdc-list-item--selected' if current_filter?(key)) role="option" data-value=key data-url=root_path(filter_params.merge(kind: key)) aria-selected=(current_filter?(key) ? "true" : false)
               = filter_params[:tag] ? "#{title} с тэгом #{filter_params[:tag]}" : title
     / span.mdc-floating-label Select something
     / .mdc-line-ripple

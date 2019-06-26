@@ -163,3 +163,26 @@ body
       position: absolute
       left: 0
       content: attr(date)
+
+.store-badge
+  display: inline-block
+  width: 152px
+  height: 46px
+  background: center center no-repeat
+
+  &:hover,
+  &:focus,
+  &:active
+    background-color: inherit
+
+  &--app-store
+    background-image: image_url('app-store-badge.svg')
+    background-size: contain
+
+  &--google-play
+    width: 158px
+    background-image: image_url('google-play-badge.png')
+    background-size: cover
+
+  &--small
+    width: 100px

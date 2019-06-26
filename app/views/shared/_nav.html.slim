@@ -7,14 +7,23 @@ header.mdc-top-app-bar.mdc-top-app-bar--fixed.mdc-top-app-bar--dense
         - else
           h3.it52-logo class=logo_class = "it52"
 
+      nav.top-app-bar-nav
+        a.mdc-button.mdc-top-bar-button class=('mdc-top-bar-button--active' if current_page?(root_path)) href=root_path = t('.events')
+        a.mdc-button.mdc-top-bar-button class=('mdc-top-bar-button--active' if current_page?(page_path(:communities))) href=page_path(:communities) = t('.communities')
+        a.mdc-button.mdc-top-bar-button class=('mdc-top-bar-button--active' if current_page?(page_path(:about))) href=page_path(:about) = t('.about')
+        a.mdc-button.mdc-top-bar-button class=('mdc-top-bar-button--active' if current_page?(page_path(:donate))) href=page_path(:donate) = t('.donate')
+
     section.mdc-top-app-bar__section.mdc-top-app-bar__section--align-end
-      = yield(:topbar_actions) if content_for(:topbar_actions)
+      - if user_signed_in?
+        = yield(:topbar_actions) if content_for(:topbar_actions)
 
       - if user_signed_in?
         a.material-icons.mdc-top-app-bar__action-item href=my_profile_path
           = image_tag current_user.avatar_image.square_25.url
       - else
-        a.material-icons.mdc-top-app-bar__action-item href=new_user_session_path input
+        a.mdc-button.mdc-button--outlined.mdc-top-bar-button href=new_user_session_path
+          i.material-icons.mdc-button__icon input
+          span.mdc-button__label Войти
       a.material-icons.mdc-top-app-bar__navigation-icon data-no-turbolink='' menu
 
 aside.mdc-drawer.mdc-drawer--modal
@@ -36,12 +45,12 @@ aside.mdc-drawer.mdc-drawer--modal
       a.mdc-list-item class=('mdc-list-item--activated' if current_page?(page_path(:communities))) href=page_path(:communities)
         span.material-icons.mdc-list-item__graphic aria-hidden="true" group
         span.mdc-list-item__text = t('.communities')
-      a.mdc-list-item class=('mdc-list-item--activated' if current_page?(page_path(:donate))) href=page_path(:donate)
-        span.material-icons.mdc-list-item__graphic aria-hidden="true" favorite
-        span.mdc-list-item__text = t('.donate')
       a.mdc-list-item class=('mdc-list-item--activated' if current_page?(page_path(:about))) href=page_path(:about)
         span.material-icons.mdc-list-item__graphic aria-hidden="true" help
         span.mdc-list-item__text = t('.about')
+      a.mdc-list-item class=('mdc-list-item--activated' if current_page?(page_path(:donate))) href=page_path(:donate)
+        span.material-icons.mdc-list-item__graphic aria-hidden="true" favorite
+        span.mdc-list-item__text = t('.donate')
       hr.mdc-list-divider
       - if user_signed_in?
         a.mdc-list-item class=('mdc-list-item--activated' if current_page?(my_profile_path)) href=my_profile_path
@@ -59,3 +68,8 @@ aside.mdc-drawer.mdc-drawer--modal
         a.mdc-list-item class=('mdc-list-item--activated' if current_page?(new_user_session_path)) href=new_user_session_path
           span.material-icons.mdc-list-item__graphic aria-hidden="true" input
           span.mdc-list-item__text = t('.login')
+  .mdc-drawer__footer
+    .mdc-drawer__footer-inner
+      a.store-badge.store-badge--app-store href='https://apps.apple.com/ru/app/it52/id1239876838'
+      br
+      a.store-badge.store-badge--google-play href='https://play.google.com/store/apps/details?id=io.github.defolters.it52&utm_source=it52'

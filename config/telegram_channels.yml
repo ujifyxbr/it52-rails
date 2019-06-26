@@ -21,6 +21,9 @@ groups:
       nnrug: Ruby
       golang_events_nizhny: GoLang
       scala_nn: Scala
+      android_nn: Android (Java, Kotlin)
+      iosnndevs: iOS (Objective-C, Swift)
+
   interests:
     name: По интересам
     channels:
@@ -28,8 +31,6 @@ groups:
       defcon_nn: ITSecurity
       defcon_nn_offtop: ITSecurity offtop
       nnlug: NN Linux user group
-      android_nn: Android NN
-      iosnndevs: iOS NN devs
       wtm_nn: Women Techmakers
       gdgnn: Google developers group
       cadr_hackerspace: Хакерспейс CADR
@@ -39,3 +40,5 @@ groups:
       nn_cv: Машинное зрение/AR/VR
       qt_52: Чат QT сообщества
       nnov_globalcityhack: Чат участников Global City Hackathon
+      gamedevnn: Разработка игр в Нижнем Новгороде
+      startupnn: Cообщество для тех, у кого уже есть или кто задумывается создать свой startup

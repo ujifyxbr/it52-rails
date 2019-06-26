@@ -37,15 +37,9 @@ script type="application/ld+json" == structured_data.to_json
 .page-header
   h1 Нижегородское IT-сообщество
 
-ul
-  li Встречи
-  li Сообщества
-  li Лица
-  li Тусовки
+  p it52 — это некоммерческое сообщество энтузиастов, которые думают, что могут сделать жизнь нижегородского айтишника немного лучше. Мы помогаем организовывать профильные мероприятия, ведём афишу событий, курируем несколько чатиков в телеграме и групп в соцсетях, и кажется, что у нас получается.
 
-hr
-
-h2 Я хочу помочь!
+h2 Я тоже хочу!
 
 p Пожалуйста. Мы всегда рады хорошим людям. Помочь вы можете разными способами.
 he
@@ -66,36 +60,49 @@ p
    |, чего вам не хватает, или что можно реализовать лучше. Обсудим и сделаем.
 hr
 p
-  strong — Я гуру (начинающий/хочу изучить) Ruby on Rails, и у меня есть немного времени.
+  strong — Я гуру (начинающий/хочу изучить) Ruby on Rails или что-нибудь во фронтенде, и у меня есть немного времени.
   br
-  em
-    |— Круто! Присылайте pull request. Только про тесты не забудьте.
+  em — Круто! Присылайте pull request. Только про тесты не забудьте.
 hr
 p
-  strong — Я не умею программировать, но умею рисовать.
+  strong — Я не умею программировать, но умею в дизайн.
   br
-  em
-    |— Хороший дизайнер всегда пригодится. Мы будем безмерно благодарны за красивый логотип для ресурса. Если найдёте время причесать дизайн, то совсем хорошо. Логотип обсуждаем
-    a< href="https://github.com/NNRUG/it52-rails/issues/7" на этой странице
-    |.
+  em — Хороший дизайнер всегда пригодится. Мы будем безмерно благодарны за переработку UI страниц. Если найдёте время причесать дизайн, то совсем хорошо.
+
 hr
 p
   strong — Я хочу помочь материально.
   br
   em
-    '— Да, мы не коммерческое сообщество и
+    '— Да, мы некоммерческое сообщество и
     = link_to 'принимаем пожертвования', page_path(:donate)
-    |.
+    |. Спасибо.
 hr
 
-h2 Спасибо
+h2 Наши отважные разработчики
 
 p
-  | Коллегам из Ростова за
+  | Коллеги из Ростова с
   a< href="https://github.com/IT61/it61-rails" it61-rails
+  |, ставшего базой для нашего ресурса.
+
+ruby:
+  hall_of_fame = <<~HOF
+    [![](https://sourcerer.io/fame/kugaevsky/NNRUG/it52-rails/images/0)](https://sourcerer.io/fame/kugaevsky/NNRUG/it52-rails/links/0)[![](https://sourcerer.io/fame/kugaevsky/NNRUG/it52-rails/images/1)](https://sourcerer.io/fame/kugaevsky/NNRUG/it52-rails/links/1)[![](https://sourcerer.io/fame/kugaevsky/NNRUG/it52-rails/images/2)](https://sourcerer.io/fame/kugaevsky/NNRUG/it52-rails/links/2)[![](https://sourcerer.io/fame/kugaevsky/NNRUG/it52-rails/images/3)](https://sourcerer.io/fame/kugaevsky/NNRUG/it52-rails/links/3)[![](https://sourcerer.io/fame/kugaevsky/NNRUG/it52-rails/images/4)](https://sourcerer.io/fame/kugaevsky/NNRUG/it52-rails/links/4)[![](https://sourcerer.io/fame/kugaevsky/NNRUG/it52-rails/images/5)](https://sourcerer.io/fame/kugaevsky/NNRUG/it52-rails/links/5)[![](https://sourcerer.io/fame/kugaevsky/NNRUG/it52-rails/images/6)](https://sourcerer.io/fame/kugaevsky/NNRUG/it52-rails/links/6)[![](https://sourcerer.io/fame/kugaevsky/NNRUG/it52-rails/images/7)](https://sourcerer.io/fame/kugaevsky/NNRUG/it52-rails/links/7)
+  HOF
+
+  markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new autolink: true, filter_html: true, hard_wrap: true)
+  rendered_hof = markdown.render(hall_of_fame)
+
+p == rendered_hof
+p
+  a< href="https://github.com/NNRUG/it52-rails/graphs/contributors" И ещё есть
   |.
 
-p
-  |Всем
-  a< href="https://github.com/NNRUG/it52-rails/graphs/contributors" разработчикам, внёсшим посильный вклад
-  |.
+h2 Отдельный респект
+
+p @defolter за <a href='https://play.google.com/store/apps/details?id=io.github.defolters.it52'>приложение под android</a>.
+p: a.store-badge.store-badge--google-play href='https://play.google.com/store/apps/details?id=io.github.defolters.it52&utm_source=it52'
+
+p @overmind за <a href='https://apps.apple.com/ru/app/it52/id1239876838'>приложение под iOS</a>.
+p: a.store-badge.store-badge--app-store href='https://apps.apple.com/ru/app/it52/id1239876838'

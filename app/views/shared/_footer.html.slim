@@ -1,6 +1,8 @@
 nav.navbar.navbar-default.navbar-footer
   .container
     ul.nav.navbar-nav.navbar-right.social-icons-wrapper
+      li: a href='https://play.google.com/store/apps/details?id=io.github.defolters.it52&utm_source=it52' target='_blank' title="Github" = icon 'fab', 'google-play', class: 'fa-lg'
+      li: a href='https://apps.apple.com/ru/app/it52/id1239876838' target='_blank' title="Github" = icon 'fab', 'apple', class: 'fa-lg'
       li: a href='https://github.com/NNRUG/it52-rails' target='_blank' title="Github" = icon 'fab', 'github', class: 'fa-lg'
       li: a href='https://hub.docker.com/r/it52/rails' target='_blank' title="DockerHub" = icon 'fab', 'docker', class: 'fa-lg'
       li: a href='https://www.patreon.com/it52' target='_blank' title="Patreon" = icon 'fab', 'patreon', class: 'fa-lg'
@@ -10,3 +12,7 @@ nav.navbar.navbar-default.navbar-footer
       li: a href='tg://resolve=it52info' target='_blank' title="Telegram" = icon 'fab', 'telegram-plane', class: 'fa-lg'
     ul.nav.navbar-nav.navbar-left
       li = link_to "2014&thinsp;—&thinsp;#{Date.today.year} © IT52.info".html_safe, root_path
+
+  .container
+    p.copyrights
+      small Google Play и логотип Google Play являются товарными знаками корпорации Google LLC.  Apple и логотип Apple являются товарными знаками Apple. Другие названия компаний и продуктов могут являться товарными знаками соответствующих владельцев.
