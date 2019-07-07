@@ -11,6 +11,7 @@ addons:
     - libxml2-dev
     - libxslt1-dev
     - optipng
+    - pngquant
     - jpegoptim
     - postgresql-10
     - postgresql-client-10
@@ -36,11 +37,12 @@ before_script:
 - cp config/application.yml.template config/application.yml
 - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
 - chmod +x ./cc-test-reporter
-- "./cc-test-reporter before-build"
+- ./cc-test-reporter before-build
 script:
-- bundle exec rake db:create
-- bundle exec rake db:schema:load
-- travis_wait 30 bundle exec rspec
+- yarn run lint
+- bundle exec rails db:create
+- bundle exec rails db:schema:load
+- travis_wait 15 bundle exec rspec
 after_script:
 - "./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT"
 env:
@@ -56,6 +58,5 @@ deploy:
     repo: NNRUG/it52-rails
     branch: it52
   run:
-  - "rake db:migrate"
+  - rails db:migrate
   - restart
-  - "rake cleanup"

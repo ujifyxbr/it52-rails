@@ -3,15 +3,15 @@ import * as Turbolinks from 'turbolinks'
 import { MDCTopAppBar } from '@material/top-app-bar'
 import { MDCRipple }    from '@material/ripple'
 import { MDCList }      from '@material/list'
-import { MDCDrawer }    from "@material/drawer"
+import { MDCDrawer }    from '@material/drawer'
 import { MDCTabBar }    from '@material/tab-bar'
 import { MDCMenu }      from '@material/menu'
 import { MDCSelect }    from '@material/select'
 import { MDCChipSet }   from '@material/chips'
 
 export class MdcInit {
-  private static instance: MdcInit;
-  private static initPage = location.href;
+  private static instance: MdcInit
+  private static initPage = location.href
 
   topAppBarElement = document.querySelector('.mdc-top-app-bar')
   topAppBar = new MDCTopAppBar(this.topAppBarElement)
@@ -25,30 +25,30 @@ export class MdcInit {
   chips = document.querySelectorAll('.mdc-chip-set')
 
   static init() {
-      if (!MdcInit.instance || MdcInit.initPage != location.href ) {
-          MdcInit.initPage = location.href;
-          MdcInit.instance = new MdcInit();
-      }
-      return MdcInit.instance;
+    if (!MdcInit.instance || MdcInit.initPage !== location.href) {
+      MdcInit.initPage = location.href
+      MdcInit.instance = new MdcInit()
+    }
+    return MdcInit.instance
   }
 
   private constructor() {
 
-    this.topAppBar.setScrollTarget(document.getElementById('main-content'));
+    this.topAppBar.setScrollTarget(document.getElementById('main-content'))
     this.topAppBar.listen('MDCTopAppBar:nav', () => this.drawer.open = !this.drawer.open)
 
     // Array.from(this.lists).forEach((list) => MDCList.attachTo(list))
-    Array.from(this.buttons).forEach((button) => new MDCRipple(button))
+    Array.from(this.buttons).forEach((button: Element) => new MDCRipple(button))
     Array.from(this.iconButtons).forEach((button) => {
       const ripple = new MDCRipple(button)
       ripple.unbounded = true
     })
-    Array.from(this.tabBars).forEach((tabBar) => new MDCTabBar(tabBar))
-    Array.from(this.chips).forEach((chip) => new MDCChipSet(chip))
+    Array.from(this.tabBars).forEach((tabBar: Element) => new MDCTabBar(tabBar))
+    Array.from(this.chips).forEach((chip: Element) => new MDCChipSet(chip))
     // Array.from(this.menus).forEach((menu) => new MDCMenu(menu))
     // Array.from(this.selects).forEach((select) => new MDCSelect(select))
 
-    let eventsKindMenu = null
+    const eventsKindMenu: any = null
     try {
       const eventsKindMenu = new MDCSelect(document.querySelector('#events-select-menu'))
       eventsKindMenu.listen('MDCSelect:change', (event: CustomEvent) => {
@@ -60,6 +60,6 @@ export class MdcInit {
       })
     } catch (e) { /* Workaround for bugged select menu */ }
 
-    document.addEventListener('turbolinks:request-start', (_e) => MdcInit.initPage = null)
+    document.addEventListener('turbolinks:request-start', (_: Event) => MdcInit.initPage = null)
   }
 }
