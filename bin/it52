@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
-require "thor"
+require 'thor'
 
 class It52CLI < Thor
   TALKS = [
@@ -19,13 +20,12 @@ class It52CLI < Thor
     { speaker: 'Павел Малышев',
       company: 'Mustlab',
       title: 'Жизнь после Svelte',
-      description: 'Что делать, если хочется ещё больше ванилы? Готовы ли веб-стандарты для решения прикладных задач разработки? Есть ли жизнь после Svelte?'
-    }
-  ]
+      description: 'Что делать, если хочется ещё больше ванилы? Готовы ли веб-стандарты для решения прикладных задач разработки? Есть ли жизнь после Svelte?' }
+  ].freeze
 
   PARTICIPANTS = 63
 
-  desc "create EVENT", "create community EVENT"
+  desc 'create EVENT', 'create community EVENT'
   def create(name)
     lines = [
       "Creating #{name} event...",
@@ -50,7 +50,7 @@ class It52CLI < Thor
     puts 'Done!'
   end
 
-  desc "find_talk INDEX", "find talk with INDEX (begins from 1)"
+  desc 'find_talk INDEX', 'find talk with INDEX (begins from 1)'
   def find_talk(index)
     index = index.to_i - 1
 

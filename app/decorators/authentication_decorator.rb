@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AuthenticationDecorator < Draper::Decorator
   delegate_all
 
@@ -20,7 +22,7 @@ class AuthenticationDecorator < Draper::Decorator
   def link_to_destroy(css_classes = [])
     @css_classes = css_classes
     h.link_to h.my_authentication_path(object), method: :delete, class: css_class, data: { confirm: h.t('authentications.unlink') } do
-      h.content_tag :i, '', class: "fas fa-times"
+      h.content_tag :i, '', class: 'fas fa-times'
     end
   end
 
@@ -32,6 +34,7 @@ class AuthenticationDecorator < Draper::Decorator
 
   def css_class
     return "btn btn-#{object.provider}" if @css_classes.empty?
+
     @css_classes.join(' ')
   end
 end

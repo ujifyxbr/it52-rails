@@ -1,6 +1,7 @@
-class OmniauthCallbacksController < Devise::OmniauthCallbacksController
+# frozen_string_literal: true
 
-  %i(facebook github twitter vkontakte google_oauth2).each do |provider|
+class OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  %i[facebook github twitter vkontakte google_oauth2].each do |provider|
     define_method provider do
       auth_for provider
     end
@@ -25,6 +26,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def auth_params
-    request.env["omniauth.auth"].with_indifferent_access
+    request.env['omniauth.auth'].with_indifferent_access
   end
 end

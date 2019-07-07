@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class StartupsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
   before_action :set_startup, only: %i[show edit update destroy]
@@ -23,8 +25,7 @@ class StartupsController < ApplicationController
   end
 
   # GET /startups/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /startups
   # POST /startups.json
@@ -71,11 +72,11 @@ class StartupsController < ApplicationController
 
   def set_index_meta_tags!
     image_path = ActionController::Base.helpers.image_url('it52_logo_fb@2x.png')
-    set_meta_tags({
+    set_meta_tags(
       title: I18n.t('meta.startups.index.title'),
       description: I18n.t('meta.startups.index.description'),
       canonical: startups_url,
-      publisher: ENV.fetch('mailing_host') {'mailing_host'},
+      publisher: ENV.fetch('mailing_host') { 'mailing_host' },
       image_src: image_path,
       og: {
         title: I18n.t('meta.startups.index.title'),
@@ -84,7 +85,7 @@ class StartupsController < ApplicationController
         image: image_path,
         updated_time: Startup.order(updated_at: :asc).last
       }
-    })
+    )
   end
 
   # Use callbacks to share common setup or constraints between actions.
@@ -94,6 +95,6 @@ class StartupsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def startup_params
-    params.require(:startup).permit(:title, :url, :logo, :intro, :description, contacts: [:name, :email])
+    params.require(:startup).permit(:title, :url, :logo, :intro, :description, contacts: %i[name email])
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module V2
   class UserSerializer
     include FastJsonapi::ObjectSerializer
@@ -8,7 +10,7 @@ module V2
     attributes :created_at, :updated_at, :nickname, :role, :first_name, :last_name, :bio, :avatar_image, :slug, :website, :subscription, :employment
 
     link :url do |object|
-      Rails.application.routes.url_helpers.user_url(object, host: ENV.fetch('mailing_host') { 'it52.info'} )
+      Rails.application.routes.url_helpers.user_url(object, host: ENV.fetch('mailing_host') { 'it52.info' })
     end
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'icalendar'
 
 class EventsController < ApplicationController
@@ -7,9 +9,9 @@ class EventsController < ApplicationController
 
   before_action :authenticate_user!, except: %i[index show]
   before_action :set_model, only: %i[index]
-  before_action :set_event, only: [:show, :edit, :destroy, :update, :publish, :cancel_publication, :participants]
+  before_action :set_event, only: %i[show edit destroy update publish cancel_publication participants]
   before_action :check_actual_slug, only: :show
-  before_action :define_meta_tags, only: [:show, :edit]
+  before_action :define_meta_tags, only: %i[show edit]
   before_action :set_organizer, only: :create
   before_action :set_filter_kind, only: :index
 
@@ -18,11 +20,11 @@ class EventsController < ApplicationController
   has_scope :ordered_desc, type: :boolean, allow_blank: true, default: true
 
   def index
-    if filter_params[:status] == 'unapproved'
-      @events = @model.unapproved.visible_by_user(current_user)
-    else
-      @events = @model.filter_by(**filter_params).published
-    end
+    @events = if filter_params[:status] == 'unapproved'
+                @model.unapproved.visible_by_user(current_user)
+              else
+                @model.filter_by(**filter_params).published
+              end
 
     @events = @events.page(params[:page]).decorate
     @rss_events = @model.published.order(published_at: :desc).limit(100).decorate
@@ -40,21 +42,21 @@ class EventsController < ApplicationController
     flash[:warning] = t('.waiting_for_approval') unless @event.published?
     respond_to do |format|
       format.html { respond_with @event }
-      format.ics { render body: Calendar.new(@event).to_ical, mime_type: Mime::Type.lookup("text/calendar") }
+      format.ics { render body: Calendar.new(@event).to_ical, mime_type: Mime::Type.lookup('text/calendar') }
     end
   end
 
   def participants
     participants = @event.participants
-    filename = "#{ @event.id }_#{ @event.slug }_participants"
-    columns_to_export = %w(email profile_link full_name employment)
+    filename = "#{@event.id}_#{@event.slug}_participants"
+    columns_to_export = %w[email profile_link full_name employment]
 
     respond_to do |format|
-      format.csv {
+      format.csv do
         send_data RenderARCollectionToCsv.perform(participants, columns_to_export),
                   type: Mime::Type.lookup('text/csv'),
                   disposition: "attachment; filename=#{filename}.csv"
-      }
+      end
     end
   end
 
@@ -72,11 +74,11 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    redirect_back(fallback_location: root_path, alert: 'Вы не можете удалить опубликованное событие') and return if @event.published?
+    redirect_back(fallback_location: root_path, alert: 'Вы не можете удалить опубликованное событие') && return if @event.published?
     notice_text = if @event.destroy
-      'Событие удалено'
-    else
-      "Невозможно удалить событие. #{@event.errors.error_messages.to_sentence}"
+                    'Событие удалено'
+                  else
+                    "Невозможно удалить событие. #{@event.errors.error_messages.to_sentence}"
     end
 
     redirect_back(fallback_location: root_path, notice: 'Событие удалено')
@@ -103,7 +105,7 @@ class EventsController < ApplicationController
 
   def define_common_meta_tags
     image_path = ActionController::Base.helpers.asset_url('it52_logo_fb@2x.png', type: :image)
-    set_meta_tags({
+    set_meta_tags(
       site: t(:app_name),
       description: t(:app_description),
       keywords: t(:app_keywords),
@@ -119,7 +121,7 @@ class EventsController < ApplicationController
         description: t(:app_description),
         url: root_path
       }
-    })
+    )
   end
 
   def define_meta_tags
@@ -132,7 +134,7 @@ class EventsController < ApplicationController
       startDate: @event.started_at.iso8601,
       endDate: (@event.started_at + 6.hours).iso8601,
       url: event_url(@event),
-      image:  @event.title_image.square_500.url,
+      image: @event.title_image.square_500.url,
       description: @event.decorate.simple_description,
       performer: {
         '@type': 'PerformingGroup',
@@ -185,8 +187,8 @@ class EventsController < ApplicationController
 
   def filter_params
     params.permit(:kind, :status, :tag).to_h
-      .merge(kind: session[:events_kind_filter])
-      .symbolize_keys
+          .merge(kind: session[:events_kind_filter])
+          .symbolize_keys
   end
 
   def current_filter?(key)

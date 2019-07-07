@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class EventParticipationsController < ApplicationController
   respond_to :html
   load_and_authorize_resource param_method: :event_participation_params
@@ -8,6 +10,7 @@ class EventParticipationsController < ApplicationController
 
     flash[:success] = t(:event_participation_created, title: @event_participation.event.title)
     return redirect_to @event_participation.event.user_foreign_link(current_user) if @event_participation.event.foreign_link.present?
+
     redirect_back(fallback_location: root_path)
   end
 

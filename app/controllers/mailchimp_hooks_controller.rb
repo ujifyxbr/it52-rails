@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
 class MailchimpHooksController < ApplicationController
   # skip_before_action :verify_authenticity_token
   before_action :set_user, only: :update_subscription
 
   def update_subscription
     subscription = case subscribe_params[:type]
-    when 'subscribe'
-      true
-    when 'unsubscribe'
-      false
-    else
-      @user.subscription
+                   when 'subscribe'
+                     true
+                   when 'unsubscribe'
+                     false
+                   else
+                     @user.subscription
     end
     status = @user.update(subscription: subscription) ? :ok : :unprocessable_entity
     head status

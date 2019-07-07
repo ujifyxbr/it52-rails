@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DaData
   class Configuration
     attr_accessor :auth_token, :auth_secret, :default_params

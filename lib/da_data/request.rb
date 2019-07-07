@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'http'
 require 'oj'
 
 module DaData
   class Request
-    BASE = 'https://suggestions.dadata.ru/suggestions/api/4_1'.freeze
+    BASE = 'https://suggestions.dadata.ru/suggestions/api/4_1'
 
     API_METHOD_MAP = {
       suggest_address: 'rs/suggest/address',
@@ -27,7 +29,7 @@ module DaData
       @api_method = api_method.to_sym
       @content_type = CONTENT_TYPES[content_type.to_sym]
       @client = HTTP.auth("Token #{DaData.configuration.auth_token}")
-                    .headers({ 'Content-Type': 'application/json', 'Accept': @content_type })
+                    .headers('Content-Type': 'application/json', 'Accept': @content_type)
     end
 
     def query(query_string, params = {})

@@ -1,66 +1,68 @@
+# frozen_string_literal: true
+
 ruby '2.6.3'
 
 source 'https://rubygems.org'
 
-gem 'rails', '~> 5.2.0'
 gem 'bootsnap'
+gem 'rails', '~> 5.2.0'
 
 # Databases
-gem 'pg'
 gem 'hiredis'
+gem 'pg'
 gem 'redis'
 
 # Queue
 gem 'sidekiq'
 
 # Integrations
+gem 'http'
 gem 'mailchimp-api', require: 'mailchimp'
 gem 'mailgun_rails'
-gem 'http'
 
 # Normalization and locales
-gem 'unicode'
 gem 'postrank-uri'
 gem 'rails-i18n'
+gem 'unicode'
 
 # Authentication and authorization
+gem 'cancancan'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
-gem 'omniauth-vkontakte'
 gem 'omniauth-github'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-twitter'
-gem 'cancancan'
+gem 'omniauth-vkontakte'
 
 # Request handling
-gem 'has_scope'
 gem 'friendly_id'
+gem 'has_scope'
 
 # Decoration
 gem 'active_model_serializers'
+gem 'activemodel-serializers-xml'
+gem 'draper'
 gem 'fast_jsonapi'
 gem 'oj'
 gem 'ox'
-gem 'activemodel-serializers-xml'
-gem 'draper'
 
 # Compile and serve assets
-gem 'uglifier'
-gem 'sassc-rails'
-gem 'font-awesome-sass'
 gem 'autoprefixer-rails'
 gem 'csso-rails'
+gem 'font-awesome-sass'
+gem 'sassc-rails'
+gem 'uglifier'
 gem 'webpacker'
 
 # View template compilers and helpers
 gem 'jbuilder', '~> 2.5'
-gem 'slim-rails'
 gem 'redcarpet'
+gem 'slim-rails'
 # gem 'active_link_to'
 gem 'high_voltage'
-gem 'simple_form'
 gem 'meta-tags'
+gem 'simple_form'
 
 # Reporting
 gem 'jwt'
@@ -70,8 +72,8 @@ gem 'sdoc', group: :doc
 # gem 'apipie-rails', git: 'https://github.com/Apipie/apipie-rails.git', ref: 'f697ec2a887cd73c00c846eceb2ce63a050ccb20'
 
 # Application server
-gem 'puma-rails'
 gem 'foreman'
+gem 'puma-rails'
 
 # Environment variables management
 gem 'figaro'
@@ -81,11 +83,11 @@ gem 'awesome_print'
 gem 'pry-rails'
 
 # Image and AWS S3 management
-gem 'fog-aws', '< 3'
 gem 'asset_sync'
-gem 'mini_magick'
 gem 'carrierwave'
 gem 'carrierwave-imageoptimizer'
+gem 'fog-aws', '< 3'
+gem 'mini_magick'
 
 # Monitoring
 gem 'newrelic_rpm'
@@ -97,12 +99,12 @@ gem 'icalendar'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'web-console'
   gem 'listen', '~> 3.1.5'
+  gem 'web-console'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'spring-commands-rspec'
+  gem 'spring-watcher-listen', '~> 2.0.0'
 
   gem 'annotate', require: false
   gem 'letter_opener'
@@ -119,14 +121,15 @@ group :development, :test do
   # Model factories
   gem 'factory_bot_rails'
   gem 'rspec-rails'
+  gem 'rubocop', require: false
 end
 
 group :test do
   gem 'codeclimate-test-reporter'
-  gem 'simplecov'
   gem 'codecov', require: false
-  gem 'shoulda-matchers', require: false
   gem 'database_cleaner'
+  gem 'shoulda-matchers', require: false
+  gem 'simplecov'
   gem 'webmock'
 end
 
@@ -134,10 +137,10 @@ end
 gem 'rails_12factor', group: :production
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-#paginator
+# paginator
 gem 'kaminari'
 
-#tags
+# tags
 gem 'acts-as-taggable-on'

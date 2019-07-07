@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
@@ -10,9 +12,9 @@ email = 'admin@it52.info'
 pass  = '12345678'
 
 admin_attrs = FactoryBot.attributes_for :admin,
-  email:    email,
-  password: pass,
-  password_confirmation: pass
+                                        email: email,
+                                        password: pass,
+                                        password_confirmation: pass
 
 admin = User.where(email: email).first_or_create
 admin.update(admin_attrs)

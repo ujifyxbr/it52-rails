@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe StartupsController, type: :controller do
@@ -8,22 +10,22 @@ RSpec.describe StartupsController, type: :controller do
   let(:valid_attributes) { FactoryBot.attributes_for(:startup) }
   let(:invalid_attributes) { FactoryBot.attributes_for(:startup).merge(title: nil) }
 
-  describe "GET #index" do
-    it "returns a success response" do
+  describe 'GET #index' do
+    it 'returns a success response' do
       get :index, params: {}
       expect(response).to be_successful
     end
   end
 
-  describe "GET #show" do
-    it "returns a success response" do
+  describe 'GET #show' do
+    it 'returns a success response' do
       startup = Startup.create! valid_attributes
       get :show, params: { id: startup.to_param }
       expect(response).to be_successful
     end
   end
 
-  describe "GET #new" do
+  describe 'GET #new' do
     let(:new_request) { get :new }
 
     context 'when user is anonymous' do
@@ -42,7 +44,7 @@ RSpec.describe StartupsController, type: :controller do
     end
   end
 
-  describe "GET #edit" do
+  describe 'GET #edit' do
     let(:startup) { FactoryBot.create(:startup, author: user) }
     let(:edit_request) { get :edit, params: { id: startup.to_param } }
 
@@ -81,7 +83,7 @@ RSpec.describe StartupsController, type: :controller do
     end
   end
 
-  describe "POST #create" do
+  describe 'POST #create' do
     let(:create_request) { post :create, params: { startup: valid_attributes } }
 
     context 'when user is anonymous' do
@@ -93,11 +95,11 @@ RSpec.describe StartupsController, type: :controller do
     context 'when user is signed in' do
       before { sign_in user }
 
-      context 'with valid params'do
+      context 'with valid params' do
         it { expect { create_request }.to change { Startup.count }.from(0).to(1) }
       end
 
-      context 'with invalid params'do
+      context 'with invalid params' do
         let(:create_request) { post :create, params: { startup: invalid_attributes } }
 
         it { expect { create_request }.not_to change { Startup.count } }
@@ -105,9 +107,9 @@ RSpec.describe StartupsController, type: :controller do
     end
   end
 
-  describe "PUT #update" do
+  describe 'PUT #update' do
     let(:startup) { FactoryBot.create(:startup, author: user) }
-    let(:update_request) { put :update, params: { id: startup.to_param,  startup: valid_attributes } }
+    let(:update_request) { put :update, params: { id: startup.to_param, startup: valid_attributes } }
 
     context 'when user is anonymous' do
       before { update_request }
@@ -131,8 +133,8 @@ RSpec.describe StartupsController, type: :controller do
       #   it { expect { update_request }.to change { startup.title }.from(startup.title).to(valid_attributes[:title]) }
       # end
 
-      context 'with invalid params'do
-        let(:update_request) { put :update, params: { id: startup.to_param,  startup: invalid_attributes } }
+      context 'with invalid params' do
+        let(:update_request) { put :update, params: { id: startup.to_param, startup: invalid_attributes } }
 
         it { expect { update_request }.not_to change { startup.title } }
       end
@@ -180,5 +182,4 @@ RSpec.describe StartupsController, type: :controller do
   #     expect(response).to redirect_to(startups_url)
   #   end
   # end
-
 end

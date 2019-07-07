@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module My
   class AuthenticationsController < ApplicationController
     before_action :set_user_and_auth

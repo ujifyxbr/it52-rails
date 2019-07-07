@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 cache @rss_events do
   xml.instruct! :xml, version: '1.0'
   xml.rss version: '2.0',

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Startup < ApplicationRecord
   validates :title, presence: true
   validates :description, presence: true
@@ -11,9 +13,8 @@ class Startup < ApplicationRecord
   friendly_id :slug_candidates, use: :history
 
   def slug_candidates
-    [ I18n.transliterate(title),
-      [ id, I18n.transliterate(title) ]
-    ]
+    [I18n.transliterate(title),
+     [id, I18n.transliterate(title)]]
   end
 
   def should_generate_new_friendly_id?
@@ -25,8 +26,8 @@ class Startup < ApplicationRecord
       title: title,
       description: rendered_description,
       canonical: canonical_url,
-      publisher: ENV.fetch('mailing_host') {'mailing_host'},
-      author: Rails.application.routes.url_helpers.user_url(author, host: ENV.fetch('mailing_host') {'mailing_host'}),
+      publisher: ENV.fetch('mailing_host') { 'mailing_host' },
+      author: Rails.application.routes.url_helpers.user_url(author, host: ENV.fetch('mailing_host') { 'mailing_host' }),
       image_src: ActionController::Base.helpers.image_url(logo.big.url),
       og: {
         title: title,
@@ -39,11 +40,11 @@ class Startup < ApplicationRecord
   end
 
   def canonical_url
-    Rails.application.routes.url_helpers.startup_url(self, host: ENV.fetch('mailing_host') {'mailing_host'})
+    Rails.application.routes.url_helpers.startup_url(self, host: ENV.fetch('mailing_host') { 'mailing_host' })
   end
 
   def rendered_description
-    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new autolink: true, filter_html: true, hard_wrap: true)
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(autolink: true, filter_html: true, hard_wrap: true))
     markdown.render(description).html_safe
   end
 

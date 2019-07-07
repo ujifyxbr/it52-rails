@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class EventDecorator < Draper::Decorator
   delegate_all
 
@@ -18,7 +20,7 @@ class EventDecorator < Draper::Decorator
   end
 
   def rendered_description
-    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new autolink: true, filter_html: true, hard_wrap: true)
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(autolink: true, filter_html: true, hard_wrap: true))
     markdown.render(object.description).html_safe
   end
 
@@ -28,8 +30,8 @@ class EventDecorator < Draper::Decorator
 
   def full_description
     rendered_description +
-    h.content_tag(:p, l(event.started_at, format: :date_time_full)) +
-    h.content_tag(:p, object.place)
+      h.content_tag(:p, l(event.started_at, format: :date_time_full)) +
+      h.content_tag(:p, object.place)
   end
 
   def truncated_description(length = 80)
@@ -51,7 +53,7 @@ class EventDecorator < Draper::Decorator
 
   def time_distance
     delta = (Time.current.to_date - object.started_at.to_date).to_i
-    delta_in_words= h.distance_of_time_in_words(Time.current, object.started_at)
+    delta_in_words = h.distance_of_time_in_words(Time.current, object.started_at)
     if delta > 0
       "#{delta_in_words} назад"
     elsif delta < 0
@@ -62,8 +64,8 @@ class EventDecorator < Draper::Decorator
   end
 
   def link_to_place
-    base = "http://maps.yandex.ru/?text="
-    h.link_to URI.encode(base + object.place), target: "_blank", itemprop: 'location', itemscope: true, itemtype: 'http://schema.org/Place' do
+    base = 'http://maps.yandex.ru/?text='
+    h.link_to URI.encode(base + object.place), target: '_blank', itemprop: 'location', itemscope: true, itemtype: 'http://schema.org/Place' do
       link_arr = [h.content_tag(:span, object.place, itemprop: 'address')]
       link_arr << h.content_tag(:span, object.address_comment, itemprop: 'name') if object.address_comment.present?
       link_arr.join(', ').html_safe
@@ -73,18 +75,18 @@ class EventDecorator < Draper::Decorator
   def link_to_time
     days_to_event = Date.current - object.started_at.to_date
     text = case days_to_event
-      when 2 then 'Позавчера'
-      when 1 then 'Вчера'
-      when 0 then 'Сегодня'
-      when -1 then 'Завтра'
-      when -2 then 'Послезавтра'
+           when 2 then 'Позавчера'
+           when 1 then 'Вчера'
+           when 0 then 'Сегодня'
+           when -1 then 'Завтра'
+           when -2 then 'Послезавтра'
     end
 
     text ||= h.localize(object.started_at, format: :date_without_year) if object.started_at.year == Time.current.year
     text ||= h.localize(object.started_at, format: :date)
     h.link_to h.event_path(object, format: :ics), class: 'event-date-inversed' do
       (h.content_tag :span, text, class: 'event-day') +
-      (h.content_tag :span, h.localize(object.started_at, format: :time), class: 'event-time')
+        (h.content_tag :span, h.localize(object.started_at, format: :time), class: 'event-time')
     end
   end
 end

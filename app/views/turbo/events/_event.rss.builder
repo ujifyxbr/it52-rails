@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 html = render partial: 'events/event-item', locals: { event: event }
 
 xml.item(turbo: 'true') do |item|

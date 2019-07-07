@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module My
   class UsersController < ApplicationController
     respond_to :html
@@ -33,7 +35,7 @@ module My
     end
 
     def sync_with_mailchimp
-      attributes = %i(first_name last_name subscription)
+      attributes = %i[first_name last_name subscription]
       @user.reload
       @user.sync_with_mailchimp if attributes.any? { |attribute| @user.send(attribute) != user_profile_params[attribute] }
     end

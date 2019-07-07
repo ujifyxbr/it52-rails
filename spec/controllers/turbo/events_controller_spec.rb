@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Turbo::EventsController do
   render_views
 

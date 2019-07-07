@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Telegram
   class Message
     require 'json'
@@ -8,22 +10,22 @@ module Telegram
     TYPES_MAP = {
       message: 'sendMessage',
       webhook: 'setWebhook'
-    }
+    }.freeze
 
     attr_reader :response, :uri, :query, :result
 
     def initialize(type, chat_id = CHAT_ID)
-      raise ArgumentError, "Unknown message type '#{type}'. Acceptable types are #{TYPES_MAP.keys.to_sentence}." unless TYPES_MAP.has_key?(type)
+      raise ArgumentError, "Unknown message type '#{type}'. Acceptable types are #{TYPES_MAP.keys.to_sentence}." unless TYPES_MAP.key?(type)
 
       @query = { chat_id: chat_id }
       @uri = URI "#{BASE_URI}/bot#{API_KEY}/#{TYPES_MAP[type]}"
     end
 
     def send_message(text)
-      @query.merge!({
+      @query.merge!(
         text: normalize_text(text),
         parse_mode: 'Markdown'
-      })
+      )
       post!
     end
 
@@ -37,7 +39,7 @@ module Telegram
     def post!
       @response = Net::HTTP.post_form(@uri, @query)
       @result = JSON.parse(@response.body).to_h
-      handle_error() unless @result['ok']
+      handle_error unless @result['ok']
       @result
     end
 
@@ -46,7 +48,7 @@ module Telegram
     end
 
     def handle_error
-      klass = LongMessageError if @result['description'] == "Message is too long"
+      klass = LongMessageError if @result['description'] == 'Message is too long'
       klass = ParseError if @result['description'] =~ /Can\'t parse message/
       klass ||= Error
       raise klass, @result['description']

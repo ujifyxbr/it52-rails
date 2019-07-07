@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class EventBriefSerializer < ActiveModel::Serializer
   cache key: 'event', expires_in: 3.hours
 
