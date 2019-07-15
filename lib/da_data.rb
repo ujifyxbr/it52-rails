@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'da_data/configuration'
 require 'da_data/request'
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UpdateEventPageviews
   attr_reader :events, :credentials, :token, :urls, :ga_data
 
@@ -16,7 +18,7 @@ class UpdateEventPageviews
   end
 
   def update_pageviews!
-    ga_data.each_with_index do |row, index|
+    ga_data.each_with_index do |row, _index|
       value = row['metrics'][0]['values'][0]
       slug = row['dimensions'][0].split('/')[2]
       Event.find_by(slug: slug).update(pageviews: value)
@@ -34,10 +36,10 @@ class UpdateEventPageviews
   end
 
   def get_oauth_token
-    body = URI.encode_www_form({
+    body = URI.encode_www_form(
       grant_type: 'urn:ietf:params:oauth:grant-type:jwt-bearer',
       assertion: build_jwt_token
-    })
+    )
     headers = { 'Content-Type' => 'application/x-www-form-urlencoded' }
     response = Excon.post(credentials[:token_uri], body: body, headers: headers)
     JSON.parse(response.body)['access_token']
@@ -53,7 +55,7 @@ class UpdateEventPageviews
       exp: (time + 1.hour).to_i,
       iat: time.to_i
     }
-    JWT.encode(payload, key, 'RS256' )
+    JWT.encode(payload, key, 'RS256')
   end
 
   def build_request_body(urls = [])
@@ -79,6 +81,6 @@ class UpdateEventPageviews
   end
 
   def extract_data(response)
-    JSON.parse(response.body)["reports"][0]["data"]["rows"]
+    JSON.parse(response.body)['reports'][0]['data']['rows']
   end
 end

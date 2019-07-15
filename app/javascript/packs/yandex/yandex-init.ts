@@ -1,23 +1,27 @@
-declare var Ya;
-declare var ymaps;
-declare var ym;
+declare var Ya
+declare var ymaps
+declare var ym
 
 export class YandexInit {
-  private static instance: YandexInit;
-  private static initPage = location.href;
-  private static referer: string|null = null;
+  private static instance: YandexInit
+  private static initPage = location.href
+  private static referer: string|null = null
 
   private shares = document.querySelectorAll('.ya-share2')
   private map = document.getElementById('event-map')
 
   static init() {
-    if (!YandexInit.instance || YandexInit.initPage != location.href ) {
-        YandexInit.initPage = location.href;
-        YandexInit.instance = new YandexInit();
-        document.addEventListener('turbolinks:request-start', (_e) => YandexInit.initPage = null)
-        document.addEventListener('turbolinks:before-visit', (_e) => YandexInit.referer = location.href)
+    if (!YandexInit.instance || YandexInit.initPage !== location.href) {
+      YandexInit.initPage = location.href
+      YandexInit.instance = new YandexInit()
+      document.addEventListener('turbolinks:request-start', (_: Event) =>  {
+        YandexInit.initPage = null
+      })
+      document.addEventListener('turbolinks:before-visit', (_: Event) => {
+        YandexInit.referer = location.href
+      })
     }
-    return YandexInit.instance;
+    return YandexInit.instance
   }
 
   private get hasShares(): boolean {
@@ -36,7 +40,7 @@ export class YandexInit {
   private initMetrika(): void {
     ym(50290294, 'hit', location.href, {
       title: document.title,
-      referer: YandexInit.referer
+      referer: YandexInit.referer,
     })
   }
 
@@ -45,23 +49,24 @@ export class YandexInit {
   }
 
   private initYandexShare(element): void {
-    setTimeout(() => Ya.share2(element), 0);
+    setTimeout(() => Ya.share2(element), 0)
   }
 
   private initMap(): void {
     ymaps.ready(() => {
       const geo = [this.map.dataset.lat, this.map.dataset.long]
       const options = {
-          center: geo,
-          zoom: 16,
-          controls: ['smallMapDefaultSet']
+        center: geo,
+        zoom: 16,
+        controls: ['smallMapDefaultSet'],
       }
-      const eventMap = new ymaps.Map("event-map", options)
-      eventMap.geoObjects.add(new ymaps.Placemark(geo,
-          { balloonContentHeader: this.map.dataset.title },
-          { preset: 'islands#blackGovernmentIcon' }
-        )
+      const eventMap = new ymaps.Map('event-map', options)
+      eventMap.geoObjects.add(new ymaps.Placemark(
+        geo,
+        { balloonContentHeader: this.map.dataset.title },
+        { preset: 'islands#blackGovernmentIcon' }
       )
-    });
+    )
+    })
   }
 }

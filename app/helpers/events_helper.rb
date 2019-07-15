@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module EventsHelper
   def admin_event_icon_class(event)
     if event.published?
@@ -7,4 +9,3 @@ module EventsHelper
     end
   end
 end
-

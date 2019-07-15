@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: events
@@ -38,6 +40,6 @@ class EventSerializer < ActiveModel::Serializer
   end
 
   def url
-    Rails.application.routes.url_helpers.event_url(object, host: ENV.fetch('mailing_host') {'mailing_host'})
+    Rails.application.routes.url_helpers.event_url(object, host: ENV.fetch('mailing_host') { 'mailing_host' })
   end
 end

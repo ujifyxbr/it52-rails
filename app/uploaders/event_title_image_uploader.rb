@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class EventTitleImageUploader < CarrierWave::Uploader::Base
   include UploaderConcern
 
   def default_url
-    ActionController::Base.helpers.asset_path("events_fallback/" + [version_name, "default.png"].compact.join('_'))
+    ActionController::Base.helpers.asset_path('events_fallback/' + [version_name, 'default.png'].compact.join('_'))
   end
 
   version :square_500 do

@@ -1,6 +1,3 @@
-// Run this example by adding <%= javascript_pack_tag 'hello_typescript' %> to the head of your layout file,
-// like app/views/layouts/application.html.erb.
-
 import * as SimpleMDE from 'simplemde'
 import flatpickr from 'flatpickr'
 import { Russian } from 'flatpickr/dist/l10n/ru'
@@ -15,11 +12,10 @@ function init(event?: Event): void {
     minuteIncrement: 15,
     time_24hr: true,
     defaultHour: 19,
-    dateFormat: "d.m.Y H:i",
+    dateFormat: 'd.m.Y H:i',
     minDate: 'today',
-    locale: Russian
+    locale: Russian,
   })
-
 
   const simplemdeElements = document.querySelectorAll('.mde-textarea')
   if (simplemdeElements.length > 0 && !hasEditor()) {

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserDecorator < Draper::Decorator
   delegate_all
 
@@ -13,13 +15,11 @@ class UserDecorator < Draper::Decorator
   #   end
 
   def bio
-    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new autolink: true, filter_html: true, hard_wrap: true)
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(autolink: true, filter_html: true, hard_wrap: true))
     markdown.render(object.bio || '').html_safe
   end
 
   def link_to_website
-    if object.website?
-      h.link_to object.website, object.website, target: :_blank
-    end
+    h.link_to object.website, object.website, target: :_blank if object.website?
   end
 end

@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class StartupLogoUploader < CarrierWave::Uploader::Base
   include UploaderConcern
 
   def default_url
-    ActionController::Base.helpers.asset_path("avatars_fallback/" + [version_name, "default.png"].compact.join('_'))
+    ActionController::Base.helpers.asset_path('avatars_fallback/' + [version_name, 'default.png'].compact.join('_'))
   end
 
   version :big do

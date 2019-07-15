@@ -37,11 +37,14 @@
     "snyk": "^1.189.0"
   },
   "devDependencies": {
+    "tslint": "^5.18.0",
+    "tslint-config-airbnb": "^5.11.1",
     "webpack-dev-server": "^3.6.0"
   },
   "scripts": {
     "snyk-protect": "snyk protect",
     "prepublish": "npm run snyk-protect"
+    "lint": "./node_modules/.bin/tslint -c tslint.json 'app/javascript/**/*.ts'"
   },
   "snyk": true
 }

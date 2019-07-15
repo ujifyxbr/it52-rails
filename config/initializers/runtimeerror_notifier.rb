@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # if defined?(RuntimeerrorNotifier)
 #   # Get your secret email address from RuntimeError.net and
 #   # 1. Set it as environment variable RUNTIMEERROR_EMAIL (preferred method)

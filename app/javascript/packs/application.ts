@@ -1,11 +1,12 @@
 import * as Turbolinks from 'turbolinks'
-import Rails from 'rails-ujs'
+import railsUjs from 'rails-ujs'
+
 import { ForeignLinkSwitcher } from './helpers/foreign-link-switcher'
 import { MdcInit } from './mdc/mdc-init'
 import { YandexInit } from './yandex/yandex-init'
 
 Turbolinks.start()
-Rails.start()
+railsUjs.start()
 
 function init(): void {
   const foreignLinkCheckbox = document.getElementById('has_foreign_link')
@@ -16,7 +17,7 @@ function init(): void {
   let uuid = null
   const uuidEl = document.getElementById('uuid')
   if (uuidEl) uuid = uuidEl.dataset.userId
-  if (typeof ga == 'function') {
+  if (typeof ga === 'function') {
     ga('set', '&uid', uuid)
     ga('set', 'location', location.href)
     ga('send', 'pageview')

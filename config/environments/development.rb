@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -17,11 +19,11 @@ Rails.application.configure do
   if Rails.root.join('tmp', 'caching-dev.txt').exist?
     config.action_controller.perform_caching = true
 
-  config.cache_store = :redis_cache_store, { driver: :hiredis,
-                                             url: ENV.fetch('REDIS_URL') { "redis://127.0.0.1:6379" },
-                                             expires_in: 10.days,
-                                             namespace: :rails_cache,
-                                             db: 0 }
+    config.cache_store = :redis_cache_store, { driver: :hiredis,
+                                               url: ENV.fetch('REDIS_URL') { 'redis://127.0.0.1:6379' },
+                                               expires_in: 10.days,
+                                               namespace: :rails_cache,
+                                               db: 0 }
     config.public_file_server.headers = {
       'Cache-Control' => "public, max-age=#{30.days.to_i}"
     }

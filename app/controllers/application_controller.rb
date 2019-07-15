@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_dependency 'my'
 
 class ApplicationController < ActionController::Base
@@ -17,15 +19,15 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-     request.env['omniauth.origin'] ||
-     stored_location_for(resource) ||
-     root_path
+    request.env['omniauth.origin'] ||
+      stored_location_for(resource) ||
+      root_path
   end
 
   private
 
   def define_common_meta_tags
-    set_meta_tags({
+    set_meta_tags(
       site: t(:app_name),
       description: t(:app_description),
       keywords: t(:app_keywords),
@@ -35,7 +37,7 @@ class ApplicationController < ActionController::Base
         site_name: :site,
         locale: 'ru_RU'
       }
-    })
+    )
   end
 
   def authenticated_path?

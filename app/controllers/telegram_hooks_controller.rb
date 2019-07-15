@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TelegramHooksController < ApplicationController
   # skip_before_action :verify_authenticity_token
 
@@ -18,9 +20,9 @@ class TelegramHooksController < ApplicationController
     token = ENV.fetch('botan_token') { 'botan_token' }
     message = { text: @req.text }
     action = if @req.action
-      @req.action.first
-    else
-      'Unkown'
+               @req.action.first
+             else
+               'Unkown'
     end
     puts Telegram::Botan.track(token, @req.user_id, message, action)
   rescue StandardError => e

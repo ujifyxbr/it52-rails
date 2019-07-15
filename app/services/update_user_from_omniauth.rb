@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class UpdateUserFromOmniauth
   attr_accessor :user, :provider, :data
 
-  DELEGATED_METHODS = %i(email first_name last_name bio avatar_image nickname website)
+  DELEGATED_METHODS = %i[email first_name last_name bio avatar_image nickname website].freeze
 
   DELEGATED_METHODS.each do |method|
     delegate method, to: :user, allow_nil: true
@@ -19,13 +21,13 @@ class UpdateUserFromOmniauth
 
   def set_attributes
     DELEGATED_METHODS.each do |method|
-      self.send("set_#{method}".to_sym) if self.send(method).blank?
+      send("set_#{method}".to_sym) if send(method).blank?
     end
     user
   end
 
   def set_email
-    user.email  = data['email'] || ""
+    user.email = data['email'] || ''
   end
 
   def set_first_name
@@ -47,11 +49,12 @@ class UpdateUserFromOmniauth
   end
 
   def set_nickname
-    user.nickname  = data['nickname'] || data['name'] || user.full_name
+    user.nickname = data['nickname'] || data['name'] || user.full_name
   end
 
   def set_website
     return user.website = nil if data['urls'].nil?
+
     url = data['urls']['Blog'] || data['urls']['Website']
     user.website = url.to_url unless url.nil?
   end

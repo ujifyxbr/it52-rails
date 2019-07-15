@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 module Telegram
   class Request
-    COMMANDS = %i(next previous get start help)
+    COMMANDS = %i[next previous get start help].freeze
 
-    attr_reader *%i(chat_id action message user_id text)
+    attr_reader :chat_id, :action, :message, :user_id, :text
 
     def initialize(params)
       @chat_id = params['message']['chat']['id']
@@ -16,6 +18,7 @@ module Telegram
       # return unknown if @action.nil?
       return nil if @action.nil?
       return send(@action.first) if @action.second <= 0
+
       send(*@action)
     end
 
@@ -26,6 +29,7 @@ module Telegram
     def get(id = Event.last.id)
       event = Event.find(id)
       return not_found unless event.published
+
       text = event.construct_telegram_message
       message.send_message(text)
     rescue ActiveRecord::RecordNotFound => e
@@ -44,6 +48,7 @@ module Telegram
 
     def post_events(events)
       return not_found if events.empty?
+
       events.each do |event|
         text = event.construct_telegram_message(true)
         message.send_message(text)
@@ -55,20 +60,23 @@ module Telegram
     end
 
     def unknown
-      message.send_message I18n.t('telegram.unknown_command', list: COMMANDS.map{ |c| "/#{c}" }.to_sentence)
+      message.send_message I18n.t('telegram.unknown_command', list: COMMANDS.map { |c| "/#{c}" }.to_sentence)
     end
 
-    alias_method :help, :start
+    alias help start
 
     private
 
     def parse_command(text)
       return nil if text.nil?
+
       words = text.split
-      return nil if (words.first =~ /^\//).nil?
+      return nil if (words.first =~ %r{^/}).nil?
+
       command = words.first[1..-1].split('@').first.to_sym
       return nil unless COMMANDS.include? command
-      [ command, words.second.to_i ]
+
+      [command, words.second.to_i]
     end
   end
 end

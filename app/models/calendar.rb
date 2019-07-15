@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 class Calendar
-  DOMAIN = ENV.fetch('mailing_host') {'mailing_host'}
+  DOMAIN = ENV.fetch('mailing_host') { 'mailing_host' }
   DEFAULTS = {
-    prodid:       "-//#{DOMAIN}//IT events calendar//RU",
-    url:          Rails.application.routes.url_helpers.events_url(host: DOMAIN),
-    source:       Rails.application.routes.url_helpers.events_url(host: DOMAIN, format: :ics),
-    name:         'IT events calendar',
-    description:  'All IT events in 52 region'
+    prodid: "-//#{DOMAIN}//IT events calendar//RU",
+    url: Rails.application.routes.url_helpers.events_url(host: DOMAIN),
+    source: Rails.application.routes.url_helpers.events_url(host: DOMAIN, format: :ics),
+    name: 'IT events calendar',
+    description: 'All IT events in 52 region'
   }.with_indifferent_access
 
   attr_reader :ical, :events
@@ -13,7 +15,7 @@ class Calendar
   def initialize(events)
     @events = events
     @ical   = Icalendar::Calendar.new
-    @ical.prodid  = DEFAULTS[:prodid]
+    @ical.prodid = DEFAULTS[:prodid]
     @ical.timezone do |t|
       t.tzid = Rails.configuration.time_zone
     end
@@ -27,7 +29,7 @@ class Calendar
 
   def to_ical
     lines = @ical.to_ical.lines
-    injection = %i(url source name description).map do |key|
+    injection = %i[url source name description].map do |key|
       [key.to_s.upcase, DEFAULTS[key]].join(':')
     end.join("\r\n")
     injection << "\r\nREFRESH-INTERVAL;VALUE=DURATION:PT12H\r\n"
