@@ -4,8 +4,7 @@ MAINTAINER Nick Kugaevsky "nick@kugaevsky.ru"
 # Build-time metadata as defined at http://label-schema.org
 
 RUN apt-get update -qq
-RUN apt-get install -y curl software-properties-common libpq-dev libxml2-dev libxslt1-dev optipng jpegoptim
-
+RUN apt-get install -y curl software-properties-common libpq-dev libxml2-dev libxslt1-dev optipng pngquant jpegoptim build-essential patch ruby-dev zlib1g-dev liblzma-dev
 # for capybara-webkit
 # RUN apt-get install -y libqt4-webkit libqt4-dev xvfb
 
