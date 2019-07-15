@@ -1,12 +1,12 @@
 import * as Turbolinks from 'turbolinks'
-import { Rails } from 'rails-ujs'
+import railsUjs from 'rails-ujs'
 
 import { ForeignLinkSwitcher } from './helpers/foreign-link-switcher'
 import { MdcInit } from './mdc/mdc-init'
 import { YandexInit } from './yandex/yandex-init'
 
 Turbolinks.start()
-Rails.start()
+railsUjs.start()
 
 function init(): void {
   const foreignLinkCheckbox = document.getElementById('has_foreign_link')
