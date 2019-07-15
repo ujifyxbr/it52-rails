@@ -87,7 +87,7 @@ gem 'asset_sync'
 gem 'carrierwave'
 gem 'carrierwave-imageoptimizer'
 gem 'fog-aws', '< 3'
-gem 'mini_magick'
+gem 'mini_magick', '>= 4.9.4'
 
 # Monitoring
 gem 'newrelic_rpm'

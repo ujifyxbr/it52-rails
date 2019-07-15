@@ -497,7 +497,7 @@ DEPENDENCIES
   mailchimp-api
   mailgun_rails
   meta-tags
-  mini_magick
+  mini_magick (>= 4.9.4)
   newrelic_rpm
   oj
   omniauth
