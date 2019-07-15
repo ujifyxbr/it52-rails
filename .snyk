@@ -30,3 +30,13 @@ patch:
         patched: '2019-07-03T23:26:18.221Z'
     - '@rails/webpacker > @babel/preset-env > @babel/plugin-transform-async-to-generator > @babel/helper-remap-async-to-generator > @babel/helper-wrap-function > @babel/traverse > @babel/helper-function-name > @babel/template > @babel/types > lodash':
         patched: '2019-07-03T23:26:18.221Z'
+    - snyk > snyk-config > lodash:
+        patched: '2019-07-15T08:33:15.845Z'
+    - snyk > snyk-nodejs-lockfile-parser > lodash:
+        patched: '2019-07-15T08:33:15.845Z'
+    - snyk > @snyk/dep-graph > graphlib > lodash:
+        patched: '2019-07-15T08:33:15.845Z'
+    - snyk > snyk-go-plugin > graphlib > lodash:
+        patched: '2019-07-15T08:33:15.845Z'
+    - snyk > snyk-nodejs-lockfile-parser > graphlib > lodash:
+        patched: '2019-07-15T08:33:15.845Z'
