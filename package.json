@@ -46,5 +46,5 @@
     "prepublish": "npm run snyk-protect",
     "lint": "./node_modules/.bin/tslint -c tslint.json 'app/javascript/**/*.ts'"
   },
-  "snyk": true
+  "snyk": false
 }

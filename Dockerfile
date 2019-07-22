@@ -1,4 +1,4 @@
-FROM ruby:2.6.3-slim
+FROM ruby:2.6.4-slim
 MAINTAINER Nick Kugaevsky "nick@kugaevsky.ru"
 
 # Build-time metadata as defined at http://label-schema.org

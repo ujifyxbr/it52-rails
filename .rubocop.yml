@@ -1,5 +1,5 @@
 inherit_from:
-  - https://raw.githubusercontent.com/rubocop-hq/rubocop/master/config/default.yml
+  # - https://raw.githubusercontent.com/rubocop-hq/rubocop/master/config/default.yml
   - .rubocop_todo.yml
 
 # The behavior of RuboCop can be controlled via the .rubocop.yml
