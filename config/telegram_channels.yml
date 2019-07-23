@@ -13,14 +13,15 @@ groups:
       js_nn_jobs: Вакансии для фронтовиков
 
   languages:
-    name: По языкам программирования
+    name: По языкам программирования или платформам
     channels:
       rannts: Python
-      jugnn: Java
       js_nn: Javascript
-      nnrug: Ruby
       golang_events_nizhny: GoLang
+      nnrug: Ruby
       scala_nn: Scala
+      jugnn: Java
+      kotlin_nn: Kotlin
       android_nn: Android (Java, Kotlin)
       iosnndevs: iOS (Objective-C, Swift)
 
