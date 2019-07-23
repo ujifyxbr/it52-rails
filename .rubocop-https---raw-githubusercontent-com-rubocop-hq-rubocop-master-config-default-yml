@@ -2557,6 +2557,11 @@ Style/DocumentationMethod:
     - 'test/**/*'
   RequireForNonPublicMethods: false
 
+Style/DoubleCopDisableDirective:
+  Description: 'Checks for double rubocop:disable comments on a single line.'
+  Enabled: true
+  VersionAdded: '0.73'
+
 Style/DoubleNegation:
   Description: 'Checks for uses of double negation (!!).'
   StyleGuide: '#no-bang-bang'
@@ -3047,7 +3052,7 @@ Style/MultilineWhenThen:
   Description: 'Do not use then for multi-line when statement.'
   StyleGuide: '#no-then'
   Enabled: true
-  VersionAdded: '0.72'
+  VersionAdded: '0.73'
 
 Style/MultipleComparison:
   Description: >-
