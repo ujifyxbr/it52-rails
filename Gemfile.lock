@@ -68,6 +68,9 @@ GEM
     autoprefixer-rails (9.6.1)
       execjs
     awesome_print (1.8.0)
+    barnes (0.0.7)
+      multi_json (~> 1)
+      statsd-ruby (~> 1.1)
     bcrypt (3.1.13)
     bindex (0.8.1)
     bootsnap (1.4.4)
@@ -421,6 +424,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    statsd-ruby (1.4.0)
     temple (0.8.1)
     thor (0.19.4)
     thread_safe (0.3.6)
@@ -465,6 +469,7 @@ DEPENDENCIES
   asset_sync
   autoprefixer-rails
   awesome_print
+  barnes
   bootsnap
   byebug
   cancancan

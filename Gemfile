@@ -90,6 +90,7 @@ gem 'fog-aws', '< 3'
 gem 'mini_magick', '>= 4.9.4'
 
 # Monitoring
+gem 'barnes'
 gem 'newrelic_rpm'
 gem 'rollbar'
 gem 'silencer'
