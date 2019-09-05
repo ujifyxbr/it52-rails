@@ -33,6 +33,7 @@ install:
 - bundle install --jobs=3 --retry=3 --path=vendor/bundle
 - yarn install
 before_script:
+- cp config/database.yml.travis config/database.yml
 - cp config/secrets.yml.template config/secrets.yml
 - cp config/application.yml.template config/application.yml
 - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
