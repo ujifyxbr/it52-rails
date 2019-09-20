@@ -10,6 +10,7 @@ header.mdc-top-app-bar.mdc-top-app-bar--fixed.mdc-top-app-bar--dense
       nav.top-app-bar-nav
         a.mdc-button.mdc-top-bar-button class=('mdc-top-bar-button--active' if current_page?(root_path)) href=root_path = t('.events')
         a.mdc-button.mdc-top-bar-button class=('mdc-top-bar-button--active' if current_page?(page_path(:communities))) href=page_path(:communities) = t('.communities')
+        a.mdc-button.mdc-top-bar-button class=('mdc-top-bar-button--active' if current_page?(startups_url)) href=startups_url = t('.startups')
         a.mdc-button.mdc-top-bar-button class=('mdc-top-bar-button--active' if current_page?(page_path(:about))) href=page_path(:about) = t('.about')
         a.mdc-button.mdc-top-bar-button class=('mdc-top-bar-button--active' if current_page?(page_path(:donate))) href=page_path(:donate) = t('.donate')
 
@@ -45,6 +46,9 @@ aside.mdc-drawer.mdc-drawer--modal
       a.mdc-list-item class=('mdc-list-item--activated' if current_page?(page_path(:communities))) href=page_path(:communities)
         span.material-icons.mdc-list-item__graphic aria-hidden="true" group
         span.mdc-list-item__text = t('.communities')
+      a.mdc-list-item class=('mdc-list-item--activated' if current_page?(startups_url)) href=startups_url
+        span.material-icons.mdc-list-item__graphic aria-hidden="true" date_range
+        span.mdc-list-item__text = t('.startups')
       a.mdc-list-item class=('mdc-list-item--activated' if current_page?(page_path(:about))) href=page_path(:about)
         span.material-icons.mdc-list-item__graphic aria-hidden="true" help
         span.mdc-list-item__text = t('.about')
