@@ -1,5 +1,39 @@
+inherit_from: .rubocop_todo.yml
+
+# The behavior of RuboCop can be controlled via the .rubocop.yml
+# configuration file. It makes it possible to enable/disable
+# certain cops (checks) and to alter their behavior if they accept
+# any parameters. The file can be placed either in your home
+# directory or in some project directory.
+#
+# RuboCop will start looking for the configuration file in the directory
+# where the inspected file is and continue its way up to the root directory.
+#
+# See https://github.com/rubocop-hq/rubocop/blob/master/manual/configuration.md
+
+require:
+  - rubocop-faker
+  - rubocop-i18n
+  - rubocop-md
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+
 AllCops:
-  Excludes:
-    - config/unicorn.rb
-    - db/**/*
-  RunRailsCops: true
+  Exclude:
+    - 'node_modules/**/*'
+    - 'vendor/**/*'
+    - '.git/**/*'
+    - 'bin/**/*'
+    - 'db/schema.rb'
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/HashSyntax:
+  Exclude:
+    - 'app/controllers/events_controller.rb'
+    - 'lib/da_data/request.rb'
+
+RSpec/MultipleExpectations:
+  Max: 5

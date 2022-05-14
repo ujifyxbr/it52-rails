@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'csv'
 
 class RenderARCollectionToCsv
   def self.perform(collection, column_names = nil, options = {})
-    column_names = column_names || collection.table_name.singularize.capitalize.constantize.column_names
+    column_names ||= collection.table_name.singularize.capitalize.constantize.column_names
 
     CSV.generate(options) do |csv|
       csv << column_names

@@ -13,29 +13,40 @@ groups:
       js_nn_jobs: Вакансии для фронтовиков
 
   languages:
-    name: По языкам программирования
+    name: По языкам программирования или платформам
     channels:
       rannts: Python
-      jugnn: Java
       js_nn: Javascript
-      nnrug: Ruby
       golang_events_nizhny: GoLang
+      nnrug: Ruby
       scala_nn: Scala
+      jugnn: Java
+      kotlin_nn: Kotlin
+      android_nn: Android (Java, Kotlin)
+      iosnndevs: iOS (Objective-C, Swift)
+      php_nn: PHP NN
+      nnvdotnetchat: .Net (C#, F#)
+
   interests:
     name: По интересам
     channels:
+      agile_nn: Сообщество Agile 
+      itarchitect_nn: Сообщество "IT Architects" Нижнего Новгорода
       defcon_nn_ch: новости ITSecurity
       defcon_nn: ITSecurity
       defcon_nn_offtop: ITSecurity offtop
+      devops_nn: DevOps NN
       nnlug: NN Linux user group
-      android_nn: Android NN
-      iosnndevs: iOS NN devs
       wtm_nn: Women Techmakers
       gdgnn: Google developers group
       cadr_hackerspace: Хакерспейс CADR
+      lanparty_nn: LAN Party 2000 для гиков и фанатов олдскула. Некоммерческая тусовка по выходным
       qalliance: Всё о тестировании
       jenkins_nn: Чат организаторов и активистов сообщества Jenkins в Нижнем Новгороде
       jenkins_ru_events: Анонсы событий в Jenkins
       nn_cv: Машинное зрение/AR/VR
       qt_52: Чат QT сообщества
       nnov_globalcityhack: Чат участников Global City Hackathon
+      gamedevnn: Разработка игр в Нижнем Новгороде
+      startupnn: Cообщество для тех, у кого уже есть или кто задумывается создать свой startup
+      nnodsbreakfast: Организация Open Data Science завтраков и чат на темы AI/ML/DS

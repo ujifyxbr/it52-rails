@@ -1,0 +1,35 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: postgres
+  password: postgres
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: postgres
+  timeout: 5000
+
+development:
+  adapter: postgresql
+  encoding: unicode
+  username: postgres
+  password: postgres
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: localhost
+  timeout: 5000
+  database: it52_rails_dev
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  username: postgres
+  password: postgres
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: postgres
+  timeout: 5000
+  database: it52_rails_test
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= Integer(ENV.fetch('WEB_CONCURRENCY') { 2 }) * Integer(ENV.fetch('RAILS_MAX_THREADS') { 4 }) %>
+  timeout: 5000
+  url: <%= ENV.fetch('DATABASE_URL') { 'postgres://postgres:postgres@postgres:5432/it52' } %>

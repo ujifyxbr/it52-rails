@@ -1,0 +1,14 @@
+[Unit]
+Description=it52 metabase service
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+WorkingDirectory=/opt/it52
+
+ExecStart=/usr/bin/docker run -p 3010:3000 --env-file /opt/it52/docker/.env.metabase --name metabase metabase/metabase
+ExecStop=/usr/bin/docker rm metabase
+
+[Install]
+WantedBy=multi-user.target

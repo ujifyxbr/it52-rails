@@ -1,4 +1,5 @@
-# coding: utf-8
+# frozen_string_literal: true
+
 module Api
   module V1
     class EventsController < ApiController
@@ -17,7 +18,7 @@ module Api
       # api :GET, '/in/:year', 'Получить список событий за указанный год'
       # param :year,  /\d{4}/, desc: "Year", required: false
       def index
-        year  = params[:year].present?  ? params[:year].to_i  : Time.now.year
+        year  = params[:year].present?  ? params[:year].to_i  : Time.zone.now.year
         month = params[:month].present? ? params[:month].to_i : nil
         @response_object = @model.published.held_in(year, month)
         render render_options

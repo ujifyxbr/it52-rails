@@ -1,0 +1,15 @@
+- content_for(:topbar_actions) do
+  a.material-icons.mdc-top-app-bar__action-item href=startups_path title='Все стартапы' list
+  - if can? :edit, @startup
+    a.material-icons.mdc-top-app-bar__action-item href=edit_startup_path(@startup) title='Изменить' edit
+
+h1 = @startup.title
+h3 = @startup.intro
+
+.grid
+  .grid__inner
+    .grid__cell--startup-meta
+      = image_tag @startup.logo.big.url, alt: @startup, class: 'startup-image'
+      p.startup-url = link_to @startup.url, @startup.url
+      p.startup-contacts = @startup.contacts.values.join(': ')
+    .grid__cell--startup-description = @startup.rendered_description

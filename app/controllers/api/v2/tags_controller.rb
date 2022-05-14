@@ -1,4 +1,5 @@
-# coding: utf-8
+# frozen_string_literal: true
+
 module Api
   module V2
     class TagsController < ApiController
@@ -6,10 +7,12 @@ module Api
 
       def index
         @tags = ActsAsTaggableOn::Tag.order(taggings_count: :desc)
-        @tags = @tags.where('name ILIKE ?', "#{params[:q].to_s.downcase}%") if params[:q].present?
+        if params[:q].present?
+          @tags = @tags.where('name ILIKE ?', "#{params[:q].to_s.downcase}%")
+        end
         options = { is_collection: true,
                     params: { action: action_name },
-                    meta:   { totalCount: @tags.count }}
+                    meta: { totalCount: @tags.count } }
         render json: ::V2::TagSerializer.new(@tags.limit(TAGS_PAGE_SIZE), options).serializable_hash
       end
     end

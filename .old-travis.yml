@@ -1,0 +1,29 @@
+language: generic
+
+services:
+  - docker
+
+before_install:
+  - docker pull it52/rails:latest
+
+install:
+  - make build
+
+before_script:
+  - docker-compose -f docker/docker-compose.yml run rails sh -c "bin/rails db:create && bin/rails db:schema:load"
+
+script:
+  - make test
+
+before_cache:
+  - sudo rm -fr coverage public/uploads/* tmp/cache tmp/uploads
+
+before_deploy:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push it52/rails:latest
+
+deploy:
+  provider: script
+  script: bash -c "make build_and_publish_prod"
+  on:
+    branch: it52

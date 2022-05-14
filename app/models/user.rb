@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -38,7 +40,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
          :trackable, :validatable, :confirmable, :omniauthable
 
-  enum role: %i[member admin]
+  enum role: { member: 0, admin: 1 }
 
   has_many :authentications, dependent: :destroy
   accepts_nested_attributes_for :authentications
@@ -54,7 +56,7 @@ class User < ApplicationRecord
 
   after_create :sync_with_mailchimp
 
-  validates :website, format: { with: URI::regexp(%w(http https)) }, allow_nil: true
+  validates :website, format: { with: URI.regexp(%w[http https]) }, allow_nil: true
   validate :should_have_email_before_subscription
 
   scope :subscribed, -> { where(subscription: true) }
@@ -69,7 +71,7 @@ class User < ApplicationRecord
   end
 
   def profile_link
-    url_helpers.user_url(self, host: ENV.fetch('mailing_host') {'mailing_host'})
+    url_helpers.user_url(self, host: ENV.fetch('mailing_host') { 'mailing_host' })
   end
 
   def to_s
@@ -80,12 +82,12 @@ class User < ApplicationRecord
     auth_uids = authentications.pluck(:uid)
     [
       :nickname,
-      [:first_name, :last_name],
-      :email,
-      [:nickname, :first_name, :last_name],
-      [:nickname, :first_name, :last_name, :email],
+      %i[first_name last_name],
+      %i[nickname first_name last_name],
       auth_uids,
-      [:nickname, :first_name, :last_name, :email] + auth_uids
+      %i[nickname first_name last_name email],
+      :email,
+      %i[nickname first_name last_name email] + auth_uids
     ]
   end
 
@@ -94,21 +96,23 @@ class User < ApplicationRecord
   end
 
   def self.new_with_session(params, session)
-    super.tap do |user|
-      if data = session["devise.oauth_data"]
+    super.tap do |_user|
+      if data = session['devise.oauth_data']
         user = from_omniauth data
       end
     end
   end
 
   def self.from_omniauth(auth, current_user = nil)
-    authentication = Authentication.where(provider: auth[:provider], uid: auth[:uid]).
-                                    first_or_initialize.set_attributes_from_omniauth(auth)
+    authentication = Authentication.where(provider: auth[:provider], uid: auth[:uid])
+                                   .first_or_initialize.set_attributes_from_omniauth(auth)
 
     user = current_user || authentication.user
     user ||= where(email: auth['info']['email']).first_or_create
 
-    user.authentications << authentication unless user.has_identity? auth[:provider]
+    unless user.has_identity? auth[:provider]
+      user.authentications << authentication
+    end
     user.skip_confirmations! if user.confirmed? || !user.email_required?
     user = UpdateUserFromOmniauth.new(user, auth[:provider], auth[:info]).set_attributes
     user.save
@@ -116,8 +120,8 @@ class User < ApplicationRecord
   end
 
   def skip_confirmations!
-    self.skip_confirmation!
-    self.skip_reconfirmation!
+    skip_confirmation!
+    skip_reconfirmation!
   end
 
   def has_identity?(provider)
@@ -136,9 +140,16 @@ class User < ApplicationRecord
     super && authentications.blank?
   end
 
+  def send_devise_notification(notification, *args)
+    devise_mailer.send(notification, self, *args).deliver_later
+  end
+
   def sync_with_mailchimp
+    # disabled
+    return nil
     return nil if email.blank?
     return unless Rails.env.production?
+
     MailchimpSynchronizer.new(self).sync!
   end
 
@@ -150,9 +161,9 @@ class User < ApplicationRecord
 
   def normalize_url
     self.website = if result = website.to_url
-      result
-    else
-      website
+                     result
+                   else
+                     website
     end
     self.website = nil if website.blank?
   end

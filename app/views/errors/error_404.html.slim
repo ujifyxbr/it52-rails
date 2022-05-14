@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    title Страницы, которую вы запрашиваете не существует (404)
+    meta[name="viewport" content="width=device-width,initial-scale=1"]
+    style
+      |  body { background-color: #FFF; text-align: center; font-family: arial, sans-serif; margin: 0; } .logo { margin-top: 100px; } .message { width: 95%; max-width: 33em; margin: 7em auto 0; }
+  body
+    .logo = image_tag 'it52_logo_white_clean.svg', alt: 'it52'
+    .message
+      h1 Ой!
+      h3 Такой страницы у нас нет.
+      p
+        = link_to 'Вернуться на главную страницу', root_path
+        |.

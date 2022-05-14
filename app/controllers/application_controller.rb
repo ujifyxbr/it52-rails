@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+require_dependency 'my'
+
 class ApplicationController < ActionController::Base
   # include Styx::Initializer
 
@@ -11,19 +15,19 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!, if: -> { authenticated_path? }
 
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to new_user_session_path, error: exception.message
+    redirect_back(fallback_location: root_path, error: exception.message)
   end
 
   def after_sign_in_path_for(resource)
-     request.env['omniauth.origin'] ||
-     stored_location_for(resource) ||
-     root_path
+    request.env['omniauth.origin'] ||
+      stored_location_for(resource) ||
+      root_path
   end
 
   private
 
   def define_common_meta_tags
-    set_meta_tags({
+    set_meta_tags(
       site: t(:app_name),
       description: t(:app_description),
       keywords: t(:app_keywords),
@@ -33,14 +37,10 @@ class ApplicationController < ActionController::Base
         site_name: :site,
         locale: 'ru_RU'
       }
-    })
+    )
   end
 
   def authenticated_path?
-    controller_namespace == My || new_event_path == request.original_fullpath
-  end
-
-  def controller_namespace
-    self.class.parent
+    controller_path.split('/').first == 'my' || new_event_path == request.original_fullpath
   end
 end

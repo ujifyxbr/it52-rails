@@ -1,22 +1,24 @@
+# frozen_string_literal: true
+
 class MailchimpHooksController < ApplicationController
-  skip_before_action :verify_authenticity_token
+  # skip_before_action :verify_authenticity_token
   before_action :set_user, only: :update_subscription
 
   def update_subscription
     subscription = case subscribe_params[:type]
-    when 'subscribe'
-      true
-    when 'unsubscribe'
-      false
-    else
-      @user.subscription
+                   when 'subscribe'
+                     true
+                   when 'unsubscribe'
+                     false
+                   else
+                     @user.subscription
     end
     status = @user.update(subscription: subscription) ? :ok : :unprocessable_entity
     head status
   end
 
   def check
-    render nothing: true, status: :ok
+    head :ok
   end
 
   private
@@ -27,6 +29,7 @@ class MailchimpHooksController < ApplicationController
 
   def set_user
     @user = User.find_by(email: subscribe_params[:data][:email])
-    render nothing: true, status: :unprocessable_entity if @user.nil?
+  rescue ActiveRecord::RecordNotFound
+    head :unprocessable_entity
   end
 end

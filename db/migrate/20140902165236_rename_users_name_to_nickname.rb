@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RenameUsersNameToNickname < ActiveRecord::Migration[4.2]
   def change
     rename_column :users, :name, :nickname

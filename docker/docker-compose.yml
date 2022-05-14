@@ -1,0 +1,114 @@
+version: '3.7'
+services:
+  postgres:
+    image: postgres:11.3-alpine
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    env_file:
+      - '../.env'
+    ports:
+      - '5432:5432'
+
+  redis:
+    image: redis:alpine
+    volumes:
+      - 'redis:/data'
+    ports:
+      - '6379:6379'
+  rails:
+    image: ${COMPOSE_PROJECT_NAME}/rails:latest
+    build:
+      context: ../.
+      dockerfile: docker/Dockerfile
+      cache_from:
+        - ${COMPOSE_PROJECT_NAME}/rails:latest
+      args:
+        - VERSION="lastest"
+        - BUNDLE_PATH
+    tmpfs:
+      - /tmp
+    stdin_open: true
+    tty: true
+    volumes:
+      - ../.:/${COMPOSE_PROJECT_NAME}:cached
+      - log:/${COMPOSE_PROJECT_NAME}/log
+      - rails_cache:/${COMPOSE_PROJECT_NAME}/tmp/cache
+      - bundle:/bundle
+      - node_modules:/${COMPOSE_PROJECT_NAME}/node_modules
+      - packs:/${COMPOSE_PROJECT_NAME}/public/packs
+      - uploads:/${COMPOSE_PROJECT_NAME}/public/uploads
+    env_file:
+      - '../.env'
+    command: bin/rails server -b 0.0.0.0
+    ports:
+      - '3000:3000'
+    depends_on:
+      - postgres
+      - redis
+
+  sidekiq:
+    image: ${COMPOSE_PROJECT_NAME}/rails:latest
+    build:
+      context: ../.
+      dockerfile: docker/Dockerfile
+      cache_from:
+        - ${COMPOSE_PROJECT_NAME}/rails:latest
+      args:
+        - VERSION="lastest"
+        - BUNDLE_PATH
+    tmpfs:
+      - /tmp
+    stdin_open: true
+    tty: true
+    volumes:
+      - ../.:/${COMPOSE_PROJECT_NAME}:cached
+      - log:/${COMPOSE_PROJECT_NAME}/log
+      - rails_cache:/${COMPOSE_PROJECT_NAME}/tmp/cache
+      - bundle:/bundle
+      - node_modules:/${COMPOSE_PROJECT_NAME}/node_modules
+      - packs:/${COMPOSE_PROJECT_NAME}/public/packs
+      - uploads:/${COMPOSE_PROJECT_NAME}/public/uploads
+    env_file:
+      - '../.env'
+    command: bundle exec sidekiq -C config/sidekiq.yml
+    depends_on:
+      - postgres
+      - redis
+
+  webpacker:
+    image: ${COMPOSE_PROJECT_NAME}/rails:latest
+    build:
+      context: ../.
+      dockerfile: docker/Dockerfile
+      cache_from:
+        - ${COMPOSE_PROJECT_NAME}/rails:latest
+      args:
+        - VERSION="lastest"
+        - BUNDLE_PATH
+    tmpfs:
+      - /tmp
+    stdin_open: true
+    tty: true
+    volumes:
+      - ../.:/${COMPOSE_PROJECT_NAME}:cached
+      - log:/${COMPOSE_PROJECT_NAME}/log
+      - rails_cache:/${COMPOSE_PROJECT_NAME}/tmp/cache
+      - bundle:/bundle
+      - node_modules:/${COMPOSE_PROJECT_NAME}/node_modules
+      - packs:/${COMPOSE_PROJECT_NAME}/public/packs
+      - uploads:/${COMPOSE_PROJECT_NAME}/public/uploads
+    env_file:
+      - '../.env'
+    command: ./bin/webpack-dev-server
+    ports:
+      - '3035:3035'
+
+volumes:
+  postgres:
+  redis:
+  log:
+  rails_cache:
+  bundle:
+  node_modules:
+  packs:
+  uploads:

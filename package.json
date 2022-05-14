@@ -6,7 +6,14 @@
   "author": "Nick Kugaevsky <nick@kugaevsky.ru>",
   "license": "MIT",
   "dependencies": {
+    "@babel/core": "^7.6.2",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-private-methods": "^7.16.11",
+    "@babel/plugin-transform-runtime": "^7.6.2",
+    "@babel/preset-env": "^7.6.2",
+    "@babel/preset-typescript": "^7.16.7",
     "@material/button": "^2.3.0",
+    "@material/card": "^2.3.0",
     "@material/chips": "^2.3.0",
     "@material/drawer": "^2.3.0",
     "@material/fab": "^2.3.0",
@@ -21,20 +28,34 @@
     "@material/theme": "^1.1.0",
     "@material/top-app-bar": "^2.3.0",
     "@material/typography": "^2.3.0",
-    "@rails/webpacker": "^4.0.7",
-    "@types/google.analytics": "^0.0.40",
+    "@rails/ujs": "^7.0.2-2",
+    "@rails/webpacker": "^5.4.3",
+    "@tarekraafat/autocomplete.js": "^7.0.1",
+    "@types/google.analytics": "^0.0.42",
     "babel-loader": "^8.0.6",
-    "bootstrap-sass": "^3.4.1",
+    "bootstrap-sass": "3.4.1",
     "flatpickr": "^4.6.1",
-    "rails-ujs": "^5.2.3",
     "simplemde": "^1.11.2",
-    "ts-loader": "^6.0.2",
+    "snyk": "^1.611.0",
     "turbolinks": "^5.2.0",
-    "typescript": "^3.5.1",
-    "webpack": "^4.33.0",
-    "webpack-cli": "^3.3.2"
+    "typescript": "^4.5.5",
+    "webpack": "<5",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
   },
   "devDependencies": {
-    "webpack-dev-server": "^3.6.0"
-  }
+    "@typescript-eslint/eslint-plugin": "^5.12.1",
+    "@typescript-eslint/parser": "^5.12.1",
+    "eslint": "^8.10.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.29.2",
+    "eslint-plugin-react-hooks": "^4.3.0"
+  },
+  "scripts": {
+    "snyk-protect": "snyk protect",
+    "lint": "eslint 'app/javascript/**/*.ts'"
+  },
+  "snyk": false
 }

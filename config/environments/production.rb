@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+Rails.application.credentials.production.each { |key, value| ENV[key.to_s] = value }
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -16,7 +20,7 @@ Rails.application.configure do
 
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
   # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
-  # config.require_master_key = true
+  config.require_master_key = true
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
@@ -25,7 +29,6 @@ Rails.application.configure do
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :sass
-  # config.assets.css_compressor = :csso
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
@@ -34,7 +37,7 @@ Rails.application.configure do
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = 'http://assets.example.com'
-  config.action_controller.asset_host = ENV.fetch('aws_host') {'aws_host'}
+  config.action_controller.asset_host = ENV.fetch('aws_host') { 'aws_host' }
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
@@ -49,25 +52,22 @@ Rails.application.configure do
   # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = true
+  # config.force_ssl = true
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
   # config.log_level = :debug
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
+  config.log_tags = [:request_id]
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
-  config.cache_store = :dalli_store,
-                      (ENV["MEMCACHIER_SERVERS"] || "").split(","),
-                      { username: ENV["MEMCACHIER_USERNAME"],
-                        password: ENV["MEMCACHIER_PASSWORD"],
-                        failover: true,
-                        socket_timeout: 1.5,
-                        socket_failure_delay: 0.2
-                      }
+  config.cache_store = :redis_cache_store, { driver: :hiredis,
+                                             url: ENV.fetch('REDIS_URL') { 'redis://redis:6379' },
+                                             expires_in: 60.days,
+                                             namespace: :rails_cache,
+                                             db: 0 }
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
@@ -93,7 +93,7 @@ Rails.application.configure do
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
-  if ENV["RAILS_LOG_TO_STDOUT"].present?
+  if ENV['RAILS_LOG_TO_STDOUT'].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
@@ -102,11 +102,20 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  config.action_mailer.default_url_options = { host: ENV.fetch('mailing_host', 'it52.info') }
+  config.action_mailer.default_options = { from: "robot@#{ENV.fetch('mailing_host', 'it52.info')}" }
   config.action_mailer.delivery_method = :mailgun
+
   config.action_mailer.mailgun_settings = {
-    api_key: ENV.fetch('mailgun_api_key') {'mailgun_api_key'},
-    domain: ENV.fetch('mailing_host') {'mailing_host'}
+    api_key: ENV.fetch('mailgun_api_key', 'mailgun_api_key'),
+    domain: ENV.fetch('mailing_host', 'it52.info')
   }
 
-  config.require_master_key = true
+  config.action_mailer.smtp_settings = {
+    authentication: :plain,
+    user_name: 'robot@it52.info',
+    password: Rails.application.credentials.production[:mailgun_smtp_password],
+    address: 'smtp.mailgun.org',
+    port: 587
+  }
 end

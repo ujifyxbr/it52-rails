@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module Api
   module V1
-    class ApiController < ActionController::Base
-      #before_action :authenticate_with_basic
+    class ApiController < ApplicationController
+      # before_action :authenticate_with_basic
       before_action :set_default_options
       before_action :set_allow_cors_headers
 
@@ -19,11 +21,11 @@ module Api
       end
 
       def set_default_options
-        @default_options =  { root: false }
+        @default_options = { root: false }
       end
 
       def render_options
-        @default_options.merge! json: @response_object
+        @default_options[:json] = @response_object
         callback.present? ? @default_options.merge(callback: callback) : @default_options
       end
     end

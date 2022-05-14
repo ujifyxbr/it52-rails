@@ -21,7 +21,7 @@
       = f.input :employment
       = f.input :website
 
-      = f.input :bio, input_html: { rows: 7 }
+      = f.input :bio, input_html: { rows: 7, class: 'mde-textarea' }
 
       - if current_user.email.present?
         = f.input :subscription, wrapper: :vertical_boolean

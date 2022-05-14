@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Turbo
   class EventsController < ApplicationController
     respond_to :rss

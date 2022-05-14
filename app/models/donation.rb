@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: donations
 #
 #  id            :bigint           not null, primary key
-#  amount        :float
-#  kind          :string
-#  amount_in_rub :float
+#  amount        :float            not null
+#  kind          :integer          not null
+#  amount_in_rub :float            not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #
@@ -31,8 +33,8 @@ class Donation < ApplicationRecord
     require 'csv'
 
     rows = CSV.read(file, col_sep: ';', skip_blanks: true)[5..-1]
-    data = rows.select{ |val| val[5].include?('it52') }.map do |row|
-      amount = row[2].gsub(',', '.').to_f
+    data = rows.select { |val| val[5].include?('it52') }.map do |row|
+      amount = row[2].tr(',', '.').to_f
       { created_at: Time.zone.parse(row[1]),
         amount: amount,
         amount_in_rub: amount,
@@ -59,6 +61,7 @@ class Donation < ApplicationRecord
 
   def set_amount_in_rub
     return unless amount
+
     self.amount_in_rub = yandex_money? ? amount : (amount * USD_RUB).round(2)
   end
 end

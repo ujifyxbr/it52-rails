@@ -4,9 +4,6 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 
-# Ignore bundler config.
-/.bundle
-
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
@@ -17,9 +14,11 @@
 !/log/.keep
 !/tmp/.keep
 
+# Ignore production environment
+.env.production
+
 # Ignore Byebug command history file.
 .byebug_history
-
 
 # Custom ignorance settings
 
@@ -38,19 +37,13 @@ nginx_rewrite.txt
 *.sublime-workspace
 .idea
 
-/config/database.yml
-/config/application.yml
-/config/settings.yml
-/config/thinking_sphinx.yml
-/config/development.sphinx.conf
-
-/public/system
+# Ignore user files and compiled assets
 /public/assets
+/public/packs
+/public/packs-test
 /public/sitemap*
+/public/system
 /public/uploads
-
-# Ignore application configuration
-/config/application.yml
 
 # Ignore test coverage reports
 /coverage/
@@ -63,9 +56,13 @@ nginx_rewrite.txt
 
 # Ignore javascript dependencies
 /node_modules/
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
 
 # Ignore ruby dependencies
-/vendor/bundle
+/.bundle
+/vendor
 
 /public/packs
 /public/packs-test

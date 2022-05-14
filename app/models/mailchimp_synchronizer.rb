@@ -1,17 +1,19 @@
+# frozen_string_literal: true
+
 class MailchimpSynchronizer
-  API_KEY = ENV.fetch('mailchimp_api_key') { 'mailchimp_api_key' }
+  API_KEY = ENV.fetch('mailchimp_api_key') { 'mailchimp_api_key-us8' }
   LIST_ID = ENV.fetch('mailchimp_list_id') { 'mailchimp_list_id' }
   PAGE_SIZE = 100
 
   def self.clear_list!
     @mailchimp ||= connection
-    emails = list_members.map { |m| { email: m['email'] }}
-    @mailchimp.lists.batch_unsubscribe LIST_ID, emails , true, false, false
+    emails = list_members.map { |m| { email: m['email'] } }
+    @mailchimp.lists.batch_unsubscribe LIST_ID, emails, true, false, false
   end
 
   def self.fill_list!
     @mailchimp ||= connection
-    emails = User.subscribed.map { |u| { email: { email: u.email }, merge_vars: { fname: u.first_name, lname: u.last_name }}}
+    emails = User.subscribed.map { |u| { email: { email: u.email }, merge_vars: { fname: u.first_name, lname: u.last_name } } }
     @mailchimp.lists.batch_subscribe LIST_ID, emails, false, true, true
   end
 
@@ -28,7 +30,7 @@ class MailchimpSynchronizer
     @mailchimp ||= connection
     list_members = []
     (list_members_count / PAGE_SIZE + 1).times do |page|
-      list_members += @mailchimp.lists.members(LIST_ID, status, { limit: PAGE_SIZE, start: page })['data']
+      list_members += @mailchimp.lists.members(LIST_ID, status, limit: PAGE_SIZE, start: page)['data']
     end
     list_members
   end
@@ -38,7 +40,7 @@ class MailchimpSynchronizer
   end
 
   def self.get_list_members_count
-    @list_member_count = connection.lists.members(LIST_ID, 'subscribed', { limit: 1 })['total'].to_i
+    @list_member_count = connection.lists.members(LIST_ID, 'subscribed', limit: 1)['total'].to_i
   end
 
   def self.connection
@@ -48,7 +50,7 @@ class MailchimpSynchronizer
   def initialize(user)
     @user      = user
     @mailchimp = MailchimpSynchronizer.connection
-    @params    = [ LIST_ID, { email: @user.email }]
+    @params    = [LIST_ID, { email: @user.email }]
   end
 
   def sync!
@@ -58,20 +60,20 @@ class MailchimpSynchronizer
   def subscribe!
     @mailchimp.lists.subscribe(*subscribe_params)
   rescue Mailchimp::ListNotSubscribedError, Mailchimp::EmailNotExistsError, Mailchimp::ListInvalidImportError => e
-    { error: e.message }
+    Rollbar.error(e, user: @user)
   end
 
   def unsubscribe!
     @mailchimp.lists.unsubscribe(*unsubscribe_params)
   rescue Mailchimp::ListNotSubscribedError, Mailchimp::EmailNotExistsError, Mailchimp::ListInvalidImportError => e
-    { error: e.message }
+    Rollbar.error(e, user: @user)
   end
 
   def subscribe_params
-    @params + [{ fname: @user.first_name, lname: @user.last_name }, 'html', false, true ]
+    @params + [{ fname: @user.first_name, lname: @user.last_name }, 'html', false, true]
   end
 
   def unsubscribe_params
-    @params + [ false, false, false ]
+    @params + [false, false, false]
   end
 end

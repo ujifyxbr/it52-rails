@@ -25,6 +25,8 @@ $brand-danger:          #d9534f !default
 
 $ruby-red:              #700F00 !default
 
+$input-color-placeholder: #ccc
+
 //== Scaffolding
 //
 // ## Settings for some of the most global styles.
@@ -37,7 +39,8 @@ $text-color:            $gray-dark !default
 //** Global textual link color.
 $link-color:            $brand-primary !default
 //** Link hover color set via `darken()` function.
-$link-hover-color:      darken($link-color, 15%) !default
+$link-hover-color:      inherit
+$link-hover-decoration: none
 
 //== Typography
 //
@@ -801,7 +804,62 @@ $hr-border:                   $gray-lighter !default
 //** Horizontal offset for forms and lists.
 $component-offset-horizontal: 180px !default
 
-@import "bootstrap-sass/assets/stylesheets/bootstrap"
+/*!
+ * Bootstrap v3.4.1 (https://getbootstrap.com/)
+ * Copyright 2011-2019 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+
+// Core variables and mixins
+@import "bootstrap-sass/assets/stylesheets/bootstrap/variables"
+@import "bootstrap-sass/assets/stylesheets/bootstrap/mixins"
+
+// Reset and dependencies
+@import "bootstrap-sass/assets/stylesheets/bootstrap/normalize"
+@import "bootstrap-sass/assets/stylesheets/bootstrap/print"
+@import "bootstrap-sass/assets/stylesheets/bootstrap/glyphicons"
+
+// Core CSS
+@import "bootstrap-sass/assets/stylesheets/bootstrap/scaffolding"
+@import "bootstrap-sass/assets/stylesheets/bootstrap/type"
+@import "bootstrap-sass/assets/stylesheets/bootstrap/code"
+@import "bootstrap-sass/assets/stylesheets/bootstrap/grid"
+@import "bootstrap-sass/assets/stylesheets/bootstrap/tables"
+@import "bootstrap-sass/assets/stylesheets/bootstrap/forms"
+@import "bootstrap-sass/assets/stylesheets/bootstrap/buttons"
+
+// Components
+@import "bootstrap-sass/assets/stylesheets/bootstrap/component-animations"
+@import "bootstrap-sass/assets/stylesheets/bootstrap/dropdowns"
+@import "bootstrap-sass/assets/stylesheets/bootstrap/button-groups"
+@import "bootstrap-sass/assets/stylesheets/bootstrap/input-groups"
+@import "bootstrap-sass/assets/stylesheets/bootstrap/navs"
+@import "bootstrap-sass/assets/stylesheets/bootstrap/navbar"
+@import "bootstrap-sass/assets/stylesheets/bootstrap/breadcrumbs"
+@import "bootstrap-sass/assets/stylesheets/bootstrap/pagination"
+@import "bootstrap-sass/assets/stylesheets/bootstrap/pager"
+@import "bootstrap-sass/assets/stylesheets/bootstrap/labels"
+@import "bootstrap-sass/assets/stylesheets/bootstrap/badges"
+@import "bootstrap-sass/assets/stylesheets/bootstrap/jumbotron"
+@import "bootstrap-sass/assets/stylesheets/bootstrap/thumbnails"
+@import "bootstrap-sass/assets/stylesheets/bootstrap/alerts"
+@import "bootstrap-sass/assets/stylesheets/bootstrap/progress-bars"
+@import "bootstrap-sass/assets/stylesheets/bootstrap/media"
+@import "bootstrap-sass/assets/stylesheets/bootstrap/list-group"
+@import "bootstrap-sass/assets/stylesheets/bootstrap/panels"
+@import "bootstrap-sass/assets/stylesheets/bootstrap/responsive-embed"
+@import "bootstrap-sass/assets/stylesheets/bootstrap/wells"
+@import "bootstrap-sass/assets/stylesheets/bootstrap/close"
+
+// Components w/ JavaScript
+@import "bootstrap-sass/assets/stylesheets/bootstrap/modals"
+@import "bootstrap-sass/assets/stylesheets/bootstrap/tooltip"
+@import "bootstrap-sass/assets/stylesheets/bootstrap/popovers"
+@import "bootstrap-sass/assets/stylesheets/bootstrap/carousel"
+
+// Utility classes
+@import "bootstrap-sass/assets/stylesheets/bootstrap/utilities"
+@import "bootstrap-sass/assets/stylesheets/bootstrap/responsive-utilities"
 
 .navbar-header
   .navbar-brand
@@ -815,3 +873,63 @@ $component-offset-horizontal: 180px !default
     & > .container .navbar-brand,
     & > .container-fluid .navbar-brand
       margin-left: -22px
+
+.title-image-wrapper
+  display: flex
+  position: relative
+  width: auto
+  margin-bottom: 2rem
+  background: white center top no-repeat
+  background-size: cover
+  min-height: 300px
+  margin-left: -1.5rem
+  margin-right: -1.5rem
+
+  @media (min-width: 768px)
+    margin-left: 0
+    margin-right: 0
+    min-height: $container-sm / 2
+
+  @media (min-width: 992px)
+    min-height: $container-md / 2
+
+  @media (min-width: 1200px)
+    min-height: $container-lg / 2
+
+.event-page-header
+  width: 100%
+  min-height: 100%
+  background-color: transparentize(#111, 0.75)
+  display: flex
+  flex-direction: column
+  padding: 1rem 2rem
+  color: white
+  text-shadow: 2px 2px 1px #111, 1px 1px 1px #111
+  justify-content: space-between
+  text-align: center
+  align-self: stretch
+
+  h1
+    font-weight: 600
+    font-size: 3rem
+
+  h2, h3
+    font-size: 2rem
+
+  @media (min-width: 768px)
+    padding: 2rem 3rem
+
+    h1
+      font-size: 4rem
+
+  @media (min-width: 992px)
+    h1
+      font-size: 5rem
+      text-shadow: 3px 3px 1px #111, 2px 2px 1px #111, 1px 1px 1px #111
+
+    h2, h3
+      font-size: 3rem
+
+  @media (min-width: 1200px)
+    h1
+      font-size: 6rem

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddDeviseToUsers < ActiveRecord::Migration[4.2]
   def self.up
     change_table(:users) do |t|
@@ -25,23 +27,21 @@ class AddDeviseToUsers < ActiveRecord::Migration[4.2]
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
 
-
       # Uncomment below if timestamps were not included in your original model.
       # t.timestamps
     end
 
     # Migrate from Sorcery columns to Devise
-    change_column :users, :email, :string, null: false, default: ""
+    change_column :users, :email, :string, null: false, default: ''
 
     rename_column :users, :crypted_password, :encrypted_password
-    change_column :users, :encrypted_password, :string, null: false, default: "", limit: 128
+    change_column :users, :encrypted_password, :string, null: false, default: '', limit: 128
 
     rename_column :users, :salt, :password_salt
-    change_column :users, :password_salt, :string, default: "", null: false
+    change_column :users, :password_salt, :string, default: '', null: false
 
-    add_index :users, :confirmation_token,   unique: true
+    add_index :users, :confirmation_token, unique: true
     # add_index :users, :unlock_token,         unique: true
-
 
     # Clean up Sorcery columns
     remove_column :users, :remember_me_token

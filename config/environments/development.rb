@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -17,9 +19,13 @@ Rails.application.configure do
   if Rails.root.join('tmp', 'caching-dev.txt').exist?
     config.action_controller.perform_caching = true
 
-    config.cache_store = :memory_store
+    config.cache_store = :redis_cache_store, { driver: :hiredis,
+                                               url: ENV.fetch('REDIS_URL') { 'redis://127.0.0.1:6379' },
+                                               expires_in: 10.days,
+                                               namespace: :rails_cache,
+                                               db: 0 }
     config.public_file_server.headers = {
-      'Cache-Control' => "public, max-age=#{2.days.to_i}"
+      'Cache-Control' => "public, max-age=#{30.days.to_i}"
     }
   else
     config.action_controller.perform_caching = false
@@ -51,6 +57,7 @@ Rails.application.configure do
 
   # Suppress logger output for asset requests.
   config.assets.quiet = true
+  config.assets.unknown_asset_fallback = true
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
@@ -60,4 +67,7 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   config.log_level = :debug
+
+  # Web Console
+  config.web_console.whitelisted_ips = ENV.fetch('DOCKER_HOST_IP') { ['::1', '127.0.0.0/8', '172.16.0.0/12'] }
 end

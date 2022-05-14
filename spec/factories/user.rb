@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 pass = Devise.friendly_token
 
 FactoryBot.define do
@@ -8,10 +10,10 @@ FactoryBot.define do
     password    { pass }
     password_confirmation { pass }
     remember_me { false }
-    confirmed_at { Time.now }
+    confirmed_at { Time.zone.now }
 
     factory :admin do
-      role   { :admin }
+      role { :admin }
     end
 
     factory :unconfirmed_user do

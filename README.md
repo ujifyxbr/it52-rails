@@ -11,46 +11,33 @@
 
 Main branch is [it52](https://github.com/NNRUG/it52-rails/tree/it52)
 
-
 ## Requirements
 
-- Ruby 2.6.3
-- PostgreSQL 11.x
-- memcached
-
-ИЛИ
-
-- Docker
-
+- [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/)
 
 ## Getting started
-
-### С докером
 
 [![Docker Hub](https://images.microbadger.com/badges/image/it52/rails.svg)](https://microbadger.com/images/it52/rails "Get your own image badge on microbadger.com")
 [![Docker version](https://images.microbadger.com/badges/version/it52/rails.svg)](https://microbadger.com/images/it52/rails "Get your own version badge on microbadger.com")
 
-Запустить скрипт
+#### Для начальной настройки
 
-    ./bootstrap.sh
+1. Клонировать репозиторий
+2. Скачать образ приложения
+3. Установить зависимости
+4. Запустить скрипт настройки БД
 
-### Без докера
+```bash
+    git clone git@github.com:NNRUG/it52-rails.git
+    make prepare
+```
 
-Для начала работы с проектом нужно создать конфигурационые файлы на основе шаблонов:
+#### Для запуска сервера разработки
 
-    cp config/database.yml.template config/database.yml
-    cp config/secrets.yml.template config/secrets.yml
-    cp config/application.yml.template config/application.yml
-
-Установить зависимости, создать и мигрировать БД:
-
-    bundle install
-    bundle exec rails db:setup
-
-Запустить rails-сервер:
-
-    bundle exec rails s
-
+```bash
+    ./start_server.sh
+```
 
 ## API
 

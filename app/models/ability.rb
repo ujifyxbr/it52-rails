@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Ability
   include CanCan::Ability
 
@@ -6,11 +8,17 @@ class Ability
 
     can :read, Event, published: true
     can :manage, User, id: user.id
+    can :read, Startup
 
     if user.member?
+      can :read, Startup
+      can :create, Startup
+      can :manage, Startup, author_id: user.id
+
       can :create, Event
       can :read, Event, organizer_id: user.id
       can :update, Event, organizer_id: user.id
+      can :download_participants, Event, organizer_id: user.id
       can :destroy, Event, organizer_id: user.id
       cannot :publish, Event
 
@@ -19,6 +27,7 @@ class Ability
     end
 
     if user.admin?
+      can :manage, Startup
       can :manage, Event
       can :publish, Event
       can :manage, EventParticipation

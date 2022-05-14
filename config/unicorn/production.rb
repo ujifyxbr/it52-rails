@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 worker_processes 2
 preload_app true
 timeout 30
 
-before_fork do |server, worker|
+before_fork do |_server, _worker|
   # Replace with MongoDB or whatever
   if defined?(ActiveRecord::Base)
     ActiveRecord::Base.connection.disconnect!
@@ -18,7 +20,7 @@ before_fork do |server, worker|
   sleep 1
 end
 
-after_fork do |server, worker|
+after_fork do |_server, _worker|
   # Replace with MongoDB or whatever
   if defined?(ActiveRecord::Base)
     ActiveRecord::Base.establish_connection
