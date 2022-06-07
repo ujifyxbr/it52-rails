@@ -5,6 +5,7 @@ groups:
     channels:
       it52info: IT события в Нижнем Новгороде
       nnrug: lounge for developers since 2014 (тут в основном общий флудчат)
+      It52forjuniors: Чат для тех кто только-только начинает свой путь в IT
 
   work:
     name: Предложения и поиск работы
@@ -44,9 +45,9 @@ groups:
       qalliance: Всё о тестировании
       jenkins_nn: Чат организаторов и активистов сообщества Jenkins в Нижнем Новгороде
       jenkins_ru_events: Анонсы событий в Jenkins
-      nn_cv: Машинное зрение/AR/VR
       qt_52: Чат QT сообщества
       nnov_globalcityhack: Чат участников Global City Hackathon
       gamedevnn: Разработка игр в Нижнем Новгороде
+      lanparty_nn: Чатик IT-гаража в стиле "Где мой 2007 год ?"
       startupnn: Cообщество для тех, у кого уже есть или кто задумывается создать свой startup
       nnodsbreakfast: Организация Open Data Science завтраков и чат на темы AI/ML/DS
