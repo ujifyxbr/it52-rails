@@ -6,7 +6,8 @@ threads 2, threads_count
 
 preload_app!
 
-rackup      DefaultRackup
+rackup  DefaultRackup if defined?(DefaultRackup)
+
 port        Integer(ENV.fetch('PORT') { 3000 })
 environment ENV.fetch('RACK_ENV') { 'development' }
 
