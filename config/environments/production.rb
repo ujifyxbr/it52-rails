@@ -104,18 +104,20 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: ENV.fetch('mailing_host', 'it52.info') }
   config.action_mailer.default_options = { from: "robot@#{ENV.fetch('mailing_host', 'it52.info')}" }
-  config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.delivery_method = :smtp
 
-  config.action_mailer.mailgun_settings = {
-    api_key: ENV.fetch('mailgun_api_key', 'mailgun_api_key'),
-    domain: ENV.fetch('mailing_host', 'it52.info')
-  }
+  #config.action_mailer.mailgun_settings = {
+   # api_key: ENV.fetch('mailgun_api_key', 'mailgun_api_key'),
+    #domain: ENV.fetch('mailing_host', 'it52.info')
+  #}
 
   config.action_mailer.smtp_settings = {
     authentication: :plain,
-    user_name: 'robot@it52.info',
-    password: Rails.application.credentials.production[:mailgun_smtp_password],
-    address: 'smtp.mailgun.org',
-    port: 587
+    enable_starttls_auto: true,
+    tls: true,
+    user_name: Rails.application.credentials.production[:mailyandex_smtp_account],
+    password: Rails.application.credentials.production[:mailyandex_smtp_password],
+    address: 'smtp.yandex.ru',
+    port: 465
   }
 end
