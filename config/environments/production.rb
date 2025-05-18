@@ -115,7 +115,6 @@ Rails.application.configure do
   #}
 
   config.action_mailer.smtp_settings = {
-    authentication: :plain,
     enable_starttls_auto: true,
     tls: true,
     user_name: Rails.application.credentials.production[:mailyandex_smtp_account],
