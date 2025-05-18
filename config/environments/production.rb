@@ -104,6 +104,8 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: ENV.fetch('mailing_host', 'it52.info') }
   config.action_mailer.default_options = { from: "webmaster@#{ENV.fetch('mailing_host', 'it52.info')}" }
+  config.action_mailer.logger = ActiveSupport::Logger.new("log/mailer.log")
+  config.action_mailer.perform_deliveries    = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
 
